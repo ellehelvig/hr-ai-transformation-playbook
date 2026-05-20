@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check files exist
+        run: |
+          test -f README.md && echo "README exists"
+          test -d 01-use-cases && echo "Use cases exist"
+          test -d 07-agentic-patterns && echo "Agentic patterns exist"
