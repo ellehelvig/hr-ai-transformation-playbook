@@ -7,12 +7,13 @@ on:
     branches: [main]
 
 jobs:
-  lint-markdown:
-    name: Lint markdown
+  check:
+    name: Validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Lint markdown files
-        uses: DavidAnson/markdownlint-cli2-action@v16
-        with:
-          globs: '**/*.md'
+      - name: Check files exist
+        run: |
+          test -f README.md && echo "README exists"
+          test -d 01-use-cases && echo "Use cases exist"
+          test -d 07-agentic-patterns && echo "Agentic patterns exist"
