@@ -1,8 +1,8 @@
 # HR AI use policy
 
-**Status:** Template — adapt for your organization before adopting  
-**Last reviewed:** [DATE]  
-**Owner:** People Team / HR Technology  
+**Status:** Template — adapt for your organization before adopting
+**Last reviewed:** [DATE]
+**Owner:** People Team / HR Technology
 **Legal review required before publishing:** Yes
 
 ---

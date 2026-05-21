@@ -2,7 +2,7 @@
 
 Evals are structured test cases that verify an agent behaves correctly across a range of inputs — including edge cases, adversarial inputs, and emotionally sensitive scenarios. Running evals before deployment and after any change is what separates a reliable production agent from a demo.
 
-This directory contains eval sets for the HR Q&A agent and onboarding agent, plus a framework for writing your own.
+This directory contains an eval set for the HR Q&A agent, plus a framework for writing your own.
 
 ---
 
@@ -10,7 +10,7 @@ This directory contains eval sets for the HR Q&A agent and onboarding agent, plu
 
 | File | Contents |
 |---|---|
-| [hr-qa-agent-evals.yaml](hr-qa-agent-evals.yaml) | 30 test cases for the HR policy Q&A agent |
+| [hr-qa-agent-evals.yaml](hr-qa-agent-evals.yaml) | 29 test cases for the HR policy Q&A agent |
 | [eval-rubric.md](eval-rubric.md) | Scoring rubric for human evaluation of agent responses |
 | [run-evals.py](run-evals.py) | Script to run evals against a live agent endpoint |
 

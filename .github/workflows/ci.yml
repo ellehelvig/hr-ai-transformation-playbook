@@ -7,13 +7,81 @@ on:
     branches: [main]
 
 jobs:
-  check:
+  validate:
     name: Validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check files exist
+
+      - name: Check section directories exist
         run: |
-          test -f README.md && echo "README exists"
-          test -d 01-use-cases && echo "Use cases exist"
-          test -d 07-agentic-patterns && echo "Agentic patterns exist"
+          for d in 01-use-cases 02-prompt-library 03-governance 04-enablement \
+                   05-notebooks 06-roadmap 07-agentic-patterns 08-roi-measurement 09-evals; do
+            test -d "$d" || { echo "Missing: $d"; exit 1; }
+          done
+          test -f README.md && test -f LICENSE && test -f CONTRIBUTING.md
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python deps
+        run: pip install pyyaml requests nbformat
+
+      - name: Validate YAML files
+        run: |
+          python - <<'PY'
+          import yaml, pathlib
+          for ext in ('*.yaml', '*.yml'):
+              for p in pathlib.Path('.').rglob(ext):
+                  if '.git' in p.parts:
+                      continue
+                  yaml.safe_load(p.read_text())
+                  print(f'OK: {p}')
+          PY
+
+      - name: Validate Python compiles
+        run: python -m py_compile 09-evals/run-evals.py
+
+      - name: Validate Jupyter notebooks
+        run: |
+          python - <<'PY'
+          import nbformat, pathlib
+          for p in pathlib.Path('05-notebooks').rglob('*.ipynb'):
+              nb = nbformat.read(p, as_version=4)
+              nbformat.validate(nb)
+              print(f'OK: {p}')
+          PY
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run markdown lint
+        run: |
+          npm install -g markdownlint-cli
+          markdownlint --config .markdownlint.json '**/*.md' --ignore node_modules
+
+      - name: Check internal markdown links
+        run: |
+          python - <<'PY'
+          import re, pathlib, sys
+          link_re = re.compile(r'\[([^\]]+)\]\(([^)]+)\)')
+          broken = []
+          for f in pathlib.Path('.').rglob('*.md'):
+              if '.git' in f.parts or 'node_modules' in f.parts:
+                  continue
+              for m in link_re.finditer(f.read_text()):
+                  target = m.group(2).split('#')[0]
+                  if not target or target.startswith(('http://', 'https://', 'mailto:')):
+                      continue
+                  if not (f.parent / target).resolve().exists():
+                      broken.append((str(f), m.group(2)))
+          if broken:
+              for b in broken:
+                  print('BROKEN:', b)
+              sys.exit(1)
+          print('All internal links valid')
+          PY

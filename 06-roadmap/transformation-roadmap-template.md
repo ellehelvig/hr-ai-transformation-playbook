@@ -137,7 +137,7 @@ Before rolling a pilot use case to org-wide deployment:
 - Pay equity analysis
 
 **Key activities:**
-- [ ] Commission full [attrition risk model](../05-notebooks/attrition-risk-model.ipynb) (requires clean HRIS data)
+- [ ] Commission full attrition risk model (requires clean HRIS data — see [05 · Notebooks](../05-notebooks/README.md))
 - [ ] Build agentic workflows for highest-volume HR processes
 - [ ] Integrate AI recommendations into HRIS where technically feasible
 - [ ] Establish HR AI as a function — dedicated headcount or formal role(s)

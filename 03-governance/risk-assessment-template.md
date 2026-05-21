@@ -2,8 +2,8 @@
 
 Complete this template before deploying any new AI use case in HR. Submit to the HR Technology governance review process.
 
-**Intake date:** [DATE]  
-**Submitter:** [NAME, TITLE]  
+**Intake date:** [DATE]
+**Submitter:** [NAME, TITLE]
 **Target launch date:** [DATE]
 
 ---
