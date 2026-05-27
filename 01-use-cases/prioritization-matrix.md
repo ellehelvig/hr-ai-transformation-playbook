@@ -111,7 +111,7 @@ The most impressive demo is rarely the highest-value use case.
 Most HR AI projects are blocked by data quality, not model capability. Score this dimension conservatively.
 
 **Skipping the risk inverse score.**
-Regulatory exposure in HR AI (EEOC, GDPR, CCPA, IL AIAA) can kill a project months in. Score it first, not last.
+Regulatory exposure in HR AI (EEOC guidance, GDPR, CCPA, NYC Local Law 144, Illinois AI Video Interview Act, Colorado AI Act) can kill a project months in. Score it first, not last.
 
 **Treating the matrix as the answer.**
 It's a forcing function for structured conversation, not a substitute for judgment.
