@@ -1,6 +1,6 @@
 # HR AI use case library
 
-30+ vetted use cases organized by HR function. Each entry includes the AI approach, effort/impact rating, key risks, and success metrics. Use this as a starting point — not every use case fits every organization.
+37 vetted use cases organized by HR function. Each entry includes the AI approach, effort/impact rating, key risks, and success metrics. Use this as a starting point — not every use case fits every organization.
 
 **AI approach key:**
 - **Agent** — autonomous multi-step task completion with tool use

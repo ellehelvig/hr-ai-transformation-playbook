@@ -113,5 +113,7 @@ Most HR AI projects are blocked by data quality, not model capability. Score thi
 **Skipping the risk inverse score.**
 Regulatory exposure in HR AI (EEOC guidance, GDPR, CCPA, NYC Local Law 144, Illinois AI Video Interview Act, Colorado AI Act) can kill a project months in. Score it first, not last.
 
+*Specific regulations listed are current as of May 2026. The landscape evolves rapidly — confirm current law for your jurisdiction(s) when assigning risk scores.*
+
 **Treating the matrix as the answer.**
 It's a forcing function for structured conversation, not a substitute for judgment.

@@ -121,6 +121,8 @@ Introduce and reinforce this heuristic:
 | 1:00–1:20 | Walk-through: The risk assessment template |
 | 1:20–1:30 | Q&A + open discussion |
 
+> **Note on regulatory currency:** Regulatory references in this module are current as of May 2026. The HR AI regulatory landscape is evolving rapidly — verify current law before relying on specific references in any compliance discussion or training material.
+
 **Key legal risk areas to cover:**
 
 *Bias and disparate impact:*

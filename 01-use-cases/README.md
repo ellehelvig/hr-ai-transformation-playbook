@@ -6,7 +6,7 @@ Everything in this section is designed to answer one question: **what should we 
 
 | File | Purpose |
 |---|---|
-| [use-case-library.md](use-case-library.md) | 30+ HR AI use cases organized by function, with AI approach, impact, effort, and risk ratings |
+| [use-case-library.md](use-case-library.md) | 37 HR AI use cases organized by function, with AI approach, impact, effort, and risk ratings |
 | [prioritization-matrix.md](prioritization-matrix.md) | Scoring framework to rank use cases against your specific context |
 | [intake-template.md](intake-template.md) | Submit a new use case for review |
 
