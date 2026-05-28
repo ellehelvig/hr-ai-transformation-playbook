@@ -7,6 +7,8 @@ Training and adoption resources to build AI fluency across the People Team. With
 | File | Purpose |
 |---|---|
 | [hr-ai-literacy-curriculum.md](hr-ai-literacy-curriculum.md) | 4-module program for all People Team members (8 hours total) |
+| [HR-AI-Literacy-Curriculum.pdf](HR-AI-Literacy-Curriculum.pdf) | Visual presentation deck (23 slides) — readable in any browser |
+| [HR-AI-Literacy-Curriculum.pptx](HR-AI-Literacy-Curriculum.pptx) | Editable PowerPoint version for adaptation to your organization |
 
 ## Why enablement is the bottleneck
 
