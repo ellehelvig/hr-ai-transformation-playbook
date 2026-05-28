@@ -48,7 +48,7 @@ Large language models predict the next most likely word given context. They don'
 Rule-based automation → AI Copilot → AI Agent
 (deterministic)         (assisted)    (autonomous)
 ```
-Most HR AI today sits in the middle. True agentic AI — where the model takes multi-step actions autonomously — is emerging and brings new governance requirements.
+Most HR AI today sits in the middle. True agentic AI, where the model takes multi-step actions autonomously — is emerging and brings new governance requirements.
 
 *Prompt quality drives output quality:*
 The single highest-leverage skill for HR professionals using AI is prompt construction. Vague prompts produce generic output. Specific, well-structured prompts with good context produce usable output.
@@ -135,7 +135,7 @@ Several jurisdictions now require disclosure, impact assessments, or consent for
 Employees in covered jurisdictions have rights regarding automated decision-making. Know which of your employees are covered and how your AI use cases interact with their rights.
 
 *The "AI as a manager" trap:*
-AI that monitors, evaluates, or scores employees without their knowledge — even for legitimate purposes — creates legal and trust exposure. Transparency is not just ethical, it's protective.
+AI that monitors, evaluates, or scores employees without their knowledge — even for legitimate purposes, creates legal and trust exposure. Transparency is not just ethical, it's protective.
 
 **Scenario practice cards:**
 
@@ -206,7 +206,7 @@ First step to move forward:
 
 Participants who complete all four modules and the hands-on components receive a **HR AI Practitioner** acknowledgment from the People Team.
 
-Optional extension: Participants who complete a full use case spec and present it to the HR Technology team are recognized as **HR AI Champions** — an informal internal designation that supports peer enablement.
+Optional extension: Participants who complete a full use case spec and present it to the HR Technology team are recognized as **HR AI Champions** an informal internal designation that supports peer enablement.
 
 ---
 
