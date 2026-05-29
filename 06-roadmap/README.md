@@ -1,6 +1,6 @@
 # Roadmap
 
-Planning templates for HR AI transformation programs. These are not aspirational decks — they are working artifacts designed to survive contact with reality. Clean HRIS data isn't, budgets get cut, executive sponsors change. The roadmap that works is the one that accounts for that.
+Planning templates for HR AI transformation programs. These are not aspirational decks, they are working artifacts designed to survive contact with reality. Clean HRIS data isn't, budgets get cut, executive sponsors change. The roadmap that works is the one that accounts for that.
 
 ## Contents
 
@@ -30,7 +30,7 @@ Before opening the template, three honest answers:
 
 The 18-month structure works for organizations with 1,000–10,000 employees and a dedicated HR Tech function. Adapt it for your context:
 
-- **Smaller organizations (<500 employees):** Compress Phases 0–2 into 6–9 months. Skip the dedicated HR AI Champion network — assign it to existing HRBPs.
+- **Smaller organizations (<500 employees):** Compress Phases 0–2 into 6–9 months. Skip the dedicated HR AI Champion network, assign it to existing HRBPs.
 - **Larger organizations (>10,000 employees):** Extend Phase 2 by 3–6 months for regional rollout. Add change-management infrastructure between Phases 1 and 2.
 - **Highly regulated industries (healthcare, finance, government):** Expect Phase 0 to take 3–4 months, not 2. Don't fight it.
 - **Already at Level 3+:** Skip ahead to Phase 2, but resist the temptation to skip the use case prioritization step. The use cases you'd pick from a Level 1 starting point are different from the ones that match where you actually are.

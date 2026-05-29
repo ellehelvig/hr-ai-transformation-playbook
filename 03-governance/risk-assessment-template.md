@@ -99,7 +99,7 @@ Complete this template before deploying any new AI use case in HR. Submit to the
 - [ ] Tested for disparate impact across relevant demographic groups
 - [ ] Reviewed training data for historical bias
 - [ ] Established baseline demographic distribution of inputs and expected outputs
-- [ ] Not yet assessed — testing required before approval
+- [ ] Not yet assessed, testing required before approval
 
 **Post-deployment monitoring plan:**
 - Metric(s) to monitor: [e.g., offer rate by gender, screening pass rate by race]
@@ -112,14 +112,14 @@ Complete this template before deploying any new AI use case in HR. Submit to the
 ## 5. Transparency and employee notice
 
 **Will employees know AI was used in this process?**
-- [ ] Yes — Privacy Notice updated, employees informed via [channel]
-- [ ] Yes — disclosed at point of use (e.g., in the tool interface)
-- [ ] No — not applicable (AI is used only internally, no employee-facing output)
-- [ ] Not yet — notice update required before launch
+- [ ] Yes. Privacy Notice updated, employees informed via [channel]
+- [ ] Yes, disclosed at point of use (e.g., in the tool interface)
+- [ ] No, not applicable (AI is used only internally, no employee-facing output)
+- [ ] Not yet, notice update required before launch
 
 **Can employees request human review of AI outputs that affect them?**
-- [ ] Yes — process is: [describe]
-- [ ] N/A — this use case has no employee-facing output
+- [ ] Yes, process is: [describe]
+- [ ] N/A, this use case has no employee-facing output
 
 ---
 

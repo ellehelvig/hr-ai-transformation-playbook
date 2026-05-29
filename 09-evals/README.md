@@ -1,6 +1,6 @@
 # HR agent eval framework
 
-Evals are structured test cases that verify an agent behaves correctly across a range of inputs — including edge cases, adversarial inputs, and emotionally sensitive scenarios. Running evals before deployment and after any change is what separates a reliable production agent from a demo.
+Evals are structured test cases that verify an agent behaves correctly across a range of inputs, including edge cases, adversarial inputs, and emotionally sensitive scenarios. Running evals before deployment and after any change is what separates a reliable production agent from a demo.
 
 This directory contains an eval set for the HR Q&A agent, plus a framework for writing your own.
 
@@ -19,14 +19,14 @@ This directory contains an eval set for the HR Q&A agent, plus a framework for w
 ## How evals work
 
 Each eval case defines:
-- **input** — what the user sends to the agent
-- **expected_behavior** — what a correct response looks like (not exact text, but criteria)
-- **should_escalate** — whether this input should trigger human handoff
-- **should_refuse** — whether this input should be declined
-- **category** — type of test (routine, edge-case, adversarial, sensitive)
-- **notes** — why this case exists and what failure looks like
+- **input**: what the user sends to the agent
+- **expected_behavior**: what a correct response looks like (not exact text, but criteria)
+- **should_escalate**: whether this input should trigger human handoff
+- **should_refuse**: whether this input should be declined
+- **category**: type of test (routine, edge-case, adversarial, sensitive)
+- **notes**: why this case exists and what failure looks like
 
-Evals are not unit tests — they don't check for exact string matches. They check for behavioral correctness, which requires a combination of automated checks and human spot-review.
+Evals are not unit tests, they don't check for exact string matches. They check for behavioral correctness, which requires a combination of automated checks and human spot-review.
 
 ---
 
@@ -44,7 +44,7 @@ python run-evals.py --endpoint https://your-agent.railway.app --evals hr-qa-agen
 # Output: evals-results-[timestamp].json
 ```
 
-Review results in `evals-results-*.json`. Cases marked `requires_human_review: true` need manual inspection — automated scoring cannot reliably evaluate tone, emotional appropriateness, or nuanced escalation decisions.
+Review results in `evals-results-*.json`. Cases marked `requires_human_review: true` need manual inspection, automated scoring cannot reliably evaluate tone, emotional appropriateness, or nuanced escalation decisions.
 
 ---
 
@@ -64,9 +64,9 @@ Add cases to the YAML file following the existing format. Guidelines:
 
 | Trigger | Run evals? |
 |---|---|
-| Before initial deployment | Yes — full set |
-| System prompt change | Yes — full set |
-| Knowledge base update | Yes — cases relevant to changed content |
-| Model version change | Yes — full set |
-| Weekly production monitoring | Yes — random sample of 10 cases |
-| After any escalation incident | Yes — add case covering the incident scenario |
+| Before initial deployment | Yes, full set |
+| System prompt change | Yes, full set |
+| Knowledge base update | Yes, cases relevant to changed content |
+| Model version change | Yes, full set |
+| Weekly production monitoring | Yes, random sample of 10 cases |
+| After any escalation incident | Yes, add case covering the incident scenario |

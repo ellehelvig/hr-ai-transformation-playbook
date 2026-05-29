@@ -1,6 +1,6 @@
 # Notebooks
 
-Jupyter notebooks for workforce analytics. All notebooks use synthetic data — never run them against real employee data without first reviewing the [risk assessment template](../03-governance/risk-assessment-template.md).
+Jupyter notebooks for workforce analytics. All notebooks use synthetic data, never run them against real employee data without first reviewing the [risk assessment template](../03-governance/risk-assessment-template.md).
 
 ## Contents
 
@@ -15,7 +15,7 @@ pip install pandas numpy matplotlib seaborn jupyter
 jupyter notebook
 ```
 
-Each notebook is self-contained and includes synthetic sample data. Replace the sample inputs with your own data structures — every notebook flags the cells you need to edit.
+Each notebook is self-contained and includes synthetic sample data. Replace the sample inputs with your own data structures, every notebook flags the cells you need to edit.
 
 ## Coming soon
 

@@ -13,7 +13,7 @@ high-impact AI programs, from use case discovery through deployment and upskilli
 
 Most HR AI guidance falls into one of two traps: too theoretical to act on,
 or too vendor-specific to generalize. This playbook is neither. It is a working
-toolkit — prompts that run, notebooks that execute, governance checklists that
+toolkit, prompts that run, notebooks that execute, governance checklists that
 hold up to legal review, and a use case library grounded in measurable business
 outcomes.
 
@@ -96,7 +96,7 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT — use freely, adapt for your organization, share improvements back.
+MIT, use freely, adapt for your organization, share improvements back.
 
 > None of this is legal advice. All governance documents should be reviewed
 > by Legal and Privacy before adoption.

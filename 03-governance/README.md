@@ -1,12 +1,12 @@
 # Governance
 
-Frameworks for responsible AI adoption in HR. None of this is legal advice — all documents should be reviewed by Legal and Privacy before adoption.
+Frameworks for responsible AI adoption in HR. None of this is legal advice, all documents should be reviewed by Legal and Privacy before adoption.
 
 ## Contents
 
 | File | Purpose |
 |---|---|
-| [ai-use-policy.md](ai-use-policy.md) | Principles and requirements for HR AI use — adapt for your organization |
+| [ai-use-policy.md](ai-use-policy.md) | Principles and requirements for HR AI use, adapt for your organization |
 | [risk-assessment-template.md](risk-assessment-template.md) | Required before deploying any new HR AI use case |
 
 ## The non-negotiables

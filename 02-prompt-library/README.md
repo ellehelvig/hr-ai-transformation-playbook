@@ -12,7 +12,7 @@ Production-ready prompts for HR workflows. Every prompt is structured to be test
 
 ## How to use these prompts
 
-Each prompt includes the prompt itself, intended use, expected output, and tuning notes from real testing. Treat them as starting points — your organization's policies, tone, and data shape what works.
+Each prompt includes the prompt itself, intended use, expected output, and tuning notes from real testing. Treat them as starting points, your organization's policies, tone, and data shape what works.
 
 Before deploying any prompt in a workflow that affects employees, route it through the [risk assessment template](../03-governance/risk-assessment-template.md).
 

@@ -2,13 +2,13 @@
 
 A reference guide for designing and deploying AI agents in People Team operations. Each pattern includes an architecture diagram, when to use it, implementation notes, and the governance requirements that apply.
 
-These are not theoretical — they are the patterns that appear repeatedly in production HR agent deployments.
+These are not theoretical, they are the patterns that appear repeatedly in production HR agent deployments.
 
 ---
 
 ## What makes a workflow "agentic"
 
-A workflow is agentic when the AI takes multiple steps autonomously to complete a task, using tools and making decisions along the way — rather than simply responding to a single prompt.
+A workflow is agentic when the AI takes multiple steps autonomously to complete a task, using tools and making decisions along the way, rather than simply responding to a single prompt.
 
 ```
 Non-agentic:  User prompt → LLM response → done
@@ -54,9 +54,9 @@ The most common pattern for complex HR workflows. A coordinator agent receives t
 └─────────────────┘  └─────────────────┘  └─────────────────┘
 ```
 
-**When to use:** Tasks that span multiple HR systems or require different types of knowledge. New hire onboarding is the canonical example — it touches policy, HRIS provisioning, and calendar scheduling simultaneously.
+**When to use:** Tasks that span multiple HR systems or require different types of knowledge. New hire onboarding is the canonical example, it touches policy, HRIS provisioning, and calendar scheduling simultaneously.
 
-**Example:** Employee asks "I'm starting parental leave next month — what do I need to do?" The orchestrator routes to the policy agent (what's the process?), the HRIS agent (what's the employee's current leave balance?), and the calendar agent (when should the manager handoff meeting be scheduled?). The orchestrator assembles a personalized action plan.
+**Example:** Employee asks "I'm starting parental leave next month, what do I need to do?" The orchestrator routes to the policy agent (what's the process?), the HRIS agent (what's the employee's current leave balance?), and the calendar agent (when should the manager handoff meeting be scheduled?). The orchestrator assembles a personalized action plan.
 
 **Governance requirement:** The orchestrator must log every sub-task and its result. If any specialist agent fails or returns low-confidence output, the orchestrator must route to a human rather than proceeding.
 
@@ -96,7 +96,7 @@ User request
                     context)
 ```
 
-**When to use:** HR helpdesk, benefits Q&A, leave balance inquiries — high-volume, mostly routine tasks with a clear escalation path.
+**When to use:** HR helpdesk, benefits Q&A, leave balance inquiries, high-volume, mostly routine tasks with a clear escalation path.
 
 **Tool design principles:**
 - Each tool does one thing and returns structured output
@@ -142,14 +142,14 @@ User query: "How many days of bereavement leave do I get?"
 └─────────────────────────────┘
 ```
 
-**When to use:** Any agent that answers policy questions. RAG should be the default for HR Q&A — not optional.
+**When to use:** Any agent that answers policy questions. RAG should be the default for HR Q&A, not optional.
 
 **Implementation notes:**
 - Chunk policy documents by section, not by character count
 - Store document version and effective date as metadata on every chunk
 - Retrieve by jurisdiction where policies vary by state/country
 - Always return the source document name and section in the response
-- Refresh the document store every time policy is updated — stale RAG is worse than no RAG
+- Refresh the document store every time policy is updated, stale RAG is worse than no RAG
 
 **Governance requirement:** Policy document store must have a designated owner responsible for keeping it current. Agent responses should include the policy version they're based on so employees can verify.
 
@@ -188,9 +188,9 @@ executes      employee with
 update        reason
 ```
 
-**When to use:** Any action that modifies employee records, triggers a payroll change, or has compliance implications. The agent does the work of preparing and validating — the human does the work of deciding.
+**When to use:** Any action that modifies employee records, triggers a payroll change, or has compliance implications. The agent does the work of preparing and validating, the human does the work of deciding.
 
-**Key design principle:** The approval request must give the approver everything they need to decide in one view. Never make an approver go look something up — the agent should have already done that.
+**Key design principle:** The approval request must give the approver everything they need to decide in one view. Never make an approver go look something up, the agent should have already done that.
 
 ---
 
@@ -221,11 +221,11 @@ Day -1: Agent resumes
   └─► Sends new hire welcome message
 ```
 
-**When to use:** Onboarding, offboarding, leave management, performance cycles — any multi-day HR process with defined checkpoints.
+**When to use:** Onboarding, offboarding, leave management, performance cycles, any multi-day HR process with defined checkpoints.
 
 **Implementation notes:**
 - State must be persisted between runs (database or workflow engine, not in-memory)
-- Each step should be idempotent — safe to re-run if something fails
+- Each step should be idempotent, safe to re-run if something fails
 - Every resume point needs a freshness check: has anything changed since last run?
 - Define what happens if the pipeline stalls (manager change, role change, leave)
 
@@ -235,7 +235,7 @@ Day -1: Agent resumes
 
 ## Human-in-the-loop design
 
-Every agentic HR workflow needs explicit human touchpoints. This is not optional — it's a legal and ethical requirement for employment-related decisions.
+Every agentic HR workflow needs explicit human touchpoints. This is not optional, it's a legal and ethical requirement for employment-related decisions.
 
 ### Mandatory human gates
 

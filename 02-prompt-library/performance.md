@@ -1,6 +1,6 @@
 # Prompt library: performance management
 
-Prompts for performance management workflows — review drafts, calibration prep, goal-setting feedback, PIP documentation, and mid-cycle synthesis. All prompts assume a human manager retains decision authority on ratings, advancement, and disciplinary action.
+Prompts for performance management workflows, review drafts, calibration prep, goal-setting feedback, PIP documentation, and mid-cycle synthesis. All prompts assume a human manager retains decision authority on ratings, advancement, and disciplinary action.
 
 ---
 
@@ -9,7 +9,7 @@ Prompts for performance management workflows — review drafts, calibration prep
 **What it does:** Generates a first-draft performance review based on structured manager input and recent work artifacts. The manager edits, validates, and owns the final version.
 
 ```
-You are drafting a performance review for a manager to edit and finalize. You are not making the rating decision — the manager is.
+You are drafting a performance review for a manager to edit and finalize. You are not making the rating decision, the manager is.
 
 Employee context:
 - Role: [TITLE, LEVEL]
@@ -29,10 +29,10 @@ Goals set at start of cycle:
 Write a review draft with the following sections:
 
 1. **Overall summary** (3-4 sentences capturing the cycle, anchored to the proposed rating)
-2. **What went well** — 3 paragraphs, each tied to a specific accomplishment with evidence
-3. **Development areas** — 2 paragraphs, framed as growth opportunities, with one concrete next-cycle action each
-4. **Goal performance** — explicit rating per goal: Exceeded / Met / Partially met / Did not meet, with one-sentence justification
-5. **Looking ahead** — 2–3 sentences on what success looks like next cycle
+2. **What went well**: 3 paragraphs, each tied to a specific accomplishment with evidence
+3. **Development areas**: 2 paragraphs, framed as growth opportunities, with one concrete next-cycle action each
+4. **Goal performance**: explicit rating per goal: Exceeded / Met / Partially met / Did not meet, with one-sentence justification
+5. **Looking ahead**: 2–3 sentences on what success looks like next cycle
 
 Tone: specific, evidence-based, direct but respectful. Avoid:
 - Vague praise ("great team player", "passionate")
@@ -104,11 +104,11 @@ Draft goals:
 
 For each goal, evaluate it against these criteria:
 
-1. **Specific** — Is it clear what "done" looks like? Could two people read this and agree on what success means?
-2. **Measurable** — Is there a metric or observable outcome? Not "improve" but "improve X from Y to Z."
-3. **Owned by the employee** — Can the employee actually drive the outcome, or is it dependent on factors outside their control?
-4. **Connected to team priority** — Does this goal advance the team's top priority? If not, why is it a goal?
-5. **Stretch-but-realistic** — Will the employee learn or grow by hitting this? Is it achievable in the timeframe?
+1. **Specific**: Is it clear what "done" looks like? Could two people read this and agree on what success means?
+2. **Measurable**: Is there a metric or observable outcome? Not "improve" but "improve X from Y to Z."
+3. **Owned by the employee**: Can the employee actually drive the outcome, or is it dependent on factors outside their control?
+4. **Connected to team priority**: Does this goal advance the team's top priority? If not, why is it a goal?
+5. **Stretch-but-realistic**: Will the employee learn or grow by hitting this? Is it achievable in the timeframe?
 
 For each goal, return:
 - The goal as written
@@ -117,8 +117,8 @@ For each goal, return:
 - One question the manager should ask the employee before finalizing
 
 End with:
-- **Overall assessment** — Are these goals collectively strong enough to drive the next review cycle?
-- **What's missing** — Is there a goal that should exist for this role but doesn't?
+- **Overall assessment**: Are these goals collectively strong enough to drive the next review cycle?
+- **What's missing**: Is there a goal that should exist for this role but doesn't?
 
 Be direct. Soft feedback on weak goals produces weak goals.
 ```
@@ -146,23 +146,23 @@ Inputs:
 
 Generate a PIP document with:
 
-1. **Purpose statement** — Plain language: why this PIP is being issued. State the gap between current performance and role expectations.
+1. **Purpose statement**: Plain language: why this PIP is being issued. State the gap between current performance and role expectations.
 
-2. **Performance concerns** — For each concern:
+2. **Performance concerns**: For each concern:
    - The expected standard (cite job description or competency framework)
    - The observed performance (specific examples with dates)
    - The gap between the two
    - Avoid generalizations. Every statement should be defensible in writing.
 
-3. **Improvement expectations** — Specific, observable, measurable improvements required. Tied to each concern listed above. Include the standard ("at the level of others in this role") not just direction ("improve").
+3. **Improvement expectations**: Specific, observable, measurable improvements required. Tied to each concern listed above. Include the standard ("at the level of others in this role") not just direction ("improve").
 
-4. **Support provided** — What the manager, HRBP, and organization will do to support improvement (coaching cadence, training, mentoring, removal of blockers).
+4. **Support provided**: What the manager, HRBP, and organization will do to support improvement (coaching cadence, training, mentoring, removal of blockers).
 
-5. **Check-in schedule** — Specific dates for each check-in over the PIP period, what will be reviewed, and what the employee should prepare.
+5. **Check-in schedule**: Specific dates for each check-in over the PIP period, what will be reviewed, and what the employee should prepare.
 
-6. **Consequences** — Clear, factual statement of what happens if improvement targets are not met by the end of the PIP period.
+6. **Consequences**: Clear, factual statement of what happens if improvement targets are not met by the end of the PIP period.
 
-7. **Employee acknowledgment section** — Space for employee signature and date, with language clarifying that signature acknowledges receipt, not agreement.
+7. **Employee acknowledgment section**: Space for employee signature and date, with language clarifying that signature acknowledges receipt, not agreement.
 
 Tone: direct, factual, professional. Never:
 - Use the word "attitude" without specific behavioral examples
@@ -199,25 +199,25 @@ Feedback received:
 
 Produce a synthesis with:
 
-1. **Themes — strengths** (3 max)
+1. **Themes, strengths** (3 max)
    - Each theme stated in one sentence
    - Evidence: 2–3 specific examples or quotes (anonymized)
    - Source spread: which feedback sources mentioned this strength
 
-2. **Themes — development areas** (2-3 max)
+2. **Themes, development areas** (2-3 max)
    - Each theme stated in one sentence
    - Evidence: 2–3 specific examples or quotes (anonymized)
    - Source spread: which feedback sources raised this
    - Self-awareness check: did the employee identify this in their self-assessment?
 
-3. **Notable disagreements** — where different sources see the employee differently. These often matter more than the agreement.
+3. **Notable disagreements**: where different sources see the employee differently. These often matter more than the agreement.
 
-4. **What's missing** — patterns that would be useful but the data doesn't support, or sources that didn't respond.
+4. **What's missing**: patterns that would be useful but the data doesn't support, or sources that didn't respond.
 
 5. **Recommended discussion topics for the mid-year conversation** (3–5 questions, prioritized)
 
 Do not:
 - Attribute specific comments to specific people, even when easy to infer
 - Soften patterns to make them more palatable
-- Recommend a rating — this is feedback synthesis, not calibration prep
+- Recommend a rating, this is feedback synthesis, not calibration prep
 ```

@@ -1,6 +1,6 @@
 # Prompt library: onboarding
 
-Prompts for onboarding workflows — new hire Q&A, personalized onboarding plans, manager preparation, and check-in synthesis. Designed to support HR Operations and HR Business Partners, not replace human relationship-building with new hires.
+Prompts for onboarding workflows, new hire Q&A, personalized onboarding plans, manager preparation, and check-in synthesis. Designed to support HR Operations and HR Business Partners, not replace human relationship-building with new hires.
 
 ---
 
@@ -9,7 +9,7 @@ Prompts for onboarding workflows — new hire Q&A, personalized onboarding plans
 **What it does:** Generates an accurate, warm, citation-backed response to a common new hire policy question. Use as a Copilot-style assist when drafting HR helpdesk replies, or as the response generator inside an RAG-based agent.
 
 ```
-You are an HR helpdesk specialist responding to a new hire question. Your goal is to give a clear, accurate answer the employee can act on — not to recite the entire policy.
+You are an HR helpdesk specialist responding to a new hire question. Your goal is to give a clear, accurate answer the employee can act on, not to recite the entire policy.
 
 Company context:
 - Company: [COMPANY NAME]
@@ -18,7 +18,7 @@ Company context:
 - Time since start date: [X days]
 
 Policy source material:
-[PASTE THE RELEVANT POLICY SECTION — DO NOT INVENT POLICY DETAILS]
+[PASTE THE RELEVANT POLICY SECTION. DO NOT INVENT POLICY DETAILS]
 
 Employee question:
 [PASTE QUESTION]
@@ -28,7 +28,7 @@ Generate a response that:
 2. Cites the policy section name and version, so the employee can verify
 3. Flags any next steps the employee needs to take, with deadlines if relevant
 4. Routes to a human contact (HRBP, HR Ops) if the question involves individual circumstances or jurisdiction-specific rules
-5. Keeps tone warm but direct — new hires are nervous, not stupid
+5. Keeps tone warm but direct, new hires are nervous, not stupid
 
 Do not:
 - Invent policy details not in the source material above
@@ -76,7 +76,7 @@ Days 61–90 (Ownership):
 - Stakeholder feedback to gather and synthesize
 - 90-day review prep
 
-Keep it specific to the role and team — generic onboarding plans get ignored.
+Keep it specific to the role and team, generic onboarding plans get ignored.
 ```
 
 ---
@@ -107,7 +107,7 @@ Generate a prep guide with:
 4. **What NOT to do in the first 2 weeks:** Common manager mistakes (overloading, vague feedback, skipping 1:1s, not introducing them to skip-level)
 5. **30-day success criteria:** What "going well" looks like at the 30-day mark
 
-Keep it practical. The manager has 15 minutes to read this — make every line earn its place.
+Keep it practical. The manager has 15 minutes to read this, make every line earn its place.
 ```
 
 ---
@@ -117,10 +117,10 @@ Keep it practical. The manager has 15 minutes to read this — make every line e
 **What it does:** Synthesizes free-text new hire check-in responses into actionable insights for HRBPs and managers. Useful for spotting onboarding issues before they become attrition.
 
 ```
-You are analyzing new hire check-in survey responses. Identify themes and risks — do not just summarize.
+You are analyzing new hire check-in survey responses. Identify themes and risks, do not just summarize.
 
 Survey questions and responses:
-[PASTE THE 30/60/90 SURVEY RESPONSES — FREE TEXT FIELDS]
+[PASTE THE 30/60/90 SURVEY RESPONSES. FREE TEXT FIELDS]
 
 New hire context:
 - Cohort: [START MONTH]
@@ -130,12 +130,12 @@ New hire context:
 Produce a synthesis with:
 
 1. **Top 3 themes** that appear across multiple responses (not just one person's complaint)
-2. **Risk signals** for individual new hires — flag anyone whose responses suggest disengagement, confusion, or early attrition risk. Quote the specific language that triggered the flag.
-3. **What's working** — themes worth reinforcing or replicating
+2. **Risk signals** for individual new hires, flag anyone whose responses suggest disengagement, confusion, or early attrition risk. Quote the specific language that triggered the flag.
+3. **What's working**: themes worth reinforcing or replicating
 4. **Recommended actions** for HRBP and manager follow-up, broken out by:
    - Things the HRBP should address centrally (process gaps, missing resources)
    - Things individual managers should address with their direct report
-5. **What's missing from the data** — questions that should have been asked but weren't
+5. **What's missing from the data**: questions that should have been asked but weren't
 
 Be direct about risks. Soft framing of attrition signals helps no one.
 ```

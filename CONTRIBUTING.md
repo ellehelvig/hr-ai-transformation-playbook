@@ -5,10 +5,10 @@ Contributions are welcome. This playbook improves when practitioners share what 
 ## What to contribute
 
 - New use cases not in the library (use the intake template)
-- Prompt improvements — a prompt you've tested and improved
-- Governance additions — regulatory updates, jurisdiction-specific considerations
-- Notebook expansions — new analyses or improvements to existing ones
-- Corrections — anything inaccurate, outdated, or missing
+- Prompt improvements, a prompt you've tested and improved
+- Governance additions, regulatory updates, jurisdiction-specific considerations
+- Notebook expansions, new analyses or improvements to existing ones
+- Corrections, anything inaccurate, outdated, or missing
 
 ## How to contribute
 
@@ -21,5 +21,5 @@ Contributions are welcome. This playbook improves when practitioners share what 
 
 - All prompts must include tuning notes based on real testing
 - Governance content should flag if legal review is needed before adoption
-- Notebooks must use synthetic data — no real employee data ever
-- Use clear, direct language — avoid jargon that only makes sense inside one organization
+- Notebooks must use synthetic data, no real employee data ever
+- Use clear, direct language, avoid jargon that only makes sense inside one organization
