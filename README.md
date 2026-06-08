@@ -1,9 +1,8 @@
 # HR AI Transformation Playbook
 
 A practitioner's field guide for HR and People teams building responsible,
-high-impact AI programs, from use case discovery through deployment and upskilling.
+high-impact AI programs — from use case discovery through deployment and upskilling.
 
-[![CI](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
 [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -13,7 +12,7 @@ high-impact AI programs, from use case discovery through deployment and upskilli
 
 Most HR AI guidance falls into one of two traps: too theoretical to act on,
 or too vendor-specific to generalize. This playbook is neither. It is a working
-toolkit, prompts that run, notebooks that execute, governance checklists that
+toolkit — prompts that run, notebooks that execute, governance checklists that
 hold up to legal review, and a use case library grounded in measurable business
 outcomes.
 
@@ -23,10 +22,10 @@ outcomes.
 
 | Section | What you get |
 |---|---|
-| [01 · Use cases](01-use-cases/README.md) | Library of 37 vetted HR AI use cases, prioritization matrix, intake template |
-| [02 · Prompt library](02-prompt-library/README.md) | Production-ready prompts for talent acquisition, onboarding, performance management, and learning & development |
-| [03 · Governance](03-governance/README.md) | [AI use policy](03-governance/ai-use-policy.md), [risk assessment template](03-governance/risk-assessment-template.md), responsible AI framework |
-| [04 · Enablement](04-enablement/README.md) | HR AI literacy curriculum (4 modules, 8 hours) with workshop labs and case-study scenarios |
+| [01 · Use cases](01-use-cases/README.md) | Library of 30+ vetted HR AI use cases, prioritization matrix, intake template |
+| [02 · Prompt library](02-prompt-library/README.md) | Production-ready prompts for learning and development (more functions coming) |
+| [03 · Governance](03-governance/README.md) | [AI use policy](03-governance/ai-use-policy.md), [risk assessment template](03-governance/risk-assessment-template.md), [EU AI Act intake template](03-governance/eu-ai-act-intake-template.md), [vendor intake](03-governance/vendor-intake-checklist.md), [deployer checklist](03-governance/deployer-checklist.md) |
+| [04 · Enablement](04-enablement/README.md) | HR AI literacy curriculum, workshop facilitator guide, adoption playbook |
 | [05 · Notebooks](05-notebooks/README.md) | Jupyter notebooks for skills gap analysis and workforce analytics |
 | [06 · Roadmap](06-roadmap/README.md) | 18-month transformation roadmap template, KPI framework, phase gate criteria |
 | [07 · Agentic patterns](07-agentic-patterns/README.md) | Architecture patterns, agent design guide, testing and evaluation framework |
@@ -45,6 +44,9 @@ outcomes.
 
 **I need a governance framework**
 → [03 · Governance / ai-use-policy.md](03-governance/ai-use-policy.md)
+
+**I need to handle the EU AI Act for HR**
+→ [03 · Governance / eu-ai-act-intake-template.md](03-governance/eu-ai-act-intake-template.md)
 
 **I need to upskill my HR team**
 → [04 · Enablement / hr-ai-literacy-curriculum.md](04-enablement/hr-ai-literacy-curriculum.md)
@@ -96,7 +98,7 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT, use freely, adapt for your organization, share improvements back.
+MIT — use freely, adapt for your organization, share improvements back.
 
 > None of this is legal advice. All governance documents should be reviewed
 > by Legal and Privacy before adoption.
