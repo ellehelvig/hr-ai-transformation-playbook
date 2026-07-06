@@ -83,7 +83,7 @@ Include at least:
 
 Once you have the blueprint, these four levers determine how the agent actually operates:
 
-**Model choice.** Which reasoning engine? Frontier models (e.g., Claude Opus, GPT-5) for high-stakes work where the cost of failure is high. Workhorse models (e.g., Claude Sonnet, Gemini 2.5 Pro) for the majority of everyday HR tasks. High-throughput models (e.g., Claude Haiku, Gemini 2.5 Flash) for high-volume, low-complexity triage and classification. Match the model to the job's risk level, not to what's most impressive.
+**Model choice.** Which reasoning engine? Frontier models (e.g., Claude Opus, GPT-5.x) for high-stakes work where the cost of failure is high. Workhorse models (e.g., Claude Sonnet, Gemini 3.x Pro) for the majority of everyday HR tasks. High-throughput models (e.g., Claude Haiku, Gemini 3.x Flash) for high-volume, low-complexity triage and classification. Match the model to the job's risk level, not to what's most impressive.
 
 **Temperature.** Low (0.1–0.3) for policy Q&A, compliance tasks, data lookups, consistency matters more than creativity. Medium (0.4–0.6) for drafting communications, coaching suggestions, learning path recommendations. High temperature has almost no place in HR agents handling employee data.
 
@@ -131,10 +131,10 @@ A common mistake in HR AI budgeting is treating API costs as cost-per-prompt. Th
 
 | Tier | Use case | Models | Approx cost |
 |---|---|---|---|
-| **Precision** | High-stakes decisions, legal review, complex reasoning | e.g., Claude Opus, GPT-5 | ~$15–75/M tokens |
-| **Core** | Majority of everyday HR agent work | e.g., Claude Sonnet, Gemini 2.5 Pro | ~$3–15/M tokens |
-| **Volume** | High-throughput triage, classification, routing | e.g., Claude Haiku, Gemini 2.5 Flash | ~$0.40–4/M tokens |
-| **Reasoning** | Multi-step planning, complex tool use, deep analysis | e.g., o4, Claude Opus (extended thinking) | Use-case dependent |
+| **Precision** | High-stakes decisions, legal review, complex reasoning | e.g., Claude Opus, GPT-5.x | ~$15–75/M tokens |
+| **Core** | Majority of everyday HR agent work | e.g., Claude Sonnet, Gemini 3.x Pro | ~$3–15/M tokens |
+| **Volume** | High-throughput triage, classification, routing | e.g., Claude Haiku, Gemini 3.x Flash | ~$0.40–4/M tokens |
+| **Reasoning** | Multi-step planning, complex tool use, deep analysis | e.g., GPT-5.x Thinking, Claude Opus (extended thinking) | Use-case dependent |
 
 **A practical cost strategy:** Use a Precision tier model to generate high-quality example outputs for your use case. Feed those as demonstrations into a Core or Volume tier model for production. Teams have cut costs significantly this way without meaningful quality loss, the cheaper model learns what good looks like from the expensive model's examples.
 

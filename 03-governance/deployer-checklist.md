@@ -6,7 +6,7 @@ Mapped to Article 26 of the EU AI Act, with hooks into GDPR and existing HR prac
 
 ## Timing
 
-High-risk obligations for HR systems under Annex III are proposed to apply from 2 December 2027 under the Omnibus political agreement, instead of 2 August 2026. The Omnibus is not yet adopted text. Build the practice now. Vendors and customers are already asking for the evidence trail.
+High-risk obligations for HR systems under Annex III apply from 2 December 2027 instead of 2 August 2026, under the AI Omnibus simplification package. The Omnibus is now formally adopted: Parliament passed its final vote on 16 June 2026 and the Council gave final sign-off on 29 June 2026, pending publication in the Official Journal. Embedded high-risk AI under Annex I (regulated products) gets a separate deferral, to 2 August 2028. Build the practice now. Vendors and customers are already asking for the evidence trail.
 
 ## The deployer obligations, in plain English
 
