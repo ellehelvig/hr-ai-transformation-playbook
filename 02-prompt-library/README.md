@@ -7,6 +7,8 @@ Production-ready prompts for HR workflows. Every prompt is structured to be test
 | File | Purpose |
 |---|---|
 | [learning-development.md](learning-development.md) | Prompts for skills gap analysis, learning path generation, manager coaching, and program evaluation |
+| [talent-acquisition.md](talent-acquisition.md) | Prompts for inclusive job postings, structured screening, resume evidence extraction, panel debriefs, rejections, and offer equity checks |
+| [performance-management.md](performance-management.md) | Prompts for review drafting, calibration prep, PIP documentation, development conversations, and consistency checks |
 
 ## How to use these prompts
 
@@ -16,4 +18,4 @@ Before deploying any prompt in a workflow that affects employees, route it throu
 
 ## Coming soon
 
-Prompts for onboarding, performance management, talent acquisition, and HR operations. Contributions welcome via [CONTRIBUTING.md](../CONTRIBUTING.md).
+Prompts for onboarding and general HR operations. Contributions welcome via [CONTRIBUTING.md](../CONTRIBUTING.md).

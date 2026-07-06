@@ -13,6 +13,8 @@ This directory contains an eval set for the HR Q&A agent, plus a framework for w
 | [hr-qa-agent-evals.yaml](hr-qa-agent-evals.yaml) | 29 test cases for the HR policy Q&A agent |
 | [eval-rubric.md](eval-rubric.md) | Scoring rubric for human evaluation of agent responses |
 | [run-evals.py](run-evals.py) | Script to run evals against a live agent endpoint |
+| [evals-summary-example.txt](evals-summary-example.txt) | Example output from a pilot run — shows what the runner produces, including a real flagged case |
+| [evals-results-example.json](evals-results-example.json) | Full structured results behind the example summary above |
 
 ---
 

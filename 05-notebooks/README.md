@@ -7,6 +7,7 @@ Jupyter notebooks for workforce analytics. All notebooks use synthetic data — 
 | File | Purpose |
 |---|---|
 | [skills-gap-analysis.ipynb](skills-gap-analysis.ipynb) | Identify priority L&D investments by mapping employee skill assessments against a competency framework |
+| [attrition-risk-analysis.ipynb](attrition-risk-analysis.ipynb) | Interpretable (non-black-box) attrition risk scoring, risk-driver breakdown, and HRBP retention outreach prioritization |
 
 ## Running locally
 
@@ -19,4 +20,4 @@ Each notebook is self-contained and includes synthetic sample data. Replace the 
 
 ## Coming soon
 
-Attrition risk modeling, compensation equity analysis, and onboarding effectiveness. Contributions welcome via [CONTRIBUTING.md](../CONTRIBUTING.md).
+Compensation equity analysis and onboarding effectiveness. Contributions welcome via [CONTRIBUTING.md](../CONTRIBUTING.md).

@@ -26,6 +26,36 @@ The key differences from standard AI use:
 
 ---
 
+## Which pattern do I need?
+
+Start here. This decision flow routes you to the right pattern based on what your use case actually needs — match complexity to demonstrated value, not to what's most interesting to build.
+
+```mermaid
+flowchart TD
+    A[New HR AI use case] --> B{Does it need to answer<br/>questions from policy docs?}
+    B -- Yes --> C[Pattern 3: RAG for HR policy]
+    B -- No --> D{Does it need to take actions<br/>in other systems?}
+    D -- No --> E[Not agentic — use a prompt<br/>from the prompt library instead]
+    D -- Yes --> F{Does the action modify records,<br/>trigger payroll, or affect<br/>compliance?}
+    F -- Yes --> G[Pattern 4: Approval gate workflow]
+    F -- No --> H{Does it span multiple HR<br/>systems or knowledge domains?}
+    H -- Yes --> I[Pattern 1: Orchestrator +<br/>specialist agents]
+    H -- No --> J{Does it span hours or days<br/>with checkpoints along the way?}
+    J -- Yes --> K[Pattern 5: Async multi-step pipeline]
+    J -- No --> L[Pattern 2: Tool-use agent<br/>with human handoff]
+
+    style C fill:#185FA5,color:#fff
+    style G fill:#185FA5,color:#fff
+    style I fill:#185FA5,color:#fff
+    style K fill:#185FA5,color:#fff
+    style L fill:#185FA5,color:#fff
+    style E fill:#6b7280,color:#fff
+```
+
+Every path through this flow still requires the [human-in-the-loop design](#human-in-the-loop-design) and [failure mode](#failure-modes-to-design-for) sections below — the pattern determines the architecture, not whether governance applies.
+
+---
+
 ## Pattern 1: Orchestrator + specialist agents
 
 The most common pattern for complex HR workflows. A coordinator agent receives the user's request, breaks it into sub-tasks, and routes each to a specialist agent.

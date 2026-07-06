@@ -7,6 +7,8 @@ Training and adoption resources for HR professionals learning to work with AI.
 | File | Purpose |
 |---|---|
 | [hr-ai-literacy-curriculum.md](hr-ai-literacy-curriculum.md) | 4-module program for all People Team members (8 hours total) |
+| [workshop-facilitator-guide.md](workshop-facilitator-guide.md) | Logistics, pacing, resistance handling, and format adaptations for anyone facilitating the curriculum |
+| [adoption-playbook.md](adoption-playbook.md) | The change management work that happens alongside training — stakeholder map, 90-day rollout plan, adoption metrics, and handling the first public failure |
 
 ## Delivery guidance
 
