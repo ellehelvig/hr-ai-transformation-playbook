@@ -1,6 +1,6 @@
 # HR AI Transformation Playbook
 
-A practitioner's field guide for HR and People teams building responsible, 
+A practitioner's field guide for HR and People teams building responsible,
 high-impact AI programs — from use case discovery through deployment and upskilling.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
@@ -10,10 +10,10 @@ high-impact AI programs — from use case discovery through deployment and upski
 
 ## Why this exists
 
-Most HR AI guidance falls into one of two traps: too theoretical to act on, 
-or too vendor-specific to generalize. This playbook is neither. It is a working 
-toolkit — prompts that run, notebooks that execute, governance checklists that 
-hold up to legal review, and a use case library grounded in measurable business 
+Most HR AI guidance falls into one of two traps: too theoretical to act on,
+or too vendor-specific to generalize. This playbook is neither. It is a working
+toolkit — prompts that run, notebooks that execute, governance checklists that
+hold up to legal review, and a use case library grounded in measurable business
 outcomes.
 
 ---
@@ -23,14 +23,14 @@ outcomes.
 | Section | What you get |
 |---|---|
 | [01 · Use cases](01-use-cases/README.md) | Library of 30+ vetted HR AI use cases, prioritization matrix, intake template |
-| [02 · Prompt library](02-prompt-library/README.md) | Production-ready prompts for onboarding, performance, recruiting, and L&D |
+| [02 · Prompt library](02-prompt-library/README.md) | Production-ready prompts for learning and development (more functions coming) |
 | [03 · Governance](03-governance/README.md) | [AI use policy](03-governance/ai-use-policy.md), [risk assessment template](03-governance/risk-assessment-template.md), responsible AI framework |
 | [04 · Enablement](04-enablement/README.md) | HR AI literacy curriculum, workshop facilitator guide, adoption playbook |
-| [05 · Notebooks](05-notebooks/README.md) | Jupyter notebooks for attrition risk modeling and skills gap analysis |
+| [05 · Notebooks](05-notebooks/README.md) | Jupyter notebooks for skills gap analysis and workforce analytics |
 | [06 · Roadmap](06-roadmap/README.md) | 18-month transformation roadmap template, KPI framework, phase gate criteria |
 | [07 · Agentic patterns](07-agentic-patterns/README.md) | Architecture patterns, agent design guide, testing and evaluation framework |
 | [08 · ROI measurement](08-roi-measurement/README.md) | Business case templates, ROI calculation framework, reporting cadence |
-| [09 · Evals](09-evals/README.md) | 30 structured test cases, eval rubric, and automated eval runner script |
+| [09 · Evals](09-evals/README.md) | 29 structured test cases, eval rubric, and automated eval runner script |
 
 ---
 
@@ -61,17 +61,17 @@ outcomes.
 
 ## Design principles
 
-**Outcome-first.** Every use case, prompt, and model is anchored to a 
+**Outcome-first.** Every use case, prompt, and model is anchored to a
 measurable HR or business outcome. No technology for its own sake.
 
-**Governance built in.** Responsible AI considerations are embedded in every 
+**Governance built in.** Responsible AI considerations are embedded in every
 section, not bolted on at the end.
 
-**HRIS-agnostic.** Nothing here assumes a specific vendor. Integration patterns 
+**HRIS-agnostic.** Nothing here assumes a specific vendor. Integration patterns
 are documented as adapters you wire to your own stack.
 
-**Humans in the loop.** This playbook treats AI as a force multiplier for HR 
-professionals, not a replacement. Every automated workflow has a defined 
+**Humans in the loop.** This playbook treats AI as a force multiplier for HR
+professionals, not a replacement. Every automated workflow has a defined
 escalation path to a human.
 
 ---
@@ -82,7 +82,7 @@ Regardless of which use cases you pursue:
 
 1. **Humans make consequential employment decisions.** AI may inform, not decide.
 2. **Employees have a right to know** when AI influences processes that affect them.
-3. **Fairness audits** are required on any use case that scores or ranks employees 
+3. **Fairness audits** are required on any use case that scores or ranks employees
 or candidates.
 
 ---
@@ -97,5 +97,5 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 MIT — use freely, adapt for your organization, share improvements back.
 
-> None of this is legal advice. All governance documents should be reviewed 
+> None of this is legal advice. All governance documents should be reviewed
 > by Legal and Privacy before adoption.

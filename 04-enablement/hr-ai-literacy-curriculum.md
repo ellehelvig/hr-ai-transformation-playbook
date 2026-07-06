@@ -2,9 +2,9 @@
 
 A 4-module learning program for HR professionals at all experience levels. Designed to be delivered as a facilitated series over 4–6 weeks, or adapted for self-paced completion.
 
-**Total time:** ~8 hours across all modules  
-**Format:** Workshop + async reading + hands-on practice  
-**Audience:** All People Team members  
+**Total time:** ~8 hours across all modules
+**Format:** Workshop + async reading + hands-on practice
+**Audience:** All People Team members
 **Prerequisite:** None
 
 ---
