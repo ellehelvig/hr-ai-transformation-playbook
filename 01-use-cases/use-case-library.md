@@ -1,12 +1,12 @@
 # HR AI use case library
 
-30+ vetted use cases organized by HR function. Each entry includes the AI approach, effort/impact rating, key risks, and success metrics. Use this as a starting point — not every use case fits every organization.
+37 vetted use cases organized by HR function. Each entry includes the AI approach, effort/impact rating, key risks, and success metrics. Use this as a starting point, not every use case fits every organization.
 
 **AI approach key:**
-- **Agent** — autonomous multi-step task completion with tool use
-- **Copilot** — AI assists a human who retains decision authority
-- **Automation** — rule-based + AI for structured, repeatable workflows
-- **Analytics** — AI-augmented data analysis and insight generation
+- **Agent**: autonomous multi-step task completion with tool use
+- **Copilot**: AI assists a human who retains decision authority
+- **Automation**: rule-based + AI for structured, repeatable workflows
+- **Analytics**: AI-augmented data analysis and insight generation
 
 ---
 
@@ -25,7 +25,7 @@
 
 ### Spotlight: resume screening
 
-**What it does:** AI scores inbound applications against a structured competency rubric, surfaces top candidates, and flags potential red flags for recruiter review — without making pass/fail decisions autonomously.
+**What it does:** AI scores inbound applications against a structured competency rubric, surfaces top candidates, and flags potential red flags for recruiter review, without making pass/fail decisions autonomously.
 
 **What it does not do:** Reject candidates. Every disposition decision is made by a human recruiter.
 
@@ -67,7 +67,7 @@
 | Use case | AI approach | Business impact | Implementation effort | Key risk |
 |---|---|---|---|---|
 | Performance review draft generation | Copilot | High | Low | Over-reliance, generic output |
-| Calibration prep — manager briefing doc | Copilot | High | Medium | Data access permissions |
+| Calibration prep, manager briefing doc | Copilot | High | Medium | Data access permissions |
 | Goal-setting quality scoring | Analytics | Medium | Medium | Subjectivity of scoring rubric |
 | Mid-year feedback synthesis | Analytics | Medium | Low | Feedback recency bias |
 | PIP documentation drafting | Copilot | High | Low | Legal exposure if misused |
@@ -101,7 +101,7 @@
 
 **What it does:** Analyzes an employee's role, skills data, career goals (from performance system), and team context to recommend a 90-day learning path from available LMS content, external resources, and mentoring.
 
-**What it does not do:** Mandate learning — all recommendations are advisory.
+**What it does not do:** Mandate learning, all recommendations are advisory.
 
 **Metrics:**
 - LMS course completion rate (baseline vs. personalized)

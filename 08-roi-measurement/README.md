@@ -10,7 +10,7 @@ Most HR AI programs are measured on the wrong things. They track outputs (prompt
 
 The result is a program that looks active but can't defend its budget in a business review.
 
-The framework here is built around outcomes, not outputs — with output metrics as leading indicators, not endpoints.
+The framework here is built around outcomes, not outputs, with output metrics as leading indicators, not endpoints.
 
 ---
 
@@ -18,13 +18,13 @@ The framework here is built around outcomes, not outputs — with output metrics
 
 Every HR AI use case should map to at least one of these:
 
-**Efficiency** — HR professionals and employees get time back. Work that took hours takes minutes.
+**Efficiency**: HR professionals and employees get time back. Work that took hours takes minutes.
 
-**Quality** — HR decisions, communications, and processes are more consistent and better informed.
+**Quality**: HR decisions, communications, and processes are more consistent and better informed.
 
-**Experience** — Employees and managers feel more supported, get answers faster, trust HR more.
+**Experience**: Employees and managers feel more supported, get answers faster, trust HR more.
 
-**Capability** — The HR team can do things it couldn't do before: predictive analytics, personalized development, proactive retention interventions.
+**Capability**: The HR team can do things it couldn't do before: predictive analytics, personalized development, proactive retention interventions.
 
 ---
 
@@ -149,7 +149,7 @@ This is the hardest to quantify and the most strategically important. Document i
 Focus on: outcomes achieved, KPIs vs. targets, issues flagged, next month priorities.
 
 ```
-HR AI Program — [Month] Update
+HR AI Program, [Month] Update
 
 USE CASES LIVE: [N]
 ────────────────────────────────
@@ -165,7 +165,7 @@ Performance Review Assistant
   Time per review:   35 min       (baseline: 90)  ✓
 
 ISSUES:
-  [1] Manager adoption below target — enablement session scheduled for [date]
+  [1] Manager adoption below target, enablement session scheduled for [date]
 
 NEXT MONTH:
   [1] Launch L&D recommendation pilot with Engineering team

@@ -1,145 +1,186 @@
 # Prompt library: talent acquisition
 
-Prompts for recruiting and hiring workflows — job posting drafts, screening support, interview prep, and offer communication. Every prompt here augments recruiter and hiring manager judgment; none is designed to make a hiring decision on its own.
-
-**Before using any of these in a live hiring process:** route the use case through the [risk assessment template](../03-governance/risk-assessment-template.md). Hiring is one of the highest-scrutiny areas for AI use — several jurisdictions (NYC Local Law 144, Illinois AI Video Interview Act, EU AI Act Annex III) impose specific disclosure or audit requirements on AI used in employment decisions.
+Prompts for recruiting and hiring workflows. Job descriptions, interview prep, candidate communications, sourcing outreach, and recruiter feedback coaching. Every prompt is designed to augment recruiters and hiring managers, not replace human judgment on disposition decisions.
 
 ---
 
-## 1. Inclusive job posting rewrite
+## 1. Job description optimization
 
-**What it does:** Rewrites a job posting to remove biased or exclusionary language and improve candidate pool diversity without changing the actual requirements.
-
-```
-Rewrite this job posting to be more inclusive, while keeping every substantive requirement unchanged.
-
-Current posting:
-[PASTE JOB POSTING]
-
-Rewrite so that:
-1. Gendered or exclusionary language is replaced with neutral alternatives (e.g., "ninja," "rockstar," "he/she")
-2. Requirements are separated into "must-have" and "nice-to-have" — research shows women and underrepresented candidates self-select out when everything reads as required
-3. Years-of-experience requirements are only listed if genuinely necessary, not as a proxy for skill
-4. The tone is direct and specific, not full of buzzwords ("fast-paced," "wear many hats," "work hard play hard")
-5. Physical or schedule requirements are stated only if they are actual bona fide job requirements
-
-Do not remove or soften any requirement that reflects a real business need. Flag anything you're unsure whether to keep.
-```
-
----
-
-## 2. Structured screening question generator
-
-**What it does:** Generates consistent, job-related screening questions tied to the actual requirements of a role, to reduce interviewer variability and improve legal defensibility.
+**What it does:** Rewrites a job description for clarity, inclusivity, and candidate appeal. Use before posting any role, especially for technical or senior positions where the JD often drifts into jargon.
 
 ```
-Generate a structured phone screen guide for the following role.
+You are an experienced talent acquisition partner reviewing a job description before it gets posted. Your goal is to make this JD clearer, more compelling, and more inclusive without losing accuracy.
 
-Role: [TITLE]
-Level: [LEVEL]
-Must-have requirements: [LIST]
-Key responsibilities: [LIST 3-5]
+Current job description:
+[PASTE FULL JD]
 
-Generate:
-1. 5 screening questions directly tied to must-have requirements (no generic "tell me about yourself" filler)
-2. For each question, what a strong answer sounds like and what a weak answer sounds like
-3. 1 question to assess motivation/fit for this specific role (not generic culture fit)
-4. 2 questions the recruiter should NOT ask (list common legally risky questions for this role type — e.g., asking about caregiving responsibilities, age-adjacent questions, salary history where prohibited by law)
+Role context:
+- Level: [IC / Manager / Director / VP / C-suite]
+- Function: [Engineering / Product / Sales / etc.]
+- Team size and reporting structure: [BRIEF]
+- Why this role exists right now: [1-2 sentences]
+- Top 3 things this person will accomplish in their first year: [LIST]
 
-Keep questions job-related and consistent across candidates — that consistency is what makes screening defensible.
+Produce a revised job description that:
+
+1. Opens with what the person will do, not what the company is. The first paragraph should answer "why would I want this job?"
+2. Reorganizes responsibilities into 4-6 outcomes, not a long list of tasks
+3. Distinguishes requirements (non-negotiable) from preferences (nice to have). Be honest. Most "requirements" are actually preferences.
+4. Removes language that screens out qualified candidates from underrepresented backgrounds (gendered terms, "rockstar," excessive years of experience requirements, degree requirements when not actually required)
+5. Includes salary range or salary band if the original had one. Do not invent one.
+6. Ends with a concrete next step.
+
+Do not:
+- Use the words "rockstar," "ninja," "guru," "passionate," "self-starter," "wear many hats," "fast-paced," "synergy," "world-class"
+- Pad with company boilerplate that does not relate to the role
+- Add years-of-experience requirements that were not in the original
+- Promise things you cannot verify (unlimited PTO without policy backing, etc.)
+
+Flag any sections that need verification with the hiring manager before posting.
 ```
 
 ---
 
-## 3. Resume screening — evidence extraction (not scoring)
+## 2. Interview question bank for a competency
 
-**What it does:** Extracts evidence of stated requirements from a resume for a recruiter to review. Deliberately does not produce a pass/fail score or ranking — that judgment stays with the recruiter.
-
-```
-Extract evidence from this resume relevant to the role requirements below. Do not score, rank, or recommend a decision.
-
-Role requirements:
-[LIST MUST-HAVE REQUIREMENTS]
-
-Resume:
-[PASTE RESUME TEXT]
-
-For each requirement, output:
-- Requirement
-- Evidence found (direct quote or clear paraphrase from the resume)
-- Evidence strength: Clear / Partial / Not found
-- Note anything ambiguous that a recruiter should verify in screening
-
-Do not infer protected characteristics (age, gender, disability, family status, etc.) from any resume content, even indirectly (e.g., graduation year as an age proxy). Do not penalize employment gaps without evidence they reflect a performance issue.
-```
-
-**Governance note:** This prompt is intentionally scoped to evidence extraction, not scoring. Any use case that ranks or scores candidates requires a fairness audit under the [risk assessment template](../03-governance/risk-assessment-template.md) and, for EU-based roles, classification under the [EU AI Act intake template](../03-governance/eu-ai-act-intake-template.md).
-
----
-
-## 4. Interview panel debrief synthesis
-
-**What it does:** Synthesizes multiple interviewers' independent notes into a structured summary for the hiring decision meeting, without collapsing dissenting views into false consensus.
+**What it does:** Generates a structured set of interview questions for evaluating a specific competency. Used by recruiters when prepping interview loops, or by hiring managers building structured interviews.
 
 ```
-Synthesize the following interview panel notes into a debrief summary. Preserve disagreement — do not average it away.
+Generate an interview question bank for evaluating a single competency.
 
-Candidate: [NAME/ID]
-Role: [TITLE]
-
-Interviewer notes:
-[PASTE EACH INTERVIEWER'S NOTES, LABELED BY INTERVIEWER AND STAGE]
+Competency: [NAME, e.g., "cross-functional collaboration"]
+Role context: [TITLE, LEVEL]
+Interview format: [Phone screen / Onsite panel / Final round]
+Time available for this competency in the interview: [15-30-45 minutes]
+What "strong" looks like for this competency at this level: [2-3 sentences from the competency framework]
 
 Produce:
-1. Areas of clear agreement across interviewers (with which requirement each relates to)
-2. Areas of disagreement — state both views and who held them, don't resolve the disagreement yourself
-3. Any requirement no interviewer actually assessed (a coverage gap, not a candidate weakness)
-4. Open questions the hiring team should discuss before deciding
 
-Do not produce an overall recommendation or score. That is the hiring team's decision, made in the debrief meeting.
+1. **Opening question** that gets the candidate sharing a real example without prompting (one question)
+2. **Probe questions** to go deeper on the example (3-5 questions). Aim for STAR follow-ups: situation, task, action, result.
+3. **Counter-example question** that tests whether the candidate has learned from failure
+4. **Hypothetical** scenario tied to the actual role (one question, role-specific)
+5. **What to listen for** as evidence of strong performance vs. weak performance (4-5 bullets each)
+6. **Common candidate trap responses** that sound good but are actually red flags
+
+Calibrate question difficulty to the role level. A senior role gets more complex hypotheticals; an early-career role gets more skills-focused probes.
+
+Do not:
+- Ask brainteasers or puzzle questions
+- Include questions that test class background (favorite books, dinner party guests, etc.)
+- Ask anything that could be interpreted as discriminatory
 ```
 
 ---
 
-## 5. Candidate rejection message (individualized, not template-flat)
+## 3. Candidate disposition communication (decline)
 
-**What it does:** Drafts a rejection message that feels specific to the candidate rather than a form letter, without over-explaining or creating legal exposure.
+**What it does:** Drafts a warm, specific rejection message after a candidate has interviewed. Use after the recruiter and hiring manager have agreed on the decision. Never use to deliver a decision the candidate has not been told about through the appropriate channel.
 
 ```
-Draft a candidate rejection message.
+Draft a candidate disposition message declining to move forward after interviews.
 
-Candidate: [NAME]
-Role applied for: [TITLE]
-Stage reached: [e.g., phone screen / panel interview / final round]
-One genuine, specific positive to include: [SOMETHING TRUE ABOUT THIS CANDIDATE'S BACKGROUND OR PERFORMANCE]
+Candidate context:
+- Stage they reached: [Phone screen / First round / Final round / Offer declined by company]
+- Number of interviews completed: [N]
+- Time invested: [Total hours including assessments]
+- Strongest area in their candidacy: [1 specific thing]
+- Reason for the decision (internal, not for sharing): [BRIEF]
 
-Requirements:
-1. Warm but honest — do not imply they were closer to an offer than they were
-2. Include the one specific positive naturally, not as generic praise
-3. Do not give a specific reason for rejection beyond "we moved forward with a candidate whose experience more closely matched what we need for this role right now" — do not compare to other candidates or detail deficiencies
-4. Invite them to apply for future roles only if genuinely true for this candidate
-5. 4-5 sentences maximum
+Tone target: warm, specific, respectful. The candidate spent real time. Treat them like a person, not a transaction.
 
-Never include specifics that could be read as discriminatory reasoning (age, health, family status, accent, name-based assumptions) even if unintentionally implied.
+The message should:
+
+1. Lead with the decision in the first sentence. Do not bury it.
+2. Acknowledge what was genuinely strong in their candidacy. Be specific. "Your background in X stood out" not "we were impressed."
+3. Be honest about why without being legally risky. Stay close to "we moved forward with someone whose background was a closer match for [specific requirement]."
+4. Leave the door open if appropriate (future roles, reconnecting in 6-12 months). Only if true.
+5. Close with one concrete next step or resource (LinkedIn connection, talent community, specific future role posting)
+
+Keep it to 4-5 sentences. Long rejection messages read as guilty, not kind.
+
+Do not:
+- Use the words "unfortunately" (overused, signals bad news before they read it), "regret," "decision was difficult"
+- Promise future consideration if you do not mean it
+- Give performance feedback without the candidate asking (it creates legal risk and most candidates do not want it from a rejection)
+- Use generic templates that any company could send
 ```
 
 ---
 
-## 6. Offer stage — internal equity check prompt
+## 4. Recruiter coaching on interview feedback quality
 
-**What it does:** Helps a recruiter or comp partner sanity-check a proposed offer against internal equity before it goes out, flagging discrepancies for human review rather than auto-adjusting anything.
+**What it does:** Reviews an interviewer's written feedback after an interview and provides coaching on quality. Used by recruiters or HRBPs to improve interview feedback discipline.
 
 ```
-Review this proposed offer for internal equity concerns. Flag issues only — do not recommend a specific number.
+Review the following interview feedback and provide structured coaching to the interviewer.
 
-Proposed offer: [LEVEL, BASE, BONUS TARGET, EQUITY IF APPLICABLE]
-Candidate background: [YEARS EXPERIENCE, RELEVANT SKILLS, CURRENT COMP IF KNOWN]
-Comparable current employees at this level (anonymized): [PASTE RANGE OR TABLE — LEVEL, TENURE, CURRENT COMP]
+Interview context:
+- Role: [TITLE, LEVEL]
+- Interview type: [Phone screen / Technical / Behavioral / Final]
+- Competency the interviewer was evaluating: [NAME]
+- Candidate disposition recommendation by interviewer: [Advance / Reject / Strong yes / Lean yes / Lean no / Strong no]
 
-Flag:
-1. Whether the proposed offer falls outside the range of comparable current employees at the same level, and by how much
-2. Whether the gap (if any) is explainable by a legitimate factor (specialized skill, market scarcity, location) or looks unexplained
-3. Any pattern worth a second look (e.g., consistently lower offers for a particular candidate profile) — flag for human review, do not draw a conclusion about intent
+Feedback as written by interviewer:
+[PASTE FEEDBACK]
 
-This is a flagging tool for a human comp partner, not a compensation decision system. Never output a "corrected" offer amount.
+Evaluate the feedback against these criteria:
+
+1. **Evidence-based.** Does the feedback cite specific examples from the interview, or is it impressionistic? "Strong communicator" is impressionistic. "Walked through trade-offs of three database choices and chose the right one for the scenario" is evidence.
+
+2. **Tied to the competency.** Does the feedback actually evaluate what the interviewer was assigned to evaluate, or did they drift into general impressions?
+
+3. **Distinguishes performance from preference.** Are there judgments embedded that are about cultural fit or interviewer preference rather than role requirements?
+
+4. **Calibrated to the level.** Does the bar applied match the role level, or is the interviewer over-indexing on senior-level expectations for a mid-level role (or vice versa)?
+
+5. **Bias check.** Are there phrases that could indicate affinity bias, halo effect, or stereotype-driven assessment? Quote them directly.
+
+Produce coaching that includes:
+- One specific strength of this feedback
+- 2-3 specific areas to improve, with concrete rewrite suggestions
+- A "would this hold up in a calibration discussion?" verdict
+- One question to ask the interviewer to surface their underlying reasoning
+
+Be direct. Soft coaching on interview quality produces weak interviewers and bad hires.
+```
+
+---
+
+## 5. Sourcing outreach message
+
+**What it does:** Drafts a personalized cold outreach message to a passive candidate. Use after a sourcer or recruiter has actually reviewed the candidate's profile. Never send to a list.
+
+```
+Draft a personalized outreach message to a passive candidate for a specific role.
+
+Candidate context:
+- Name: [NAME]
+- Current role and company: [TITLE at COMPANY]
+- Specific aspect of their background that makes them relevant: [BE SPECIFIC, e.g., "led X migration at Y company in 2024"]
+- Mutual connections, if any: [LIST, or "none"]
+
+Role context:
+- Title: [TITLE]
+- Why this candidate specifically (not just the role): [1-2 sentences]
+- What is different about this role from their current one: [1-2 sentences]
+- Compensation band, if you can share: [RANGE, or "competitive with current"]
+- Location and arrangement: [REMOTE / hybrid in CITY / in-office in CITY]
+
+The message should:
+
+1. Open with the specific reason you reached out to them. Not "your impressive background." A real reason, named.
+2. Connect that reason to what is interesting about the role for them specifically.
+3. Be honest about the ask. You want a conversation, not a commitment.
+4. Make it easy to say no. Decent passive candidates get many messages a week.
+5. End with one concrete next step (15-minute intro call within the next 2 weeks).
+
+Length: 4-6 sentences. Anything longer and they will not read it.
+
+Do not:
+- Open with "I came across your profile and was impressed"
+- Use the words "rockstar," "passionate," "exciting opportunity," "world-class team," "disrupting"
+- Promise specifics you cannot deliver (compensation numbers without authorization, role scope without manager confirmation)
+- Send to a candidate the company has already declined within the past 12 months (always check ATS first)
+- Use a template. If this message could have been sent to 50 other candidates, do not send it.
 ```

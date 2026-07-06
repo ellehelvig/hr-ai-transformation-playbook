@@ -17,12 +17,12 @@ Before planning where to go, be honest about where you are.
 
 | Level | Description | Indicators |
 |---|---|---|
-| **0 — Unaware** | AI not yet in scope for HR | No AI tools in use; conversations are theoretical |
-| **1 — Experimenting** | Individual HR team members using AI tools ad-hoc | Scattered Copilot use; no governance; no shared prompts |
-| **2 — Piloting** | Deliberate pilots with defined success metrics | 1–3 use cases in controlled pilots; governance forming |
-| **3 — Scaling** | Proven use cases deployed org-wide; enablement underway | Multiple live use cases; HR team trained; monitoring in place |
-| **4 — Transforming** | AI embedded in HR operating model; continuous innovation | AI influence on HR strategy; feedback loops to improve models |
-| **5 — Leading** | HR AI program is a competitive differentiator | External recognition; exporting practices to broader org |
+| **0. Unaware** | AI not yet in scope for HR | No AI tools in use; conversations are theoretical |
+| **1. Experimenting** | Individual HR team members using AI tools ad-hoc | Scattered Copilot use; no governance; no shared prompts |
+| **2. Piloting** | Deliberate pilots with defined success metrics | 1–3 use cases in controlled pilots; governance forming |
+| **3. Scaling** | Proven use cases deployed org-wide; enablement underway | Multiple live use cases; HR team trained; monitoring in place |
+| **4. Transforming** | AI embedded in HR operating model; continuous innovation | AI influence on HR strategy; feedback loops to improve models |
+| **5. Leading** | HR AI program is a competitive differentiator | External recognition; exporting practices to broader org |
 
 **Honest starting point is essential.** Most large HR organizations are at Level 1 or 2. Plans built from an assumed Level 3 starting point fail.
 
@@ -35,7 +35,7 @@ Before planning where to go, be honest about where you are.
 **Key activities:**
 - [ ] Assess current HR AI maturity (use scale above)
 - [ ] Inventory AI tools already in use across the People Team (you likely have more than you think)
-- [ ] Identify People Systems landscape — what HRIS, LMS, ATS, and analytics tools are in scope
+- [ ] Identify People Systems landscape, what HRIS, LMS, ATS, and analytics tools are in scope
 - [ ] Establish an HR AI working group: HR Tech, HRBPs, HR Ops, Legal, Privacy
 - [ ] Draft and ratify the [AI Use Policy](../03-governance/ai-use-policy.md)
 - [ ] Define data governance basics: what data can be used, where, by whom
@@ -99,7 +99,7 @@ Before planning where to go, be honest about where you are.
 **Key activities:**
 - [ ] Roll out Phase 1 wins to all relevant HR users
 - [ ] Deliver full [HR AI literacy curriculum](../04-enablement/hr-ai-literacy-curriculum.md) to all People Team members
-- [ ] Identify and develop HR AI Champions — internal advocates in each HRBP region
+- [ ] Identify and develop HR AI Champions, internal advocates in each HRBP region
 - [ ] Add 3–5 medium-complexity use cases (recruiting pipeline, learning paths, calibration prep)
 - [ ] Stand up monitoring dashboards for live use cases
 - [ ] Conduct first fairness audit on any use cases touching employment decisions
@@ -137,10 +137,10 @@ Before rolling a pilot use case to org-wide deployment:
 - Pay equity analysis
 
 **Key activities:**
-- [ ] Commission full attrition risk model (requires clean HRIS data — see [05 · Notebooks](../05-notebooks/README.md))
+- [ ] Commission full attrition risk model (requires clean HRIS data, see [05 · Notebooks](../05-notebooks/README.md))
 - [ ] Build agentic workflows for highest-volume HR processes
 - [ ] Integrate AI recommendations into HRIS where technically feasible
-- [ ] Establish HR AI as a function — dedicated headcount or formal role(s)
+- [ ] Establish HR AI as a function, dedicated headcount or formal role(s)
 - [ ] Publish internal annual report on HR AI program outcomes
 - [ ] Begin knowledge-sharing with broader organization (other business functions)
 
@@ -176,10 +176,10 @@ Track these at the program level, regardless of individual use case metrics.
 ### Governance
 | Metric | Baseline | Target |
 |---|---|---|
-| % of live use cases with active monitoring | — | 100% |
-| Fairness audits completed on schedule | — | 100% |
-| Risk assessments completed before deployment | — | 100% |
-| Governance issues identified (target: find and fix) | — | 0 unresolved >30 days |
+| % of live use cases with active monitoring |, | 100% |
+| Fairness audits completed on schedule |, | 100% |
+| Risk assessments completed before deployment |, | 100% |
+| Governance issues identified (target: find and fix) |, | 0 unresolved >30 days |
 
 ---
 

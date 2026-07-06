@@ -1,6 +1,6 @@
 # Testing and evaluating HR agents
 
-Deploying an agent is not the end of the work — it's the beginning of a continuous improvement loop. HR agents interact with employees at moments that matter: policy questions, leave requests, onboarding, performance conversations. Getting it wrong has real consequences.
+Deploying an agent is not the end of the work, it's the beginning of a continuous improvement loop. HR agents interact with employees at moments that matter: policy questions, leave requests, onboarding, performance conversations. Getting it wrong has real consequences.
 
 ---
 
@@ -9,7 +9,7 @@ Deploying an agent is not the end of the work — it's the beginning of a contin
 Your job as an operator is not to prove your agent works. Your job is to find where it breaks. Failures in testing are data. Failures in production are incidents.
 
 ### Step 1: Run it against real scenarios
-Execute the agent against real or representative inputs. Don't cherry-pick easy ones. Use the actual questions employees ask — messy, ambiguous, edge-case questions. Pull from your HR helpdesk ticket history if you have it.
+Execute the agent against real or representative inputs. Don't cherry-pick easy ones. Use the actual questions employees ask, messy, ambiguous, edge-case questions. Pull from your HR helpdesk ticket history if you have it.
 
 Build a test set before you launch. Minimum 20 scenarios covering:
 - Common queries (high volume, routine)
@@ -18,7 +18,7 @@ Build a test set before you launch. Minimum 20 scenarios covering:
 - Jurisdiction-specific queries (if your workforce is multi-country)
 
 ### Step 2: Read the signal
-Look under the hood — not just at the final output. What tools did the agent call? What did it retrieve from your knowledge base? How did it reason step by step?
+Look under the hood, not just at the final output. What tools did the agent call? What did it retrieve from your knowledge base? How did it reason step by step?
 
 For RAG-based HR agents: did it retrieve the right policy chunks? Did it retrieve outdated versions? For tool-using agents: did it call the right tool, with the right parameters? Did it interpret the result correctly?
 
@@ -27,7 +27,7 @@ A correct final answer that was reached through bad reasoning is a fragile corre
 ### Step 3: Diagnose before touching anything
 Was the failure in the system prompt instructions? The knowledge base? The temperature setting? The model choice? The tool design?
 
-Identify the root cause before making any changes. The most common mistake in agent debugging is making multiple changes at once — then you can't tell what actually fixed the problem.
+Identify the root cause before making any changes. The most common mistake in agent debugging is making multiple changes at once, then you can't tell what actually fixed the problem.
 
 Common HR agent failure patterns and their root causes:
 
@@ -44,7 +44,7 @@ Common HR agent failure patterns and their root causes:
 ### Step 4: Adjust one variable
 Make one targeted change. Document it. Describe what you changed, why, and what you expect to happen.
 
-Shotgun edits — changing the system prompt, temperature, and knowledge base at the same time — make it impossible to know what fixed the problem. You'll face the same failure again and have no idea why.
+Shotgun edits, changing the system prompt, temperature, and knowledge base at the same time, make it impossible to know what fixed the problem. You'll face the same failure again and have no idea why.
 
 ### Step 5: Retest the same scenario
 Did it improve? Did the change cause a regression somewhere else? Loop until the signal is clean.
@@ -60,17 +60,17 @@ For every HR agent response you evaluate, ask these four questions. They replace
 ### 1. Factually correct?
 Hallucination check. Did the agent make something up? Cross-reference against your policy knowledge base. For HR specifically: did it state the right number of leave days? The right eligibility criteria? The right process steps?
 
-Trust but verify — every time, not just during testing. Build a spot-check process into your ongoing monitoring.
+Trust but verify, every time, not just during testing. Build a spot-check process into your ongoing monitoring.
 
 ### 2. Complete?
-Did it answer every part of the request? Is it appropriately thorough — not too verbose, not too thin? An employee who asks "what do I need to do to start parental leave?" needs the full process, not just "contact HR."
+Did it answer every part of the request? Is it appropriately thorough, not too verbose, not too thin? An employee who asks "what do I need to do to start parental leave?" needs the full process, not just "contact HR."
 
 Completeness failures are often harder to catch than factual failures because the output sounds fine on a quick read.
 
 ### 3. Tone appropriate?
 Does the emotional register match the situation? An employee asking about bereavement leave needs warmth and directness, not a clinical policy recitation. A manager asking about a PIP process needs precision, not hedging.
 
-Tone is situational, not fixed. Your evaluation rubric should reflect the range of emotional contexts HR agents encounter — including distress, frustration, and confusion.
+Tone is situational, not fixed. Your evaluation rubric should reflect the range of emotional contexts HR agents encounter, including distress, frustration, and confusion.
 
 ### 4. On brand?
 Does this sound like your organization? Does it match your HR team's voice, your company's values, your culture? Would your CHRO be proud of this response?
@@ -89,7 +89,7 @@ Testing before launch is necessary but not sufficient. HR policies change, emplo
 - Check for any employee complaints or feedback flagged to HR
 
 **Monthly:**
-- Run the full test set against the live agent — has anything degraded?
+- Run the full test set against the live agent, has anything degraded?
 - Review CSAT scores or satisfaction signals if collected
 - Audit for any information disclosure incidents
 - Check knowledge base currency: have any policies changed that aren't reflected?
@@ -119,7 +119,7 @@ Use this as your acceptance criteria before launching any HR agent to employees.
 | Employee CSAT on agent interactions | ≥4.0/5.0 |
 | Response completeness (human-rated spot check) | ≥90% |
 | Tone appropriateness (human-rated spot check) | ≥90% |
-| Zero information disclosure incidents | Required — not a percentage |
-| Injection resistance (adversarial test set) | 100% — no exceptions |
+| Zero information disclosure incidents | Required, not a percentage |
+| Injection resistance (adversarial test set) | 100%, no exceptions |
 
 No agent should go to production without passing the information disclosure and injection resistance criteria. Everything else is a target; those two are gates.

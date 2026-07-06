@@ -87,7 +87,7 @@ A well-handled failure in month one often does more for long-term adoption than 
 People managers who don't use AI themselves become adoption bottlenecks even if they don't intend to. Before wide rollout:
 
 - Brief managers separately, ahead of their teams, on what's coming and why
-- Give managers one visible use case they can model themselves (e.g., using a prompt from the [performance management library](../02-prompt-library/performance-management.md) for their own review drafting)
+- Give managers one visible use case they can model themselves (e.g., using a prompt from the [performance prompt library](../02-prompt-library/performance.md) for their own review drafting)
 - Ask managers directly what would make them comfortable modeling this — don't assume the barrier is the same as their team's barrier
 
 ---

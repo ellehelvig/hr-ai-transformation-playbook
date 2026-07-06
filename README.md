@@ -1,7 +1,7 @@
 # HR AI Transformation Playbook
 
 A practitioner's field guide for HR and People teams building responsible,
-high-impact AI programs — from use case discovery through deployment and upskilling.
+high-impact AI programs, from use case discovery through deployment and upskilling.
 
 [![CI](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
@@ -24,7 +24,7 @@ outcomes.
 | Section | What you get |
 |---|---|
 | [01 · Use cases](01-use-cases/README.md) | Library of 30+ vetted HR AI use cases, prioritization matrix, intake template |
-| [02 · Prompt library](02-prompt-library/README.md) | Production-ready prompts for learning and development, talent acquisition, and performance management |
+| [02 · Prompt library](02-prompt-library/README.md) | Production-ready prompts for talent acquisition, onboarding, performance, and learning and development |
 | [03 · Governance](03-governance/README.md) | [AI use policy](03-governance/ai-use-policy.md), [risk assessment template](03-governance/risk-assessment-template.md), [EU AI Act intake template](03-governance/eu-ai-act-intake-template.md), [vendor intake](03-governance/vendor-intake-checklist.md), [deployer checklist](03-governance/deployer-checklist.md) |
 | [04 · Enablement](04-enablement/README.md) | HR AI literacy curriculum, workshop facilitator guide, adoption playbook |
 | [05 · Notebooks](05-notebooks/README.md) | Jupyter notebooks for skills gap analysis and workforce analytics |
