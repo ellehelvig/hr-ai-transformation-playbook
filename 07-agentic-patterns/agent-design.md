@@ -131,7 +131,7 @@ A common mistake in HR AI budgeting is treating API costs as cost-per-prompt. Th
 
 | Tier | Use case | Models | Approx cost |
 |---|---|---|---|
-| **Precision** | High-stakes decisions, legal review, complex reasoning | e.g., Claude Opus, GPT-5.x | ~$15–75/M tokens |
+| **Precision** | High-stakes decisions, legal review, complex reasoning | e.g., Claude Opus, GPT-5.x | ~$5–30/M tokens |
 | **Core** | Majority of everyday HR agent work | e.g., Claude Sonnet, Gemini 3.x Pro | ~$3–15/M tokens |
 | **Volume** | High-throughput triage, classification, routing | e.g., Claude Haiku, Gemini 3.x Flash | ~$0.40–4/M tokens |
 | **Reasoning** | Multi-step planning, complex tool use, deep analysis | e.g., GPT-5.x Thinking, Claude Opus (extended thinking) | Use-case dependent |

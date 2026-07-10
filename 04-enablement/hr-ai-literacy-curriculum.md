@@ -129,7 +129,7 @@ Introduce and reinforce this heuristic:
 AI trained on historical HR data can encode and amplify past discrimination. An AI that learned from 10 years of hiring decisions at a company where 80% of engineering hires were male will score resumes accordingly. Annual adverse impact testing is not optional, it's legally and ethically required.
 
 *Illinois AI Video Interview Act, NYC Local Law 144, and emerging state laws:*
-Several jurisdictions now require disclosure, impact assessments, or consent for AI use in hiring. The regulatory landscape is shifting quickly. Use cases involving hiring must be reviewed against current state law.
+Several jurisdictions now require disclosure, impact assessments, or consent for AI use in hiring. Illinois's 2026 amendment raised the bar: employers now need explicit written consent before AI analyzes a video interview, continuing the interview no longer counts as implied consent. Illinois also amended its Human Rights Act via HB 3773 (effective January 1, 2026) to broadly prohibit discriminatory AI use in hiring and promotion, not just video interviews. The regulatory landscape is shifting quickly. Use cases involving hiring must be reviewed against current state law.
 
 *GDPR and CCPA:*
 Employees in covered jurisdictions have rights regarding automated decision-making. Know which of your employees are covered and how your AI use cases interact with their rights.
