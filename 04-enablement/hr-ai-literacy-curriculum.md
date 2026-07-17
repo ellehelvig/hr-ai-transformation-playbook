@@ -131,8 +131,14 @@ AI trained on historical HR data can encode and amplify past discrimination. An 
 *Illinois AI Video Interview Act, NYC Local Law 144, and emerging state laws:*
 Several jurisdictions now require disclosure, impact assessments, or consent for AI use in hiring. Illinois's 2026 amendment raised the bar: employers now need explicit written consent before AI analyzes a video interview, continuing the interview no longer counts as implied consent. Illinois also amended its Human Rights Act via HB 3773 (effective January 1, 2026) to broadly prohibit discriminatory AI use in hiring and promotion, not just video interviews. The regulatory landscape is shifting quickly. Use cases involving hiring must be reviewed against current state law.
 
+*Colorado's Automated Decision-Making Technology Act:*
+Colorado SB26-189 (signed 14 May 2026, Colo. Sess. Laws ch. 131) repeals and replaces the state's 2024 AI consumer protection law. It covers "consequential decisions," including employment, made using automated decision-making technology (ADMT) that materially influences the outcome. Starting January 1, 2027, developers must give deployers technical documentation on intended use, training data categories, known limitations, and human review instructions. Deployers owe consumers notice at the point of interaction now, and within 30 days of any adverse consequential decision, a plain-language explanation plus the right to request human review and reconsideration. Records must be retained 3 years. The attorney general enforces under the Colorado Consumer Protection Act, with a 60-day cure period through January 1, 2030.
+
 *GDPR and CCPA:*
 Employees in covered jurisdictions have rights regarding automated decision-making. Know which of your employees are covered and how your AI use cases interact with their rights.
+
+*UK: Data (Use and Access) Act 2025 replaces GDPR Article 22:*
+Section 80 of the UK's Data (Use and Access) Act 2025 took effect February 5, 2026 (Commencement Regulations SI 2026/82) and substitutes Article 22 of the UK GDPR with new Articles 22A to 22D. The new regime permits solely automated "significant decisions," those with a legal or similarly significant effect, more broadly than before, but requires safeguards: notice to the individual, the ability to make representations, the right to human intervention, and the right to contest the decision. Stricter restrictions still apply where special category data is used. Treat this as a distinct regime from EU GDPR Article 22, not an equivalent, for any AI use case touching UK-based workers or candidates.
 
 *The "AI as a manager" trap:*
 AI that monitors, evaluates, or scores employees without their knowledge, even for legitimate purposes, creates legal and trust exposure. Transparency is not just ethical, it's protective.
