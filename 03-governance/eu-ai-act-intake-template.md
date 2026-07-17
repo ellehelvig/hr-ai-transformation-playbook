@@ -6,7 +6,7 @@ This is not legal advice. Use it to structure the conversation with Legal, Priva
 
 ## Timing context
 
-The EU AI Act is in force. Obligations for high-risk AI systems in employment (Annex III, point 4) were originally set to apply from 2 August 2026. The AI Omnibus simplification package, which moves this date to 2 December 2027, is now formally adopted: Parliament passed its final vote on 16 June 2026 and the Council gave final sign-off on 29 June 2026. The package is pending publication in the Official Journal and enters into force shortly after. Embedded high-risk AI under Annex I (regulated products) gets a separate deferral, to 2 August 2028. Keep the classification field current now, because vendors and customers are already requesting the evidence trail.
+The EU AI Act is in force. Obligations for high-risk AI systems in employment (Annex III, point 4) were originally set to apply from 2 August 2026. The AI Omnibus simplification package, which moves this date to 2 December 2027, is formally adopted: Parliament passed its final vote on 16 June 2026 and the Council gave final sign-off on 29 June 2026. The package must be published in the Official Journal by 30 July 2026 at the latest, entering into force three days after publication and no later than 2 August 2026. Confirm the exact publication date against eur-lex.europa.eu before citing it. Embedded high-risk AI under Annex I (regulated products) gets a separate deferral, to 2 August 2028. Keep the classification field current now, because vendors and customers are already requesting the evidence trail.
 
 Other AI Act obligations (prohibited practices, GP-AI, transparency) follow their own timelines and are not affected by the same deferral.
 
