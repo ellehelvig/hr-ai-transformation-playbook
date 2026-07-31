@@ -132,7 +132,7 @@ Score the overall risk level:
 | Employment decisions affected | None | Advisory input | Direct decision |
 | Data sensitivity | Aggregate / low-sensitivity | Personal, non-sensitive | Sensitive personal data |
 | Employee visibility | Internal only | Affects employee experience | Affects employee status |
-| Regulatory exposure | Minimal | Some (state AI laws, GDPR) | High (EEOC, CCPA, IL AIAA) |
+| Regulatory exposure | Minimal | Some (state AI laws, GDPR) | High (EEOC, CCPA/CPPA ADMT, IL AIAA/HB 3773, CO ADMT Act, TX TRAIGA) |
 | Autonomy level | Human-in-the-loop throughout | Human reviews AI output | AI acts autonomously |
 
 **Overall risk rating:** [ ] Low  [ ] Medium  [ ] High

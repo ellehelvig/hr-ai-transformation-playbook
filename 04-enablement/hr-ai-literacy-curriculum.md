@@ -121,7 +121,7 @@ Introduce and reinforce this heuristic:
 | 1:00–1:20 | Walk-through: The risk assessment template |
 | 1:20–1:30 | Q&A + open discussion |
 
-> **Note on regulatory currency:** Regulatory references in this module are current as of May 2026. The HR AI regulatory landscape is evolving rapidly, verify current law before relying on specific references in any compliance discussion or training material.
+> **Note on regulatory currency:** Regulatory references in this module are current as of July 2026. The HR AI regulatory landscape is evolving rapidly, verify current law before relying on specific references in any compliance discussion or training material.
 
 **Key legal risk areas to cover:**
 
@@ -131,14 +131,27 @@ AI trained on historical HR data can encode and amplify past discrimination. An 
 *Illinois AI Video Interview Act, NYC Local Law 144, and emerging state laws:*
 Several jurisdictions now require disclosure, impact assessments, or consent for AI use in hiring. Illinois's 2026 amendment raised the bar: employers now need explicit written consent before AI analyzes a video interview, continuing the interview no longer counts as implied consent. Illinois also amended its Human Rights Act via HB 3773 (effective January 1, 2026) to broadly prohibit discriminatory AI use in hiring and promotion, not just video interviews. The regulatory landscape is shifting quickly. Use cases involving hiring must be reviewed against current state law.
 
+NYC Local Law 144 enforcement is entering a stricter phase. A December 2025 NY State Comptroller audit found DCWP's enforcement "ineffective": DCWP's own review of 32 companies' bias-audit disclosures caught 1 likely non-compliance issue, where the Comptroller's review of the same 32 found at least 17. Expect more investigations and higher penalties as DCWP responds to the audit's recommendations, not just the disclosure-and-audit paperwork the law describes on paper.
+
 *Colorado's Automated Decision-Making Technology Act:*
 Colorado SB26-189 (signed 14 May 2026, Colo. Sess. Laws ch. 131) repeals and replaces the state's 2024 AI consumer protection law. It covers "consequential decisions," including employment, made using automated decision-making technology (ADMT) that materially influences the outcome. Starting January 1, 2027, developers must give deployers technical documentation on intended use, training data categories, known limitations, and human review instructions. Deployers owe consumers notice at the point of interaction now, and within 30 days of any adverse consequential decision, a plain-language explanation plus the right to request human review and reconsideration. Records must be retained 3 years. The attorney general enforces under the Colorado Consumer Protection Act, with a 60-day cure period through January 1, 2030.
 
+*California: FEHA algorithmic discrimination rules and CPPA ADMT regulations:*
+Two separate California regimes apply now, not one generic "CCPA" reference. The Civil Rights Council's FEHA regulations on automated decision systems took effect October 1, 2025: they prohibit AI-driven disparate treatment or disparate impact in employment decisions, require four years of recordkeeping, and hold employers liable for discriminatory outcomes even when the tool comes from a third-party vendor. Separately, the CPPA's ADMT regulations under the CCPA take effect January 1, 2027, and require pre-use notice, an opt-out right, and a formal risk assessment for AI used in hiring, promotion, or other significant employment decisions.
+
+*Texas: Responsible AI Governance Act (TRAIGA):*
+Effective January 1, 2026 (HB 149, signed June 22, 2025). Narrower than Illinois or Colorado: TRAIGA prohibits intentional AI-based discrimination but does not create disparate impact liability, and the Attorney General has exclusive enforcement authority with a 60-day cure period before action.
+
 *GDPR and CCPA:*
-Employees in covered jurisdictions have rights regarding automated decision-making. Know which of your employees are covered and how your AI use cases interact with their rights.
+Employees in covered jurisdictions have rights regarding automated decision-making. Know which of your employees are covered and how your AI use cases interact with their rights. See the California-specific rules above for the current state of play there.
 
 *UK: Data (Use and Access) Act 2025 replaces GDPR Article 22:*
 Section 80 of the UK's Data (Use and Access) Act 2025 took effect February 5, 2026 (Commencement Regulations SI 2026/82) and substitutes Article 22 of the UK GDPR with new Articles 22A to 22D. The new regime permits solely automated "significant decisions," those with a legal or similarly significant effect, more broadly than before, but requires safeguards: notice to the individual, the ability to make representations, the right to human intervention, and the right to contest the decision. Stricter restrictions still apply where special category data is used. Treat this as a distinct regime from EU GDPR Article 22, not an equivalent, for any AI use case touching UK-based workers or candidates.
+
+The ICO is already signaling how it will police this in recruitment specifically. A March 2026 ICO report on automated decision-making in hiring found many employers don't recognize they're doing ADM at all, and that "human review" in practice often amounts to rubber-stamping rather than a reviewer with real authority to change the outcome. Build the oversight role description to survive that scrutiny, not just to check the box.
+
+*Canada: no federal AI employment law, but Ontario requires disclosure:*
+Canada's federal AI bill (AIDA, part of Bill C-27) died when Parliament prorogued in January 2025 and has not been revived. AI regulation there runs through existing privacy, human rights, and sector law instead. Ontario is the exception: since January 1, 2026, employers with 25+ employees must disclose in publicly advertised job postings whether AI is used to screen, assess, or select candidates (Employment Standards Act, 2000 amendment).
 
 *The "AI as a manager" trap:*
 AI that monitors, evaluates, or scores employees without their knowledge, even for legitimate purposes, creates legal and trust exposure. Transparency is not just ethical, it's protective.
