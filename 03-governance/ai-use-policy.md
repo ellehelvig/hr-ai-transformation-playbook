@@ -1,9 +1,16 @@
 # HR AI use policy
 
 **Status:** Template, adapt for your organization before adopting
+**Version:** 1.0
 **Last reviewed:** [DATE]
 **Owner:** People Team / HR Technology
 **Legal review required before publishing:** Yes
+
+**Changelog:**
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | [DATE] | Initial policy |
 
 ---
 
@@ -24,6 +31,12 @@ This policy applies to:
 
 ---
 
+## Jurisdiction
+
+This policy states organization-wide principles. It does not replace jurisdiction-specific compliance work. For EU high-risk AI obligations, GDPR Article 22, UK automated decision-making rules, and US state AI hiring laws, use the checklists and templates listed under [Cross-links](#cross-links) alongside this policy, not instead of it.
+
+---
+
 ## Core principles
 
 ### 1. Humans make consequential employment decisions
@@ -33,6 +46,8 @@ AI may assist, inform, or accelerate HR work. It may not make or fully automate 
 This includes: hiring decisions, performance ratings, promotions, terminations, PIPs, pay changes, and disciplinary actions.
 
 "Human review" means a qualified HR professional or manager has reviewed the AI output, applied their judgment, and taken ownership of the decision.
+
+**Agentic tools carry this principle further.** An AI agent that can plan and execute multi-step actions (writing to the HRIS, sending communications, triggering a workflow) must have an explicit confirmation gate before any action affecting employment status, compensation, advancement, or working conditions. A human approving the agent's plan once at setup does not satisfy "meaningful human review" for each individual action. See [Designing HR agents](../07-agentic-patterns/agent-design.md) for the scope and escalation design this requires.
 
 ### 2. Employees have a right to know
 
@@ -89,6 +104,7 @@ The following uses of AI in HR are prohibited without explicit approval from Leg
 | Attrition risk models | Approved with conditions | HR leadership review required before any action taken on individual scores |
 | Autonomous offer generation | Under review | Not approved until legal review complete |
 | Performance rating automation | Not approved | Employment decision; requires human judgment |
+| Agents with HRIS or system write access | Approved with conditions | Requires a per-action confirmation gate for any employment-affecting action, not just approval of the agent's overall plan; scope and escalation rules documented per [agent design guidance](../07-agentic-patterns/agent-design.md) |
 
 ---
 
@@ -118,6 +134,16 @@ This policy will be reviewed annually and updated when:
 - New AI capabilities are deployed in HR systems
 - Relevant regulations change (e.g., new state AI hiring laws, EEOC guidance)
 - A significant incident or concern is identified
+
+---
+
+## Cross-links
+
+- [EU AI Act intake template](eu-ai-act-intake-template.md): per-use-case classification for EU high-risk obligations.
+- [Vendor intake checklist](vendor-intake-checklist.md): evidence required from vendors before adoption.
+- [Deployer checklist](deployer-checklist.md): ongoing obligations once an EU high-risk system is deployed.
+- [Risk assessment template](risk-assessment-template.md): the intake process referenced above.
+- [Designing HR agents](../07-agentic-patterns/agent-design.md): scope, escalation, and oversight design for agentic tools.
 
 ---
 
