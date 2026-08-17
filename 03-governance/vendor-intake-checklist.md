@@ -104,6 +104,8 @@ Red flag: vendor disclaims all responsibility for supporting deployer compliance
 
 Red flag: incident definition is narrower than the AI Act post-market monitoring concept, or the vendor only commits to "commercially reasonable" notification.
 
+Use the [incident report template](incident-report-template.md) internally regardless of what the vendor commits to, it's your record even when the root cause is on their side.
+
 ## Procurement red flag summary
 
 Any of the following means stop and escalate before signing:

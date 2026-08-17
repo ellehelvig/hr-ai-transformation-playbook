@@ -71,7 +71,7 @@ Review these monthly for the first two quarters, then fold into your standard [R
 
 ## Handling the first public failure
 
-Every program has one: a wrong answer, a bad draft that went out unedited, a hallucinated policy detail an employee caught. How this is handled in the first 90 days sets the trust ceiling for the next two years.
+Every program has one: a wrong answer, a bad draft that went out unedited, a hallucinated policy detail an employee caught. How this is handled in the first 90 days sets the trust ceiling for the next two years. Use the [incident report template](../03-governance/incident-report-template.md) to work the fix; use the four steps below to work the trust.
 
 1. Acknowledge it specifically and quickly — don't let it circulate without a response from the program owner
 2. Explain what went wrong in plain language (which verification step was skipped, not just "the AI made a mistake")

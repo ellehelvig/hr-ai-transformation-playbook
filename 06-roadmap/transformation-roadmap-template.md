@@ -176,10 +176,10 @@ Track these at the program level, regardless of individual use case metrics.
 ### Governance
 | Metric | Baseline | Target |
 |---|---|---|
-| % of live use cases with active monitoring |, | 100% |
-| Fairness audits completed on schedule |, | 100% |
-| Risk assessments completed before deployment |, | 100% |
-| Governance issues identified (target: find and fix) |, | 0 unresolved >30 days |
+| % of live use cases with active monitoring | [measure] | 100% |
+| Fairness audits completed on schedule | [measure] | 100% |
+| Risk assessments completed before deployment | [measure] | 100% |
+| Governance issues identified (target: find and fix) | [measure] | 0 unresolved >30 days |
 
 ---
 

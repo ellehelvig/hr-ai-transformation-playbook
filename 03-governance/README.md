@@ -11,10 +11,11 @@ Frameworks for responsible AI adoption in HR. None of this is legal advice. All 
 | [eu-ai-act-intake-template.md](eu-ai-act-intake-template.md) | Row-per-use-case intake for HR AI under the EU AI Act. Includes example cards. |
 | [vendor-intake-checklist.md](vendor-intake-checklist.md) | What HR AI vendors must hand over before you sign, renew, or deploy. |
 | [deployer-checklist.md](deployer-checklist.md) | What your organization owes under Article 26 once you deploy. |
+| [incident-report-template.md](incident-report-template.md) | Fill out when an HR AI system does something it shouldn't. Severity scale, root cause, corrective actions, and communication steps. |
 
 ## EU AI Act timing
 
-High-risk obligations for HR systems under Annex III were originally set to apply from 2 August 2026. The AI Omnibus political agreement reached on 6 May 2026 proposes to move this date to 2 December 2027. The Omnibus is not yet adopted text. Treat the new date as the planning assumption and keep the classification field current now, because vendors and customers are already requesting the evidence trail.
+High-risk obligations for HR systems under Annex III were originally set to apply from 2 August 2026. The AI Omnibus simplification package, which moves this date to 2 December 2027, is now law: Regulation (EU) 2026/1744, published in the Official Journal on 24 July 2026 and in force since 27 July 2026. December 2027 is an outer limit, not a guarantee: the Commission can pull the deadline forward once it formally concludes that the necessary standards and guidance are in place. Keep the classification field current now, because vendors and customers are already requesting the evidence trail.
 
 ## The non-negotiables
 

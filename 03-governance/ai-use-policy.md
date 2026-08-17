@@ -126,6 +126,8 @@ Employees or People Team members who observe AI being used in a way that appears
 
 Reports will be reviewed within [X] business days. Retaliation for good-faith reporting is prohibited.
 
+If the report describes an AI system doing something it shouldn't (wrong information, a disclosure, a biased output), open an [incident report](incident-report-template.md).
+
 ---
 
 ## Review cadence

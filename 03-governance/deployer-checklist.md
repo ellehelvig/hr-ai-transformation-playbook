@@ -110,7 +110,7 @@ Action items:
 
 - Define "serious incident" in your incident playbook, aligned to AI Act and GDPR.
 - Reporting timeline: serious incidents to the provider, and (in some categories) to the market surveillance authority.
-- Run a postmortem and update the use case card.
+- Run a postmortem using the [incident report template](incident-report-template.md) and update the use case card.
 
 ## Worker notice template (starting point)
 

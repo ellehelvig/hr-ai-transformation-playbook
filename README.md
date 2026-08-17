@@ -25,7 +25,7 @@ outcomes.
 |---|---|
 | [01 · Use cases](01-use-cases/README.md) | Library of 30+ vetted HR AI use cases, prioritization matrix, intake template |
 | [02 · Prompt library](02-prompt-library/README.md) | Production-ready prompts for talent acquisition, onboarding, performance, and learning and development |
-| [03 · Governance](03-governance/README.md) | [AI use policy](03-governance/ai-use-policy.md), [risk assessment template](03-governance/risk-assessment-template.md), [EU AI Act intake template](03-governance/eu-ai-act-intake-template.md), [vendor intake](03-governance/vendor-intake-checklist.md), [deployer checklist](03-governance/deployer-checklist.md) |
+| [03 · Governance](03-governance/README.md) | [AI use policy](03-governance/ai-use-policy.md), [risk assessment template](03-governance/risk-assessment-template.md), [EU AI Act intake template](03-governance/eu-ai-act-intake-template.md), [vendor intake](03-governance/vendor-intake-checklist.md), [deployer checklist](03-governance/deployer-checklist.md), [incident report template](03-governance/incident-report-template.md) |
 | [04 · Enablement](04-enablement/README.md) | HR AI literacy curriculum, workshop facilitator guide, adoption playbook |
 | [05 · Notebooks](05-notebooks/README.md) | Skills gap analysis, a fairness-audited attrition risk model, and a working HR Q&A agent demo |
 | [06 · Roadmap](06-roadmap/README.md) | 18-month transformation roadmap template, KPI framework, phase gate criteria |

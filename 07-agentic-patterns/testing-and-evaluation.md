@@ -106,6 +106,8 @@ Testing before launch is necessary but not sufficient. HR policies change, emplo
 - Unusual spike in escalation rate (may signal a new type of query the agent can't handle)
 - Policy update that affects any in-scope topic
 
+Any trigger-based event gets an [incident report](../03-governance/incident-report-template.md), even if it turns out to be minor. A Sev 4 log costs two minutes; an unlogged pattern of near-misses is how Sev 1s happen unnoticed.
+
 ---
 
 ## What good looks like: a quality benchmark for HR agents
