@@ -103,3 +103,7 @@ MIT — use freely, adapt for your organization, share improvements back.
 
 > None of this is legal advice. All governance documents should be reviewed
 > by Legal and Privacy before adoption.
+
+---
+
+Built by Elle Helvig — [LinkedIn](https://www.linkedin.com/in/ellehelvig/)

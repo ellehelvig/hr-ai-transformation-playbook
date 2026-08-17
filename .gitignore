@@ -23,3 +23,6 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Local tooling (not part of the playbook content)
+github-mcp-server/
