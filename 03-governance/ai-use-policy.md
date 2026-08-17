@@ -105,6 +105,7 @@ The following uses of AI in HR are prohibited without explicit approval from Leg
 | Autonomous offer generation | Under review | Not approved until legal review complete |
 | Performance rating automation | Not approved | Employment decision; requires human judgment |
 | Agents with HRIS or system write access | Approved with conditions | Requires a per-action confirmation gate for any employment-affecting action, not just approval of the agent's overall plan; scope and escalation rules documented per [agent design guidance](../07-agentic-patterns/agent-design.md) |
+| Compensation and pay equity analysis | Attorney-directed only | Do not run without employment counsel initiating the analysis; see [pay equity governance](pay-equity-governance.md) before touching any comp data |
 
 ---
 

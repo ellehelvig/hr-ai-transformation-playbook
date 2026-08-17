@@ -138,6 +138,7 @@
 
 ## Notes on this library
 
+- **Pay equity analysis, and any use case that touches compensation data**, has governance requirements beyond the standard risk assessment. See [pay equity governance](../03-governance/pay-equity-governance.md) before scoping this one.
 - **Effort ratings** assume an organization with reasonably clean HRIS data and a dedicated HR tech team. Without that, add one level to every effort estimate.
 - **Impact ratings** are for a 1,000+ employee organization. Smaller orgs may see lower absolute impact but faster time to value.
 - Use the [prioritization matrix](prioritization-matrix.md) to score and rank these for your specific context.

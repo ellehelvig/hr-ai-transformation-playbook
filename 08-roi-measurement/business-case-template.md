@@ -4,7 +4,7 @@ Use this structure for any HR AI investment proposal. Pair it with the [ROI calc
 
 ---
 
-### [Use case name]
+## [Use case name]
 
 **Problem statement**
 What is painful, slow, or inconsistent today? Who feels it? What does it cost?

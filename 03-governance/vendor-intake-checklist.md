@@ -2,6 +2,8 @@
 
 What an HR AI vendor must hand over before you sign, renew, or deploy. Use this for any tool that scores, ranks, recommends, screens, summarizes, or otherwise influences decisions about workers or candidates in the EU.
 
+If you haven't picked a vendor yet, or you're deciding whether to build instead, start with the [build vs. buy and vendor selection framework](vendor-selection-framework.md) first.
+
 Not legal advice. Pair with Legal, Privacy, and Procurement review.
 
 ## How to use
@@ -121,6 +123,7 @@ Any of the following means stop and escalate before signing:
 
 ## Cross-links
 
+- [Vendor selection framework](vendor-selection-framework.md): the build-vs-buy decision and vendor comparison that happens before this checklist.
 - [EU AI Act intake template](eu-ai-act-intake-template.md): the per-use-case card that this checklist feeds.
 - [Deployer checklist](deployer-checklist.md): what your organization owes once the vendor evidence is in hand.
 - [Risk assessment template](risk-assessment-template.md): the broader fairness and incident process.
