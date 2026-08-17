@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR AI program dashboard — HR AI Transformation Playbook</title>
+<meta name="description" content="Interactive mock-up of a monthly HR AI program dashboard, plus a live ROI payback calculator, from the HR AI Transformation Playbook.">
+<style>
+  :root {
+    --surface-0: #f4f3ee;
+    --surface-1: #f7f7f4;
+    --surface-2: #ffffff;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --border: rgba(11,11,11,0.10);
+    --border-strong: rgba(11,11,11,0.18);
+    --radius: 8px;
+    --bg-success: #eaf3de;
+    --text-success: #3b6d11;
+    --bg-warning: #faeeda;
+    --text-warning: #854f0b;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface-0: #141413;
+      --surface-1: #1e1e1c;
+      --surface-2: #232320;
+      --text-primary: #f0efe9;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --border: rgba(255,255,255,0.12);
+      --border-strong: rgba(255,255,255,0.20);
+      --bg-success: #173404;
+      --text-success: #97c459;
+      --bg-warning: #412402;
+      --text-warning: #f0a92b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface-0);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .backlink { font-size: 13px; color: var(--text-secondary); text-decoration: none; }
+  .backlink:hover { color: var(--text-primary); }
+  h1 { font-size: 24px; font-weight: 600; margin: 1rem 0 4px; }
+  h2 { font-size: 18px; font-weight: 600; margin: 0 0 10px; }
+  .badge { font-size: 12px; color: var(--text-muted); background: var(--surface-1); padding: 3px 10px; border-radius: var(--radius); white-space: nowrap; }
+  .lede { color: var(--text-secondary); margin: 0 0 1.5rem; font-size: 14px; }
+  .kpi-row, .calc-out { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+  .metric-card { background: var(--surface-1); border-radius: var(--radius); padding: 1rem; }
+  .metric-card p:first-child { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; }
+  .metric-card p:last-child { font-size: 22px; font-weight: 600; margin: 0; }
+  .metric-card .delta { font-size: 14px; font-weight: 400; }
+  .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+  .case-card { background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+  .case-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .case-head p { font-weight: 600; font-size: 15px; margin: 0; }
+  .pill { font-size: 12px; padding: 2px 10px; border-radius: var(--radius); white-space: nowrap; }
+  .pill-good { background: var(--bg-success); color: var(--text-success); }
+  .pill-warn { background: var(--bg-warning); color: var(--text-warning); }
+  table { width: 100%; font-size: 13px; border-collapse: collapse; }
+  table td { padding: 3px 0; }
+  table td:first-child { color: var(--text-secondary); }
+  table td:last-child { text-align: right; }
+  .muted { color: var(--text-muted); }
+  .good { color: var(--text-success); }
+  section { border-top: 0.5px solid var(--border); padding-top: 1.5rem; margin-top: 1.5rem; }
+  .calc-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; margin-bottom: 1.25rem; }
+  .control-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; }
+  .control-label span:last-child { font-weight: 600; color: var(--text-primary); }
+  input[type="range"] { width: 100%; accent-color: var(--text-primary); }
+  footer { margin-top: 2.5rem; font-size: 13px; color: var(--text-muted); }
+  footer a { color: var(--text-secondary); }
+  @media (max-width: 480px) {
+    .calc-controls { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="https://github.com/ellehelvig/hr-ai-transformation-playbook">&larr; HR AI Transformation Playbook</a>
+  <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+    <h1>HR AI program, monthly update</h1>
+    <span class="badge">Illustrative sample data</span>
+  </div>
+  <p class="lede">A working version of the reporting format from the <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/blob/main/08-roi-measurement/README.md" style="color:var(--text-secondary);">ROI measurement framework</a>, showing what a live program dashboard would surface each month, plus a payback calculator you can run with your own numbers below.</p>
+
+  <div class="kpi-row">
+    <div class="metric-card"><p>Use cases live</p><p>5</p></div>
+    <div class="metric-card"><p>HR hours recovered</p><p>640 <span class="delta muted">($28.8k)</span></p></div>
+    <div class="metric-card"><p>Employee CSAT</p><p>4.3 <span class="delta good">+0.4</span></p></div>
+    <div class="metric-card"><p>YTD cost vs. budget</p><p>92%</p></div>
+  </div>
+
+  <div class="case-grid">
+    <div class="case-card">
+      <div class="case-head">
+        <p>Onboarding Q&amp;A agent</p>
+        <span class="pill pill-good">On track</span>
+      </div>
+      <table>
+        <tr><td>Response time</td><td>3 min <span class="muted">(target &lt;5)</span></td></tr>
+        <tr><td>CSAT</td><td>4.3/5.0 <span class="muted">(target &gt;4.0)</span></td></tr>
+        <tr><td>Escalation rate</td><td>12% <span class="muted">(target 5&ndash;20%)</span></td></tr>
+        <tr><td>Helpdesk deflection</td><td>380 tickets <span class="good">&uarr;18%</span></td></tr>
+      </table>
+    </div>
+    <div class="case-card">
+      <div class="case-head">
+        <p>Performance review assistant</p>
+        <span class="pill pill-warn">Needs attention</span>
+      </div>
+      <table>
+        <tr><td>Manager adoption</td><td>67% <span class="muted">(target 80%)</span></td></tr>
+        <tr><td>Review quality</td><td>4.1/5.0 <span class="muted">(target &gt;4.0)</span></td></tr>
+        <tr><td>Time per review</td><td>35 min <span class="muted">(baseline 90)</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <section>
+    <h2>ROI payback calculator</h2>
+    <p class="lede">Uses the payback formula from the <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/blob/main/08-roi-measurement/business-case-template.md" style="color:var(--text-secondary);">business case template</a>. Adjust the assumptions for your own use case.</p>
+
+    <div class="calc-controls">
+      <div>
+        <div class="control-label"><span>Hours saved per person, per week</span><span id="hrs-out">5</span></div>
+        <input type="range" min="0.5" max="15" step="0.5" value="5" id="hrs">
+      </div>
+      <div>
+        <div class="control-label"><span>People affected</span><span id="ppl-out">20</span></div>
+        <input type="range" min="1" max="200" step="1" value="20" id="ppl">
+      </div>
+      <div>
+        <div class="control-label"><span>Blended hourly rate</span><span id="rate-out">$55</span></div>
+        <input type="range" min="20" max="150" step="5" value="55" id="rate">
+      </div>
+      <div>
+        <div class="control-label"><span>Annual AI cost</span><span id="cost-out">$12,000</span></div>
+        <input type="range" min="500" max="100000" step="500" value="12000" id="cost">
+      </div>
+    </div>
+
+    <div class="calc-out">
+      <div class="metric-card"><p>Annual hours saved</p><p id="out-hours">4,800</p></div>
+      <div class="metric-card"><p>Value of time saved</p><p id="out-value">$264,000</p></div>
+      <div class="metric-card"><p>Net annual value</p><p id="out-net">$252,000</p></div>
+      <div class="metric-card"><p>Payback period</p><p id="out-payback">0.5 mo</p></div>
+    </div>
+  </section>
+
+  <footer>
+    Part of the <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook">HR AI Transformation Playbook</a>. Sample data throughout is illustrative, not a real program's numbers.
+  </footer>
+</div>
+
+<script>
+  function fmt(n) { return Math.round(n).toLocaleString(); }
+  function recalc() {
+    var hrs = parseFloat(document.getElementById('hrs').value);
+    var ppl = parseFloat(document.getElementById('ppl').value);
+    var rate = parseFloat(document.getElementById('rate').value);
+    var cost = parseFloat(document.getElementById('cost').value);
+
+    document.getElementById('hrs-out').textContent = hrs;
+    document.getElementById('ppl-out').textContent = ppl;
+    document.getElementById('rate-out').textContent = '$' + rate;
+    document.getElementById('cost-out').textContent = '$' + fmt(cost);
+
+    var annualHours = hrs * ppl * 48;
+    var value = annualHours * rate;
+    var net = value - cost;
+    var payback = value > 0 ? (cost / (value / 12)) : 0;
+
+    document.getElementById('out-hours').textContent = fmt(annualHours);
+    document.getElementById('out-value').textContent = '$' + fmt(value);
+    document.getElementById('out-net').textContent = (net < 0 ? '-$' : '$') + fmt(Math.abs(net));
+    document.getElementById('out-payback').textContent = payback.toFixed(1) + ' mo';
+  }
+  ['hrs', 'ppl', 'rate', 'cost'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', recalc);
+  });
+  recalc();
+</script>
+</body>
+</html>

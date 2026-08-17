@@ -2,6 +2,8 @@
 
 HR AI programs fail to scale for one of two reasons: they can't show value, or they can't show it in terms leadership cares about. This section provides a framework for measuring and communicating the business impact of HR AI investments.
 
+**[Live dashboard demo](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html)**, a working mock-up of the monthly reporting format below, plus a payback calculator that runs the formula from the business case template on your own numbers.
+
 ---
 
 ## The measurement problem in HR AI
@@ -19,6 +21,7 @@ The framework here is built around outcomes, not outputs, with output metrics as
 | File | Purpose |
 |---|---|
 | [business-case-template.md](business-case-template.md) | Fillable template for any HR AI investment proposal: problem statement, cost, expected outcomes, payback, risks, go/no-go criteria |
+| [dashboard.html](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html) | Live interactive dashboard mock-up and ROI payback calculator |
 
 ---
 

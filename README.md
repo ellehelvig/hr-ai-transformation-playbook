@@ -13,9 +13,21 @@ high-impact AI programs, from use case discovery through deployment and upskilli
 
 Most HR AI guidance falls into one of two traps: too theoretical to act on,
 or too vendor-specific to generalize. This playbook is neither. It is a working
-toolkit — prompts that run, notebooks that execute, governance checklists that
+toolkit, prompts that run, notebooks that execute, governance checklists that
 hold up to legal review, and a use case library grounded in measurable business
 outcomes.
+
+---
+
+## If you have 5 minutes
+
+Start with the **[live ROI dashboard](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html)**, a working mock-up of the monthly reporting format with a payback calculator you can run with your own numbers.
+
+Then, three things worth reading:
+
+- **[Attrition risk model](05-notebooks/attrition-risk-modeling.md)**, a working model with a fairness audit built in, not bolted on after the fact. Shows the calibration and disparate-impact analysis a real HR model needs before a score reaches a manager.
+- **[HR agent eval framework](09-evals/README.md)**, 29 structured test cases with a real pass/fail [rubric](09-evals/eval-rubric.md), including adversarial and information-disclosure gates that block launch, not just quality scores.
+- **[Agentic pattern decision tree](07-agentic-patterns/README.md)**, five architecture patterns for HR agents, with the governance requirement built into each one instead of treated as a separate compliance layer.
 
 ---
 
@@ -30,7 +42,7 @@ outcomes.
 | [05 · Notebooks](05-notebooks/README.md) | Skills gap analysis, a fairness-audited attrition risk model, and a working HR Q&A agent demo |
 | [06 · Roadmap](06-roadmap/README.md) | 18-month transformation roadmap template, KPI framework, phase gate criteria |
 | [07 · Agentic patterns](07-agentic-patterns/README.md) | Architecture patterns, agent design guide, testing and evaluation framework |
-| [08 · ROI measurement](08-roi-measurement/README.md) | Business case templates, ROI calculation framework, reporting cadence |
+| [08 · ROI measurement](08-roi-measurement/README.md) | Business case templates, ROI calculation framework, reporting cadence, [live dashboard demo](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html) |
 | [09 · Evals](09-evals/README.md) | 29 structured test cases, eval rubric, and automated eval runner script |
 
 ---

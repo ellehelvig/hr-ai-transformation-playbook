@@ -33,7 +33,9 @@ This policy applies to:
 
 ## Jurisdiction
 
-This policy states organization-wide principles. It does not replace jurisdiction-specific compliance work. For EU high-risk AI obligations, GDPR Article 22, UK automated decision-making rules, and US state AI hiring laws, use the checklists and templates listed under [Cross-links](#cross-links) alongside this policy, not instead of it.
+This policy states organization-wide principles. It does not replace jurisdiction-specific compliance work. For EU high-risk AI obligations, GDPR Article 22, UK automated decision-making rules, US state AI hiring laws, and Ontario's AI disclosure requirement, use the checklists and templates listed under [Cross-links](#cross-links) alongside this policy, not instead of it.
+
+**Scope of this playbook.** The jurisdiction-specific content here covers the EU, US, UK, and Canada, because those are the markets with the most developed AI employment regulation as of this writing. It does not cover APAC, Latin America, the Middle East, or Africa. If you operate in those markets, treat the principles here as a starting frame and get local counsel before assuming any specific checklist applies. A genuinely global program needs jurisdiction coverage this playbook doesn't provide yet.
 
 ---
 
