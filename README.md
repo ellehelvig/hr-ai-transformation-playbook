@@ -41,7 +41,7 @@ Then, three things worth reading:
 | [04 · Enablement](04-enablement/README.md) | HR AI literacy curriculum, workshop facilitator guide, adoption playbook |
 | [05 · Notebooks](05-notebooks/README.md) | Skills gap analysis, a fairness-audited attrition risk model, and a working HR Q&A agent demo |
 | [06 · Roadmap](06-roadmap/README.md) | 18-month transformation roadmap template, KPI framework, phase gate criteria |
-| [07 · Agentic patterns](07-agentic-patterns/README.md) | Architecture patterns, agent design guide, testing and evaluation framework |
+| [07 · Agentic patterns](07-agentic-patterns/README.md) | Architecture patterns, agent design guide, testing and evaluation framework, [talent operating system architecture](07-agentic-patterns/talent-operating-system-architecture.md) |
 | [08 · ROI measurement](08-roi-measurement/README.md) | Business case templates, ROI calculation framework, reporting cadence, [live dashboard demo](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html) |
 | [09 · Evals](09-evals/README.md) | 29 structured test cases, eval rubric, and automated eval runner script |
 
@@ -72,6 +72,9 @@ Then, three things worth reading:
 
 **I want to design and test HR agents**
 → [07 · Agentic patterns](07-agentic-patterns/README.md)
+
+**I need to wire a skills ontology into my HRIS and performance process**
+→ [07 · Agentic patterns / talent-operating-system-architecture.md](07-agentic-patterns/talent-operating-system-architecture.md)
 
 ---
 

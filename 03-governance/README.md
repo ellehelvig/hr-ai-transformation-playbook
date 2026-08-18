@@ -6,6 +6,7 @@ Frameworks for responsible AI adoption in HR. None of this is legal advice. All 
 
 | File | Purpose |
 |---|---|
+| [quick-reference-checklist.md](quick-reference-checklist.md) | One-page pre-screen on data privacy, employee consent, and bias mitigation. Start here, then go deep on the documents below. |
 | [ai-use-policy.md](ai-use-policy.md) | Principles and requirements for HR AI use. Adapt for your organization. |
 | [risk-assessment-template.md](risk-assessment-template.md) | Required before deploying any new HR AI use case. |
 | [eu-ai-act-intake-template.md](eu-ai-act-intake-template.md) | Row-per-use-case intake for HR AI under the EU AI Act. Includes example cards. |

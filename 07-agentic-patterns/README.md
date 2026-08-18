@@ -4,6 +4,8 @@ A reference guide for designing and deploying AI agents in People Team operation
 
 These are not theoretical, they are the patterns that appear repeatedly in production HR agent deployments.
 
+**Looking for the data layer these agents run on top of?** See [Talent operating system architecture](talent-operating-system-architecture.md): how a dynamic skills ontology integrates with your HRIS and performance calibration process, including the fairness check most teams skip when performance data feeds back into skill scoring.
+
 ---
 
 ## What makes a workflow "agentic"
