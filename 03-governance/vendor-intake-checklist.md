@@ -91,7 +91,7 @@ Red flag: vendor reports aggregate accuracy only, refuses to break down performa
 
 - Support for the deployer obligations under Article 26, including templates for worker notice and oversight role descriptions.
 - Notification SLA when the model version changes, instructions for use change, or incidents occur.
-- Right to audit, or independent attestations the vendor will provide (SOC 2, ISO 42001 where available, fairness audits).
+- Right to audit, or independent attestations the vendor will provide (SOC 2, ISO/IEC 42001, NIST AI RMF alignment statement where available, fairness audits).
 - Co-operation on regulator inquiries.
 - Termination assistance, including data return and log preservation.
 

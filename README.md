@@ -87,7 +87,9 @@ Then, three things worth reading:
 measurable HR or business outcome. No technology for its own sake.
 
 **Governance built in.** Responsible AI considerations are embedded in every
-section, not bolted on at the end.
+section, not bolted on at the end, structured around the NIST AI Risk
+Management Framework 1.0 and ISO/IEC 42001, with federal and state
+regulatory context kept current (see [governance](03-governance/README.md)).
 
 **HRIS-agnostic.** Nothing here assumes a specific vendor. Integration patterns
 are documented as adapters you wire to your own stack.

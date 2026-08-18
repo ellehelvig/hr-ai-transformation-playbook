@@ -140,6 +140,19 @@ This policy will be reviewed annually and updated when:
 - Relevant regulations change (e.g., new state AI hiring laws, EEOC guidance)
 - A significant incident or concern is identified
 
+**On EEOC guidance specifically:** the EEOC withdrew its 2022 and 2023 AI technical assistance documents in early 2025, and an April 2025 executive order directs federal agencies to deprioritize disparate-impact enforcement. That's an enforcement-priority shift, not a change in the underlying law, Title VII disparate-impact liability is still codified and still enforceable through private litigation, and state and local laws (Illinois, Colorado, NYC, and others) impose independent obligations regardless of federal posture. Principle 3 and the fairness audit requirements in this policy apply exactly as written, don't scope them down because federal enforcement has quieted. See [US federal AI enforcement context](README.md#us-federal-ai-enforcement-context) for detail.
+
+---
+
+## Frameworks this policy draws on
+
+This policy is structured around two frameworks rather than invented from scratch:
+
+- **NIST AI Risk Management Framework 1.0** (January 2023): the four functions, Govern, Map, Measure, Manage, map loosely to this policy's structure. Governance process and non-negotiables (Govern), the use-case-specific risk assessment (Map), the fairness and bias monitoring plan (Measure), and the incident and escalation process (Manage).
+- **ISO/IEC 42001**: the AI management system standard referenced in the [vendor intake checklist](vendor-intake-checklist.md) as evidence to request from vendors.
+
+Neither framework is HR-specific. Both are general-purpose AI governance frameworks this policy adapts to employment use cases.
+
 ---
 
 ## Cross-links

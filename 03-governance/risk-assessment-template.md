@@ -132,10 +132,12 @@ Score the overall risk level:
 | Employment decisions affected | None | Advisory input | Direct decision |
 | Data sensitivity | Aggregate / low-sensitivity | Personal, non-sensitive | Sensitive personal data |
 | Employee visibility | Internal only | Affects employee experience | Affects employee status |
-| Regulatory exposure | Minimal | Some (state AI laws, GDPR) | High (EEOC, CCPA/CPPA ADMT, IL AIAA/HB 3773, CO ADMT Act, TX TRAIGA) |
+| Regulatory exposure | Minimal | Some (state AI laws, GDPR) | High (Title VII disparate impact, CCPA/CPPA ADMT, IL HB 3773, CO ADMT Act, TX TRAIGA) |
 | Autonomy level | Human-in-the-loop throughout | Human reviews AI output | AI acts autonomously |
 
 **Overall risk rating:** [ ] Low  [ ] Medium  [ ] High
+
+**Note on regulatory exposure:** federal EEOC enforcement of AI-related disparate impact has been deprioritized since April 2025, but the underlying Title VII liability and private litigation risk have not changed, and state laws are getting more specific, not less. See the [AI literacy curriculum's regulatory landscape module](../04-enablement/hr-ai-literacy-curriculum.md) for the current detail on each: Colorado's SB 24-205 was repealed and reenacted by SB 26-189 (May 2026) as the Automated Decision-Making Technology Act, now effective 1 January 2027 with a narrower scope, don't cite the old bill number or timeline. California runs two separate regimes (FEHA algorithmic discrimination rules, effective October 2025, and CPPA ADMT regulations, effective January 2027), not one generic "CCPA" reference. Texas TRAIGA (HB 149) took effect January 1, 2026 and is narrower than Illinois or Colorado, it reaches intentional discrimination, not disparate impact. Score this row on legal exposure, not on how actively a federal agency is currently enforcing it.
 
 ---
 
