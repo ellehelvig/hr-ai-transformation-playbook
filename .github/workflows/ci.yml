@@ -11,7 +11,7 @@ jobs:
     name: Validate
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Check section directories exist
         run: |
@@ -22,7 +22,7 @@ jobs:
           test -f README.md && test -f LICENSE && test -f CONTRIBUTING.md
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
@@ -82,9 +82,9 @@ jobs:
           PY
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Run markdown lint
         run: |
