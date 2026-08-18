@@ -36,7 +36,7 @@ Then, three things worth reading:
 | Section | What you get |
 |---|---|
 | [01 · Use cases](01-use-cases/README.md) | Library of 30+ vetted HR AI use cases, prioritization matrix, intake template |
-| [02 · Prompt library](02-prompt-library/README.md) | Production-ready prompts for talent acquisition, onboarding, performance, and learning and development |
+| [02 · Prompt library](02-prompt-library/README.md) | Production-ready prompts across talent acquisition, onboarding, performance, learning and development, HR operations, people analytics, succession planning, and internal mobility |
 | [03 · Governance](03-governance/README.md) | [AI use policy](03-governance/ai-use-policy.md), [risk assessment template](03-governance/risk-assessment-template.md), [EU AI Act intake template](03-governance/eu-ai-act-intake-template.md), [vendor selection](03-governance/vendor-selection-framework.md), [vendor intake](03-governance/vendor-intake-checklist.md), [deployer checklist](03-governance/deployer-checklist.md), [incident report template](03-governance/incident-report-template.md), [pay equity governance](03-governance/pay-equity-governance.md) |
 | [04 · Enablement](04-enablement/README.md) | HR AI literacy curriculum, workshop facilitator guide, adoption playbook |
 | [05 · Notebooks](05-notebooks/README.md) | Skills gap analysis, a fairness-audited attrition risk model, and a working HR Q&A agent demo |
@@ -54,6 +54,9 @@ Then, three things worth reading:
 
 **I want prompts I can use today**
 → [02 · Prompt library](02-prompt-library/README.md)
+
+**I need prompts for HR ops, people analytics, succession, or internal mobility**
+→ [02 · Prompt library / hr-operations.md](02-prompt-library/hr-operations.md), [people-analytics.md](02-prompt-library/people-analytics.md), [succession-planning.md](02-prompt-library/succession-planning.md), [internal-mobility.md](02-prompt-library/internal-mobility.md)
 
 **I need a governance framework**
 → [03 · Governance / ai-use-policy.md](03-governance/ai-use-policy.md)
