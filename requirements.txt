@@ -1,0 +1,6 @@
+# Dependencies for 09-evals/run-evals.py and CI validation steps.
+# Pinned to minimum tested versions, not exact versions, so security patches
+# still flow through automatically.
+requests>=2.31.0
+PyYAML>=6.0
+nbformat>=5.9.0

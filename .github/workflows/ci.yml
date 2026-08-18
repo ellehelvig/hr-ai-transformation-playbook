@@ -27,7 +27,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install Python deps
-        run: pip install pyyaml requests nbformat
+        run: pip install -r requirements.txt ruff
 
       - name: Validate YAML files
         run: |
@@ -44,11 +44,20 @@ jobs:
       - name: Validate Python compiles
         run: python -m py_compile 09-evals/run-evals.py
 
+      - name: Lint Python
+        run: ruff check 09-evals/run-evals.py
+
       - name: Validate Jupyter notebooks
         run: |
           python - <<'PY'
-          import nbformat, pathlib
-          for p in pathlib.Path('05-notebooks').rglob('*.ipynb'):
+          import nbformat, pathlib, sys
+          notebooks = list(pathlib.Path('05-notebooks').rglob('*.ipynb'))
+          if not notebooks:
+              print('No .ipynb files found under 05-notebooks/ — nothing to validate. '
+                    '05-notebooks currently holds markdown walkthroughs with embedded code, '
+                    'not executable notebooks; this step is a no-op until that changes.')
+              sys.exit(0)
+          for p in notebooks:
               nb = nbformat.read(p, as_version=4)
               nbformat.validate(nb)
               print(f'OK: {p}')
