@@ -26,3 +26,4 @@ Thumbs.db
 
 # Local tooling (not part of the playbook content)
 github-mcp-server/
+_to_delete/
