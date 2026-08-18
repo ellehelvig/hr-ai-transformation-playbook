@@ -25,7 +25,7 @@ Start with the **[live ROI dashboard](https://ellehelvig.github.io/hr-ai-transfo
 
 Then, three things worth reading:
 
-- **[Attrition risk model](05-notebooks/attrition-risk-modeling.md)**, a working model with a fairness audit built in, not bolted on after the fact. Shows the calibration and disparate-impact analysis a real HR model needs before a score reaches a manager.
+- **[Attrition risk model](05-notebooks/attrition-risk-modeling.ipynb)**, a working model with a fairness audit built in, not bolted on after the fact. Shows the calibration and disparate-impact analysis a real HR model needs before a score reaches a manager.
 - **[HR agent eval framework](09-evals/README.md)**, 29 structured test cases with a real pass/fail [rubric](09-evals/eval-rubric.md), including adversarial and information-disclosure gates that block launch, not just quality scores.
 - **[Agentic pattern decision tree](07-agentic-patterns/README.md)**, five architecture patterns for HR agents, with the governance requirement built into each one instead of treated as a separate compliance layer.
 

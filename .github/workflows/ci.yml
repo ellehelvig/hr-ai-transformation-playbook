@@ -47,20 +47,38 @@ jobs:
       - name: Lint Python
         run: ruff check 09-evals/run-evals.py
 
-      - name: Validate Jupyter notebooks
+      - name: Set up notebook kernel
+        run: python -m ipykernel install --user --name=python3
+
+      - name: Execute and validate Jupyter notebooks
         run: |
           python - <<'PY'
           import nbformat, pathlib, sys
-          notebooks = list(pathlib.Path('05-notebooks').rglob('*.ipynb'))
+          from nbclient import NotebookClient
+          from nbclient.exceptions import CellExecutionError
+
+          notebooks = sorted(pathlib.Path('05-notebooks').glob('*.ipynb'))
           if not notebooks:
-              print('No .ipynb files found under 05-notebooks/ — nothing to validate. '
-                    '05-notebooks currently holds markdown walkthroughs with embedded code, '
-                    'not executable notebooks; this step is a no-op until that changes.')
+              print('No .ipynb files found under 05-notebooks/ — nothing to validate.')
               sys.exit(0)
+
+          failed = False
           for p in notebooks:
               nb = nbformat.read(p, as_version=4)
               nbformat.validate(nb)
-              print(f'OK: {p}')
+              client = NotebookClient(nb, timeout=300, kernel_name='python3',
+                                       resources={'metadata': {'path': str(p.parent)}})
+              try:
+                  client.execute()
+              except CellExecutionError as e:
+                  print(f'EXECUTION FAILED: {p}')
+                  print(e)
+                  failed = True
+                  continue
+              print(f'OK: {p} — structurally valid and executes cleanly')
+
+          if failed:
+              sys.exit(1)
           PY
 
       - name: Set up Node

@@ -1,0 +1,17 @@
+# Explicit rule selection. Without this file, `ruff check` falls back to
+# whatever that installed ruff version considers its default rule set, and
+# that default has changed between releases — a routine `pip install ruff`
+# picking up a newer version silently changed which errors are checked and
+# broke CI. Pinning the selection here keeps lint behavior stable regardless
+# of which ruff version runs it.
+line-length = 120
+
+[lint]
+select = [
+    "E",     # pycodestyle errors
+    "F",     # pyflakes
+    "W",     # pycodestyle warnings
+    "B",     # flake8-bugbear (likely bugs and design issues)
+    "BLE",   # flake8-blind-except (no bare `except Exception`)
+    "DTZ",   # flake8-datetimez (no naive datetime.now() calls)
+]

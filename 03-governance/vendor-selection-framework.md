@@ -22,7 +22,7 @@ Most HR AI use cases should be bought, not built. The exceptions are narrower th
 
 **Default assumption:** build only if you scored "favors build" on uniqueness of need AND internal capability. Everything else is a secondary consideration. Teams that build because of data sensitivity or differentiation ambition alone, without the capability to back it up, are the most common source of abandoned internal AI tools.
 
-**A note on the notebooks in this playbook:** the [attrition risk model](../05-notebooks/attrition-risk-modeling.md) and [HR Q&A agent](../05-notebooks/hr-qa-agent-demo.md) demos are working sketches meant to show you what a well-governed build looks like, not a recommendation to build these specific things in-house. Most orgs are better served buying an attrition or Q&A product and applying this playbook's governance to it.
+**A note on the notebooks in this playbook:** the [attrition risk model](../05-notebooks/attrition-risk-modeling.ipynb) and [HR Q&A agent](../05-notebooks/hr-qa-agent-demo.ipynb) demos are working sketches meant to show you what a well-governed build looks like, not a recommendation to build these specific things in-house. Most orgs are better served buying an attrition or Q&A product and applying this playbook's governance to it.
 
 ---
 

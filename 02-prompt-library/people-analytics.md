@@ -1,6 +1,6 @@
 # Prompt library: people analytics
 
-Prompts for translating workforce data into decision-ready narrative for HR leaders, HRBPs, and managers. These prompts explain and synthesize, they do not score, rank, or decide. Anything that generates a risk score or model output belongs upstream of these prompts, see the [attrition risk model](../05-notebooks/attrition-risk-modeling.md) for a worked example of a properly governed model these prompts can sit downstream of.
+Prompts for translating workforce data into decision-ready narrative for HR leaders, HRBPs, and managers. These prompts explain and synthesize, they do not score, rank, or decide. Anything that generates a risk score or model output belongs upstream of these prompts, see the [attrition risk model](../05-notebooks/attrition-risk-modeling.ipynb) for a worked example of a properly governed model these prompts can sit downstream of.
 
 ---
 

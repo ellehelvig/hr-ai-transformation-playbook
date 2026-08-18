@@ -17,7 +17,7 @@ import argparse
 import json
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
@@ -75,7 +75,7 @@ def call_agent(endpoint: str, user_input: str, timeout: int = 30) -> str:
         return "ERROR: Could not connect to agent endpoint"
     except requests.exceptions.Timeout:
         return "ERROR: Agent request timed out"
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         return f"ERROR: {e}"
 
 
@@ -224,7 +224,7 @@ def main():
     elapsed = time.time() - start
 
     # Write results
-    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
     results_path = f"evals-results-{timestamp}.json"
     summary_path = f"evals-summary-{timestamp}.txt"
 

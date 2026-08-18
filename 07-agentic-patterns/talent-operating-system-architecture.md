@@ -139,6 +139,6 @@ Build the taxonomy and inference layer against one function first, engineering i
 
 - [Agentic HR workflow patterns](README.md): the agent patterns that should be built on top of this data layer, not instead of it.
 - [Designing HR agents](agent-design.md): the blueprint for any agent that consumes skill graph data (an internal mobility matching agent, for example).
-- [Skills gap analysis notebook](../05-notebooks/skills-gap-analysis.md): a working example of the competency-framework-to-gap-score logic this architecture generalizes into a live system.
+- [Skills gap analysis notebook](../05-notebooks/skills-gap-analysis.ipynb): a working example of the competency-framework-to-gap-score logic this architecture generalizes into a live system.
 - [Build vs. buy and vendor selection framework](../03-governance/vendor-selection-framework.md): the decision framework for which parts of this to buy.
 - [Risk assessment template](../03-governance/risk-assessment-template.md): required before any skill-graph update sourced from performance data goes live.

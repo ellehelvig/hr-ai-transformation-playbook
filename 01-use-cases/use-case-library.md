@@ -42,7 +42,7 @@
 | Use case | AI approach | Business impact | Implementation effort | Key risk | Resources |
 |---|---|---|---|---|---|
 | Personalized onboarding plan generation | Agent | High | Medium | Role/team data quality | [onboarding.md, #2](../02-prompt-library/onboarding.md) |
-| New hire Q&A assistant | Agent | High | Low | Policy accuracy, hallucination | [onboarding.md, #1](../02-prompt-library/onboarding.md); [hr-qa-agent-demo.md](../05-notebooks/hr-qa-agent-demo.md) |
+| New hire Q&A assistant | Agent | High | Low | Policy accuracy, hallucination | [onboarding.md, #1](../02-prompt-library/onboarding.md); [hr-qa-agent-demo.ipynb](../05-notebooks/hr-qa-agent-demo.ipynb) |
 | Onboarding task automation (IT provisioning triggers) | Automation | High | High | System integration complexity | [Pattern 5, agentic patterns](../07-agentic-patterns/README.md) |
 | 30/60/90 day check-in synthesis | Analytics | Medium | Low | Survey fatigue | [onboarding.md, #4](../02-prompt-library/onboarding.md) |
 | Manager onboarding prep guide | Copilot | High | Low | Template staleness | [onboarding.md, #3](../02-prompt-library/onboarding.md) |
@@ -90,12 +90,12 @@
 
 | Use case | AI approach | Business impact | Implementation effort | Key risk | Resources |
 |---|---|---|---|---|---|
-| Skills gap identification by role | Analytics | High | High | Skills taxonomy maintenance | [learning-development.md, #1](../02-prompt-library/learning-development.md); [skills-gap-analysis.md](../05-notebooks/skills-gap-analysis.md) |
+| Skills gap identification by role | Analytics | High | High | Skills taxonomy maintenance | [learning-development.md, #1](../02-prompt-library/learning-development.md); [skills-gap-analysis.ipynb](../05-notebooks/skills-gap-analysis.ipynb) |
 | Personalized learning path generation | Agent | High | Medium | LMS integration quality | [learning-development.md, #2](../02-prompt-library/learning-development.md) |
 | Course content summarization | Copilot | Medium | Low | Copyright compliance | *None yet* |
 | Compliance training completion prediction | Analytics | Medium | Low | Prediction accuracy floor | *None yet* |
 | Manager effectiveness coaching | Copilot | High | Medium | Psychological safety concerns | [learning-development.md, #3](../02-prompt-library/learning-development.md) |
-| Internal knowledge base Q&A | Agent | High | Medium | Knowledge freshness | [Pattern 3: RAG](../07-agentic-patterns/README.md); [hr-qa-agent-demo.md](../05-notebooks/hr-qa-agent-demo.md) |
+| Internal knowledge base Q&A | Agent | High | Medium | Knowledge freshness | [Pattern 3: RAG](../07-agentic-patterns/README.md); [hr-qa-agent-demo.ipynb](../05-notebooks/hr-qa-agent-demo.ipynb) |
 
 ### Spotlight: personalized learning paths
 
@@ -128,7 +128,7 @@
 
 | Use case | AI approach | Business impact | Implementation effort | Key risk | Resources |
 |---|---|---|---|---|---|
-| Attrition risk scoring | Analytics | High | High | Data staleness, fairness | [attrition-risk-modeling.md](../05-notebooks/attrition-risk-modeling.md); [people-analytics.md, #1](../02-prompt-library/people-analytics.md) |
+| Attrition risk scoring | Analytics | High | High | Data staleness, fairness | [attrition-risk-modeling.ipynb](../05-notebooks/attrition-risk-modeling.ipynb); [people-analytics.md, #1](../02-prompt-library/people-analytics.md) |
 | Workforce planning models | Analytics | High | High | Forecast uncertainty | *None yet* |
 | Pay equity analysis | Analytics | High | Medium | Legal exposure if mishandled | [pay-equity-governance.md](../03-governance/pay-equity-governance.md) |
 | Engagement driver analysis | Analytics | High | Medium | Correlation ≠ causation | [people-analytics.md, #2](../02-prompt-library/people-analytics.md) |
