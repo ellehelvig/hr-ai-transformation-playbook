@@ -94,8 +94,9 @@ Red flag: vendor reports aggregate accuracy only, refuses to break down performa
 - Right to audit, or independent attestations the vendor will provide (SOC 2, ISO/IEC 42001, NIST AI RMF alignment statement where available, fairness audits).
 - Co-operation on regulator inquiries.
 - Termination assistance, including data return and log preservation.
+- Written position on GDPR Article 22 controller status. Under the CJEU's SCHUFA ruling, a vendor whose score the employer "heavily relies on" can itself be an Article 22 controller, not just the deployer. Get the vendor's position in the contract, don't leave it ambiguous.
 
-Red flag: vendor disclaims all responsibility for supporting deployer compliance, or treats compliance support as a premium tier.
+Red flag: vendor disclaims all responsibility for supporting deployer compliance, treats compliance support as a premium tier, or refuses to take a position on Article 22 controller status.
 
 ### 8. Incident reporting
 

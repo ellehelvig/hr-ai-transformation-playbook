@@ -64,12 +64,13 @@ Action items:
 
 ### 6. Use system output responsibly under Article 22 GDPR
 
-When the system contributes to a decision with legal or similarly significant effect on a person, GDPR Article 22 protections may apply on top of AI Act duties.
+When the system contributes to a decision with legal or similarly significant effect on a person, GDPR Article 22 protections may apply on top of AI Act duties. This is not a future obligation tied to the AI Act's Annex III clock. Article 22 has been enforceable since May 2018, and regulators are actively saying so: at a July 2026 Parliament conference, the EDPS and EDPB stated that the AI Act Omnibus's delay to December 2027 creates no GDPR safe harbor, and the EDPB's 2026 Coordinated Enforcement Framework is currently auditing AI hiring tools' transparency notices across 25 member states.
 
 Action items:
 
-- Determine whether the decision is solely automated. Override that exists but is rarely exercised does not save you.
+- Determine whether the decision is solely automated. Override that exists but is rarely exercised does not save you. Regulators describe this as the "rubber stamp" problem: a reviewer who approves or rejects primarily on the algorithm's output, without independently reviewing the underlying file, is not providing meaningful human review.
 - If Article 22 is in play, ensure the legal basis is sound (explicit consent, contractual necessity, or authorizing law), provide meaningful information about the logic, and provide the right to obtain human intervention, express a point of view, and contest the decision.
+- Confirm who holds Article 22 controller status when a vendor's score materially shapes the outcome. Under the CJEU's SCHUFA ruling, the vendor producing the score, not just the employer making the final call, can itself be the controller. Get this allocated in the vendor contract rather than assuming it defaults to you.
 - Document the Article 22 analysis in the use case card.
 
 ### 7. Run a DPIA where required
