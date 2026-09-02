@@ -1,0 +1,17 @@
+{
+  "_source_note": "Starter list. The masculine/feminine-coded categories are the well-replicated Gaucher, Friesen & Kay (2011) gendered-wording list; the 'protected-class-proxy' category is common EEOC/OFCCP guidance-adjacent phrasing, not a formal legal list. Extend this file, don't hardcode terms in tool.py.",
+  "masculine_coded": [
+    "aggressive", "ambitious", "assertive", "competitive", "dominant",
+    "driven", "fearless", "independent", "outspoken", "rockstar", "ninja",
+    "superhero", "self-reliant", "decisive"
+  ],
+  "feminine_coded": [
+    "collaborative", "compassionate", "dependable", "interpersonal",
+    "nurturing", "supportive", "warm", "loyal", "sensitive", "agreeable"
+  ],
+  "protected_class_proxy": [
+    "digital native", "native english speaker", "recent graduate",
+    "young and energetic", "culture fit", "overqualified", "energetic personality",
+    "born leader", "high energy", "fresh out of school", "no accent"
+  ]
+}

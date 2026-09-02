@@ -1,0 +1,5 @@
+# Pin loosely; this subproject only needs the MCP SDK itself plus pytest for
+# the test suites. No LLM client library is required, none of these tools
+# make an API call, see each folder's tool.py docstring for why.
+mcp>=1.27.0
+pytest>=8.0.0

@@ -1,0 +1,18 @@
+{
+  "_note": "Canonical skill -> Boolean-search synonyms. Starter list for AI/HR-tech roles. Add entries as you calibrate more reqs; this is meant to grow with use, not ship complete.",
+  "python": ["python3", "django", "flask", "pandas"],
+  "mcp": ["model context protocol", "mcp server", "mcp integration"],
+  "prompt engineering": ["prompt design", "prompt writing", "llm prompting"],
+  "agent development": ["ai agents", "agentic workflows", "autonomous agents"],
+  "evals": ["evaluation harness", "llm evals", "eval suite", "model evaluation"],
+  "claude": ["anthropic claude", "claude api", "claude agent sdk"],
+  "generative ai": ["genai", "gen ai", "llm", "large language model"],
+  "change management": ["adoption strategy", "stakeholder management", "rollout planning"],
+  "compensation analysis": ["comp analysis", "pay banding", "salary benchmarking"],
+  "recruiting": ["talent acquisition", "full-cycle recruiting", "sourcing"],
+  "hris": ["workday", "hr information system", "hcm"],
+  "automation": ["workflow automation", "process automation", "rpa"],
+  "governance": ["ai governance", "responsible ai", "risk management"],
+  "data analysis": ["people analytics", "sql", "data analytics"],
+  "training": ["enablement", "upskilling", "coaching"]
+}

@@ -1,0 +1,19 @@
+{
+  "_disclaimer": "SYNTHETIC BENCHMARK DATA. Illustrative only, not sourced from any real compensation survey or real employee pay. Replace with your organization's licensed survey data (Radford, Mercer, Option Impact, etc.) before any real use.",
+  "as_of": "2026-Q3",
+  "currency": "USD",
+  "bands": [
+    {"role_family": "AI Solutions Engineer", "level": "IC3", "location_tier": "tier1", "p25": 128000, "p50": 148000, "p75": 172000, "p90": 196000},
+    {"role_family": "AI Solutions Engineer", "level": "IC3", "location_tier": "tier2", "p25": 115000, "p50": 133000, "p75": 155000, "p90": 176000},
+    {"role_family": "AI Solutions Engineer", "level": "IC4", "location_tier": "tier1", "p25": 158000, "p50": 182000, "p75": 210000, "p90": 240000},
+    {"role_family": "AI Solutions Engineer", "level": "IC4", "location_tier": "tier2", "p25": 142000, "p50": 164000, "p75": 189000, "p90": 216000},
+    {"role_family": "Compensation Analyst", "level": "IC2", "location_tier": "tier1", "p25": 78000, "p50": 88000, "p75": 99000, "p90": 111000},
+    {"role_family": "Compensation Analyst", "level": "IC2", "location_tier": "tier2", "p25": 70000, "p50": 79000, "p75": 89000, "p90": 100000},
+    {"role_family": "Compensation Analyst", "level": "IC3", "location_tier": "tier1", "p25": 98000, "p50": 112000, "p75": 128000, "p90": 145000},
+    {"role_family": "Compensation Analyst", "level": "IC3", "location_tier": "tier2", "p25": 88000, "p50": 101000, "p75": 115000, "p90": 130000},
+    {"role_family": "Recruiter", "level": "IC2", "location_tier": "tier1", "p25": 72000, "p50": 82000, "p75": 93000, "p90": 105000},
+    {"role_family": "Recruiter", "level": "IC3", "location_tier": "tier1", "p25": 92000, "p50": 105000, "p75": 120000, "p90": 136000},
+    {"role_family": "Recruiter", "level": "IC3", "location_tier": "tier2", "p25": 82000, "p50": 94000, "p75": 107000, "p90": 121000},
+    {"role_family": "People Analytics", "level": "IC3", "location_tier": "tier1", "p25": 105000, "p50": 120000, "p75": 138000, "p90": 156000}
+  ]
+}

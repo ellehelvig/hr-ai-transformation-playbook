@@ -44,6 +44,7 @@ Then, three things worth reading:
 | [07 · Agentic patterns](07-agentic-patterns/README.md) | Architecture patterns, agent design guide, testing and evaluation framework, [talent operating system architecture](07-agentic-patterns/talent-operating-system-architecture.md) |
 | [08 · ROI measurement](08-roi-measurement/README.md) | Business case templates, ROI calculation framework, reporting cadence, [live dashboard demo](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html) |
 | [09 · Evals](09-evals/README.md) | 29 structured test cases, eval rubric, and automated eval runner script |
+| [10 · MCP agents](10-mcp-agents/README.md) | Four working HR agent tools (comp banding, bias-mitigated resume screening, recruiter intake calibration, governance policy Q&A) on one MCP server, real code with a 32-test pytest suite, not prompts-only |
 
 ---
 
@@ -78,6 +79,9 @@ Then, three things worth reading:
 
 **I need to wire a skills ontology into my HRIS and performance process**
 → [07 · Agentic patterns / talent-operating-system-architecture.md](07-agentic-patterns/talent-operating-system-architecture.md)
+
+**I want a working MCP server I can actually run, not just prompt docs**
+→ [10 · MCP agents](10-mcp-agents/README.md)
 
 ---
 
