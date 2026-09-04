@@ -1,6 +1,6 @@
 # AI adoption playbook
 
-Training builds skill. Adoption is a separate problem — most HR AI programs fail not because people can't use the tools, but because nothing in the surrounding system makes using them the path of least resistance. This playbook covers the change management work that has to happen alongside (not after) the [literacy curriculum](hr-ai-literacy-curriculum.md).
+Training builds skill. Adoption is a separate problem. Most HR AI programs fail not because people can't use the tools, but because nothing in the surrounding system makes using them the path of least resistance. This playbook covers the change management work that has to happen alongside (not after) the [literacy curriculum](hr-ai-literacy-curriculum.md).
 
 ---
 
@@ -34,20 +34,20 @@ Map your specific organization's version of this table before launch. The most c
 
 ## A 90-day adoption roadmap
 
-**Days 1-30 — Foundation**
+**Days 1-30: Foundation**
 - Deliver Module 1-2 of the literacy curriculum to a pilot group (one function or team, not the whole org)
 - Identify 2-3 use cases from the [use case library](../01-use-cases/use-case-library.md) that solve a real, currently-annoying problem for the pilot group specifically
 - Set up a lightweight feedback channel (a Slack channel, a shared doc) for "this worked" / "this didn't" reports
 
-**Days 31-60 — Proof**
+**Days 31-60: Proof**
 - Pilot group uses the 2-3 use cases in real work, not a sandbox
 - Weekly 15-minute check-in: what worked, what broke, what would make this easier
-- Document one concrete before/after example with a real time or quality metric — this becomes the story you tell everyone else
+- Document one concrete before/after example with a real time or quality metric. This becomes the story you tell everyone else
 
-**Days 61-90 — Expansion**
-- Share the pilot's concrete results with the next cohort before training them — proof beats persuasion
+**Days 61-90: Expansion**
+- Share the pilot's concrete results with the next cohort before training them. Proof beats persuasion
 - Deliver Module 3-4 to the pilot group; deliver the full curriculum to the next cohort
-- Identify one person per team as a peer resource (not a formal role, just "who do I ask when I'm stuck") — this scales faster than routing every question to the program owner
+- Identify one person per team as a peer resource (not a formal role, just "who do I ask when I'm stuck"). This scales faster than routing every question to the program owner
 
 Do not attempt to roll out to the entire HR function simultaneously. A visible, credible pilot is worth more than a wide, shallow launch.
 
@@ -73,10 +73,10 @@ Review these monthly for the first two quarters, then fold into your standard [R
 
 Every program has one: a wrong answer, a bad draft that went out unedited, a hallucinated policy detail an employee caught. How this is handled in the first 90 days sets the trust ceiling for the next two years. Use the [incident report template](../03-governance/incident-report-template.md) to work the fix; use the four steps below to work the trust.
 
-1. Acknowledge it specifically and quickly — don't let it circulate without a response from the program owner
+1. Acknowledge it specifically and quickly. Don't let it circulate without a response from the program owner
 2. Explain what went wrong in plain language (which verification step was skipped, not just "the AI made a mistake")
 3. Fix the actual gap (a missing verify-before-use step, a prompt issue, a scope boundary) and say what changed
-4. Do not respond by restricting the whole program if the failure was isolated — a proportionate fix builds more trust than an overcorrection
+4. Do not respond by restricting the whole program if the failure was isolated. A proportionate fix builds more trust than an overcorrection
 
 A well-handled failure in month one often does more for long-term adoption than an unbroken string of quiet successes, because it proves the governance actually works.
 
@@ -88,7 +88,7 @@ People managers who don't use AI themselves become adoption bottlenecks even if 
 
 - Brief managers separately, ahead of their teams, on what's coming and why
 - Give managers one visible use case they can model themselves (e.g., using a prompt from the [performance prompt library](../02-prompt-library/performance.md) for their own review drafting)
-- Ask managers directly what would make them comfortable modeling this — don't assume the barrier is the same as their team's barrier
+- Ask managers directly what would make them comfortable modeling this. Don't assume the barrier is the same as their team's barrier
 
 ---
 
@@ -97,6 +97,6 @@ People managers who don't use AI themselves become adoption bottlenecks even if 
 - Use case requests come from the field, unprompted
 - People ask "is there a prompt for this" before asking "can someone help me with this"
 - Feedback shifts from "does this work" to "can we make this better"
-- A manager mentions using a tool in a context you didn't train them on — it's been generalized, not just followed by rote
+- A manager mentions using a tool in a context you didn't train them on, it's been generalized, not just followed by rote
 
 At that point, shift program effort from adoption to [scaling and measurement](../08-roi-measurement/README.md).

@@ -98,7 +98,7 @@ def _interpolate_percentile(base_pay: float, p25: float, p50: float, p75: float,
         return 1.0
     if base_pay >= points[-1][1]:
         return 99.0
-    for (pct_a, pay_a), (pct_b, pay_b) in zip(points, points[1:]):
+    for (pct_a, pay_a), (pct_b, pay_b) in zip(points, points[1:], strict=False):
         if pay_a <= base_pay <= pay_b:
             if pay_b == pay_a:
                 return pct_a

@@ -77,7 +77,7 @@ A score of 1 on the [eval rubric's](../09-evals/eval-rubric.md) information safe
 
 **Employee-facing** (if the incident directly affected one or more employees):
 
-**Regulatory** (if applicable — assess against AI Act Article 73, GDPR breach notification, and any state-law incident definitions in your [risk assessment](risk-assessment-template.md)):
+**Regulatory** (if applicable, assess against AI Act Article 73, GDPR breach notification, and any state-law incident definitions in your [risk assessment](risk-assessment-template.md)):
 
 ---
 

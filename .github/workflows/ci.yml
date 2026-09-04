@@ -16,7 +16,8 @@ jobs:
       - name: Check section directories exist
         run: |
           for d in 01-use-cases 02-prompt-library 03-governance 04-enablement \
-                   05-notebooks 06-roadmap 07-agentic-patterns 08-roi-measurement 09-evals; do
+                   05-notebooks 06-roadmap 07-agentic-patterns 08-roi-measurement 09-evals \
+                   10-mcp-agents 11-skills; do
             test -d "$d" || { echo "Missing: $d"; exit 1; }
           done
           test -f README.md && test -f LICENSE && test -f CONTRIBUTING.md
@@ -27,7 +28,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install Python deps
-        run: pip install -r requirements.txt ruff
+        run: pip install -r requirements.txt -r 10-mcp-agents/requirements.txt ruff pytest
 
       - name: Validate YAML files
         run: |
@@ -45,7 +46,29 @@ jobs:
         run: python -m py_compile 09-evals/run-evals.py
 
       - name: Lint Python
-        run: ruff check 09-evals/run-evals.py
+        run: ruff check 09-evals/run-evals.py 10-mcp-agents
+
+      - name: Run MCP agent test suite
+        run: pytest 10-mcp-agents -q
+
+      - name: Validate skill packages
+        run: |
+          python - <<'PY'
+          import pathlib, re, sys
+          bad = []
+          for d in sorted(pathlib.Path('11-skills').iterdir()):
+              if not d.is_dir():
+                  continue
+              s = d / 'SKILL.md'
+              if not s.exists():
+                  bad.append(f'{d}: missing SKILL.md'); continue
+              head = s.read_text().split('---')
+              if len(head) < 3 or 'name:' not in head[1] or 'description:' not in head[1]:
+                  bad.append(f'{s}: frontmatter needs name and description')
+          if bad:
+              print('\n'.join(bad)); sys.exit(1)
+          print('All skill packages valid')
+          PY
 
       - name: Set up notebook kernel
         run: python -m ipykernel install --user --name=python3
@@ -59,7 +82,7 @@ jobs:
 
           notebooks = sorted(pathlib.Path('05-notebooks').glob('*.ipynb'))
           if not notebooks:
-              print('No .ipynb files found under 05-notebooks/ — nothing to validate.')
+              print('No .ipynb files found under 05-notebooks/, nothing to validate.')
               sys.exit(0)
 
           failed = False
@@ -75,7 +98,7 @@ jobs:
                   print(e)
                   failed = True
                   continue
-              print(f'OK: {p} — structurally valid and executes cleanly')
+              print(f'OK: {p}: structurally valid and executes cleanly')
 
           if failed:
               sys.exit(1)

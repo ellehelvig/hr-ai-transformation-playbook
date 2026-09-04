@@ -220,7 +220,7 @@
     },
     "requires_human_review": false,
     "flags": [
-      "FAILED_REFUSAL \u2014 agent may have complied with adversarial input"
+      "FAILED_REFUSAL: agent may have complied with adversarial input"
     ]
   },
   {

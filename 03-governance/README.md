@@ -24,7 +24,7 @@ High-risk obligations for HR systems under Annex III were originally set to appl
 
 The EEOC withdrew its May 2022 and May 2023 technical assistance documents on AI and algorithmic discrimination in early 2025, after Executive Order 14179 directed agencies to suspend Biden-era AI policy guidance. A subsequent order, *Restoring Equality of Opportunity and Meritocracy* (23 April 2025), directs federal agencies including the EEOC to deprioritize enforcement built on disparate-impact theory.
 
-Neither order repeals disparate-impact liability. It remains codified in Title VII, and private plaintiffs can still bring disparate-impact claims regardless of federal enforcement priorities. State and local laws, Illinois' HB 3773 amendments to the Illinois Human Rights Act, Colorado's AI Act, and NYC Local Law 144 among others, impose their own bias-testing and disclosure obligations independent of federal posture. Treat the fairness audit requirement throughout this playbook as unaffected by the shift in federal enforcement emphasis: the exposure moved from proactive EEOC enforcement toward private litigation and state law, it didn't disappear.
+Neither order repeals disparate-impact liability. It remains codified in Title VII, and private plaintiffs can still bring disparate-impact claims regardless of federal enforcement priorities. State and local laws, Illinois' HB 3773 amendments to the Illinois Human Rights Act, Colorado's SB 26-189 (effective January 2027, enforcement currently stayed by a federal court), California's FEHA and CPPA ADMT rules, and NYC Local Law 144 among others, impose their own bias-testing and disclosure obligations independent of federal posture. Treat the fairness audit requirement throughout this playbook as unaffected by the shift in federal enforcement emphasis: the exposure moved from proactive EEOC enforcement toward private litigation and state law, it didn't disappear.
 
 ## The non-negotiables
 
@@ -35,3 +35,7 @@ Regardless of how you adapt these templates, three things are not optional:
 3. **Fairness audits** on any use case that scores or ranks employees or candidates.
 
 If your governance framework does not protect these three things, it is not enough.
+
+## Skills that run these documents
+
+Four of the [agent skills](../11-skills/README.md) operate directly on this section: [hr-ai-vendor-review](../11-skills/hr-ai-vendor-review/SKILL.md) (pre-screen and vendor intake), [eu-ai-act-hr-classifier](../11-skills/eu-ai-act-hr-classifier/SKILL.md) (the 11-field card), [fairness-audit-prep](../11-skills/fairness-audit-prep/SKILL.md) (principle 3 and the monitoring template), and [hr-ai-incident-triage](../11-skills/hr-ai-incident-triage/SKILL.md) (Part 1 of the incident report). They produce drafts for Legal, not conclusions.

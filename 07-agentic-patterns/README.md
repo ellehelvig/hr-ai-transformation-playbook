@@ -30,14 +30,14 @@ The key differences from standard AI use:
 
 ## Which pattern do I need?
 
-Start here. This decision flow routes you to the right pattern based on what your use case actually needs — match complexity to demonstrated value, not to what's most interesting to build.
+Start here. This decision flow routes you to the right pattern based on what your use case actually needs. Match complexity to demonstrated value, not to what's most interesting to build.
 
 ```mermaid
 flowchart TD
     A[New HR AI use case] --> B{Does it need to answer<br/>questions from policy docs?}
     B -- Yes --> C[Pattern 3: RAG for HR policy]
     B -- No --> D{Does it need to take actions<br/>in other systems?}
-    D -- No --> E[Not agentic — use a prompt<br/>from the prompt library instead]
+    D -- No --> E[Not agentic: use a prompt<br/>from the prompt library instead]
     D -- Yes --> F{Does the action modify records,<br/>trigger payroll, or affect<br/>compliance?}
     F -- Yes --> G[Pattern 4: Approval gate workflow]
     F -- No --> H{Does it span multiple HR<br/>systems or knowledge domains?}
@@ -54,7 +54,7 @@ flowchart TD
     style E fill:#6b7280,color:#fff
 ```
 
-Every path through this flow still requires the [human-in-the-loop design](#human-in-the-loop-design) and [failure mode](#failure-modes-to-design-for) sections below — the pattern determines the architecture, not whether governance applies.
+Every path through this flow still requires the [human-in-the-loop design](#human-in-the-loop-design) and [failure mode](#failure-modes-to-design-for) sections below. The pattern determines the architecture, not whether governance applies.
 
 ---
 
@@ -313,6 +313,8 @@ The simplest agentic HR workflow to build first is the **policy Q&A agent** usin
 - No write access to any system (low risk)
 - Easily measurable quality (did it answer correctly?)
 - Immediate employee value
+
+A working version of this pattern ships in [10-mcp-agents/policy_qa](../10-mcp-agents/policy_qa/ENABLEMENT.md): lexical search over this repo's governance docs, no LLM in the loop, with a test suite. Start from that rather than a blank file.
 
 From there, add tool use (Pattern 2) to handle follow-up actions like creating helpdesk tickets. Only then introduce orchestration (Pattern 1) for multi-system workflows.
 

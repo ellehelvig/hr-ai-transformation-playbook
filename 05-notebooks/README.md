@@ -23,6 +23,6 @@ Each notebook is self-contained and generates its own synthetic sample data in t
 
 CI executes all three notebooks on every push (see `.github/workflows/ci.yml`) to catch breakage before it merges.
 
-## Coming soon
+## Not covered yet
 
-Compensation equity analysis and onboarding effectiveness measurement. Contributions welcome via [CONTRIBUTING.md](../CONTRIBUTING.md).
+Compensation equity analysis (deliberately: see [pay equity governance](../03-governance/pay-equity-governance.md) on why that work is attorney-directed) and onboarding effectiveness measurement. Contributions welcome via [CONTRIBUTING.md](../CONTRIBUTING.md).

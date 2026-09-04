@@ -165,4 +165,4 @@ Neither framework is HR-specific. Both are general-purpose AI governance framewo
 
 ---
 
-*This is a template document. Adapt it for your organization's specific legal jurisdiction, existing policies, and tool landscape before publishing. Have Employment Counsel review before distribution.*
+*This is a template document. Adapt it for your organization's specific legal jurisdiction, existing policies, and tool stack before publishing. Have Employment Counsel review before distribution.*

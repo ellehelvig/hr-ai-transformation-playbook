@@ -113,7 +113,7 @@ Most HR AI projects are blocked by data quality, not model capability. Score thi
 **Skipping the risk inverse score.**
 Regulatory exposure in HR AI (EEOC guidance, GDPR, CCPA, NYC Local Law 144, Illinois AI Video Interview Act, Colorado AI Act) can kill a project months in. Score it first, not last.
 
-*Specific regulations listed are current as of July 2026. Note Colorado: SB 189 (signed May 14, 2026) delayed the Colorado AI Act's effective date to January 1, 2027, and narrowed it substantially, dropping the duty of care and the deployer risk-management-program and impact-assessment requirements in favor of a disclosure/transparency-only regime. Weight it accordingly if scoring risk today. The landscape evolves rapidly, confirm current law for your jurisdiction(s) when assigning risk scores.*
+*Specific regulations listed are current as of September 2026. Note Colorado: SB 26-189 (signed May 14, 2026) replaced the 2024 AI Act with a disclosure-focused regime effective January 1, 2027, dropping the duty of care and the deployer risk-management and impact-assessment requirements. Enforcement of both the old and new law is stayed by a federal court pending xAI's constitutional challenge and the AG's rulemaking. Weight it accordingly if scoring risk today. Laws change fast; confirm current law for your jurisdiction(s) when assigning risk scores.*
 
 **Treating the matrix as the answer.**
 It's a forcing function for structured conversation, not a substitute for judgment.

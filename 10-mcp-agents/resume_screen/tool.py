@@ -66,7 +66,7 @@ def extract_requirements(jd_text: str) -> list[str]:
     it degrades instead of returning nothing for a plain-paragraph JD.
     """
     bullet_lines = [
-        line.strip(" \t-*••").strip()
+        line.lstrip(" \t-*•").strip()
         for line in jd_text.splitlines()
         if re.match(r"^\s*[-*•]\s+\S", line)
     ]
@@ -131,7 +131,7 @@ def compare_to_resume(jd_text: str, resume_text: str) -> dict:
     single number standing in for "should we move forward."
     """
     requirements = extract_requirements(jd_text)
-    resume_lines = [l.strip() for l in resume_text.splitlines() if l.strip()]
+    resume_lines = [line.strip() for line in resume_text.splitlines() if line.strip()]
 
     results = [_evidence_for_requirement(req, resume_lines) for req in requirements]
 

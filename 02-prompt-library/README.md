@@ -19,6 +19,8 @@ Production-ready prompts for HR workflows. Every prompt is structured to be test
 
 Each prompt includes the prompt itself, intended use, expected output, and tuning notes from real testing. Treat them as starting points. Your organization's policies, tone, and data shape what works.
 
+The [hr-prompt-picker](../11-skills/hr-prompt-picker/SKILL.md) skill picks the right prompt for a task, fills in your context, and attaches the verify-before-use checklist so the output never leaves your hands unchecked.
+
 Before deploying any prompt in a workflow that affects employees, route it through the [risk assessment template](../03-governance/risk-assessment-template.md).
 
 ## Contributing

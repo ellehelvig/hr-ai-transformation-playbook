@@ -1,4 +1,5 @@
 import importlib.util as _ilu
+import sys as _sys
 from pathlib import Path as _Path
 
 import pytest
@@ -6,7 +7,6 @@ import pytest
 # Loaded by explicit file path -- see comp_banding/test_comp_banding.py for why.
 _spec = _ilu.spec_from_file_location(f"_local_tool_{__name__}", _Path(__file__).parent / "tool.py")
 tool = _ilu.module_from_spec(_spec)
-import sys as _sys
 _sys.modules[_spec.name] = tool
 _spec.loader.exec_module(tool)
 

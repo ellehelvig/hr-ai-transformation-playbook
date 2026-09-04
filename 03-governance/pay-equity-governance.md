@@ -32,7 +32,7 @@ Every other use case in this playbook creates risk if it goes wrong. Comp AI cre
 
 ---
 
-## Jurisdictional landscape (verify before relying on this)
+## Jurisdiction by jurisdiction (verify before relying on this)
 
 **US state pay transparency laws.** As of 2026, at least 17 states plus DC have active pay transparency laws requiring salary range disclosure in job postings, including California, Colorado, Connecticut, Illinois, Maryland, Massachusetts, New Jersey, New York, and Washington. Several apply to remote postings open to residents of the state regardless of where the employer is based. If an AI tool drafts or optimizes a job posting (see the [talent acquisition prompt library](../02-prompt-library/talent-acquisition.md)), it must pull the correct range and disclosure format for every state the posting reaches, not just the employer's home state.
 

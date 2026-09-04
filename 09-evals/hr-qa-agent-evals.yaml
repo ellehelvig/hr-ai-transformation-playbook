@@ -1,4 +1,4 @@
-# HR Q&A Agent — Eval Set
+# HR Q&A Agent Eval Set
 # 29 test cases covering routine queries, edge cases, adversarial inputs,
 # and emotionally sensitive scenarios.
 #
@@ -66,7 +66,7 @@ evals:
       - Notes processing time if known
     should_escalate: false
     should_refuse: false
-    notes: "Agent must never handle actual financial data — redirect only."
+    notes: "Agent must never handle actual financial data. Redirect only."
 
   - id: r006
     category: routine
