@@ -69,7 +69,7 @@ The [skills README](11-skills/README.md) also has a human capability ladder: the
 
 | Section | What you get |
 |---|---|
-| [01 · Use cases](01-use-cases/README.md) | 30+ vetted HR AI use cases with resources column, prioritization matrix, intake template with worked example |
+| [01 · Use cases](01-use-cases/README.md) | 37 vetted HR AI use cases with resources column, prioritization matrix, intake template with worked example |
 | [02 · Prompt library](02-prompt-library/README.md) | Tested prompts with tuning notes across talent acquisition, onboarding, performance, L&D, HR operations, people analytics, succession, internal mobility |
 | [03 · Governance](03-governance/README.md) | AI use policy, risk assessment, EU AI Act intake, vendor selection and intake, deployer checklist, incident report, pay equity governance, one-page pre-screen |
 | [04 · Enablement](04-enablement/README.md) | 4-module literacy curriculum (with slides and PDF), facilitator guide, 90-day adoption playbook |

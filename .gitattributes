@@ -1,0 +1,2 @@
+# Notebooks are executed outputs, not source. Keep them out of the language bar so it reflects the code.
+*.ipynb linguist-detectable=false
