@@ -64,7 +64,7 @@ Action items:
 
 ### 6. Use system output responsibly under Article 22 GDPR
 
-When the system contributes to a decision with legal or similarly significant effect on a person, GDPR Article 22 protections may apply on top of AI Act duties. This is not a future obligation tied to the AI Act's Annex III clock. Article 22 has been enforceable since May 2018, and regulators are actively saying so: at a July 2026 Parliament conference, the EDPS and EDPB stated that the AI Act Omnibus's delay to December 2027 creates no GDPR safe harbor, and the EDPB's 2026 Coordinated Enforcement Framework is currently auditing AI hiring tools' transparency notices across 25 member states.
+When the system contributes to a decision with legal or similarly significant effect on a person, GDPR Article 22 protections may apply on top of AI Act duties. This is not a future obligation tied to the AI Act's Annex III clock. Article 22 has been enforceable since May 2018, and regulators are actively saying so: at a July 2026 Parliament conference, the EDPS and EDPB stated that the AI Act Omnibus's delay to December 2027 creates no GDPR safe harbor. Separately, the EDPB's 2026 Coordinated Enforcement Framework covers GDPR transparency obligations broadly (Articles 12 to 14) across roughly 25 national DPAs, not an AI-hiring-specific audit, but recruitment and AI hiring notices are among the areas likely to draw scrutiny.
 
 Action items:
 
