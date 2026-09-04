@@ -31,8 +31,8 @@ This playbook improves when practitioners send back what they learned in product
 
 ```bash
 pip install -r requirements.txt -r 10-mcp-agents/requirements.txt ruff pytest
-ruff check 09-evals/run-evals.py 10-mcp-agents
-pytest 10-mcp-agents -q
+ruff check 09-evals 10-mcp-agents
+pytest 10-mcp-agents 09-evals -q
 npx markdownlint-cli --config .markdownlint.json '**/*.md' --ignore node_modules
 ```
 

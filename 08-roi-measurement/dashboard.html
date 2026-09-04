@@ -143,17 +143,26 @@
         <input type="range" min="20" max="150" step="5" value="55" id="rate">
       </div>
       <div>
-        <div class="control-label"><span>Annual AI cost</span><span id="cost-out">$12,000</span></div>
+        <div class="control-label"><span>Realization rate</span><span id="real-out">60%</span></div>
+        <input type="range" min="10" max="100" step="5" value="60" id="real">
+      </div>
+      <div>
+        <div class="control-label"><span>Annual run cost</span><span id="cost-out">$12,000</span></div>
         <input type="range" min="500" max="100000" step="500" value="12000" id="cost">
+      </div>
+      <div>
+        <div class="control-label"><span>One-time investment</span><span id="inv-out">$40,000</span></div>
+        <input type="range" min="0" max="500000" step="5000" value="40000" id="inv">
       </div>
     </div>
 
     <div class="calc-out">
       <div class="metric-card"><p>Annual hours saved</p><p id="out-hours">4,800</p></div>
-      <div class="metric-card"><p>Value of time saved</p><p id="out-value">$264,000</p></div>
-      <div class="metric-card"><p>Net annual value</p><p id="out-net">$252,000</p></div>
-      <div class="metric-card"><p>Payback period</p><p id="out-payback">0.5 mo</p></div>
+      <div class="metric-card"><p>Value of realized time</p><p id="out-value">$158,400</p></div>
+      <div class="metric-card"><p>Net annual value</p><p id="out-net">$146,400</p></div>
+      <div class="metric-card"><p>Payback period</p><p id="out-payback">3.3 mo</p></div>
     </div>
+    <p class="lede" style="font-size:13px;">Realized hours = hours × people × 48 weeks × realization rate. Net annual value = realized hours × rate minus run cost. Payback = one-time investment ÷ (net annual value ÷ 12). Realization rate is the share of saved minutes that become redeployed capacity or avoided cost; 100% is never credible.</p>
   </section>
 
   <footer>
@@ -167,24 +176,32 @@
     var hrs = parseFloat(document.getElementById('hrs').value);
     var ppl = parseFloat(document.getElementById('ppl').value);
     var rate = parseFloat(document.getElementById('rate').value);
+    var real = parseFloat(document.getElementById('real').value) / 100;
     var cost = parseFloat(document.getElementById('cost').value);
-
+    var inv = parseFloat(document.getElementById('inv').value);
     document.getElementById('hrs-out').textContent = hrs;
     document.getElementById('ppl-out').textContent = ppl;
     document.getElementById('rate-out').textContent = '$' + rate;
+    document.getElementById('real-out').textContent = Math.round(real * 100) + '%';
     document.getElementById('cost-out').textContent = '$' + fmt(cost);
-
+    document.getElementById('inv-out').textContent = '$' + fmt(inv);
     var annualHours = hrs * ppl * 48;
-    var value = annualHours * rate;
+    var value = annualHours * real * rate;
     var net = value - cost;
-    var payback = value > 0 ? (cost / (value / 12)) : 0;
-
+    var paybackText;
+    if (net <= 0) {
+      paybackText = 'Never';
+    } else if (inv === 0) {
+      paybackText = (12 * cost / value).toFixed(1) + ' mo to cover run cost';
+    } else {
+      paybackText = (inv / (net / 12)).toFixed(1) + ' mo';
+    }
     document.getElementById('out-hours').textContent = fmt(annualHours);
     document.getElementById('out-value').textContent = '$' + fmt(value);
     document.getElementById('out-net').textContent = (net < 0 ? '-$' : '$') + fmt(Math.abs(net));
-    document.getElementById('out-payback').textContent = payback.toFixed(1) + ' mo';
+    document.getElementById('out-payback').textContent = paybackText;
   }
-  ['hrs', 'ppl', 'rate', 'cost'].forEach(function (id) {
+  ['hrs', 'ppl', 'rate', 'real', 'cost', 'inv'].forEach(function (id) {
     document.getElementById(id).addEventListener('input', recalc);
   });
   recalc();

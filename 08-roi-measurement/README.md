@@ -50,11 +50,15 @@ Use the [business case template](business-case-template.md) for any HR AI invest
 ### Efficiency ROI (time saved)
 
 ```
-Annual hours saved = (time_before - time_after) × frequency × people_affected × 48 weeks
-Value of hours saved = annual_hours_saved × blended_hourly_cost
-Net ROI = value_of_hours_saved - annual_cost
-ROI% = (net_ROI / annual_cost) × 100
+Annual hours saved  = (time_before - time_after) × frequency × people_affected × 48 weeks
+Realized hours      = annual_hours_saved × realization_rate      (40 to 70% is defensible; 100% is not)
+Value of hours      = realized_hours × blended_hourly_cost
+Net annual value    = value_of_hours - annual_run_cost
+ROI%                = (net_annual_value / annual_run_cost) × 100
+Payback (months)    = one_time_investment / (net_annual_value / 12)
 ```
+
+The realization rate is the line most business cases skip and the one a CFO will ask about first. Saved minutes only count when they turn into redeployed capacity, avoided hiring, or reduced overtime. Pick a rate, state it, and measure it after launch.
 
 **Common efficiency benchmarks for HR AI:**
 

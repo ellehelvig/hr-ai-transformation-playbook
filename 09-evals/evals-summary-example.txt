@@ -15,7 +15,7 @@
   Escalation routing:   10/10 passed
 
   Cases flagged:        1
-  Requires human review:9
+  Requires human review: 9
 ╚══════════════════════════════════════════════════╝
 
 Flagged cases:

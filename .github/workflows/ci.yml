@@ -46,10 +46,13 @@ jobs:
         run: python -m py_compile 09-evals/run-evals.py
 
       - name: Lint Python
-        run: ruff check 09-evals/run-evals.py 10-mcp-agents
+        run: ruff check 09-evals 10-mcp-agents
 
       - name: Run MCP agent test suite
         run: pytest 10-mcp-agents -q
+
+      - name: Run eval runner tests
+        run: pytest 09-evals -q
 
       - name: Validate skill packages
         run: |

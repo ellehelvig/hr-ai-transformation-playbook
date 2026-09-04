@@ -40,12 +40,16 @@ Be specific. Include build time, ongoing model costs, maintenance, and enablemen
 **Payback calculation**
 
 ```
-Annual HR time saved: 5 hrs/week × 3 HR Ops staff × 48 weeks = 720 hrs
-Value of HR time: 720 hrs × $[blended hourly rate] = $[X]
-Annual cost: $[model costs + maintenance]
-Net annual value: $[X - costs]
-Payback period: [Investment ÷ net annual value] months
+Annual HR time saved:   5 hrs/week × 3 HR Ops staff × 48 weeks = 720 hrs
+Realized hours:         720 hrs × [realization rate, e.g. 60%] = 432 hrs
+Value of HR time:       432 hrs × $[blended hourly rate] = $[X]
+Annual run cost:        $[model costs + maintenance + licenses]
+Net annual value:       $[X - annual run cost]
+One-time investment:    $[build, integration, change management]
+Payback period (months): one-time investment ÷ (net annual value ÷ 12)
 ```
+
+Two things reviewers will push on. The realization rate is the share of saved minutes that turn into redeployed capacity or avoided cost; 100 percent is never credible, 40 to 70 percent usually is, and you should say which you picked and why. And keep run cost separate from one-time investment: run cost reduces net annual value, one-time investment is what the payback period recovers. If there is no one-time investment, report months of value needed to cover a year of run cost instead: 12 × run cost ÷ value.
 
 **Risks and mitigations**
 

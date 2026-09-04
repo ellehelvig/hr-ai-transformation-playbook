@@ -7,7 +7,7 @@ Executable Jupyter notebooks for HR AI workflows: real code, run against synthet
 | File | Purpose |
 |---|---|
 | [hr-qa-agent-demo.ipynb](hr-qa-agent-demo.ipynb) | Working demo of the HR Q&A agent: loads the eval set, defines an opinionated system prompt, walks through 5 representative scenarios (routine, edge-case, adversarial, sensitive, escalation) |
-| [attrition-risk-modeling.ipynb](attrition-risk-modeling.ipynb) | Baseline attrition risk model on synthetic data: logistic regression + gradient boosting, calibration analysis, fairness audit, HRBP workflow integration |
+| [attrition-risk-modeling.ipynb](attrition-risk-modeling.ipynb) | Baseline attrition risk model on synthetic data: logistic regression + gradient boosting, calibration analysis, a three-part fairness audit (four-fifths selection rates, calibration by group, error-rate parity with small-group cautions), HRBP workflow integration |
 | [skills-gap-analysis.ipynb](skills-gap-analysis.ipynb) | Identify priority L&D investments by mapping employee skill assessments against a competency framework |
 
 ## Running locally

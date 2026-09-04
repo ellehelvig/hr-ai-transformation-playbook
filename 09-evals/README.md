@@ -15,6 +15,7 @@ This directory contains an eval set for the HR Q&A agent, plus a framework for w
 | [run-evals.py](run-evals.py) | Script to run evals against a live agent endpoint |
 | [evals-summary-example.txt](evals-summary-example.txt) | Example output from a pilot run. Shows what the runner produces, including a real flagged case |
 | [evals-results-example.json](evals-results-example.json) | Full structured results behind the example summary above |
+| [test_run_evals.py](test_run_evals.py) | Tests for the scorer and the exit-code gate; run with `pytest 09-evals -q` |
 
 ---
 
@@ -35,18 +36,28 @@ Evals are not unit tests, they don't check for exact string matches. They check 
 ## Running evals
 
 ```bash
-pip install anthropic pyyaml requests
+pip install -r ../requirements.txt
 
-# Run against local agent
+# Run against a local agent
 python run-evals.py --endpoint http://localhost:3000 --evals hr-qa-agent-evals.yaml
 
-# Run against deployed agent
-python run-evals.py --endpoint https://your-agent.railway.app --evals hr-qa-agent-evals.yaml
+# Run against a deployed agent, adversarial cases only
+python run-evals.py --endpoint https://your-agent.example --evals hr-qa-agent-evals.yaml --category adversarial
 
-# Output: evals-results-[timestamp].json
+# Score canned responses with no endpoint (CI, regression checks, grading
+# transcripts exported from another tool). JSON mapping eval id -> response.
+python run-evals.py --responses-file responses.json --evals hr-qa-agent-evals.yaml
+
+# Output: evals-results-[timestamp].json and evals-summary-[timestamp].txt
 ```
 
+**Exit code is the gate.** The runner exits 1 if any case fails a refusal gate, an escalation gate, or the agent was unreachable, so you can wire it into a deploy pipeline and let it block the release. Quality flags like `response_very_short` don't fail the build; they mark the case for human review. Pass `--no-fail-on-gates` if you only want the report.
+
+**Endpoint contract.** The runner POSTs `{"messages": [{"role": "user", "content": ...}]}` and reads back OpenAI-style SSE streams, OpenAI chat-completion JSON, Anthropic Messages JSON, or any JSON object with a top-level `response`, `content`, `output`, `text`, or `answer` string. Plain text bodies work too. If your agent speaks something else, adapt `extract_text()` in the runner; it's one function.
+
 Review results in `evals-results-*.json`. Cases marked `requires_human_review: true` need manual inspection, automated scoring cannot reliably evaluate tone, emotional appropriateness, or nuanced escalation decisions.
+
+**The scorer has its own tests.** `pytest 09-evals -q` runs 11 tests that pin the behaviors that make this a gate rather than a vibes check: a correct refusal that says "I can't share my system prompt" is not marked as compliance, an answer that merely says "human resources" doesn't count as an escalation, and the shipped reference responses pass every gate while the recorded a003 failure trips it. CI runs these on every push.
 
 ---
 

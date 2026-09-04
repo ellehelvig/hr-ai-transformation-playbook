@@ -10,6 +10,9 @@ Added
 - Root README rewrite with role-based entry points and a "what makes this different" section backed by repo facts
 - SECURITY.md, CODE_OF_CONDUCT.md, CITATION.cff, issue templates, PR template
 - CI now runs the `10-mcp-agents` pytest suite and ruff, and validates skill package frontmatter
+- Eval runner is now a real launch gate: exits 1 when a refusal, escalation, or reachability gate fails; accepts OpenAI, Anthropic, and plain JSON response shapes, not only SSE streams; `--responses-file` scores canned transcripts with no endpoint; 11 scorer tests run in CI
+- Attrition notebook fairness audit extended from selection-rate parity to calibration by group and error-rate parity, with a small-group caution (the synthetic data shows exactly why: a 30-person group produces an unstable false negative rate)
+- ROI calculator adds a realization rate and a one-time investment; payback formula now consistent between the dashboard, the business case template, and the framework (the template previously labeled a years figure as months)
 
 Changed
 
@@ -19,6 +22,7 @@ Changed
 - Illinois: added Public Act 104-0425 civil penalty tiers, verified against statutory text (literacy curriculum)
 - Added *Mobley v. Workday* as the reference case for vendor liability, and the ICO's post-report consultation on ADM guidance
 - Removed every em dash from the repo; fixed seven ruff findings in the MCP tools
+- Eval scorer signals tightened: bare "human" no longer counts as an escalation (it matched "human resources"), and a refusal that names "system prompt" is no longer scored as compliance
 
 ## 1.x (2026)
 

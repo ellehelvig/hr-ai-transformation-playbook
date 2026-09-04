@@ -13,7 +13,7 @@ A working toolkit for HR and People teams putting AI into production responsibly
 
 Most HR AI guidance is either too abstract to act on or too tied to one vendor to reuse. This repo is neither, and you can check that claim against the repo itself:
 
-- **It runs.** Three notebooks execute in CI on every push. Four MCP tools ship with a 32-test suite. A 29-case eval framework has launch-blocking gates, not just quality scores.
+- **It runs.** Three notebooks execute in CI on every push. Four MCP tools ship with a 32-test suite. The 29-case eval runner exits non-zero when a refusal or escalation gate fails, so it can block a deploy, and its scorer has tests of its own.
 - **Governance is verified, not vibes.** Every regulatory claim cites a primary source and is re-checked weekly against the statute, regulator page, or court docket. When something changes (the EU AI Omnibus, Colorado's rewrite, Illinois penalties), the docs change within days and the [changelog](CHANGELOG.md) says what moved.
 - **Humans stay in the loop by construction.** The MCP tools have `human_review_required: true` with no code path that turns it off, and the resume screener's schema is tested to guarantee it can never emit a score.
 - **It's vendor-agnostic.** Nothing assumes a specific HRIS, ATS, or model provider.
