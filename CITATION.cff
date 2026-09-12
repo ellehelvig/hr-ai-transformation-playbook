@@ -7,8 +7,8 @@ authors:
 repository-code: "https://github.com/ellehelvig/hr-ai-transformation-playbook"
 url: "https://ellehelvig.github.io/hr-ai-transformation-playbook/"
 license: MIT
-version: "2.0.0"
-date-released: "2026-09-04"
+version: "2.1.0"
+date-released: "2026-09-12"
 keywords:
   - human resources
   - artificial intelligence

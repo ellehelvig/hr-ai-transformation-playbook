@@ -95,8 +95,9 @@ Red flag: vendor reports aggregate accuracy only, refuses to break down performa
 - Co-operation on regulator inquiries.
 - Termination assistance, including data return and log preservation.
 - Written position on GDPR Article 22 controller status. Under the CJEU's SCHUFA ruling, a vendor whose score the employer "heavily relies on" can itself be an Article 22 controller, not just the deployer. Get the vendor's position in the contract, don't leave it ambiguous.
+- For Connecticut workforces, ask whether the vendor will assume your deployer duties under Public Act 26-15. Section 8(c) of the act lets a developer contract to take on the deployer's disclosure and pre-decision notice obligations, provided the contract states explicitly which duties transfer. Those duties attach to technology deployed on or after October 1, 2027, so raise it in contracts you are signing now rather than at renewal. Related: Section 8 only obliges the developer to hand over supporting information where the tool was advertised, marketed, configured, contracted for, sold, or licensed to materially influence an employment decision, so make sure the contract language says that plainly instead of describing the tool as decision support.
 
-Red flag: vendor disclaims all responsibility for supporting deployer compliance, treats compliance support as a premium tier, or refuses to take a position on Article 22 controller status.
+Red flag: vendor disclaims all responsibility for supporting deployer compliance, treats compliance support as a premium tier, refuses to take a position on Article 22 controller status, or will not say in writing whether the tool is sold to materially influence employment decisions.
 
 ### 8. Incident reporting
 

@@ -2,6 +2,21 @@
 
 Notable changes to the playbook. Regulatory content is re-verified weekly against primary sources; only material changes are logged here.
 
+## 2.1.0 (2026-09-12)
+
+Added
+
+- Connecticut Public Act 26-15 (SB 5), verified against the enrolled act text: the October 1, 2026 provisions (AI is not a defense under Conn. Gen. Stat. 46a-60, and the WARN notice AI disclosure to the Labor Department) and the October 1, 2027 developer and deployer duties, with the CUTPA enforcement posture and the absence of a private right of action (literacy curriculum, risk assessment template)
+- Connecticut Section 8(c) developer duty-assumption as a procurement negotiating point (vendor intake checklist)
+- European Commission draft Guidelines on Article 6 high-risk classification, published 19 May 2026, flagged as draft and non-binding (intake template, governance README)
+- Article 50 transparency obligations and the Article 99 and 101 penalty provisions noted as enforceable since 2 August 2026, so the December 2027 date is not read as "nothing applies yet" (intake template, deployer checklist, governance README)
+
+Changed
+
+- California AB 1883 and SB 947 recorded as pending the Governor's signature with a September 30, 2026 deadline, not as enacted law. Several secondary sources report AB 1883 as signed on September 3, 2026; the leginfo bill history shows it was enrolled and presented to the Governor on September 10, 2026, with no chaptering action
+- Model cost tiers in `07-agentic-patterns/agent-design.md` are now defined by role and price band instead of product name, with a dated price check, so the table does not go stale each time a lab ships a flagship
+- Module 3 regulatory currency note moved from July 2026 to September 2026
+
 ## 2.0.0 (2026-09-04)
 
 Added

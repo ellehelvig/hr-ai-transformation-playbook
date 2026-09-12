@@ -121,7 +121,7 @@ Introduce and reinforce this heuristic:
 | 1:00–1:20 | Walk-through: The risk assessment template |
 | 1:20–1:30 | Q&A + open discussion |
 
-> **Note on regulatory currency:** Regulatory references in this module are current as of July 2026. The HR AI regulatory landscape is evolving rapidly, verify current law before relying on specific references in any compliance discussion or training material.
+> **Note on regulatory currency:** Regulatory references in this module are current as of September 2026. The HR AI regulatory landscape is evolving rapidly, verify current law before relying on specific references in any compliance discussion or training material.
 
 **Key legal risk areas to cover:**
 
@@ -136,8 +136,33 @@ NYC Local Law 144 enforcement is entering a stricter phase. A December 2025 NY S
 *Colorado's Automated Decision-Making Technology Act:*
 Colorado SB26-189 (signed 14 May 2026, Colo. Sess. Laws ch. 131) repeals and replaces the state's 2024 AI consumer protection law. It covers "consequential decisions," including employment, made using automated decision-making technology (ADMT) that materially influences the outcome. Starting January 1, 2027, developers must give deployers technical documentation on intended use, training data categories, known limitations, and human review instructions. Deployers will owe consumers notice at the point of interaction, and within 30 days of any adverse consequential decision, a plain-language explanation plus the right to request human review and reconsideration. Records must be retained 3 years. The attorney general enforces under the Colorado Consumer Protection Act, with a 60-day cure period through January 1, 2030.
 
+*Connecticut: AI Responsibility and Transparency Act (Public Act 26-15):*
+Connecticut's SB 5 became Public Act 26-15 in June 2026. It is the most comprehensive state AI employment statute enacted so far, and it phases in across two years. Read the dates carefully, because the parts that bite first are not the disclosure rules.
+
+Live October 1, 2026:
+
+- **AI is not a defense.** Sections 13 and 14 amend Conn. Gen. Stat. 46a-60 so that using an automated employment-related decision technology is not a defense against a discrimination complaint. The statute then tells the commission or court what it may weigh instead: "the quality, efficacy, recency and scope" of anti-bias testing, the results, and the employer's response to those results. That is a legislature writing your fairness-audit obligation into evidence law. A stale or narrow audit is now worse than no audit, because the recency and scope of your testing is admissible.
+- **WARN notices.** Section 26 requires any employer serving a federal WARN notice under 29 USC 2102(a) to disclose to the Connecticut Labor Department whether the layoffs relate to the employer's use of AI or other technological change. Note the disclosure runs to the department, not to affected employees.
+
+Live October 1, 2027 (sections 7 to 12 take effect in 2026, but the duties attach only to technology deployed on or after October 1, 2027):
+
+- Scope is set by "substantial factor," defined as a factor that meaningfully alters the outcome of an employment-related decision. Covered decisions are hiring, promotion, discipline, discharge, renewal, selection for training or apprenticeship, and terms, privileges or conditions of employment. Carved out: nonmaterial changes to job tasks or hours, and decisions about workplace health and safety, scheduling, and productivity monitoring.
+- Developers must give deployers the information deployers need to meet their duties, but only where the tool was advertised, marketed, configured, contracted for, sold, or licensed to materially influence an employment decision.
+- Deployers must disclose in plain language when an employee or applicant is interacting with the technology, unless a reasonable person would find it obvious.
+- Before the decision is made, deployers must give written notice covering six specific points: that the technology was deployed, its purpose and the nature of the decision, the tool's trade name, the categories of personal data analyzed and how they will be assessed, the sources of that data, and deployer contact information.
+- Trade secrets can be withheld, but the withholding party must send notice saying what is being withheld and why.
+
+Enforcement is narrower than the obligations suggest: violations are unfair or deceptive trade practices under CUTPA, enforced **solely by the Attorney General**, with an explicit statement that the act creates **no private right of action**. Violations occurring on or before December 31, 2027 carry a 60-day cure period.
+
+One provision to catch in procurement: Section 8(c) lets a developer contract to assume the deployer's disclosure and notice duties, provided the contract is explicit about which duties transfer. That is a negotiating lever worth asking every vendor about. See the [vendor intake checklist](../03-governance/vendor-intake-checklist.md).
+
 *California: FEHA algorithmic discrimination rules and CPPA ADMT regulations:*
 Two separate California regimes apply now, not one generic "CCPA" reference. The Civil Rights Council's FEHA regulations on automated decision systems took effect October 1, 2025: they prohibit AI-driven disparate treatment or disparate impact in employment decisions, require four years of recordkeeping, and hold employers liable for discriminatory outcomes even when the tool comes from a third-party vendor. Separately, the CPPA's ADMT regulations under the CCPA take effect January 1, 2027, and require pre-use notice, an opt-out right, and a formal risk assessment for AI used in hiring, promotion, or other significant employment decisions.
+
+Two more California bills are **pending on the Governor's desk, not law**, with a signing deadline of September 30, 2026. Don't train or advise on either as settled:
+
+- **AB 1883** (workplace surveillance tools) would add Labor Code Part 5.8 to bar employers from using AI-driven surveillance tools to recognize or infer an employee's emotional state, or to collect neural data, meaning data measured from the central or peripheral nervous system and not inferred from nonneural information. Safety uses are preserved, and there is a narrow carve-out for federally mandated aerospace and national security work. Enforcement runs through the Labor Commissioner or a public prosecutor, with penalties up to $500 per violation. It was enrolled and presented to the Governor on September 10, 2026. Several published summaries state it was signed on September 3; that date is the publication of the enrolled text, not a signature. Check the bill history before relying on it.
+- **SB 947** (the "No Robo Bosses Act") would bar sole reliance on automated systems for discipline or termination and require human oversight plus post-use notice. Newsom vetoed its predecessor, SB 7, in October 2025.
 
 *Texas: Responsible AI Governance Act (TRAIGA):*
 Effective January 1, 2026 (HB 149, signed June 22, 2025). Narrower than Illinois or Colorado: TRAIGA prohibits intentional AI-based discrimination but does not create disparate impact liability, and the Attorney General has exclusive enforcement authority with a 60-day cure period before action.
