@@ -43,11 +43,41 @@ top of the JSON as a reminder.
 ## How the percentile math works, in plain terms
 
 The tool draws a line between your known benchmark points (p25, p50, p75,
-p90) and figures out where the proposed pay falls on that line. If pay is
-below p25 or above p90, it doesn't try to extrapolate very far past those
-points, it just says "below-range" or "above-range" and tells you to route
-it through the exception process instead of trusting a number the tool
-invented past the edge of real data.
+p90) and figures out where the proposed pay falls on that line.
+
+Outside that range it returns **no percentile at all** (`percentile_estimate`
+is null) and gives you `band_label` of "below-range" or "above-range" plus a
+flag telling you to route it through the exception process. An earlier version
+did report a number out there, by assuming a 1st percentile at 70 percent of
+p25 and a 99th at 125 percent of p90 and interpolating into those. Both
+multipliers were made up. The benchmark table has four points in it, and
+"8th percentile" computed from an invented fifth point is a number you would
+have repeated to a candidate in good faith. "Below p25, outside the benchmark
+range" is just as actionable and it is true.
+
+If you need real precision at the tails, add p10 and p95 columns to
+`comp_bands.json` from your survey data and extend the interpolation points.
+Getting more data is the fix; assuming a shape for data you don't have is not.
+
+## The historical-pay guardrail
+
+`used_historical_pay_as_input` is a **required** argument. You cannot call the
+tool without answering it.
+
+Answer True if the proposed number came, in any part, from the person's
+current or prior salary. You will get a refusal: no percentile, no band edges,
+no label. Nothing to quote. Re-derive the number from role, level, and market
+data, then call again.
+
+Two earlier versions of this were weaker, and both are worth knowing about if
+you are building something similar:
+
+- The argument used to default to False. That meant the guardrail only fired
+  when the calling agent volunteered that it had used prohibited input. A
+  control that depends on the caller incriminating itself is not a control.
+- It used to add a "BLOCKED-BY-POLICY" note to the `flags` list and then return
+  the full band position anyway. An agent that read the percentile and ignored
+  one list element got exactly the answer the policy forbids.
 
 ## If something looks wrong
 

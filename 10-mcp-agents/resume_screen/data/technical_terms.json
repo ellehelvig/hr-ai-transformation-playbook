@@ -1,0 +1,23 @@
+{
+  "_source_note": "Short technical tokens that the general keyword extractor would otherwise drop. The extractor requires 4+ characters for ordinary words, because 2 and 3 character English words ('the', 'and', 'you') add noise without adding signal. That floor silently deleted every technical acronym: a resume saying 'built SQL pipelines on AWS' produced no match against a JD requiring 'experience with SQL and AWS'. Rather than lowering the floor for everything, these terms bypass it. Extend this list, do not lower min_len in tool.py.",
+  "_maintenance_note": "Add a term here the first time you see a requirement fail to match because of it. Entries are matched case-insensitively on word boundaries, and may contain non-letter characters (c++, c#, .net, ci/cd), which the general word regex cannot represent.",
+  "short_technical_terms": [
+    "ai", "ml", "bi", "qa", "ui", "ux", "db", "os", "vm", "kb",
+    "sql", "aws", "gcp", "api", "mcp", "llm", "rag", "etl", "elt",
+    "eks", "ecs", "ec2", "s3", "iam", "sso", "mfa", "vpn", "dns",
+    "csv", "xml", "json", "yaml", "rest", "grpc", "soap", "http",
+    "git", "ci", "cd", "k8s", "gpu", "cpu", "ram", "cli", "sdk",
+    "ide", "npm", "pip", "orm", "crud", "saas", "paas", "iaas",
+    "hris", "hcm", "ats", "lms", "erp", "crm", "sox", "soc",
+    "gdpr", "ccpa", "eeo", "flsa", "fmla", "aca", "401k", "rsu",
+    "hr", "hrbp", "dei", "kpi", "okr", "roi", "sla", "nps",
+    "go", "r", "c", "js", "ts", "py", "sas", "spss", "stata",
+    "php", "css", "html", "sass", "less", "jsx", "tsx", "vue",
+    "dbt", "gpt", "nlp", "ocr", "iot", "arm", "pdf", "csm"
+  ],
+  "punctuated_technical_terms": [
+    "c++", "c#", "f#", "objective-c", ".net", "asp.net", "node.js",
+    "next.js", "vue.js", "react.js", "d3.js", "ci/cd", "a/b",
+    "t-sql", "pl/sql", "no-sql", "nosql", "e2e", "3d", "2fa"
+  ]
+}

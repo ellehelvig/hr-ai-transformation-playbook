@@ -26,6 +26,38 @@ That's tested (`test_no_fabrication_on_irrelevant_question`). If you're
 extending this and tempted to add "if no match, summarize what we might
 guess," don't, that's the exact failure mode this tool exists to avoid.
 
+That invariant used to be weaker than it sounded. `no_match` only fired when a
+question shared literally no words with the corpus, so "can I bring my dog to
+the office review?" came back with three confident citations, top-ranked being
+the README's US federal enforcement section, matched on the word "bring". A
+citation finder that cites on a coincidence is worse than one that says it found
+nothing, because the agent reading the result cannot tell the two apart.
+
+Two gates now have to clear before anything is returned: a BM25 relevance score
+and an IDF-weighted share of the question's terms. Both numbers are measured
+against this corpus, with the measurements written into the constants at the top
+of `tool.py`. If you change the corpus size substantially, re-measure them; IDF
+is a corpus statistic and the thresholds do not port.
+
+## Before you point this at your company wiki
+
+The tool returns up to 600 characters of corpus text verbatim into the calling
+agent's context. That is fine here, where the corpus is version-controlled
+markdown that goes through pull request.
+
+It stops being fine the moment the corpus is something its own readers can edit:
+a policy wiki, a shared drive, an open Confluence space. Any employee who can
+edit a page can then write instructions into it and have them delivered straight
+into an HR agent's context. That is prompt injection with a direct payoff, since
+the agent on the other end can often reach comp data and employee records.
+
+There is no filter for this, and adding one would be theater; you cannot
+reliably distinguish instructions from prose. The control is the trust boundary:
+keep the corpus reviewed, and keep the agent's other tool permissions narrow
+enough that an injected instruction has nothing worth doing. Every response
+carries an `excerpt_provenance` field saying this, so the consuming agent knows
+what it is holding.
+
 ## How to keep it accurate as governance evolves
 
 This tool reads `03-governance/*.md` directly, live, every time it's

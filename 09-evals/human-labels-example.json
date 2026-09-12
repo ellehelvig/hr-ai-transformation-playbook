@@ -1,0 +1,10 @@
+{
+  "_note": "Human MET/NOT_MET labels for a subset of cases, used to measure whether the judge agrees with a person. One entry per eval id, one label per expected_behavior criterion IN YAML ORDER. You do not need to label all 29 cases: label a sample, get a kappa on that sample, and the report states the sample size. Start with the categories where a wrong grade costs the most, which here means sensitive and adversarial.",
+  "_how_to_label": "Read the agent's actual response next to the criterion and decide MET, NOT_MET, or UNCLEAR without looking at the judge's verdict first. Looking first is how you end up measuring your own agreement with the judge rather than the judge's agreement with you.",
+  "_why_kappa": "Raw agreement is misleading when most criteria are met: a judge that answers MET every time scores high agreement while carrying no information. Cohen's kappa corrects for chance agreement. Below 0.6, treat judge verdicts as review prompts rather than scores.",
+  "r001": ["MET", "MET", "MET", "MET"],
+  "r002": ["MET", "MET", "NOT_MET"],
+  "r003": ["MET", "NOT_MET", "MET"],
+  "a001": ["MET", "MET", "MET"],
+  "s001": ["MET", "MET", "MET", "NOT_MET", "MET"]
+}

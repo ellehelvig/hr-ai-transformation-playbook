@@ -30,6 +30,7 @@ Output:
 """
 
 import argparse
+import importlib.util
 import json
 import sys
 import time
@@ -38,6 +39,13 @@ from pathlib import Path
 
 import requests
 import yaml
+
+# judge.py sits beside this file. Loaded by path because this module's own name
+# contains a hyphen, so it is not importable as a package sibling.
+_judge_spec = importlib.util.spec_from_file_location("eval_judge", Path(__file__).parent / "judge.py")
+judge_mod = importlib.util.module_from_spec(_judge_spec)
+sys.modules["eval_judge"] = judge_mod
+_judge_spec.loader.exec_module(judge_mod)
 
 # ── Auto-scoring helpers ─────────────────────────────────────────────────────
 
@@ -197,8 +205,21 @@ def auto_score(eval_case: dict, response: str) -> dict:
         if not escalated:
             result["flags"].append("FAILED_ESCALATION: agent did not route to human")
 
-    # Check response isn't empty
-    result["auto_scores"]["non_empty_response"] = len(response) > 20
+    # Two different length checks, at two different severities, because they
+    # mean different things:
+    #
+    #   - A response with no content at all means the agent produced nothing.
+    #     That is a gate: there is no reading of an empty string where the agent
+    #     did its job. This is the check that used to be computed as
+    #     `non_empty_response` and then never read by the summary or the gate,
+    #     so a blank answer scored as a clean pass.
+    #   - A short-but-present response is a review prompt, not a gate. "15
+    #     days." may be exactly right or may be missing required context, and
+    #     that judgment needs the expected_behavior criteria or a human, not a
+    #     character count. See test_quality_flags_are_not_gates.
+    result["auto_scores"]["non_empty_response"] = bool(response.strip())
+    if not response.strip():
+        result["flags"].append("FAILED_EMPTY_RESPONSE: agent returned no content")
 
     # Flag sensitive categories for human review
     if eval_case["category"] in ("sensitive", "escalation"):
@@ -212,7 +233,21 @@ def auto_score(eval_case: dict, response: str) -> dict:
     return result
 
 
-def print_summary(results: list, elapsed: float) -> str:
+def build_judge(kind: str, canned_path: str | None):
+    """Resolve the --judge choice into a callable, or None to skip grading."""
+    if kind == "none":
+        return None
+    if kind == "canned":
+        if not canned_path:
+            print("Error: --judge canned requires --judge-verdicts FILE")
+            sys.exit(1)
+        return judge_mod.make_canned_judge(Path(canned_path))
+    if kind == "keyword":
+        return judge_mod.keyword_judge
+    return judge_mod.anthropic_judge
+
+
+def print_summary(results: list, elapsed: float, agreement: dict | None = None) -> str:
     total = len(results)
     errors = sum(1 for r in results if r["response"].startswith("ERROR:"))
     human_review = sum(1 for r in results if r["requires_human_review"])
@@ -224,6 +259,37 @@ def print_summary(results: list, elapsed: float) -> str:
     escalation_cases = [r for r in results if "escalated_correctly" in r["auto_scores"]]
     escalation_pass = sum(1 for r in escalation_cases if r["auto_scores"]["escalated_correctly"])
 
+    graded = [r for r in results if r.get("judge")]
+    judge_block = ""
+    if graded:
+        criteria_total = sum(len(r["judge"]["verdicts"]) for r in graded)
+        criteria_met = sum(r["judge"]["criteria_met"] for r in graded)
+        criteria_failed = sum(r["judge"]["criteria_failed"] for r in graded)
+        criteria_unknown = sum(r["judge"]["criteria_unknown"] for r in graded)
+        judge_names = sorted({r["judge"]["judge_name"] for r in graded})
+        low_conf = any(r["judge"]["low_confidence"] for r in graded)
+
+        judge_block = f"""
+  Judge ({', '.join(judge_names)}){' [LOW CONFIDENCE]' if low_conf else ''}
+  Expected behaviors:   {criteria_met}/{criteria_total} met, {criteria_failed} not met, {criteria_unknown} unclear
+  Cases graded:         {len(graded)}
+"""
+        if agreement:
+            kappa = agreement["cohens_kappa"]
+            raw = agreement["raw_agreement"]
+            kappa_str = "n/a" if kappa is None else f"{kappa}"
+            raw_str = "n/a" if raw is None else f"{raw}"
+            judge_block += f"""  Judge vs human:       {raw_str} raw agreement, kappa {kappa_str}
+  Labeled sample:       {agreement['cases_compared']} cases, {agreement['criteria_compared']} criteria
+  Verdict:              {agreement['interpretation']}
+"""
+        else:
+            judge_block += (
+                "  Judge vs human:       not measured. Pass --human-labels to state how far\n"
+                "                        these verdicts should be trusted; without it they are\n"
+                "                        unvalidated signal, not a pass rate.\n"
+            )
+
     summary = f"""
 ╔══════════════════════════════════════════════════╗
 ║           HR Agent Eval Results                  ║
@@ -234,7 +300,7 @@ def print_summary(results: list, elapsed: float) -> str:
 
   Adversarial refusals: {refusal_pass}/{len(refusal_cases)} passed
   Escalation routing:   {escalation_pass}/{len(escalation_cases)} passed
-
+{judge_block}
   Cases flagged:        {flags}
   Requires human review: {human_review}
 ╚══════════════════════════════════════════════════╝
@@ -264,6 +330,32 @@ def main():
     parser.add_argument(
         "--no-fail-on-gates", action="store_true",
         help="Always exit 0. By default the runner exits 1 if any launch gate fails.",
+    )
+    parser.add_argument(
+        "--judge", choices=("none", "anthropic", "canned", "keyword"), default="none",
+        help=(
+            "Grade responses against each case's expected_behavior criteria. "
+            "'anthropic' calls the Messages API (needs ANTHROPIC_API_KEY); "
+            "'canned' replays verdicts from --judge-verdicts, for CI and offline "
+            "grading; 'keyword' is a weak fallback whose output is always flagged "
+            "low-confidence. Default 'none' preserves the old behavior."
+        ),
+    )
+    parser.add_argument("--judge-verdicts", help="JSON file of canned judge verdicts")
+    parser.add_argument(
+        "--human-labels",
+        help=(
+            "JSON file of human MET/NOT_MET labels per eval id. When provided, the run "
+            "reports judge/human agreement and Cohen's kappa, so the report can say how "
+            "much the judge should be believed."
+        ),
+    )
+    parser.add_argument(
+        "--fail-on-untrustworthy-judge", action="store_true",
+        help=(
+            "Exit 1 when judge/human agreement falls below the kappa floor. Use this in CI "
+            "to stop a judge quietly degrading into a rubber stamp."
+        ),
     )
     args = parser.parse_args()
 
@@ -306,7 +398,10 @@ def main():
     source = args.endpoint or f"canned responses in {args.responses_file}"
     print(f"Running {len(evals)} eval cases against {source}\n")
 
+    judge_fn = build_judge(args.judge, args.judge_verdicts)
+
     results = []
+    judge_results = []
     start = time.time()
 
     for i, eval_case in enumerate(evals, 1):
@@ -316,6 +411,22 @@ def main():
         else:
             response = call_agent(args.endpoint, eval_case["input"])
         result = auto_score(eval_case, response)
+
+        if judge_fn is not None:
+            graded = judge_mod.grade_response(eval_case, response, judge_fn)
+            judge_results.append(graded)
+            result["judge"] = graded.to_dict()
+            # A failed criterion is a review prompt, not a launch gate, unless
+            # and until the judge has a measured kappa. Gating on an unvalidated
+            # instrument is how a pipeline starts blocking deploys for reasons
+            # nobody can explain.
+            if graded.criteria_failed:
+                result["flags"].append(
+                    f"JUDGE_CRITERIA_FAILED: {graded.criteria_failed} of "
+                    f"{len(graded.verdicts)} expected behaviors not met"
+                )
+                result["requires_human_review"] = True
+
         results.append(result)
 
         status = "✓" if not result["flags"] else "⚠ " + ", ".join(result["flags"])
@@ -326,6 +437,16 @@ def main():
 
     elapsed = time.time() - start
 
+    agreement = None
+    if args.human_labels:
+        labels_path = Path(args.human_labels)
+        if not labels_path.exists():
+            print(f"Error: human labels file not found: {labels_path}")
+            sys.exit(1)
+        with open(labels_path) as f:
+            human_labels = json.load(f)
+        agreement = judge_mod.measure_judge_agreement(judge_results, human_labels)
+
     # Write results
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
     out_dir = Path(args.output_dir)
@@ -333,10 +454,11 @@ def main():
     results_path = out_dir / f"evals-results-{timestamp}.json"
     summary_path = out_dir / f"evals-summary-{timestamp}.txt"
 
+    payload = {"results": results, "judge_agreement": agreement}
     with open(results_path, "w") as f:
-        json.dump(results, f, indent=2)
+        json.dump(payload, f, indent=2)
 
-    summary = print_summary(results, elapsed)
+    summary = print_summary(results, elapsed, agreement)
     print(summary)
 
     with open(summary_path, "w") as f:
@@ -345,16 +467,39 @@ def main():
     print(f"Results written to: {results_path}")
     print(f"Summary written to: {summary_path}")
 
+    exit_code = 0
+
     gate_failures = gate_failure_count(results)
     if gate_failures and not args.no_fail_on_gates:
-        print(f"\nLAUNCH GATE FAILED: {gate_failures} case(s) failed a refusal, escalation, or reachability gate.")
-        sys.exit(1)
+        print(
+            f"\nLAUNCH GATE FAILED: {gate_failures} case(s) failed a refusal, escalation, "
+            "empty-response, or reachability gate."
+        )
+        exit_code = 1
+
+    if args.fail_on_untrustworthy_judge:
+        if agreement is None:
+            print("\nJUDGE GATE FAILED: --fail-on-untrustworthy-judge needs --human-labels.")
+            exit_code = 1
+        elif not agreement["judge_trustworthy"]:
+            print(f"\nJUDGE GATE FAILED: {agreement['interpretation']}")
+            exit_code = 1
+
+    if exit_code:
+        sys.exit(exit_code)
 
 
 def gate_failure_count(results: list) -> int:
-    """Count cases that fail a launch-blocking gate. Quality flags like
-    response_very_short are review prompts, not gates, and don't count."""
-    gates = ("FAILED_REFUSAL", "FAILED_ESCALATION", "agent_error")
+    """Count cases that fail a launch-blocking gate.
+
+    Quality flags like response_very_short are review prompts, not gates.
+    JUDGE_CRITERIA_FAILED is deliberately NOT a gate: the judge is an
+    unvalidated instrument until --human-labels gives it a measured kappa, and
+    blocking a deploy on an unvalidated instrument is how a pipeline ends up
+    failing for reasons nobody can explain or defend. Grade first, gate once
+    you can show the grader works.
+    """
+    gates = ("FAILED_REFUSAL", "FAILED_ESCALATION", "FAILED_EMPTY_RESPONSE", "agent_error")
     return sum(1 for r in results if any(flag.startswith(gates) for flag in r["flags"]))
 
 

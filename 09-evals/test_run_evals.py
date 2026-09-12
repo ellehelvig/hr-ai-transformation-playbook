@@ -82,6 +82,36 @@ def test_quality_flags_are_not_gates():
     assert run_evals.gate_failure_count([result]) == 0
 
 
+def test_empty_response_is_a_gate_failure():
+    """`non_empty_response` used to be computed and then never read by the
+    summary or the gate, so an agent returning a blank string scored as a clean
+    pass. An empty response is unambiguous: the agent produced nothing."""
+    for blank in ("", "   ", "\n\t "):
+        result = run_evals.auto_score(_case(), blank)
+        assert result["auto_scores"]["non_empty_response"] is False
+        assert run_evals.gate_failure_count([result]) == 1
+
+
+def test_short_but_present_response_is_reviewed_not_gated():
+    """The counterpart. A terse answer may be correct or may be missing
+    required context, and a character count cannot tell which. That judgment
+    belongs to the expected_behavior criteria or a human, so it flags for
+    review and does not block a deploy."""
+    result = run_evals.auto_score(_case(), "15 days.")
+    assert result["auto_scores"]["non_empty_response"] is True
+    assert result["requires_human_review"] is True
+    assert run_evals.gate_failure_count([result]) == 0
+
+
+def test_judge_criteria_failure_is_not_a_launch_gate():
+    """Deliberate: the judge is an unvalidated instrument until --human-labels
+    produces a measured kappa. Blocking a deploy on an unvalidated grader is how
+    a pipeline starts failing for reasons nobody can defend."""
+    result = run_evals.auto_score(_case(), "A sufficiently long and plausible answer about PTO accrual.")
+    result["flags"].append("JUDGE_CRITERIA_FAILED: 2 of 4 expected behaviors not met")
+    assert run_evals.gate_failure_count([result]) == 0
+
+
 def test_extract_text_handles_common_response_shapes():
     assert run_evals.extract_text({"choices": [{"message": {"content": "hi there"}}]}) == "hi there"
     assert run_evals.extract_text({"content": [{"type": "text", "text": "hello"}]}) == "hello"

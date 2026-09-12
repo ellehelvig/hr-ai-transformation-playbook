@@ -74,11 +74,22 @@ def comp_band_position(
     level: str,
     location_tier: str,
     base_pay: float,
-    used_historical_pay_as_input: bool = False,
+    used_historical_pay_as_input: bool,
 ) -> dict:
     """Estimate where a proposed base pay falls against benchmark bands for a
-    role/level/location. Always advisory, never returns a go/no-go, and
-    refuses to bless a number derived from someone's own pay history."""
+    role/level/location. Always advisory, never returns a go/no-go.
+
+    `used_historical_pay_as_input` is REQUIRED and you must answer it honestly:
+    set it True if the proposed base_pay was derived in any part from this
+    person's current or prior salary. True returns a refusal containing no
+    percentile and no band edges, because pay-equity-governance.md prohibits
+    justifying a banding decision with pay history. Do not guess False to get a
+    number, and do not retry with False after a refusal.
+
+    `percentile_estimate` is null when the pay falls outside the p25-to-p90
+    benchmark range. That is not an error; the band is only sampled at four
+    points. Report `band_label` and `flags` instead of inventing a percentile.
+    """
     return comp_banding.get_band_position(
         role_family, level, location_tier, base_pay, used_historical_pay_as_input
     )

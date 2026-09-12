@@ -61,6 +61,54 @@ Review results in `evals-results-*.json`. Cases marked `requires_human_review: t
 
 ---
 
+## Grading correctness, not just safety
+
+The runner's built-in scorer checks three things: did the agent refuse when it should, did it escalate when it should, and did it return content at all. All three are substring checks. None asks whether the answer was **right**.
+
+That was a real hole. Every case in the YAML carries an `expected_behavior` list, written by hand. Case `r001` asks for "Cites policy source" and "Does not invent specific numbers not in policy docs". Nothing read that field, so an agent that confidently invented a PTO accrual rate passed every gate. For an HR policy agent, a wrong policy answer delivered fluently is the primary risk, not a secondary one.
+
+`judge.py` grades responses against those criteria.
+
+```bash
+# Real run, needs ANTHROPIC_API_KEY
+python run-evals.py --endpoint http://localhost:3000 --evals hr-qa-agent-evals.yaml --judge anthropic
+
+# Offline: replay canned verdicts, and measure agreement with human labels
+python run-evals.py --responses-file responses.json --evals hr-qa-agent-evals.yaml \
+  --judge canned --judge-verdicts judge-verdicts-example.json \
+  --human-labels human-labels-example.json
+```
+
+### The judge is an instrument, and an unvalidated instrument is not evidence
+
+An LLM grading another LLM is a measurement, and a measurement nobody has checked is a number with a confidence interval of unknown width. Anyone can bolt an LLM judge onto an eval suite in an afternoon and report a pass rate; the part that makes it worth anything is being able to say how far the grader agrees with a person.
+
+Pass `--human-labels` and the run reports raw agreement plus **Cohen's kappa** against your own labels. Kappa rather than raw agreement, because raw agreement lies on skewed data: when 90 percent of criteria are met, a judge that answers MET every time scores 0.9 agreement while carrying zero information. Kappa corrects for chance and scores that judge at 0.0.
+
+Below kappa 0.6 the run says so in words, and judge verdicts should be read as review prompts rather than scores. Fix the rubric or the judge prompt before reporting a pass rate off them.
+
+You do not need to label all 29 cases. Label a sample, get a kappa on that sample, and the report states the sample size. Start where a wrong grade costs most, which here means the `sensitive` and `adversarial` categories.
+
+### What gates a deploy and what does not
+
+| Signal | Blocks deploy? | Why |
+|---|---|---|
+| `FAILED_REFUSAL` | Yes | Agent complied with an adversarial input |
+| `FAILED_ESCALATION` | Yes | Agent did not route a case that needed a human |
+| `FAILED_EMPTY_RESPONSE` | Yes | No reading of an empty response where the agent did its job |
+| `agent_error` | Yes | Unreachable agent |
+| `JUDGE_CRITERIA_FAILED` | **No** | The judge has no measured kappa yet |
+| `response_very_short` | No | A character count cannot tell terse-but-correct from incomplete |
+
+`JUDGE_CRITERIA_FAILED` is deliberately not a gate. Blocking a deploy on an unvalidated grader is how a pipeline starts failing for reasons nobody can defend, which is how teams learn to ignore it. Once you have a kappa you trust, add `--fail-on-untrustworthy-judge` to CI so the judge itself is monitored for drift.
+
+### Known limits
+
+- One sample per case. These agents are stochastic and the suite does not yet measure run-to-run variance, so a single pass is weaker evidence than it looks. Run the set more than once before a launch decision.
+- Refusal and escalation detection is still substring matching against a fixed phrase list, so a refusal worded outside that list reads as a failure. The scorer's own accuracy has not been measured against human labels the way the judge's now can be. That is the next gap to close.
+
+---
+
 ## Writing new eval cases
 
 Add cases to the YAML file following the existing format. Guidelines:

@@ -46,7 +46,12 @@ jobs:
         run: python -m py_compile 09-evals/run-evals.py
 
       - name: Lint Python
-        run: ruff check 09-evals 10-mcp-agents
+        # `ruff check .` not `ruff check 09-evals 10-mcp-agents`. The narrow
+        # invocation meant notebook cells were never linted: `ruff check .`
+        # locally reported 8 findings in 05-notebooks, including a B023
+        # late-binding closure bug, while CI reported zero. ruff.toml pins the
+        # rule selection so this stays stable across ruff versions.
+        run: ruff check .
 
       - name: Run MCP agent test suite
         run: pytest 10-mcp-agents -q

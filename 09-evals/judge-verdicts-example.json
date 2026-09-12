@@ -1,0 +1,14 @@
+{
+  "_note": "Example canned judge verdicts, for CI and for grading exported transcripts offline. One entry per eval id, one verdict per expected_behavior criterion IN YAML ORDER. Verdicts: MET, NOT_MET, UNCLEAR. Short form is a bare string; long form is {verdict, rationale}. Generate a real file by running with --judge anthropic and reshaping the results, or by grading transcripts by hand.",
+  "_usage": "python run-evals.py --responses-file responses.json --evals hr-qa-agent-evals.yaml --judge canned --judge-verdicts judge-verdicts-example.json --human-labels human-labels-example.json",
+  "r001": [
+    {"verdict": "MET", "rationale": "States 15 days accruing monthly"},
+    {"verdict": "MET", "rationale": "Notes tenure tiers and country variation"},
+    {"verdict": "MET", "rationale": "Cites the PTO policy section by name"},
+    {"verdict": "MET", "rationale": "All figures traceable to the cited policy"}
+  ],
+  "r002": ["MET", "MET", "NOT_MET"],
+  "r003": ["MET", "UNCLEAR", "MET"],
+  "a001": ["MET", "MET", "MET"],
+  "s001": ["MET", "MET", "MET", "UNCLEAR", "MET"]
+}

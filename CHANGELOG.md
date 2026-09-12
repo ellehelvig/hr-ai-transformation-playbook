@@ -2,6 +2,34 @@
 
 Notable changes to the playbook. Regulatory content is re-verified weekly against primary sources; only material changes are logged here.
 
+## 2.2.0 (2026-09-12)
+
+Code review pass. The theme: three governance claims were stronger than what the code enforced, and one screening bug produced false negatives on qualified candidates.
+
+Fixed
+
+- **`resume_screen` dropped every short technical term.** The keyword extractor required 4+ characters with the regex `[a-zA-Z][a-zA-Z\-]+`, which silently deleted SQL, AWS, MCP, Go, R, C++, and .NET. A resume reading "built SQL pipelines on AWS" returned `no_evidence_found` against a JD requiring "experience with SQL and AWS", while the response note told the reader that meant the resume didn't mention it. A false negative on a qualified candidate is the worst output this tool can produce. Short and punctuated technical terms now bypass the length floor via `data/technical_terms.json`, with per-term regression assertions.
+- **A requirement with no comparable terms is now `not_assessable_by_this_tool`, not `no_evidence_found`.** "5+ years of experience" reduces to zero keywords because every word is a stopword. Reporting that as missing evidence was misleading; the tool cannot measure it.
+- **The comp historical-pay guardrail now refuses.** It previously appended a `BLOCKED-BY-POLICY` string to `flags` and returned the full band position, percentile included, so an agent ignoring one list element got the answer the policy forbids. The refusal path now returns no percentile, no band edges, and no label. `used_historical_pay_as_input` also lost its `False` default: a control that fires only when the caller volunteers incriminating input is not a control.
+- **Percentile estimates outside p25 to p90 return null instead of an invented number.** The old code assumed a 1st percentile at `p25 * 0.7` and a 99th at `p90 * 1.25` and interpolated into those anchors. Both multipliers were made up, and the resulting figures get quoted to candidates.
+- **`policy_qa` retrieval replaced with BM25 plus two measured relevance gates.** The old scorer summed raw keyword-overlap counts with no length normalization and no IDF, so long sections won on volume and "review" counted the same as "Annex". Two heuristics existed to patch the symptoms; the navigational-heading penalty is deleted, since BM25 handles the case it was working around. `no_match` previously fired only on zero word overlap, so "can I bring my dog to the office review?" returned three confident citations. Coverage is weighted by IDF rather than counting terms, so filler words cost nothing and an absent distinctive term is penalized heavily. Both thresholds carry their measurements in the source.
+- **`non_empty_response` was computed and never read** by the summary or the gate, so a blank response scored as a clean pass. It is now a launch gate at genuinely empty, while short-but-present stays a review flag.
+- **B023 late-binding closure** in `skills-gap-analysis.ipynb`: `lambda row: compute_gap(row, skill)` inside a loop. Correct only because `.apply()` runs immediately; now binds explicitly.
+- **CI linted two directories, not the repo.** `ruff check 09-evals 10-mcp-agents` meant notebook cells were never checked: `ruff check .` found 8 findings locally while CI reported zero. Now `ruff check .`, and all 8 are fixed.
+- `policy_qa` corpus parsing was re-read and re-parsed on every query; now cached on file mtimes, with a test that an edit still invalidates it. `comp_bands.json` gains schema and monotonicity validation with errors naming the row and key.
+
+Added
+
+- **`09-evals/judge.py`: grades responses against each case's `expected_behavior` criteria.** All 29 cases already carried hand-written criteria that nothing ever read, so an agent that confidently invented a PTO accrual rate passed every gate. Three judge implementations: Anthropic API, canned verdicts for offline and CI use, and a deliberately weak keyword fallback that always reports itself low-confidence.
+- **Judge validation via Cohen's kappa against human labels** (`--human-labels`), because an unvalidated grader is not evidence. Kappa rather than raw agreement: on skewed data a judge answering MET every time scores 0.9 raw agreement and 0.0 kappa. Below 0.6 the run says in words that verdicts are review prompts, not scores. `JUDGE_CRITERIA_FAILED` is deliberately not a launch gate until the judge has a measured kappa.
+- **Per-group expected calibration error** in the attrition notebook. The existing check compared each group's mean score to its observed rate, which is calibration-in-the-large and hides within-group miscalibration. The new cell demonstrates exactly that on the synthetic data: one group shows a 0.010 mean gap while carrying a 0.118 gap in a bin holding 84 people.
+- `ENFORCED_GUARANTEES` and `KNOWN_LIMITATIONS` ship in every `resume_screen` response. The claim "never produces a score" was unenforceable, since the response carries counts a caller can divide, and a test asserting no field name matches `/score|rank/` passes while the guarantee fails. The enforceable subset is now verified behaviorally; what a schema cannot prevent, including the untested linguistic bias in keyword matching, is stated plainly in the payload.
+- Corpus trust boundary documented in `policy_qa`, with an `excerpt_provenance` field in every response. Verbatim corpus text in an agent's context is safe when the corpus is reviewed markdown and is an injection path when it is a wiki employees can edit.
+
+Changed
+
+- Test count: 43 to 89.
+
 ## 2.1.0 (2026-09-12)
 
 Added
