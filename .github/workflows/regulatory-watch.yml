@@ -1,0 +1,149 @@
+name: Regulatory Watch
+
+# Weekly worker over the regulatory content in 03-governance.
+#
+# This is the highest-stakes automation in the repo. The README carries a badge
+# saying regulatory content is verified weekly, and practitioners act on what this
+# repo says about the law. So the worker is deliberately conservative:
+#
+#   - It edits a claim only when a primary source confirms the change.
+#   - Anything it cannot confirm is reported for review, never quietly edited.
+#   - It never merges. Every change waits on the maintainer checking the citation.
+#
+# When it has edits it opens a pull request. When it only has signals it opens an
+# issue, so a week's findings are never lost just because nothing was certain
+# enough to change.
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"
+  workflow_dispatch:
+
+jobs:
+  watch:
+    name: Watch
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: |
+            --max-turns 60
+            --allowedTools "WebSearch,WebFetch,Read,Glob,Grep,Edit"
+          prompt: |
+            You are the regulatory watch for this repository. Read CLAUDE.md first.
+            Its "Legal and regulatory claims" section is binding on everything you do
+            here, and the rest of this prompt assumes you have followed it.
+
+            Your beat is every dated or status-bearing regulatory claim in
+            03-governance, plus the regulatory coverage paragraph in README.md.
+            Jurisdictions currently covered: the EU (AI Act, GDPR Article 22), the US
+            (Title VII, NYC Local Law 144, Illinois, Colorado, California, Texas), the
+            UK (Data (Use and Access) Act 2025), and Canada (Ontario disclosure).
+
+            For each claim, check the current state against a primary source: the
+            statute or enrolled bill text, the legislature's own bill history, the
+            regulator's own page, or a court order or docket entry. A law firm alert,
+            a vendor blog, or a news article is a lead worth following to the primary
+            source. It is never the citation you rely on.
+
+            Sort every finding into exactly one of two buckets.
+
+            CONFIRMED. You read the primary source and it contradicts what the repo
+            says. Edit the file. Get the specifics right: the actual signing or
+            enactment date from the bill history rather than a summary's date, the
+            per-section applicability date for the specific obligation rather than the
+            act's general entry into force, and the precise status (enacted, signed,
+            pending, in committee, stayed, vacated, superseded).
+
+            NEEDS REVIEW. Something looks like it moved but you could not confirm it
+            from a primary source, or the primary source is ambiguous, or the change
+            is a judgment call about how the repo should characterize it. Do not edit
+            anything. Describe what you saw and what you could not confirm.
+
+            When in doubt, it is NEEDS REVIEW. A wrong correction in this repo is
+            worse than a missed one, because a reader acts on it.
+
+            Write your findings to regulatory-report.md in the repository root, in
+            exactly this shape, omitting a section when it is empty:
+
+            ## Corrections applied
+            - FILE: what it said -> what it says now
+              Source: <direct link to the primary source>
+
+            ## Needs your review
+            - WHAT you saw, and specifically what you could not confirm
+              Leads: <links, marked primary or secondary>
+
+            If both sections would be empty, write exactly `No findings.` and change
+            no other file.
+
+            Do not commit, push, or open anything. Later steps handle that.
+
+      - name: Sort the findings
+        id: findings
+        run: |
+          REPORT="$RUNNER_TEMP/regulatory-report.md"
+          if [ -f regulatory-report.md ]; then
+            mv regulatory-report.md "$REPORT"
+          else
+            printf 'No findings.\n' > "$REPORT"
+          fi
+
+          if grep -q '^No findings\.$' "$REPORT"; then
+            echo "outcome=none" >> "$GITHUB_OUTPUT"
+          elif git diff --quiet; then
+            echo "outcome=signals-only" >> "$GITHUB_OUTPUT"
+          else
+            echo "outcome=edits" >> "$GITHUB_OUTPUT"
+          fi
+
+          {
+            echo 'body<<REPORT'
+            echo 'Weekly regulatory watch. Every applied correction cites a primary source below.'
+            echo
+            echo 'Do not merge without opening each source and confirming it says what the'
+            echo 'change claims. A wrong statutory claim here is worse than a stale one.'
+            echo
+            cat "$REPORT"
+            echo REPORT
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Open pull request
+        if: steps.findings.outputs.outcome == 'edits'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          branch: bot/regulatory-watch
+          base: main
+          title: "Regulatory watch: verified corrections to governance content"
+          body: ${{ steps.findings.outputs.body }}
+          labels: |
+            agent-proposed
+            regulatory
+          commit-message: |
+            Correct governance claims that primary sources contradict
+
+            Opened by the weekly regulatory watch. Each change cites the statute,
+            bill history, regulator page, or docket entry it rests on.
+          delete-branch: true
+
+      - name: Open issue when nothing was confirmed
+        if: steps.findings.outputs.outcome == 'signals-only'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BODY: ${{ steps.findings.outputs.body }}
+        run: |
+          gh issue create \
+            --title "Regulatory watch: unconfirmed signals for $(date -u +%Y-%m-%d)" \
+            --label regulatory \
+            --body "$BODY"

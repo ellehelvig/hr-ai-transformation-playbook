@@ -80,7 +80,7 @@ The [skills README](11-skills/README.md) also has a human capability ladder: the
 | [07 · Agentic patterns](07-agentic-patterns/README.md) | Five architecture patterns with governance built in, agent design guide, testing framework, talent operating system architecture |
 | [08 · ROI measurement](08-roi-measurement/README.md) | Business case template, ROI framework, reporting cadence, live dashboard |
 | [09 · Evals](09-evals/README.md) | 29 test cases, rubric with launch-blocking gates, automated runner |
-| [10 · MCP agents](10-mcp-agents/README.md) | Four working tools on one MCP server: comp banding, bias-mitigated screening, recruiter intake, policy Q&A. 32 passing tests |
+| [10 · MCP agents](10-mcp-agents/README.md) | Four working tools on one MCP server: comp banding, bias-mitigated screening, recruiter intake, policy Q&A. 52 passing tests |
 | [11 · Skills](11-skills/README.md) | Six installable agent skills, ranked adoption order, human capability ladder |
 
 ---

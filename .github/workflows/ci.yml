@@ -59,6 +59,12 @@ jobs:
       - name: Run eval runner tests
         run: pytest 09-evals -q
 
+      - name: Verify the repo's claims about itself
+        # Every count the README states is recomputed from the tree, and the house
+        # no-em-dash rule is enforced across all text files. This replaces what would
+        # otherwise be a scheduled agent opening pull requests about stale numbers.
+        run: python scripts/verify_claims.py
+
       - name: Validate skill packages
         run: |
           python - <<'PY'

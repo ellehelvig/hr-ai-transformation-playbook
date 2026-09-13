@@ -1,0 +1,111 @@
+name: Consistency Audit
+
+# Monthly worker, judgment only.
+#
+# Everything mechanical that this used to check now lives in
+# scripts/verify_claims.py, which runs on every push and every pull request. Counts,
+# test totals and em dashes are deterministic, so a script that fails the build does
+# that job better than a model that opens a pull request: it is instant, it is free,
+# and it cannot invent a correction.
+#
+# What is left here needs judgment and cannot be expressed as an assertion: whether
+# the changelog reflects what actually shipped, whether one section still describes
+# another section accurately, and whether a claim has quietly gone stale.
+#
+# GitHub runs scheduled workflows only from the default branch, and on a public repo
+# disables the schedule after 60 days without repository activity.
+
+on:
+  schedule:
+    - cron: "0 13 1 * *"
+  workflow_dispatch:
+
+jobs:
+  audit:
+    name: Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: |
+            --model claude-sonnet-5
+            --max-turns 35
+            --allowedTools "Read,Glob,Grep,Edit,Bash(git log:*),Bash(git diff:*),Bash(ls:*),Bash(find:*)"
+          prompt: |
+            You are the monthly consistency auditor for this repository. Read
+            CLAUDE.md first and follow every rule in it.
+
+            Do not check counts, test totals, or em dashes. scripts/verify_claims.py
+            already enforces those on every push, and duplicating it here wastes a
+            run and risks a second opinion that contradicts the build.
+
+            Check only what needs judgment:
+
+            1. CHANGELOG.md against the commits since the last released version.
+               Something shipped and unrecorded is a finding. Add it to an
+               `## [Unreleased]` section. Never edit a released entry.
+            2. Cross-references between section READMEs. When one section describes a
+               capability, a file, or a workflow that lives in another section, does
+               that description still match what is there?
+            3. CONTRIBUTING.md's "Running the checks locally" block against the steps
+               in .github/workflows/ci.yml. A contributor following it should end up
+               running what CI actually enforces.
+            4. Claims that have gone stale by their own terms: "new in", "as of",
+               "currently", version numbers, and any dependency or runtime pin that
+               names a version now past end of life.
+
+            Do not touch 03-governance. A separate workflow owns regulatory content,
+            and an editorial pass is not worth the risk of a silent change to a
+            compliance claim.
+
+            Make corrections in the working tree. Do not commit, push, or open a pull
+            request yourself, a later step does that.
+
+            Write findings to audit-report.md in the repository root, one line each:
+            `- FILE: what it says now -> what is actually true`
+            If you found nothing, write exactly `No findings.` and change nothing else.
+
+      - name: Check whether anything was found
+        id: findings
+        run: |
+          if [ -f audit-report.md ] && ! grep -q '^No findings\.$' audit-report.md; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+            {
+              echo 'body<<REPORT'
+              echo 'Monthly consistency audit. Judgment-only pass.'
+              echo 'Counts, test totals and em dashes are enforced by scripts/verify_claims.py on every push.'
+              echo
+              cat audit-report.md
+              echo
+              echo 'Scope excludes 03-governance, which the regulatory watch workflow owns.'
+              echo REPORT
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+          rm -f audit-report.md
+
+      - name: Open pull request
+        if: steps.findings.outputs.found == 'true'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          branch: bot/consistency-audit
+          base: main
+          title: "Consistency audit: docs drifted from what shipped"
+          body: ${{ steps.findings.outputs.body }}
+          labels: agent-proposed
+          commit-message: |
+            Bring docs back in line with what actually shipped
+
+            Opened by the monthly consistency audit workflow.
+          delete-branch: true
