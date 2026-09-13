@@ -1,6 +1,18 @@
 # Changelog
 
-Notable changes to the playbook. Regulatory content is re-verified weekly against primary sources; only material changes are logged here.
+Notable changes to the playbook. Regulatory content is checked against primary sources; only material changes are logged here.
+
+## [Unreleased]
+
+Added
+
+- **Regulatory claims registry** in `03-governance/claims`. Every dated or status-bearing legal claim gets a structured record naming its primary source, the files that assert it, when a human last verified it, and how long before it goes stale. Claims written only as prose cannot be diffed against a statute and carry no record of when they were last checked. This makes the repo's currency claim testable instead of asserted. Eight claims are registered so far; the rest are listed in `03-governance/claims/BACKLOG.md` so the gap is countable.
+- **`scripts/verify_claim_sources.py`** as a CI gate. Offline it validates the registry schema, checks that every `asserted_in` file exists, and fails the build when a claim is past its review interval. With `--online` it fetches each primary source and asserts the claim's verbatim quote still appears in it, so a wrong or invented citation fails a check rather than reaching a reader.
+- **`.github/workflows/claim-source-check.yml`**, weekly. Runs the online check and opens an issue on failure. Kept out of `ci.yml` on purpose: it depends on government websites being reachable, and that is not a reason to block a merge.
+
+Changed
+
+- **README regulatory currency claims now describe what actually runs.** The badge said regulatory content was verified weekly and the body said claims were re-checked weekly against statutes with docs updating within days. No automated verification had ever run successfully, so both were untrue. The badge now says primary sources are cited, which is accurate, and the currency section states that review is manual and periodic. The stronger claim goes back once the pipeline earns it.
 
 ## 2.2.0 (2026-09-12)
 

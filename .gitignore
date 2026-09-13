@@ -34,3 +34,4 @@ _to_delete/
 # Test and lint caches
 .pytest_cache/
 .ruff_cache/
+Claude outputs/

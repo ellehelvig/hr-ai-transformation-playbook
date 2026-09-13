@@ -1,0 +1,73 @@
+name: Claim Source Check
+
+# Fetches every primary source in the regulatory claims registry and asserts that each
+# claim's verbatim quote still appears in it.
+#
+# This is deliberately not part of ci.yml. It depends on government websites being up and
+# on their URLs not moving, so a failure here is information, not a reason to block a
+# merge. It opens an issue instead.
+#
+# A failure means one of three things, and all three need a human:
+#   - the source moved, so the URL needs updating
+#   - the source changed, so the claim may now be wrong
+#   - the quote was wrong to begin with
+#
+# GitHub disables scheduled workflows on a public repo after 60 days without repository
+# activity.
+
+on:
+  schedule:
+    - cron: "0 11 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Verify every claim against its primary source
+        id: check
+        run: |
+          set +e
+          python scripts/verify_claim_sources.py --online > result.txt 2>&1
+          echo "exit=$?" >> "$GITHUB_OUTPUT"
+          set -e
+          cat result.txt
+
+      - name: Open an issue when a source no longer supports its claim
+        if: steps.check.outputs.exit != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          {
+            echo 'A claim in the regulatory registry no longer matches its primary source.'
+            echo
+            echo 'Each failure below is one of: the source moved, the source changed, or the'
+            echo 'quote was wrong. Open the source and read it before changing anything that'
+            echo 'rests on the claim.'
+            echo
+            echo '```'
+            cat result.txt
+            echo '```'
+          } > body.md
+          gh issue create \
+            --title "Claim source check failed for $(date -u +%Y-%m-%d)" \
+            --label regulatory \
+            --body-file body.md

@@ -1,0 +1,16 @@
+# Regulatory claim record. See 03-governance/claims/README.md.
+id: eu-ai-act-annex1-embedded-application-date
+jurisdiction: EU
+topic: EU AI Act high-risk embedded products
+statement: High-risk AI embedded in regulated products under Annex I has a separate deferral,
+  to 2 August 2028.
+status: enacted-not-yet-effective
+effective: '2028-08-02'
+primary_source:
+  url: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32026R1744
+  citation: Regulation (EU) 2026/1744, amending Article 113 of Regulation (EU) 2024/1689
+asserted_in:
+- 03-governance/eu-ai-act-intake-template.md
+last_verified: never
+verified_by: unverified
+review_interval_days: 180

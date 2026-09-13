@@ -1,0 +1,25 @@
+# Regulatory claim record. See 03-governance/claims/README.md.
+id: nyc-ll144-bias-audit
+jurisdiction: US-NY-NYC
+topic: Automated employment decision tools
+statement: New York City employers and employment agencies may not use an automated employment
+  decision tool unless it has had a bias audit within one year of use, the audit results are
+  publicly available, and required notices have been given to employees or candidates.
+status: in-force
+effective: '2023-07-05'
+primary_source:
+  url: https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page
+  citation: NYC Local Law 144 of 2021; NYC Admin Code 20-870 et seq.; 6 RCNY 5-300
+  quote: an automated employment decision tool unless the tool has been subject to a bias
+    audit within one year of the use of the tool, information about the bias audit is publicly
+    available, and certain notices have been provided to employees or job candidates
+  retrieved: '2026-09-13'
+asserted_in:
+- 03-governance/README.md
+- 03-governance/risk-assessment-template.md
+last_verified: never
+verified_by: unverified
+review_interval_days: 180
+notes: The DCWP page states enforcement began 5 July 2023. The quote is the DCWP summary,
+  which is the regulator's own page. Anchoring against the rule text in 6 RCNY 5-300 would
+  be stronger.

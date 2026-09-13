@@ -4,7 +4,7 @@ A working toolkit for HR and People teams putting AI into production responsibly
 
 [![CI](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
-[![Regulatory content verified weekly](https://img.shields.io/badge/regulatory%20content-verified%20weekly-blue.svg)](CHANGELOG.md)
+[![Regulatory content: primary sources cited](https://img.shields.io/badge/regulatory%20content-primary%20sources%20cited-blue.svg)](03-governance/README.md)
 [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
@@ -16,7 +16,7 @@ Most HR AI guidance is either too abstract to act on or too tied to one vendor t
 - **It runs.** Three notebooks execute in CI on every push. Four MCP tools ship with a 52-test suite. The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a deploy, and its scorer and LLM judge have 37 tests of their own.
 - **The guarantees are tested, not asserted.** Three governance claims in this repo turned out to be unenforced when reviewed against the code: a screening tool that "never produces a score" while returning counts you could divide, a comp guardrail that annotated a prohibited input instead of refusing it, and a citation finder whose "no match" only fired when a question shared zero words with the corpus. Each is now a behavioral test. See the 2.2.0 entry in [CHANGELOG.md](CHANGELOG.md) for what changed and why.
 - **The evals grade correctness, and the grader is itself measured.** Responses are graded against each case's hand-written `expected_behavior` criteria, and judge verdicts are checked against human labels with Cohen's kappa, so a run can state how far the grader should be believed rather than just reporting a pass rate. See [09-evals](09-evals/README.md).
-- **Governance is verified, not vibes.** Every regulatory claim cites a primary source and is re-checked weekly against the statute, regulator page, or court docket. When something changes (the EU AI Omnibus, Colorado's rewrite, Illinois penalties), the docs change within days and the [changelog](CHANGELOG.md) says what moved.
+- **Governance cites primary sources.** Every regulatory claim names the statute, enrolled bill, regulator page, or court docket it rests on, never a law firm alert or a vendor summary. When something changes (the EU AI Omnibus, Colorado's rewrite, Illinois penalties), the [changelog](CHANGELOG.md) says what moved.
 - **Humans stay in the loop by construction.** The MCP tools have `human_review_required: true` with no code path that turns it off, and the resume screener's schema is tested to guarantee it can never emit a score.
 - **It's vendor-agnostic.** Nothing assumes a specific HRIS, ATS, or model provider.
 
@@ -101,7 +101,7 @@ Every template, prompt, tool, and skill here is built to hold those lines. If yo
 
 Covers the EU (AI Act, GDPR Article 22), the US (Title VII, NYC Local Law 144, Illinois, Colorado, California, Texas), the UK (Data (Use and Access) Act 2025), and Canada (Ontario disclosure rule). Does not cover APAC, Latin America, the Middle East, or Africa; get local counsel there.
 
-Claims are dated in the docs and verified weekly against primary sources. Material changes land in [CHANGELOG.md](CHANGELOG.md). If you spot something stale, use the [regulatory update issue template](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new?template=regulatory-update.md) with a citation.
+Claims are dated in the docs and checked against primary sources rather than secondary summaries. Review is currently manual and periodic, not continuous. Automated source monitoring is being built, and this section will state the real cadence once it runs. Material changes land in [CHANGELOG.md](CHANGELOG.md). If you spot something stale, use the [regulatory update issue template](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new?template=regulatory-update.md) with a citation.
 
 None of this is legal advice. Every governance document should be reviewed by Legal and Privacy before adoption.
 

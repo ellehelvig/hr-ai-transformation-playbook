@@ -6,6 +6,7 @@ Frameworks for responsible AI adoption in HR, structured around the NIST AI Risk
 
 | File | Purpose |
 |---|---|
+| [claims/](claims/README.md) | Structured record of every dated regulatory claim, its primary source, and when it was last verified. Checked in CI. |
 | [quick-reference-checklist.md](quick-reference-checklist.md) | One-page pre-screen on data privacy, employee consent, and bias mitigation. Start here, then go deep on the documents below. |
 | [ai-use-policy.md](ai-use-policy.md) | Principles and requirements for HR AI use. Adapt for your organization. |
 | [risk-assessment-template.md](risk-assessment-template.md) | Required before deploying any new HR AI use case. |

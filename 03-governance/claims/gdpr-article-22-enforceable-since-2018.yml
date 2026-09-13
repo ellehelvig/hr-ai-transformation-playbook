@@ -1,0 +1,18 @@
+# Regulatory claim record. See 03-governance/claims/README.md.
+id: gdpr-article-22-enforceable-since-2018
+jurisdiction: EU
+topic: GDPR automated decision-making
+statement: GDPR Article 22 protections against solely automated decisions with legal or similarly
+  significant effect have been enforceable since 25 May 2018, on their own timeline, independent
+  of the AI Act.
+status: in-force
+effective: '2018-05-25'
+primary_source:
+  url: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679
+  citation: Regulation (EU) 2016/679, Article 22 and Article 99(2)
+asserted_in:
+- 03-governance/deployer-checklist.md
+- 03-governance/eu-ai-act-intake-template.md
+last_verified: never
+verified_by: unverified
+review_interval_days: 365

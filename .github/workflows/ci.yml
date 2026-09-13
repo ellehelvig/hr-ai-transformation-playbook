@@ -65,6 +65,13 @@ jobs:
         # otherwise be a scheduled agent opening pull requests about stale numbers.
         run: python scripts/verify_claims.py
 
+      - name: Verify the regulatory claims registry
+        # Offline only. Schema, unique ids, referenced files exist, and any claim past
+        # its review interval fails the build. The quote-against-source check needs the
+        # network and runs in claim-source-check.yml on a schedule instead, so a
+        # government website being down can never block a merge.
+        run: python scripts/verify_claim_sources.py
+
       - name: Validate skill packages
         run: |
           python - <<'PY'
