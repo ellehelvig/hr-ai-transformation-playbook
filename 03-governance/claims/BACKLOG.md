@@ -60,11 +60,20 @@ stay listed until someone resolves them properly.
   starting with the 2026 cycle due May 2027. `pay-equity-governance.md`
 - At least 17 states plus DC have active pay transparency laws as of 2026.
   `pay-equity-governance.md`
-- Connecticut Public Act 26-15, effective 1 October 2026: using automated employment
-  decision technology is not a defense to a discrimination complaint under Conn. Gen.
-  Stat. 46a-60. `risk-assessment-template.md`
-- Connecticut Public Act 26-15 Section 8(c): a developer may contract to assume the
-  deployer's disclosure duties. `vendor-intake-checklist.md`
+- Connecticut Public Act 26-15 Section 8(a): the developer owes the deployer supporting
+  information only where the technology was advertised, marketed, configured, contracted
+  for, sold or licensed to materially influence an employment-related decision. The vendor
+  checklist leans on that scoping. `vendor-intake-checklist.md`
+- Connecticut Public Act 26-15 Sections 9 and 10: deployer interaction disclosure and
+  pre-decision written notice, attaching to technology deployed on or after 1 October 2027.
+  `04-enablement/hr-ai-literacy-curriculum.md`
+- Connecticut Public Act 26-15 Section 12: violations are CUTPA unfair or deceptive trade
+  practices, enforced solely by the Attorney General, with no private right of action and a
+  60-day cure for violations on or before 31 December 2027.
+  `04-enablement/hr-ai-literacy-curriculum.md`
+- Connecticut Public Act 26-15 Section 26: employers serving a federal WARN notice must
+  disclose to the Connecticut Labor Department whether the layoffs relate to AI or other
+  technological change. `04-enablement/hr-ai-literacy-curriculum.md`
 
 ## United Kingdom and Canada
 

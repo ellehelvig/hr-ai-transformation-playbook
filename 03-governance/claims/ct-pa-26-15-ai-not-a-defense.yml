@@ -1,0 +1,40 @@
+# Regulatory claim record. See 03-governance/claims/README.md.
+id: ct-pa-26-15-ai-not-a-defense
+jurisdiction: US-CT
+topic: Automated employment-related decision technology and discrimination defenses
+statement: From 1 October 2026, using an automated employment-related decision technology is
+  not a defense against a complaint alleging a discriminatory practice under Conn. Gen. Stat.
+  46a-60, and the commission or a court may consider evidence of anti-bias testing, including
+  its quality, efficacy, recency and scope, the results, and the employer's response to them.
+status: enacted-not-yet-effective
+effective: '2026-10-01'
+primary_source:
+  url: https://www.cga.ct.gov/2026/ACT/PA/PDF/2026PA-00015-R00SB-00005-PA.PDF
+  citation: Connecticut Public Act 26-15 (Substitute Senate Bill No. 5), Sections 13 and 14,
+    amending Conn. Gen. Stat. 46a-60(b) and 46a-81c
+asserted_in:
+- 03-governance/risk-assessment-template.md
+- 04-enablement/hr-ai-literacy-curriculum.md
+last_verified: never
+verified_by: unverified
+review_interval_days: 90
+notes: 'No quote field on purpose. Connecticut publishes this act as PDF only, and
+  verify_claim_sources.py fetches the raw body and strips HTML tags, so PDF bytes decode to
+  nothing the quote could match against and adding a quote here would fail the scheduled
+  check rather than strengthen the record. The .HTM path that CGA uses for some documents
+  returns 404 for this act, and the bill status page carries only the summary, not the
+  operative text. Two ways to close this: teach the verifier to extract PDF text, which also
+  unblocks most of the US state claims in BACKLOG.md since state acts are usually PDF-first,
+  or wait for codification of 46a-60 in the online General Statutes and anchor there.
+
+  The operative sentences, read from the enrolled act, are in Section 13 at page 20 of 74:
+  the use of an automated employment-related decision technology, as defined in section 7 of
+  this act, shall not be a defense against a complaint alleging a discriminatory practice in
+  violation of this subdivision. Section 14 carries parallel language at page 27 of 74 for
+  sexual orientation and civil union status. A human should confirm both against the PDF and
+  set last_verified.
+
+  Watch the phasing: sections 7 to 12 also take effect 1 October 2026, but the developer and
+  deployer duties they create attach only to technology deployed on or after 1 October 2027.
+  This record covers only the discrimination-defense change, which has no such deferral. See
+  ct-pa-26-15-developer-may-assume-deployer-duties for the other half.'
