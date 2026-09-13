@@ -182,6 +182,48 @@ def test_very_short_pages_are_a_known_limitation():
 # ── Failure modes report rather than pass ────────────────────────────────────
 
 
+def test_blank_page_does_not_truncate_the_document():
+    """Regression. The first implementation walked pages and stopped at the
+    first one with no text, so a blank divider page made everything after it
+    invisible: a six-page fixture returned three pages. A quote from a later
+    section then failed to match and was reported as a wrong claim, which is a
+    false alarm on a true claim, the one failure direction this checker cannot
+    afford."""
+    from reportlab.lib.pagesizes import letter
+    from reportlab.pdfgen import canvas
+    import io as _io
+
+    # Pages carry enough distinct lines to look like a real statute page. A
+    # one-line-per-page fixture would instead trip the short-page limitation
+    # pinned in test_very_short_pages_are_a_known_limitation and test nothing
+    # about truncation.
+    # The marker sits in the middle of the page, not at the top. A short line
+    # repeating at a page edge is indistinguishable from a running header and
+    # would be stripped, correctly, by the furniture heuristic. This test is
+    # about truncation, so it asserts on body text where that cannot interfere.
+    marker = "the quick brown fox jumps over the lazy dog on page"
+    buffer = _io.BytesIO()
+    pdf = canvas.Canvas(buffer, pagesize=letter)
+    for n in range(6):
+        if n != 3:  # page index 3 deliberately blank
+            y = 700
+            for j in range(9):
+                pdf.drawString(
+                    72, y,
+                    f"{marker} {n}" if j == 4
+                    else f"subsection {j} text unique to page {n} of this fixture act",
+                )
+                y -= 16
+        pdf.showPage()
+    pdf.save()
+
+    errors: list[str] = []
+    text = verifier.extract_pdf_text(buffer.getvalue(), "fixture", errors)
+    assert errors == []
+    for n in (0, 1, 2, 4, 5):
+        assert f"{marker} {n}" in text, f"page {n} was lost after the blank page"
+
+
 def test_unreadable_pdf_is_an_error_not_a_silent_pass():
     errors: list[str] = []
     result = verifier.extract_pdf_text(b"%PDF-1.4 truncated garbage", "fixture", errors)

@@ -191,7 +191,7 @@ def extract_pdf_text(raw: bytes, name: str, errors: list) -> str | None:
     the quote check silently covers only the sources that happen to be HTML.
     """
     try:
-        from pdfminer.high_level import extract_text_to_fp
+        from pdfminer.high_level import extract_text
         from pdfminer.layout import LAParams
     except ImportError:
         errors.append(
@@ -200,20 +200,23 @@ def extract_pdf_text(raw: bytes, name: str, errors: list) -> str | None:
         )
         return None
 
-    pages: list[str] = []
+    # One parse, then split on the form feed pdfminer writes between pages.
+    #
+    # The first version of this looped page by page and stopped at the first
+    # page with no text. That silently truncated the document at any blank
+    # page, and statutes do have blank dividers: a six-page fixture with one
+    # blank page at index 3 returned only the first three pages. Everything
+    # after the blank became invisible, so a quote from a later section failed
+    # to match and got reported as a wrong claim. That is a false alarm on a
+    # true claim, which is the one failure direction this checker must not
+    # have, because it trains people to ignore it.
     try:
-        for page_number in range(MAX_PDF_PAGES):
-            buffer = io.StringIO()
-            extract_text_to_fp(
-                io.BytesIO(raw), buffer, laparams=LAParams(), page_numbers=[page_number]
-            )
-            text = buffer.getvalue()
-            if not text.strip():
-                break
-            pages.append(text)
+        text = extract_text(io.BytesIO(raw), laparams=LAParams(), maxpages=MAX_PDF_PAGES)
     except Exception as exc:  # noqa: BLE001 - any parse failure is a check failure
         errors.append(f"{name}: could not read the PDF at this source: {type(exc).__name__}: {exc}")
         return None
+
+    pages = [page for page in text.split("\f") if page.strip()]
 
     if not pages:
         errors.append(
