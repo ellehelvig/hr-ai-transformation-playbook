@@ -1,0 +1,56 @@
+name: Claude Smoke Test
+
+# Manual only. Proves the plumbing works, nothing more.
+#
+# When an agent workflow fails there are five things it could be: the GitHub App
+# is not installed, the token is missing or invalid, the account is out of usage,
+# the action cannot run, or the prompt itself is at fault. A full agent run cannot
+# tell those apart, because it fails the same way for all five.
+#
+# This runs the smallest possible prompt with two tools and a five-turn cap. If it
+# passes, the plumbing is sound and any remaining failure is the prompt. If it
+# fails, the error is about one small thing instead of a whole research task.
+#
+# Delete this workflow once the real agents are running cleanly.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    name: Smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - uses: anthropics/claude-code-action@v1
+        continue-on-error: true
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: |
+            --max-turns 5
+            --debug
+            --allowedTools "Read,Write"
+          prompt: |
+            Read CLAUDE.md and write a file named smoke-result.md containing one
+            line: the number of CI gates listed in its "CI gates" section, and
+            nothing else. Do not change any other file.
+
+      - name: Report what happened
+        if: always()
+        run: |
+          echo "=== did the agent produce a file? ==="
+          if [ -f smoke-result.md ]; then
+            echo "PASS: agent ran, had tool access, and wrote a file."
+            cat smoke-result.md
+          else
+            echo "FAIL: no file produced. The step log above says why."
+            echo "Read the claude-code-action step output for the underlying error."
+            exit 1
+          fi

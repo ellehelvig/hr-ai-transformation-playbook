@@ -40,7 +40,7 @@ jobs:
           claude_args: |
             --model claude-sonnet-5
             --max-turns 35
-            --allowedTools "Read,Glob,Grep,Edit,Bash(git log:*),Bash(git diff:*),Bash(ls:*),Bash(find:*)"
+            --allowedTools "Read,Glob,Grep,Edit,Write,Bash(git log:*),Bash(git diff:*),Bash(ls:*),Bash(find:*)"
           prompt: |
             You are the monthly consistency auditor for this repository. Read
             CLAUDE.md first and follow every rule in it.
