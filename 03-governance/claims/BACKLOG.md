@@ -60,6 +60,18 @@ stay listed until someone resolves them properly.
   starting with the 2026 cycle due May 2027. `pay-equity-governance.md`
 - At least 17 states plus DC have active pay transparency laws as of 2026.
   `pay-equity-governance.md`
+- New Jersey LAD disparate-impact standard as applied to automated decision-making tools:
+  prohibited unless necessary to achieve a substantial, legitimate, nondiscriminatory interest
+  with no less discriminatory alternative, and whether the employer tested the tool for bias
+  may be weighed as relevant evidence. The January 2025 DCR guidance states this but rests it
+  on 56 N.J.R. 969(a), a rulemaking notice that has not been fetched, so the claim is asserted
+  in prose without its own anchored record. `risk-assessment-template.md`,
+  `04-enablement/hr-ai-literacy-curriculum.md`
+- New Jersey DCR disparate-impact rules. The January 2025 guidance cites them as proposed at
+  56 N.J.R. 969(a) (proposed section 13:16-3.2). Secondary reporting says DCR has since
+  adopted them. The adoption date and the N.J.A.C. citation are unverified against the New
+  Jersey Register, so no repo file asserts either. Resolve before any file cites the adopted
+  rules. Not currently asserted anywhere.
 - Connecticut Public Act 26-15 Section 8(a): the developer owes the deployer supporting
   information only where the technology was advertised, marketed, configured, contracted
   for, sold or licensed to materially influence an employment-related decision. The vendor

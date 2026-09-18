@@ -167,6 +167,15 @@ Two more California bills are **pending on the Governor's desk, not law**, with 
 *Texas: Responsible AI Governance Act (TRAIGA):*
 Effective January 1, 2026 (HB 149, signed June 22, 2025). Narrower than Illinois or Colorado: TRAIGA prohibits intentional AI-based discrimination but does not create disparate impact liability, and the Attorney General has exclusive enforcement authority with a 60-day cure period before action.
 
+*New Jersey: no AI statute, but existing discrimination law already reaches AI:*
+New Jersey is the case that breaks the habit of scanning for AI-specific bills. It has no AI hiring statute. In January 2025 the Office of the Attorney General and the Division on Civil Rights issued guidance stating that the Law Against Discrimination (N.J.S.A. 10:5-1 et seq.) applies to algorithmic discrimination the same way it has long applied to other discriminatory conduct, in employment among other contexts. Three points matter for HR practice:
+
+- **No intent required, and a vendor tool is not a defense.** The guidance states that a covered entity "is not shielded from liability for algorithmic discrimination that results from the entity's use of an automated decision-making tool simply because the tool was developed by a third party or because the entity does not understand the inner workings of the tool."
+- **Disparate impact is covered.** Use of a tool with a disproportionate effect on a protected class is prohibited unless it is necessary to achieve a substantial, legitimate, nondiscriminatory interest and there is no less discriminatory alternative. Whether the employer tested the tool for bias or evaluated alternatives may be weighed as relevant evidence, which is the same pattern as Connecticut: your fairness audit becomes evidence.
+- **Reasonable accommodations are in scope.** A tool can violate the LAD by being inaccessible or by penalizing someone who uses an accommodation. The guidance's example is a typing-speed screen that cannot read a non-traditional keyboard.
+
+Two limits to state accurately when you teach this. The guidance is interpretive: it says on its face that it imposes no requirements beyond the LAD and will not be enforced as a substitute for enforcing the LAD. And it carries no effective date, because the underlying statute has been in force for decades. Do not present it as a new obligation that switched on in 2025. The takeaway for the class is the general one: a state with no AI bill is not a state with no AI exposure.
+
 *GDPR and CCPA:*
 Employees in covered jurisdictions have rights regarding automated decision-making. Know which of your employees are covered and how your AI use cases interact with their rights. See the California-specific rules above for the current state of play there.
 
