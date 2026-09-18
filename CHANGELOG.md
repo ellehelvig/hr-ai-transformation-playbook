@@ -15,6 +15,7 @@ Added
 
 Changed
 
+- **Model cost tiers now price input and output separately, and name what moves the real number.** The table quoted one blended band per tier, which hid the fact that output runs roughly four to five times input at every tier. The Precision band topped out at $30/M, which no longer covers current flagship output pricing, and the Core floor of $3/M sat above the current mid-tier rate. Bands rechecked 18 September 2026 against each lab's own pricing page, which the section now links. Four repricing mechanisms are called out because a business case that ignores them will be wrong: batch and caching discounts, fast and priority premiums, long-context thresholds, and introductory rates that expire (at least one model on the table doubles on 1 January 2027). Tiers are still defined by role rather than product name, so the fix is numbers and caveats, not names.
 - **README regulatory currency claims now describe what actually runs.** The badge said regulatory content was verified weekly and the body said claims were re-checked weekly against statutes with docs updating within days. No automated verification had ever run successfully, so both were untrue. The badge now says primary sources are cited, which is accurate, and the currency section states that review is manual and periodic. The stronger claim goes back once the pipeline earns it.
 
 ## 2.2.0 (2026-09-12)
