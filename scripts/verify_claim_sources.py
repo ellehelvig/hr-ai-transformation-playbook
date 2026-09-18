@@ -35,6 +35,37 @@ MAX_PDF_PAGES = 600
 REPO = pathlib.Path(__file__).resolve().parent.parent
 CLAIMS_DIR = REPO / "03-governance" / "claims"
 
+# Prose cites a registry record with an HTML comment, which renders as nothing:
+#
+#     ... apply from 2 December 2027. <!--claim:eu-ai-act-annex3-employment-application-date-->
+#
+# Without this, a date lives in the registry and is separately retyped in up to
+# six documents, with nothing connecting the copies. Changing one and forgetting
+# the others fails silently, and a silently wrong date is the single worst defect
+# this repo can ship. The marker makes the link machine-checkable in both
+# directions.
+MARKER_RE = re.compile(r"<!--\s*claim:\s*([a-z0-9][a-z0-9-]*)\s*-->")
+
+# Directories that hold no prose worth scanning for markers.
+SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", ".ruff_cache", ".pytest_cache"}
+
+# A claim with no marker anywhere is not yet mechanically linked to the prose
+# that asserts it. That is a gap, not an error, and it is reported and counted
+# so it shrinks rather than hides. Enforcement begins for a claim the moment it
+# gains its first marker.
+#
+# Unverified claims work the same way, with a deadline attached. Every record
+# currently says `last_verified: never`, which the staleness check used to skip
+# entirely, so the control the registry advertises ran on nothing. Failing the
+# build on all of them today would block every merge, so instead the count is
+# printed loudly and the gate turns on for real on this date.
+UNVERIFIED_DEADLINE = dt.date(2026, 12, 31)
+
+MONTHS = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+]
+
 REQUIRED = [
     "id",
     "jurisdiction",
@@ -321,6 +352,21 @@ def check_schema(claims: list, errors: list) -> None:
 
         verified = claim.get("last_verified")
         if verified == "never":
+            # Never read by a human. This used to `continue` silently, which
+            # meant the staleness gate below ran on nothing at all: every record
+            # in the registry says "never", so the control the registry
+            # advertises was inert while appearing to work. A field nobody fills
+            # in is not a control.
+            #
+            # Failing the build on all of them today would block every merge, so
+            # the count is printed prominently by main() and the gate becomes
+            # real on UNVERIFIED_DEADLINE. The deadline is the commitment.
+            if today > UNVERIFIED_DEADLINE:
+                errors.append(
+                    f"{name}: last_verified is 'never' and the deadline for verifying the "
+                    f"registry ({UNVERIFIED_DEADLINE.isoformat()}) has passed. A human has to "
+                    "open the primary source, read it, and set last_verified."
+                )
             continue
         if verified and isinstance(interval, int):
             date = parse_date(verified, f"{name}: last_verified", errors)
@@ -333,6 +379,149 @@ def check_schema(claims: list, errors: list) -> None:
                         f"{name}: last verified {age} days ago, review interval is {interval}. "
                         "Re-check the primary source and update last_verified."
                     )
+
+
+def date_forms(date: dt.date) -> list[str]:
+    """The ways this repo's prose legitimately writes one date.
+
+    Both "2 December 2027" and "December 2027" count. Requiring the day would
+    fail documents that correctly say "December 2027", and the drift this check
+    exists to catch is a wholly different date, not an off-by-one day: the real
+    case was Annex III employment obligations moving from August 2026 to
+    December 2027.
+    """
+    month = MONTHS[date.month - 1]
+    return [
+        f"{date.day} {month} {date.year}",
+        f"{month} {date.day}, {date.year}",
+        f"{month} {date.year}",
+        date.isoformat(),
+    ]
+
+
+def paragraph_around(text: str, index: int) -> str:
+    """The blank-line-delimited block containing the character at `index`.
+
+    The date has to sit near its marker, not merely somewhere in a long
+    document, or the check passes on a coincidence.
+    """
+    start = text.rfind("\n\n", 0, index)
+    start = 0 if start == -1 else start + 2
+    end = text.find("\n\n", index)
+    end = len(text) if end == -1 else end
+    return text[start:end]
+
+
+def blank_code(text: str) -> str:
+    """Replace code spans and fenced blocks with spaces of the same length.
+
+    Documentation about the marker scheme has to be able to show a marker
+    without that example counting as a citation. This check found its own
+    README and CHANGELOG on the first run and reported the literal example
+    `<!--claim:id-->` as a dangling citation, which is the correct behavior for
+    prose and obviously wrong for a code sample.
+
+    Substituting spaces rather than deleting keeps every offset intact, so the
+    paragraph the drift gate reads is still the real one.
+    """
+    def blanker(match: re.Match) -> str:
+        return re.sub(r"[^\n]", " ", match.group(0))
+
+    text = re.sub(r"(?s)^```.*?^```", blanker, text, flags=re.MULTILINE)
+    return re.sub(r"`[^`\n]*`", blanker, text)
+
+
+def collect_markers() -> dict:
+    """Map claim id -> list of (repo-relative path, paragraph) for every marker."""
+    found: dict = {}
+    for path in sorted(REPO.rglob("*.md")):
+        if SKIP_DIRS & set(path.relative_to(REPO).parts):
+            continue
+        raw = path.read_text(encoding="utf-8")
+        if "<!--" not in raw:
+            continue
+        text = blank_code(raw)
+        rel = str(path.relative_to(REPO))
+        for match in MARKER_RE.finditer(text):
+            found.setdefault(match.group(1), []).append(
+                (rel, paragraph_around(raw, match.start()))
+            )
+    return found
+
+
+def check_markers(claims: list, errors: list) -> tuple[int, int]:
+    """Keep prose and registry from drifting apart. Returns (marked, unmarked).
+
+    Four rules, and each catches a different way the two can separate:
+
+    1. A marker naming an id that is not in the registry is a dangling citation.
+    2. A marker in a file the claim does not list in `asserted_in` means the
+       registry does not know where its claim is being made.
+    3. A file listed in `asserted_in` with no marker for that claim means the
+       prose dropped the claim, or never carried it, and the registry still
+       thinks it does.
+    4. For a claim with an `effective` date, the marker's own paragraph has to
+       state that date. This is the drift gate: change the date in the record
+       and every paragraph still showing the old one fails until it is fixed.
+
+    Rules 2 to 4 apply only to claims that already have at least one marker.
+    Adopting the scheme one claim at a time is the point; a claim with no marker
+    is counted as an unmarked gap instead of failing the build.
+    """
+    by_id = {c.get("id"): c for c in claims if c.get("id")}
+    markers = collect_markers()
+
+    for claim_id, sites in sorted(markers.items()):
+        if claim_id not in by_id:
+            where = ", ".join(sorted({path for path, _ in sites}))
+            errors.append(
+                f"{where}: marker cites '{claim_id}', which is not a record in "
+                "03-governance/claims/. Either the id is misspelled or the record was deleted."
+            )
+
+    marked = unmarked = 0
+    for claim in claims:
+        claim_id = claim.get("id")
+        name = claim["_path"].name
+        sites = markers.get(claim_id, [])
+        if not sites:
+            unmarked += 1
+            continue
+        marked += 1
+
+        asserted = {str(ref) for ref in (claim.get("asserted_in") or [])}
+        cited_in = {path for path, _ in sites}
+
+        for path in sorted(cited_in - asserted):
+            errors.append(
+                f"{name}: {path} carries a marker for this claim but is not listed in "
+                "asserted_in. Add it, so the registry knows every place the claim is made."
+            )
+
+        for path in sorted(asserted - cited_in):
+            errors.append(
+                f"{name}: asserted_in lists {path}, but that file has no "
+                f"<!--claim:{claim_id}--> marker. Either add the marker or drop the file."
+            )
+
+        effective = claim.get("effective")
+        if not effective:
+            continue
+        date = parse_date(effective, f"{name}: effective", errors)
+        if not date:
+            continue
+        accepted = [normalize(form).lower() for form in date_forms(date)]
+        for path, paragraph in sites:
+            haystack = normalize(paragraph).lower()
+            if not any(form in haystack for form in accepted):
+                errors.append(
+                    f"{name}: {path} cites this claim but its paragraph does not state "
+                    f"the effective date {date.isoformat()}. Expected one of: "
+                    f"{', '.join(date_forms(date))}. Either the prose is out of date or "
+                    "the record is."
+                )
+
+    return marked, unmarked
 
 
 def check_sources_online(claims: list, errors: list) -> None:
@@ -412,6 +601,7 @@ def main() -> int:
     errors: list = []
     claims = load_claims(errors)
     check_schema(claims, errors)
+    marked, unmarked = check_markers(claims, errors)
     if args.online and claims:
         check_sources_online(claims, errors)
 
@@ -421,11 +611,32 @@ def main() -> int:
         if isinstance(c.get("primary_source"), dict) and c["primary_source"].get("quote")
     ]
     verified = [c for c in claims if c.get("last_verified") not in (None, "never")]
-    print(f"Checked {len(claims)} claim records in 03-governance/claims/")
-    print(f"  anchored to a verbatim primary-source quote: {len(anchored)}/{len(claims)}")
-    print(f"  verified by a human at least once:           {len(verified)}/{len(claims)}")
+    total = len(claims)
+    today = dt.datetime.now(tz=dt.timezone.utc).date()
+
+    print(f"Checked {total} claim records in 03-governance/claims/")
+    print(f"  anchored to a verbatim primary-source quote: {len(anchored)}/{total}")
+    print(f"  verified by a human at least once:           {len(verified)}/{total}")
+    print(f"  linked to prose by a marker:                 {marked}/{total}")
     if args.online:
         print("Online mode: every primary source fetched and every quote compared.")
+
+    # These two gaps are the difference between a registry that documents rigor
+    # and one that enforces it. Printing them every run is deliberate: a number
+    # nobody sees is a number nobody moves.
+    if unmarked:
+        print(
+            f"\n{unmarked} claim(s) have no <!--claim:id--> marker in any prose, so the "
+            "date-drift check cannot run on them."
+        )
+    if len(verified) < total:
+        days = (UNVERIFIED_DEADLINE - today).days
+        state = f"{days} days remain" if days >= 0 else f"{-days} days overdue"
+        print(
+            f"{total - len(verified)} claim(s) have never been read by a human. "
+            f"The staleness gate starts failing the build on "
+            f"{UNVERIFIED_DEADLINE.isoformat()}: {state}."
+        )
 
     if errors:
         print("\nFAILED:")
