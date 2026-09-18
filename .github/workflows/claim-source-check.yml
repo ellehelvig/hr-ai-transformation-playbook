@@ -39,8 +39,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install PyYAML
-        run: pip install pyyaml
+      - name: Install dependencies
+        # pdfminer.six is needed because most US state legislatures publish
+        # enacted acts as PDF only. Without it, every PDF-sourced claim reports
+        # as unverifiable rather than being checked.
+        run: pip install pyyaml pdfminer.six
 
       - name: Verify every claim against its primary source
         id: check

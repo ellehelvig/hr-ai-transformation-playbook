@@ -1,0 +1,42 @@
+# Regulatory claim record. See 03-governance/claims/README.md.
+id: ct-pa-26-15-ai-not-a-defense
+jurisdiction: US-CT
+topic: Automated employment-related decision technology and discrimination defenses
+statement: From 1 October 2026, using an automated employment-related decision technology is
+  not a defense against a complaint alleging a discriminatory practice under Conn. Gen. Stat.
+  46a-60, and the commission or a court may consider evidence of anti-bias testing, including
+  its quality, efficacy, recency and scope, the results, and the employer's response to them.
+status: enacted-not-yet-effective
+effective: '2026-10-01'
+primary_source:
+  url: https://www.cga.ct.gov/2026/ACT/PA/PDF/2026PA-00015-R00SB-00005-PA.PDF
+  citation: Connecticut Public Act 26-15 (Substitute Senate Bill No. 5), Sections 13 and 14,
+    amending Conn. Gen. Stat. 46a-60(b) and 46a-81c
+  quote: The use of an automated employment-related decision technology, as defined in section
+    7 of this act, shall not be a defense against a complaint alleging a discriminatory practice
+    in violation of this subdivision.
+  retrieved: '2026-09-13'
+asserted_in:
+- 03-governance/risk-assessment-template.md
+- 04-enablement/hr-ai-literacy-curriculum.md
+last_verified: never
+verified_by: unverified
+review_interval_days: 90
+notes: 'The quote is from Section 13, at page 20 of 74 of the enrolled act, amending Conn.
+  Gen. Stat. 46a-60(b)(1). Section 14 carries parallel language at page 27 of 74 for sexual
+  orientation and civil union status, which is why the citation names both.
+
+  The quote was taken from the enrolled act PDF via text extraction, not typed from a human
+  reading, so last_verified stays never until someone opens the PDF and confirms it. The
+  online check anchors the words; a human still owes the reading.
+
+  The sentence that follows the quote is the operationally important half: the commission or
+  court may consider evidence of anti-bias testing, including its quality, efficacy, recency
+  and scope, the results, and the response to them. It is not in the quote field because that
+  sentence spans a page break in the source and is better verified as its own record once
+  someone has read it.
+
+  Watch the phasing: sections 7 to 12 also take effect 1 October 2026, but the developer and
+  deployer duties they create attach only to technology deployed on or after 1 October 2027.
+  This record covers only the discrimination-defense change, which has no such deferral. See
+  ct-pa-26-15-developer-may-assume-deployer-duties for the other half.'

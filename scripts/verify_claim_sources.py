@@ -19,12 +19,18 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import io
 import pathlib
 import re
 import sys
 import unicodedata
 
 import yaml
+
+# Upper bound on pages read from a source PDF. Connecticut PA 26-15 is 74 pages;
+# an omnibus act can be several hundred. The cap exists so a malformed or
+# adversarial PDF cannot spin the scheduled check forever.
+MAX_PDF_PAGES = 600
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 CLAIMS_DIR = REPO / "03-governance" / "claims"
@@ -81,6 +87,146 @@ def normalize(text: str) -> str:
     for bad, good in TRANSLATIONS.items():
         text = text.replace(bad, good)
     return re.sub(r"\s+", " ", text).strip()
+
+
+def normalize_for_match(text: str) -> str:
+    """normalize(), plus drop hyphens entirely, for comparing a quote to extracted text.
+
+    PDF text extraction loses the hyphen at a line break. The Connecticut act
+    reads "automated employment-related decision" in the document and comes out
+    of extraction as "automated employmentrelated decision" wherever that phrase
+    happened to wrap. A quote copied correctly from the statute would then fail
+    to match the very source it came from, which is the worst kind of check
+    failure: one that reports a true claim as false and trains people to ignore
+    it.
+
+    Dropping hyphens from both sides fixes that. The cost is that this cannot
+    tell "re-creation" from "recreation". For verifying that a sentence of
+    statutory text appears in a statute, that trade is obviously worth making.
+    """
+    return re.sub(r"[-‐‑]", "", normalize(text))
+
+
+# Page furniture ("Public Act No. 26-15 20 of 74") is short. Statutory body
+# lines are long. A cap separates them without needing page geometry, and keeps
+# the furniture stripper from eating a repeated sentence of real text.
+FURNITURE_MAX_LEN = 60
+
+# A line has to appear on this share of pages before it counts as furniture.
+FURNITURE_PAGE_SHARE = 0.6
+
+# Only lines this close to the top or bottom of a page are furniture candidates.
+# Position is the strongest signal available without page geometry: a running
+# header or footer is always at an edge. Without this, wildcarding the digits
+# makes any short body line that differs only by a number ("body text for page
+# 3", "Item 4 of 9") look like a footer and get stripped.
+FURNITURE_EDGE_LINES = 3
+
+
+def strip_page_furniture(pages: list[str]) -> str:
+    """Drop running headers and footers, then join the pages into one string.
+
+    Why this is needed at all: a statute PDF repeats its header and footer on
+    every page, and text extraction drops them into the middle of whatever
+    sentence spans the page break. In the Connecticut act the sentence
+
+        ... in violation of this subdivision. The commission or court may
+        consider evidence of anti-bias testing ...
+
+    extracts as "... in violation of this subdivision. The / Substitute Senate
+    Bill No. 5 / Public Act No. 26-15 20 of 74 / commission or court may ...".
+    Any quote crossing that boundary can never match, and the sentences worth
+    quoting are long, so they cross boundaries often.
+
+    A line counts as furniture when three things hold: it sits within
+    FURNITURE_EDGE_LINES of the top or bottom of its page, it is short, and it
+    appears on most pages with digits wildcarded so page numbers collapse
+    together. All three matter, and the third alone is not enough. Wildcarding
+    digits makes "Item 3 of 9" and "Item 4 of 9" the same shape, which is the
+    point for footers and a hazard for body text that differs only by a number.
+    Position and length are what keep the hazard contained.
+
+    Failure is safe in both directions: over-stripping or under-stripping makes
+    a quote fail to match, which surfaces to a human rather than passing a
+    claim that should not have passed.
+    """
+    if len(pages) < 3:
+        return " ".join(pages)
+
+    def shape(line: str) -> str:
+        return re.sub(r"\d+", "#", line.strip())
+
+    def edge_candidates(page: str) -> set[str]:
+        lines = [line.strip() for line in page.splitlines() if line.strip()]
+        edges = lines[:FURNITURE_EDGE_LINES] + lines[-FURNITURE_EDGE_LINES:]
+        return {line for line in edges if len(line) <= FURNITURE_MAX_LEN}
+
+    seen: dict[str, int] = {}
+    for page in pages:
+        for line in edge_candidates(page):
+            seen[shape(line)] = seen.get(shape(line), 0) + 1
+
+    threshold = max(2, int(len(pages) * FURNITURE_PAGE_SHARE))
+    furniture = {key for key, count in seen.items() if count >= threshold}
+
+    cleaned = []
+    for page in pages:
+        candidates = edge_candidates(page)
+        cleaned.append(
+            "\n".join(
+                line
+                for line in page.splitlines()
+                if not (line.strip() in candidates and shape(line) in furniture)
+            )
+        )
+    return " ".join(cleaned)
+
+
+def extract_pdf_text(raw: bytes, name: str, errors: list) -> str | None:
+    """Extract text from a PDF body, or record an error and return None.
+
+    Most US state legislatures publish enacted acts as PDF only. Connecticut
+    does; so do Colorado, Illinois and Texas. Without this, the registry can
+    never quote-anchor a state statute, which is most of the US backlog, and
+    the quote check silently covers only the sources that happen to be HTML.
+    """
+    try:
+        from pdfminer.high_level import extract_text
+        from pdfminer.layout import LAParams
+    except ImportError:
+        errors.append(
+            f"{name}: source is a PDF but pdfminer.six is not installed. "
+            "`pip install pdfminer.six`, or see requirements.txt."
+        )
+        return None
+
+    # One parse, then split on the form feed pdfminer writes between pages.
+    #
+    # The first version of this looped page by page and stopped at the first
+    # page with no text. That silently truncated the document at any blank
+    # page, and statutes do have blank dividers: a six-page fixture with one
+    # blank page at index 3 returned only the first three pages. Everything
+    # after the blank became invisible, so a quote from a later section failed
+    # to match and got reported as a wrong claim. That is a false alarm on a
+    # true claim, which is the one failure direction this checker must not
+    # have, because it trains people to ignore it.
+    try:
+        text = extract_text(io.BytesIO(raw), laparams=LAParams(), maxpages=MAX_PDF_PAGES)
+    except Exception as exc:  # noqa: BLE001 - any parse failure is a check failure
+        errors.append(f"{name}: could not read the PDF at this source: {type(exc).__name__}: {exc}")
+        return None
+
+    pages = [page for page in text.split("\f") if page.strip()]
+
+    if not pages:
+        errors.append(
+            f"{name}: the PDF at this source produced no extractable text. "
+            "It may be a scan needing OCR, in which case quote-anchor a different "
+            "primary source rather than this one."
+        )
+        return None
+
+    return strip_page_furniture(pages)
 
 
 def parse_date(value, where: str, errors: list) -> dt.date | None:
@@ -219,24 +365,34 @@ def check_sources_online(claims: list, errors: list) -> None:
             errors.append(f"{name}: could not fetch {url}: {exc}")
             continue
 
-        try:
-            text = raw.decode("utf-8", errors="replace")
-        except UnicodeDecodeError:
-            errors.append(f"{name}: could not decode {url}")
-            continue
+        # Detect PDF by magic bytes rather than by a .pdf suffix on the URL.
+        # Legislature sites serve PDFs from extensionless and query-string URLs
+        # often enough that trusting the suffix would miss them, and a
+        # misdetected PDF fails as "quote not found", which reads as a bad claim
+        # rather than as an unsupported format.
+        if raw[:5] == b"%PDF-":
+            text = extract_pdf_text(raw, name, errors)
+            if text is None:
+                continue
+        else:
+            try:
+                text = raw.decode("utf-8", errors="replace")
+            except UnicodeDecodeError:
+                errors.append(f"{name}: could not decode {url}")
+                continue
 
-        text = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", text)
-        text = re.sub(r"(?s)<[^>]+>", " ", text)
-        text = (
-            text.replace("&nbsp;", " ")
-            .replace("&amp;", "&")
-            .replace("&quot;", '"')
-            .replace("&#39;", "'")
-            .replace("&lt;", "<")
-            .replace("&gt;", ">")
-        )
+            text = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", text)
+            text = re.sub(r"(?s)<[^>]+>", " ", text)
+            text = (
+                text.replace("&nbsp;", " ")
+                .replace("&amp;", "&")
+                .replace("&quot;", '"')
+                .replace("&#39;", "'")
+                .replace("&lt;", "<")
+                .replace("&gt;", ">")
+            )
 
-        if normalize(str(quote)) not in normalize(text):
+        if normalize_for_match(str(quote)) not in normalize_for_match(text):
             errors.append(
                 f"{name}: the quote no longer appears in {url}. "
                 "Either the source changed or the quote is wrong. Do not merge "

@@ -53,6 +53,38 @@ blocks a merge:
 - a quote that no longer matches means either the source moved or the quote is wrong, and
   both need a human before anything resting on that claim is merged
 
+## PDF sources
+
+Most US state legislatures publish enacted acts as PDF only. Connecticut does, and so do
+Colorado, Illinois and Texas, so a registry that could only check HTML would leave most of
+the US backlog permanently unverifiable.
+
+The checker detects a PDF by its magic bytes rather than a `.pdf` suffix, since legislature
+sites serve PDFs from extensionless and query-string URLs, and extracts text with
+pdfminer.six. Two quirks of statute PDFs are handled, both discovered on the real
+Connecticut act:
+
+- **Running headers land mid-sentence.** Extraction drops the page header and footer into
+  whatever sentence spans the page break, so a quote crossing a boundary can never match.
+  Short lines that repeat at the top or bottom of most pages are stripped first. Position
+  and length both matter: without them, a repeated line of real statutory text gets stripped
+  too.
+- **Hyphens vanish at line breaks.** "employment-related" comes out as "employmentrelated"
+  wherever the phrase happened to wrap. Comparison is therefore hyphen-insensitive on both
+  sides. This cannot tell "re-creation" from "recreation", which is an acceptable trade for
+  matching a sentence of statutory text.
+
+Both are heuristics, and both fail in the safe direction: a quote that does not match is
+reported to a human rather than passed. A scanned, image-only PDF produces no text and says
+so, which means anchoring a different primary source rather than that one.
+
+`scripts/test_verify_claim_sources.py` pins all of this against PDF fixtures generated in
+the test run, so the logic is testable without fetching a government website.
+
+Quoting from a PDF is still weaker evidence than a human reading it. The quote proves the
+words are in the document; `last_verified` is what records that a person read them in
+context. Extraction alone never sets `last_verified`.
+
 ## Adding or updating a claim
 
 1. One claim per record. If a sentence in the docs makes two claims, it needs two records.

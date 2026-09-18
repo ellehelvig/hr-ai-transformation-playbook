@@ -1,0 +1,42 @@
+# Regulatory claim record. See 03-governance/claims/README.md.
+id: ct-pa-26-15-developer-may-assume-deployer-duties
+jurisdiction: US-CT
+topic: Allocation of automated employment decision duties between developer and deployer
+statement: Connecticut Public Act 26-15 Section 8(c) permits the developer of an automated
+  employment-related decision technology to contract with a deployer to assume the deployer's
+  duties under Sections 9 and 10, provided the contract is binding and states clearly which
+  duties the developer has assumed.
+status: enacted-not-yet-effective
+effective: '2026-10-01'
+primary_source:
+  url: https://www.cga.ct.gov/2026/ACT/PA/PDF/2026PA-00015-R00SB-00005-PA.PDF
+  citation: Connecticut Public Act 26-15 (Substitute Senate Bill No. 5), Section 8(c)
+  quote: The developer of an automated employment-related decision technology may enter into
+    a contract with a deployer of the automated employment-related decision technology to
+    assume the deployer's duties under sections 9 and 10 of this act.
+  retrieved: '2026-09-13'
+asserted_in:
+- 03-governance/vendor-intake-checklist.md
+- 04-enablement/hr-ai-literacy-curriculum.md
+last_verified: never
+verified_by: unverified
+review_interval_days: 90
+notes: 'The quote is from Section 8(c), at page 17 of 74 of the enrolled act. It was taken by
+  text extraction rather than a human reading, so last_verified stays never until someone
+  opens the PDF and confirms it.
+
+  Two dates apply and conflating them would be the easy mistake. Section 8 itself takes
+  effect 1 October 2026, so the contracting option exists from that date and is worth raising
+  in vendor negotiations happening now. The underlying Section 9 and 10 duties, which are
+  what a developer would be assuming, attach only to technology deployed in the state on or
+  after 1 October 2027. The effective date above is the earlier one, because the claim as
+  asserted in vendor-intake-checklist.md is about what you can negotiate today.
+
+  Section 8(c) also requires that the contract be binding and clearly set forth which duties
+  the developer has assumed. That requirement is not in the quote field because it is the
+  following sentence, and one record holds one claim.
+
+  Related and not yet registered: Section 8(a) obliges the developer to hand over supporting
+  information only where the technology was advertised, marketed, configured, contracted for,
+  sold or licensed to materially influence an employment-related decision. The vendor
+  checklist relies on that scoping, so it needs its own record.'
