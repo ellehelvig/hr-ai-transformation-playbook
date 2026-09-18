@@ -35,6 +35,41 @@ fixes all three.
 | `review_interval_days` | yes | How long before this claim goes stale. |
 | `notes` | no | What is still unresolved about this record. |
 
+## Linking a claim to the prose that makes it
+
+A date in a record is only useful if the documents asserting it say the same thing. Prose
+cites a record with an HTML comment, which renders as nothing:
+
+```markdown
+Obligations for high-risk AI systems in employment apply from 2 December 2027.
+<!--claim:eu-ai-act-annex3-employment-application-date-->
+```
+
+Without the marker, a date lives in the registry and is separately retyped in up to six
+documents with nothing connecting the copies. Change one, forget the others, and the build
+stays green while the repo contradicts itself. A silently wrong effective date is the worst
+defect this repo can ship, because a reader acts on it.
+
+With the marker, four things become mechanical:
+
+- a marker naming an id that does not exist is a dangling citation and fails
+- a marker in a file the record does not list in `asserted_in` fails, so the registry always
+  knows every place its claim is made
+- a file in `asserted_in` with no marker fails, catching prose that dropped the claim
+- **the drift gate**: for a claim with an `effective` date, the marker's own paragraph has to
+  state that date. Change the date in the record and every paragraph still showing the old
+  one fails by name until it is fixed
+
+The date may be written `2 December 2027`, `December 2, 2027`, `December 2027`, or
+`2027-12-02`. Month and year without the day is accepted deliberately: prose legitimately
+says "December 2027", and the drift worth catching is a wholly different date, not an
+off-by-one day.
+
+The last three rules apply only to claims that already carry at least one marker. Adoption is
+per record. A claim with no marker anywhere is counted as an unmarked gap and printed on every
+run, not failed, so the scheme can be taken up one record at a time and the gap shrinks
+visibly.
+
 ## What the checks do
 
 Offline, on every push:
@@ -42,8 +77,9 @@ Offline, on every push:
 - schema, unique ids, filename matches id, `asserted_in` files exist
 - dates parse, `last_verified` is not in the future
 - a claim past its `review_interval_days` fails the build
+- marker rules and the drift gate, for every claim that carries a marker
 - no em dashes
-- prints how many claims are anchored to a quote and how many a human has verified
+- prints how many claims are anchored to a quote, verified by a human, and linked by a marker
 
 Online, on a schedule rather than on every push, so a government website being down never
 blocks a merge:
@@ -93,6 +129,21 @@ context. Extraction alone never sets `last_verified`.
    general entry into force.
 4. State status precisely. A pending bill is never described as law.
 5. Set `last_verified` only when you have personally opened the source and read it.
+6. Add a `<!--claim:id-->` marker in every file listed in `asserted_in`, in the paragraph
+   that states the claim.
+
+## The unverified deadline
+
+`last_verified: never` used to skip the staleness check entirely. Since every record says
+`never`, the control the registry advertises ran on nothing while appearing to work. A field
+nobody fills in is not a control.
+
+Failing the build on all of them at once would block every merge, so the gate is dated rather
+than absent: `UNVERIFIED_DEADLINE` in `scripts/verify_claim_sources.py` is **31 December
+2026**. Until then, unverified records are counted and printed on every run. After it, they
+fail the build.
+
+The deadline is the commitment. Move it only with a reason worth writing down.
 
 ## Current state
 

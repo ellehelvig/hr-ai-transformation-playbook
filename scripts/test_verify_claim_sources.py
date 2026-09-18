@@ -9,6 +9,7 @@ Run:  pytest scripts -q
 
 from __future__ import annotations
 
+import datetime as _dt
 import importlib.util
 import sys
 from pathlib import Path
@@ -255,3 +256,162 @@ def test_pdf_detected_by_magic_bytes_not_url_suffix():
     reads as a bad claim rather than an unsupported format."""
     assert b"%PDF-"[:5] == b"%PDF-"
     assert not b"<!DOCTYPE html>".startswith(b"%PDF-")
+
+
+# ---------------------------------------------------------------------------
+# Marker and drift gate
+#
+# The defect these pin: a statute date lives in the registry and is separately
+# retyped in up to six documents. Nothing connected the copies, so changing one
+# and forgetting the others failed silently. A silently wrong effective date is
+# the worst thing this repo can ship, because a reader acts on it.
+# ---------------------------------------------------------------------------
+
+
+def test_date_forms_accepts_the_ways_this_repo_writes_a_date():
+    forms = verifier.date_forms(_dt.date(2027, 12, 2))
+    assert "2 December 2027" in forms
+    assert "December 2, 2027" in forms
+    assert "2027-12-02" in forms
+
+
+def test_date_forms_includes_month_and_year_without_the_day():
+    """Prose legitimately says "December 2027". Requiring the day would fail
+    correct documents, and the drift worth catching is a wholly different date:
+    the real case moved August 2026 to December 2027."""
+    assert "December 2027" in verifier.date_forms(_dt.date(2027, 12, 2))
+
+
+def test_paragraph_around_stops_at_blank_lines():
+    """The date has to sit near its marker. Searching the whole document would
+    pass on a coincidence somewhere else on the page."""
+    text = "First para with 2 August 2026.\n\nSecond para here.\n\nThird para."
+    index = text.index("Second")
+    para = verifier.paragraph_around(text, index)
+    assert para == "Second para here."
+    assert "2 August 2026" not in para
+
+
+def test_paragraph_around_handles_first_and_last_paragraph():
+    text = "Only one paragraph, no blank lines at all."
+    assert verifier.paragraph_around(text, 5) == text
+
+
+def _claim(**over):
+    base = {
+        "id": "demo-claim",
+        "jurisdiction": "EU",
+        "topic": "demo",
+        "statement": "demo",
+        "status": "in-force",
+        "primary_source": {"url": "https://example.org", "citation": "demo"},
+        "asserted_in": ["README.md"],
+        "last_verified": "never",
+        "verified_by": "unverified",
+        "review_interval_days": 90,
+        "_path": Path("demo-claim.yml"),
+    }
+    base.update(over)
+    return base
+
+
+def test_drift_gate_fires_when_prose_keeps_the_old_date(monkeypatch):
+    """Change the date in the record, leave the prose alone, fail the build."""
+    monkeypatch.setattr(
+        verifier,
+        "collect_markers",
+        lambda: {"demo-claim": [("README.md", "Applies from 2 August 2026. <!--claim:demo-claim-->")]},
+    )
+    errors: list[str] = []
+    verifier.check_markers([_claim(effective="2027-12-02")], errors)
+    assert len(errors) == 1
+    assert "does not state the effective date 2027-12-02" in errors[0]
+    assert "2 December 2027" in errors[0]
+
+
+def test_drift_gate_passes_when_prose_matches(monkeypatch):
+    monkeypatch.setattr(
+        verifier,
+        "collect_markers",
+        lambda: {"demo-claim": [("README.md", "Applies from 2 December 2027. <!--claim:demo-claim-->")]},
+    )
+    errors: list[str] = []
+    marked, unmarked = verifier.check_markers([_claim(effective="2027-12-02")], errors)
+    assert errors == []
+    assert (marked, unmarked) == (1, 0)
+
+
+def test_marker_citing_an_unknown_id_is_a_dangling_citation(monkeypatch):
+    monkeypatch.setattr(
+        verifier, "collect_markers", lambda: {"no-such-claim": [("README.md", "text")]}
+    )
+    errors: list[str] = []
+    verifier.check_markers([_claim()], errors)
+    assert any("not a record" in e for e in errors)
+
+
+def test_marker_in_a_file_missing_from_asserted_in_fails(monkeypatch):
+    """Caught a real gap: 2 August 2028 appeared in deployer-checklist.md while
+    the Annex I record listed only the intake template."""
+    monkeypatch.setattr(
+        verifier,
+        "collect_markers",
+        lambda: {"demo-claim": [("other.md", "text <!--claim:demo-claim-->")]},
+    )
+    errors: list[str] = []
+    verifier.check_markers([_claim(asserted_in=["README.md"])], errors)
+    assert any("not listed in asserted_in" in e for e in errors)
+    assert any("has no" in e and "marker" in e for e in errors)
+
+
+def test_claim_with_no_marker_anywhere_is_counted_not_failed(monkeypatch):
+    """Adoption is per claim. An unmarked claim is a visible gap, not a broken
+    build, so the scheme can be taken up one record at a time."""
+    monkeypatch.setattr(verifier, "collect_markers", lambda: {})
+    errors: list[str] = []
+    marked, unmarked = verifier.check_markers([_claim(effective="2027-12-02")], errors)
+    assert errors == []
+    assert (marked, unmarked) == (0, 1)
+
+
+def test_unverified_claim_does_not_fail_before_the_deadline():
+    """Every record says last_verified: never. Failing today would block every
+    merge, so the gate is dated rather than absent."""
+    assert verifier.UNVERIFIED_DEADLINE > _dt.date(2026, 9, 18)
+    errors: list[str] = []
+    verifier.check_schema([_claim()], errors)
+    assert errors == []
+
+
+def test_never_no_longer_silently_skips_the_staleness_gate(monkeypatch):
+    """The original bug: `never` hit a bare `continue`, so the staleness check
+    ran on nothing at all while appearing to work."""
+    monkeypatch.setattr(verifier, "UNVERIFIED_DEADLINE", _dt.date(2020, 1, 1))
+    errors: list[str] = []
+    verifier.check_schema([_claim()], errors)
+    assert any("deadline for verifying" in e for e in errors)
+
+
+def test_marker_inside_a_code_fence_is_not_a_citation():
+    """Documentation has to be able to show a marker. This check flagged its own
+    README on the first run, reporting the literal example as a dangling
+    citation."""
+    text = "Real one here. <!--claim:real-id-->\n\n```markdown\n<!--claim:example-id-->\n```\n"
+    cleaned = verifier.blank_code(text)
+    found = {m.group(1) for m in verifier.MARKER_RE.finditer(cleaned)}
+    assert found == {"real-id"}
+
+
+def test_marker_inside_backticks_is_not_a_citation():
+    """The CHANGELOG describes the scheme as `<!--claim:id-->` in inline code."""
+    text = "Prose cites a record with `<!--claim:id-->`, which renders as nothing."
+    assert verifier.MARKER_RE.search(verifier.blank_code(text)) is None
+
+
+def test_blanking_code_preserves_offsets_so_paragraphs_stay_correct():
+    """Spaces rather than deletion, so the paragraph the drift gate reads is
+    still the real one and the date it looks for is still in it."""
+    text = "Applies from `2 December 2027` per the record. <!--claim:demo-->"
+    cleaned = verifier.blank_code(text)
+    assert len(cleaned) == len(text)
+    assert cleaned.index("<!--claim:demo-->") == text.index("<!--claim:demo-->")

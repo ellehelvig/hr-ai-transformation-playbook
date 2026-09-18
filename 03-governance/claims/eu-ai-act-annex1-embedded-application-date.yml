@@ -10,6 +10,7 @@ primary_source:
   url: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32026R1744
   citation: Regulation (EU) 2026/1744, amending Article 113 of Regulation (EU) 2024/1689
 asserted_in:
+- 03-governance/deployer-checklist.md
 - 03-governance/eu-ai-act-intake-template.md
 last_verified: never
 verified_by: unverified
