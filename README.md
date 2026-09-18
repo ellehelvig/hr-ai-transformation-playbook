@@ -1,6 +1,4 @@
-# HR AI Transformation Playbook
-
-A working toolkit for HR and People teams putting AI into production responsibly: use cases, prompts, governance that survives legal review, executable notebooks, a tested MCP server, and installable agent skills.
+HR AI transformation toolkit: vetted use cases, governance cited to primary sources, a tested MCP server, installable agent skills, executable notebooks, and launch-blocking evals. MIT.
 
 [![CI](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
