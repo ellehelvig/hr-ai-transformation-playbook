@@ -131,14 +131,23 @@ A common mistake in HR AI budgeting is treating API costs as cost-per-prompt. Th
 
 Pick the tier, then pick whatever currently sits in it. Frontier model names and version numbers move faster than this repo does, so the tiers below are defined by role and price band rather than by product name.
 
-| Tier | Use case | What sits here | Approx cost |
-|---|---|---|---|
-| **Precision** | High-stakes decisions, legal review, complex reasoning | Each lab's current flagship (the Opus, GPT-*n*, and Gemini Ultra/Pro lines) | ~$5–30/M tokens |
-| **Core** | Majority of everyday HR agent work | The mid-tier workhorse (Sonnet-class, Gemini Pro-class) | ~$3–15/M tokens |
-| **Volume** | High-throughput triage, classification, routing | The small fast model (Haiku-class, Flash-class, Mini-class) | ~$0.40–4/M tokens |
-| **Reasoning** | Multi-step planning, complex tool use, deep analysis | Extended-thinking or reasoning mode on a Precision or Core model, rather than a separate product | Use-case dependent |
+Quote input and output separately. A single blended figure hides the fact that output runs roughly four to five times input at every tier, which is the number that decides whether a use case is affordable.
 
-The cost bands were last checked September 2026. Verify current list prices before you build a business case on them, and re-check the tier mapping roughly quarterly, since labs routinely ship a new flagship and reprice the tier below it in the same week.
+| Tier | Use case | What sits here | Input /M | Output /M |
+|---|---|---|---|---|
+| **Precision** | High-stakes decisions, legal review, complex reasoning | Each lab's current flagship (the Opus and Fable lines, GPT-*n* flagship, Gemini Pro) | ~$5–10 | ~$25–50 |
+| **Core** | Majority of everyday HR agent work | The mid-tier workhorse (Sonnet-class, mid GPT-5.x-class) | ~$2–4 | ~$10–20 |
+| **Volume** | High-throughput triage, classification, routing | The small fast model (Haiku-class, Flash-class, Luna/Mini/Nano-class) | ~$0.20–1 | ~$1–5 |
+| **Reasoning** | Multi-step planning, complex tool use, deep analysis | Extended-thinking or reasoning mode on a Precision or Core model, rather than a separate product | Use-case dependent | Use-case dependent |
+
+Four things move the real number well outside these bands, and a business case that ignores them will be wrong:
+
+- **Batch and caching cut it.** Batch APIs run about 50 percent off across all three labs. A cache hit bills at roughly 10 percent of the input price, or less on some models. An HR agent answering policy questions over a fixed corpus is the ideal shape for both.
+- **Speed and priority tiers cost a premium.** Fast or priority modes run about 2x the standard rate on the same model.
+- **Long context can reprice the request.** At least one flagship charges roughly double input and 1.5x output once a request crosses its long-context threshold.
+- **Some current prices are introductory.** Several models on this table step up on 1 January 2027, in at least one case doubling. Check the expiry, not just the rate, before you put a number in a multi-year business case.
+
+The bands were checked on 18 September 2026 against each lab's own pricing page: [Anthropic](https://platform.claude.com/docs/en/about-claude/pricing), [OpenAI](https://developers.openai.com/api/docs/pricing), [Google](https://ai.google.dev/gemini-api/docs/pricing). Verify current list prices there before you build a business case on them, and re-check the tier mapping roughly quarterly, since labs routinely ship a new flagship and reprice the tier below it in the same week.
 
 **A practical cost strategy:** Use a Precision tier model to generate high-quality example outputs for your use case. Feed those as demonstrations into a Core or Volume tier model for production. Teams have cut costs significantly this way without meaningful quality loss, the cheaper model learns what good looks like from the expensive model's examples.
 
