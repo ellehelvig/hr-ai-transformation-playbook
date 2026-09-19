@@ -40,10 +40,10 @@ Neither order repeals disparate-impact liability. It remains codified in Title V
 Regardless of how you adapt these templates, three things are not optional:
 
 1. **Humans make consequential employment decisions.** AI may inform, not decide.
-2. **Employees have a right to know** when AI influences processes that affect them.
-3. **Fairness audits** on any use case that scores or ranks employees or candidates.
+2. **Provide notice and transparency** when AI influences processes that affect employees or candidates.
+3. **Require fairness assessment and monitoring** for any use case that scores or ranks employees or candidates.
 
-If your governance framework does not protect these three things, it is not enough.
+These are playbook design standards. Applicable legal requirements vary by jurisdiction and use case. If your governance framework does not protect these three things, it is not enough.
 
 ## Skills that run these documents
 
