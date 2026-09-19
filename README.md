@@ -99,7 +99,7 @@ Every template, prompt, tool, and skill here is built to hold those lines. If yo
 
 Covers the EU (AI Act, GDPR Article 22), the US (Title VII, NYC Local Law 144, Illinois, Colorado, California, Texas), the UK (Data (Use and Access) Act 2025), and Canada (Ontario disclosure rule). Does not cover APAC, Latin America, the Middle East, or Africa; get local counsel there.
 
-Claims are dated in the docs and checked against primary sources rather than secondary summaries. Review is currently manual and periodic, not continuous. Automated source monitoring is being built, and this section will state the real cadence once it runs. Material changes land in [CHANGELOG.md](CHANGELOG.md). If you spot something stale, use the [regulatory update issue template](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new?template=regulatory-update.md) with a citation.
+Claims are dated in the docs and checked against primary sources rather than secondary summaries. A credential-free workflow checks every registered primary-source URL weekly and compares stored quotations where available. It opens or updates one review issue when a source is unreachable or no longer contains its quotation, then closes that issue after a healthy recovery run. Automated checks do not replace human legal verification. Material changes land in [CHANGELOG.md](CHANGELOG.md). If you spot something stale, use the [regulatory update issue template](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new?template=regulatory-update.md) with a citation.
 
 None of this is legal advice. Every governance document should be reviewed by Legal and Privacy before adoption.
 
