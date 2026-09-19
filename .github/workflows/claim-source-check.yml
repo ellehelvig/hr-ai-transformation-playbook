@@ -54,7 +54,18 @@ jobs:
           set -e
           cat result.txt
 
-      - name: Open an issue when a source no longer supports its claim
+      - name: Publish the check summary
+        if: always()
+        run: |
+          {
+            echo '## Weekly claim source check'
+            echo
+            echo '```text'
+            cat result.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update the review issue
         if: steps.check.outputs.exit != '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -70,7 +81,38 @@ jobs:
             cat result.txt
             echo '```'
           } > body.md
-          gh issue create \
-            --title "Claim source check failed for $(date -u +%Y-%m-%d)" \
+          issue_number="$(gh issue list \
+            --state open \
             --label regulatory \
-            --body-file body.md
+            --json number,title \
+            --jq '[.[] | select(.title == "Weekly claim source check needs review" or (.title | startswith("Claim source check failed for ")))] | first | .number // empty')"
+
+          if [ -n "$issue_number" ]; then
+            gh issue edit "$issue_number" --title "Weekly claim source check needs review"
+            gh issue comment "$issue_number" --body-file body.md
+          else
+            gh issue create \
+              --title "Weekly claim source check needs review" \
+              --label regulatory \
+              --body-file body.md
+          fi
+
+      - name: Close a resolved review issue
+        if: steps.check.outputs.exit == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          issue_number="$(gh issue list \
+            --state open \
+            --label regulatory \
+            --json number,title \
+            --jq '[.[] | select(.title == "Weekly claim source check needs review" or (.title | startswith("Claim source check failed for ")))] | first | .number // empty')"
+
+          if [ -n "$issue_number" ]; then
+            gh issue close "$issue_number" \
+              --comment "The weekly primary-source check is passing again. Closing automatically."
+          fi
+
+      - name: Mark the scheduled check unsuccessful
+        if: steps.check.outputs.exit != '0'
+        run: exit 1
