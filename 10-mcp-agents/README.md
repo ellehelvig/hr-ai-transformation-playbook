@@ -1,5 +1,11 @@
 # 10. MCP agents
 
+> **10 / BUILD** · Put deterministic controls behind narrow, inspectable HR tools.
+
+[← Evals](../09-evals/README.md) · [Playbook home](../README.md) · [Next: Skills →](../11-skills/README.md)
+
+---
+
 Four working HR agent tools, exposed on one MCP server, built to close
 specific gaps this playbook had already identified in its own governance
 and use-case docs, not built as generic demos.

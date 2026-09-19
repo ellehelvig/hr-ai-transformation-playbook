@@ -1,5 +1,11 @@
 # Governance
 
+> **03 / GOVERN** · Translate principles, laws, and risk decisions into operating controls.
+
+[← Prompt library](../02-prompt-library/README.md) · [Playbook home](../README.md) · [Next: Enablement →](../04-enablement/README.md)
+
+---
+
 Frameworks for responsible AI adoption in HR, structured around the NIST AI Risk Management Framework 1.0 (Govern, Map, Measure, Manage) and ISO/IEC 42001. None of this is legal advice. All documents should be reviewed by Legal and Privacy before adoption.
 
 ## Contents

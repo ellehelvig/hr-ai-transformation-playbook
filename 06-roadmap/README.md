@@ -1,5 +1,11 @@
 # Roadmap
 
+> **06 / SEQUENCE** · Move from ambition to phased investment, learning, and explicit gates.
+
+[← Notebooks](../05-notebooks/README.md) · [Playbook home](../README.md) · [Next: Agent patterns →](../07-agentic-patterns/README.md)
+
+---
+
 Planning templates for HR AI transformation programs. These are not aspirational decks, they are working artifacts designed to survive contact with reality. Clean HRIS data isn't, budgets get cut, executive sponsors change. The roadmap that works is the one that accounts for that.
 
 ## Contents

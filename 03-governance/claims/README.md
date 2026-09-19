@@ -1,5 +1,11 @@
 # Regulatory claims registry
 
+> **GOVERNANCE / EVIDENCE** · Trace dated legal claims to primary sources and scheduled checks.
+
+[← Governance](../README.md) · [Playbook home](../../README.md)
+
+---
+
 Every dated or status-bearing legal claim in this repo gets a record here, one file per
 claim. The record names the primary source, and where possible pins a verbatim quote from
 it. `scripts/verify_claim_sources.py` then checks the registry mechanically.

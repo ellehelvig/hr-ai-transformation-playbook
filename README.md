@@ -1,9 +1,35 @@
-HR AI transformation toolkit: vetted use cases, governance cited to primary sources, a tested MCP server, installable agent skills, executable notebooks, and launch-blocking evals. MIT.
+<p align="center">
+  <img src=".github/assets/playbook-banner.svg" alt="HR AI Transformation Playbook" width="100%">
+</p>
 
-[![CI](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
-[![Regulatory content: primary sources cited](https://img.shields.io/badge/regulatory%20content-primary%20sources%20cited-blue.svg)](03-governance/README.md)
-[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
+<p align="center">
+  A practical, inspectable system for moving HR AI from scattered experiments to responsible adoption.
+</p>
+
+<p align="center">
+  <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&amp;style=flat-square&amp;label=quality"></a>
+  <a href="03-governance/README.md"><img alt="Governance" src="https://img.shields.io/badge/governance-primary%20sources-8b7cff?style=flat-square"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-61ddec?style=flat-square"></a>
+  <a href="CONTRIBUTING.md"><img alt="Contributions" src="https://img.shields.io/badge/contributions-welcome-a4aec2?style=flat-square"></a>
+</p>
+
+<p align="center">
+  <a href="01-use-cases/README.md">Discover</a> ·
+  <a href="03-governance/README.md">Govern</a> ·
+  <a href="04-enablement/README.md">Enable</a> ·
+  <a href="07-agentic-patterns/README.md">Design</a> ·
+  <a href="09-evals/README.md">Evaluate</a> ·
+  <a href="08-roi-measurement/README.md">Measure</a>
+</p>
+
+---
+
+## The operating system for HR AI adoption
+
+| Decide | Design | Govern | Adopt | Prove |
+|---|---|---|---|---|
+| Prioritize the right use cases | Build workflows with human boundaries | Translate policy into enforceable gates | Create capability and trust | Measure behavior, risk, and value |
+| [Use cases](01-use-cases/README.md) | [Agent patterns](07-agentic-patterns/README.md) | [Governance](03-governance/README.md) | [Enablement](04-enablement/README.md) | [Evals](09-evals/README.md) and [ROI](08-roi-measurement/README.md) |
 
 ---
 

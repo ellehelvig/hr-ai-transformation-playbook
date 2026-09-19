@@ -1,5 +1,11 @@
 # Notebooks
 
+> **05 / EXPLORE** · Inspect executable examples using synthetic data and visible outputs.
+
+[← Enablement](../04-enablement/README.md) · [Playbook home](../README.md) · [Next: Roadmap →](../06-roadmap/README.md)
+
+---
+
 Executable Jupyter notebooks for HR AI workflows: real code, run against synthetic data, with the actual cell outputs (including charts) saved in the file. Open them directly on GitHub to read the rendered output, or clone the repo and run them yourself. Never run them against real employee data without first reviewing the [risk assessment template](../03-governance/risk-assessment-template.md).
 
 ## Contents

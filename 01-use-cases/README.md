@@ -1,5 +1,11 @@
 # Use case library
 
+> **01 / DISCOVER** · Choose problems worth solving before choosing technology.
+
+[← Playbook home](../README.md) · [Next: Prompt library →](../02-prompt-library/README.md)
+
+---
+
 Everything in this section is designed to answer one question: **what should we actually build?**
 
 ## Contents
