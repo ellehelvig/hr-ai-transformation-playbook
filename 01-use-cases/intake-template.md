@@ -40,7 +40,7 @@ Name and email for follow-up questions
 
 ## Worked example: filled-in intake submission
 
-Below is a real-world example of how to fill out this template. Use it as a reference for the level of detail expected when submitting your own.
+Below is an illustrative example (the numbers are invented) of how to fill out this template. Use it as a reference for the level of detail expected when submitting your own.
 
 ### Use case name
 Exit interview theme synthesis

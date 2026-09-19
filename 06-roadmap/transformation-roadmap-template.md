@@ -130,11 +130,11 @@ Before rolling a pilot use case to org-wide deployment:
 **Goal:** Move from assisting HR workflows to transforming them. Introduce agentic automation and predictive analytics.
 
 **Target use cases:**
-- Attrition risk modeling with HRBP workflow integration
+- Attrition risk modeling with HRBP workflow integration (high-risk use: completed risk assessment, fairness audit, and Legal sign-off before any score reaches a manager)
 - Workforce planning models
 - Personalized learning path generation with LMS integration
 - Agentic onboarding workflow automation
-- Pay equity analysis
+- Pay equity analysis (run under Legal's direction so findings are handled correctly, and see [pay equity governance](../03-governance/pay-equity-governance.md))
 
 **Key activities:**
 - [ ] Commission full attrition risk model (requires clean HRIS data, see [05 · Notebooks](../05-notebooks/README.md))
@@ -186,15 +186,15 @@ Track these at the program level, regardless of individual use case metrics.
 ## Roadmap on a page
 
 ```
-Month:  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18
-        ├──────────────┤
-Phase 0: Foundation
-                  ├───────────────────┤
-Phase 1: Quick wins (pilots → scale)
-                              ├──────────────────────┤
-Phase 2: Scale + enablement
-                                               ├────────────────────────┤
-Phase 3: Advanced capability
+Month:  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18
+        ├────┤
+Phase 0: Foundation (months 1-2)
+           ├──────────┤
+Phase 1: Quick wins (months 2-5)
+                    ├────────────────┤
+Phase 2: Scale + enablement (months 5-10)
+                                   ├─────────────────────────┤
+Phase 3: Advanced capability (months 10-18)
 ```
 
 ---

@@ -60,4 +60,4 @@ Operational guidance for anyone facilitating the [HR AI literacy curriculum](hr-
 
 - Send the prompt library and governance docs as reference material, not just slides
 - Collect one thing that worked and one thing that didn't from each cohort and feed it back into this guide
-- Track who completed the hands-on lab vs. who just attended. Completion of Module 2 correlates most strongly with actual tool adoption afterward
+- Track who completed the hands-on lab vs. who just attended. Completion of Module 2 is the best candidate predictor of tool adoption, so track it and check whether that holds in your cohorts

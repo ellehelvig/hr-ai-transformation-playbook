@@ -23,7 +23,7 @@ Implementation-ready prompt templates for HR workflows. Every prompt is structur
 
 ## How to use these prompts
 
-Each prompt includes the prompt itself, intended use, expected output, and tuning notes from real testing. Treat them as starting points. Your organization's policies, tone, and data shape what works.
+Each prompt includes the prompt itself, intended use, and a note on what to check before you use the output. These are drafts written for this playbook and have not been benchmarked against your data or your model. Treat them as starting points. Your organization's policies, tone, and data shape what works.
 
 The [hr-prompt-picker](../11-skills/hr-prompt-picker/SKILL.md) skill picks the right prompt for a task, fills in your context, and attaches the verify-before-use checklist so the output never leaves your hands unchecked.
 
