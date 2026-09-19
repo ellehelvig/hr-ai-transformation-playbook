@@ -4,8 +4,8 @@ jurisdiction: EU
 topic: EU AI Act transparency obligations
 statement: Article 50 transparency obligations applied from 2 August 2026. The AI Omnibus
   did not move that date, so they are enforceable now regardless of the December 2027
-  high-risk date, subject to any transitional period the Omnibus gives for some content-marking
-  duties.
+  high-risk date. AI systems already on the market get a grace period until 2 December 2026
+  for the Article 50(2) machine-readable marking duty.
 status: in-force
 effective: '2026-08-02'
 primary_source:
@@ -19,7 +19,4 @@ last_verified: never
 verified_by: unverified
 review_interval_days: 90
 notes: Anchor this one against both Article 50 itself and the Article 113 date, and against
-  the Omnibus operative text. UNRESOLVED - the earlier wording said Article 50 was left
-  untouched by the Omnibus, but the recitals (recital 38) describe a transitional period
-  for some marking duties, and the operative amendment was not confirmed. A human needs
-  to read the operative articles and decide which Article 50 duties apply now.
+  the Omnibus operative text.
