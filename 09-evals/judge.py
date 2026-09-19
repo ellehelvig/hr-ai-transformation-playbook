@@ -211,7 +211,7 @@ def make_canned_judge(path: Path) -> Callable[[str, str, list[str]], tuple[str, 
     a batch of transcripts by hand once and then re-run the scoring pipeline
     against those labels as many times as needed.
     """
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         canned = json.load(f)
 
     def judge(question: str, response: str, criteria: list[str], eval_id: str = "") -> tuple[str, str]:

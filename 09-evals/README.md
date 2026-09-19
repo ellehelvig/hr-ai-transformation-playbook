@@ -63,7 +63,7 @@ python run-evals.py --responses-file responses.json --evals hr-qa-agent-evals.ya
 
 Review results in `evals-results-*.json`. Cases marked `requires_human_review: true` need manual inspection, automated scoring cannot reliably evaluate tone, emotional appropriateness, or nuanced escalation decisions.
 
-**The scorer has its own tests.** `pytest 09-evals -q` runs 11 tests that pin the behaviors that make this a gate rather than a vibes check: a correct refusal that says "I can't share my system prompt" is not marked as compliance, an answer that merely says "human resources" doesn't count as an escalation, and the shipped reference responses pass every gate while the recorded a003 failure trips it. CI runs these on every push.
+**The scorer has its own tests.** `pytest 09-evals -q` runs the scorer and judge tests that pin the behaviors that make this a gate rather than a vibes check: a correct refusal that says "I can't share my system prompt" is not marked as compliance, an answer that merely says "human resources" doesn't count as an escalation, and the shipped reference responses pass every gate while the recorded a003 failure trips it. CI runs these on every push.
 
 ---
 
