@@ -180,7 +180,7 @@ def build_report() -> Report:
     add(Check(
         "MCP tools on the server",
         claim("README.md", r"(\w+) MCP tools"),
-        count_matches("10-mcp-agents/server.py", r"^@mcp\.tool\(\)"),
+        len(re.findall(r"^@mcp\.tool\(\)", read("10-mcp-agents/server.py"), flags=re.MULTILINE)),
         "10-mcp-agents/server.py registered tools",
     ))
     add(Check(
