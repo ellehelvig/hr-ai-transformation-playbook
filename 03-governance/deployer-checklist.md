@@ -8,7 +8,7 @@ Mapped to Article 26 of the EU AI Act, with hooks into GDPR and existing HR prac
 
 High-risk obligations for HR systems under Annex III apply from 2 December 2027 instead of 2 August 2026, under the AI Omnibus simplification package. The Omnibus is now law: Regulation (EU) 2026/1744, published in the Official Journal on 24 July 2026 and in force since 27 July 2026 (verified against the regulation text on EUR-Lex). December 2027 is a fixed calendar date, not a conditional one: the Commission's original proposal would have tied the deadline to standards readiness, and the final agreement rejected that mechanism in favor of a fixed date, so don't plan around further slippage. Embedded high-risk AI under Annex I (regulated products) gets a separate deferral, to 2 August 2028. Build the practice now. Vendors and customers are already asking for the evidence trail. <!--claim:eu-ai-act-annex3-employment-application-date--> <!--claim:eu-ai-act-annex1-embedded-application-date-->
 
-Don't let the 2027 date imply nothing is enforceable yet. Article 50 transparency obligations applied from 2 August 2026, untouched by the Omnibus, and the Article 99 and 101 penalty provisions became operative the same day, with the Article 99 tier for operator breaches reaching EUR 15 million or 3% of worldwide annual turnover. Obligation 9 below is live now.
+Don't let the 2027 date imply nothing is enforceable yet. Article 50 transparency obligations applied from 2 August 2026 (the Omnibus did not move that date, though its recitals describe a transitional period for some content-marking duties), and the Article 99 and 101 penalty provisions became operative the same day, with the Article 99 tier for operator breaches reaching EUR 15 million or 3% of worldwide annual turnover. In obligation 9 below, the Article 50 part is live now. Article 26(11) waits for the high-risk date.
 
 ## The deployer obligations, in plain English
 
@@ -96,18 +96,19 @@ Action items:
 - If yes, complete the assessment covering: process for using the system, deployment period, categories of natural persons likely to be affected, specific risks of harm, human oversight measures, measures to be taken if risks materialize.
 - Notify the market surveillance authority of the results.
 
-### 9. Cooperate with authorities and respect transparency duties
+### 9. Inform affected people, cooperate with authorities, and respect Article 50
 
-Article 26(11) and Article 26(12). Deployers must cooperate with competent authorities and follow the transparency rules in Article 50 for systems generating or manipulating content, deepfakes, or emotion recognition.
+Article 26(11) requires deployers of Annex III systems that make or assist decisions about natural persons to inform those people that they are subject to the system. Article 26(12) requires cooperation with competent authorities. Article 50 is a separate set of transparency rules for systems that interact with people, generate or manipulate content, produce deepfakes, or do emotion recognition.
 
 Action items:
 
 - Name the regulatory liaison for AI Act inquiries.
-- Cover transparency requirements in the use case card if the system generates synthetic content or is used for emotion recognition (the latter is broadly prohibited in the workplace under Article 5).
+- Name who tells candidates and employees that they are subject to the system, and when (Article 26(11)). Article 26(7) covers workers and their representatives separately.
+- Cover Article 50 transparency in the use case card if the system talks to people, generates synthetic content, or is used for emotion recognition (the latter is broadly prohibited in the workplace under Article 5).
 
 ### 10. Stop if the system causes serious incidents
 
-Article 26(5) and Article 73 reporting obligations.
+Article 26(5) (deployer duty to inform the provider and authorities) and Article 73 (serious incident reporting, which sits mainly with providers).
 
 Action items:
 

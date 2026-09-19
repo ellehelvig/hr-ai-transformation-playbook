@@ -24,6 +24,13 @@ stay listed until someone resolves them properly.
   the Article 22 controller. `eu-ai-act-intake-template.md`
 - Most member states missed the 7 June 2026 pay transparency transposition deadline.
   `pay-equity-governance.md`
+- Article 50 operative text after the Omnibus, including the transitional period in
+  recital 38 for some content-marking duties. `03-governance/README.md`,
+  `eu-ai-act-intake-template.md`, `deployer-checklist.md`
+- Whether Article 99 penalties became operative on 2 August 2026 or earlier under
+  Article 113 as amended. As originally enacted, Chapter XII applied from 2 August 2025
+  with Article 101 following on 2 August 2026. `03-governance/README.md`,
+  `eu-ai-act-intake-template.md`, `deployer-checklist.md`
 
 ## United States, federal
 
