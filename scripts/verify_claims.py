@@ -179,9 +179,9 @@ def build_report() -> Report:
     ))
     add(Check(
         "MCP tools on the server",
-        claim("README.md", r"(\w+) MCP tools ship"),
-        count_dirs("10-mcp-agents"),
-        "10-mcp-agents/ tool packages",
+        claim("README.md", r"(\w+) MCP tools"),
+        len(re.findall(r"^@mcp\.tool\(\)", read("10-mcp-agents/server.py"), flags=re.MULTILINE)),
+        "10-mcp-agents/server.py registered tools",
     ))
     add(Check(
         "Eval cases in the suite",

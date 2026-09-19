@@ -1,6 +1,12 @@
 # HR agent eval framework
 
-Evals are structured test cases that verify an agent behaves correctly across a range of inputs, including edge cases, adversarial inputs, and emotionally sensitive scenarios. Running evals before deployment and after any change is what separates a reliable production agent from a demo.
+> **09 / EVALUATE** · Test behavior, failure modes, and escalation before release.
+
+[← ROI measurement](../08-roi-measurement/README.md) · [Playbook home](../README.md) · [Next: MCP agents →](../10-mcp-agents/README.md)
+
+---
+
+Evals are structured test cases that verify an agent behaves correctly across a range of inputs, including edge cases, adversarial inputs, and emotionally sensitive scenarios. Running evals before release and after material changes is an important step toward a more reliable agent.
 
 This directory contains an eval set for the HR Q&A agent, plus a framework for writing your own. The same approach works for testing an [agent skill](../11-skills/README.md) before a team adopts it: write cases for the scenarios the skill's source template already covers, and compare the skill's output to the worked example.
 

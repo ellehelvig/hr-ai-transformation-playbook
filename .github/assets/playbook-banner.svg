@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">HR AI Transformation Playbook</title>
+  <desc id="desc">A restrained dark banner with a violet and cyan operating loop.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090b12"/>
+      <stop offset="1" stop-color="#121827"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#61ddec"/>
+      <stop offset="1" stop-color="#8b7cff"/>
+    </linearGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity=".035"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="360" rx="26" fill="url(#bg)"/>
+  <rect width="1200" height="360" rx="26" fill="url(#grid)"/>
+  <circle cx="1030" cy="180" r="138" fill="none" stroke="#ffffff" stroke-opacity=".14"/>
+  <circle cx="1030" cy="180" r="92" fill="none" stroke="#ffffff" stroke-opacity=".15" stroke-dasharray="4 8"/>
+  <circle cx="1030" cy="180" r="48" fill="#8b7cff" fill-opacity=".28" filter="url(#glow)"/>
+  <circle cx="1030" cy="180" r="35" fill="url(#signal)"/>
+  <path d="M842 180h376M1030-8v376" stroke="#ffffff" stroke-opacity=".07"/>
+  <text x="64" y="72" fill="#a99fff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="4">STRATEGY  /  GOVERNANCE  /  ADOPTION</text>
+  <text x="64" y="154" fill="#f5f7fb" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="650" letter-spacing="-2">HR AI Transformation</text>
+  <text x="64" y="214" fill="#f5f7fb" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="650" letter-spacing="-2">Playbook</text>
+  <text x="66" y="270" fill="#a4aec2" font-family="Inter, Arial, sans-serif" font-size="20">Practical systems for responsible adoption</text>
+  <rect x="66" y="304" width="258" height="3" rx="2" fill="url(#signal)"/>
+</svg>

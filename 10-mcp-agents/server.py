@@ -1,8 +1,8 @@
 """
 server.py
 ==========
-Single MCP server exposing four HR agent tools on shared rails: comp
-banding, bias-mitigated resume screening, recruiter intake calibration,
+Single MCP server exposing six tools across four HR workflow packages:
+comp banding, bias-mitigated resume screening, recruiter intake calibration,
 and a governance policy Q&A citation-finder.
 
 Each tool's implementation lives in its own folder as a standalone,
@@ -12,7 +12,7 @@ folder's ENABLEMENT.md). This file's only job is registering them behind
 one MCP surface, the way a real internal platform consolidates related
 tools on shared rails instead of standing up a server per use case.
 
-Every tool here returns `human_review_required: true` (or, for the policy
+Each decision-support tool here returns `human_review_required: true` (or, for the policy
 tool, a fixed not-legal-advice disclaimer) with no code path that removes
 it. That is enforced in each tool's own test suite, not just asserted in
 this docstring. See README.md for how this maps to the playbook's

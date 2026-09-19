@@ -1,9 +1,27 @@
-HR AI transformation toolkit: vetted use cases, governance cited to primary sources, a tested MCP server, installable agent skills, executable notebooks, and launch-blocking evals. MIT.
+<p align="center">
+  <img src=".github/assets/playbook-banner.svg" alt="HR AI Transformation Playbook" width="100%">
+</p>
 
-[![CI](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
-[![Regulatory content: primary sources cited](https://img.shields.io/badge/regulatory%20content-primary%20sources%20cited-blue.svg)](03-governance/README.md)
-[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
+<p align="center">
+  A practical, inspectable system for moving HR AI from scattered experiments to responsible adoption.
+</p>
+
+<p align="center">
+  <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&amp;style=flat-square&amp;label=quality"></a>
+  <a href="03-governance/README.md"><img alt="Governance" src="https://img.shields.io/badge/governance-primary%20sources-4f46a5?style=flat-square"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0e7490?style=flat-square"></a>
+  <a href="CONTRIBUTING.md"><img alt="Contributions" src="https://img.shields.io/badge/contributions-welcome-475569?style=flat-square"></a>
+</p>
+
+
+---
+
+## A practical operating model for HR AI adoption
+
+| Decide | Design | Govern | Adopt | Prove |
+|---|---|---|---|---|
+| Prioritize the right use cases | Build workflows with human boundaries | Translate policy into enforceable gates | Create capability and trust | Measure behavior, risk, and value |
+| [01 · Use cases](01-use-cases/README.md)<br>[06 · Roadmap](06-roadmap/README.md) | [02 · Prompt library](02-prompt-library/README.md)<br>[05 · Notebooks](05-notebooks/README.md)<br>[07 · Agent patterns](07-agentic-patterns/README.md)<br>[10 · MCP tools](10-mcp-agents/README.md) | [03 · Governance](03-governance/README.md) | [04 · Enablement](04-enablement/README.md)<br>[11 · Skills](11-skills/README.md) | [08 · ROI](08-roi-measurement/README.md)<br>[09 · Evals](09-evals/README.md) |
 
 ---
 
@@ -11,7 +29,7 @@ HR AI transformation toolkit: vetted use cases, governance cited to primary sour
 
 Most HR AI guidance is either too abstract to act on or too tied to one vendor to reuse. This repo is neither, and you can check that claim against the repo itself:
 
-- **It runs.** Three notebooks execute in CI on every push. Four MCP tools ship with a 52-test suite. The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a deploy, and its scorer and LLM judge have 37 tests of their own.
+- **It runs.** Three notebooks execute in CI on every push. Four HR workflow packages expose six MCP tools backed by a 52-test suite. The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a deploy, and its scorer and LLM judge have 37 tests of their own.
 - **The guarantees are tested, not asserted.** Three governance claims in this repo turned out to be unenforced when reviewed against the code: a screening tool that "never produces a score" while returning counts you could divide, a comp guardrail that annotated a prohibited input instead of refusing it, and a citation finder whose "no match" only fired when a question shared zero words with the corpus. Each is now a behavioral test. See the 2.2.0 entry in [CHANGELOG.md](CHANGELOG.md) for what changed and why.
 - **The evals grade correctness, and the grader is itself measured.** Responses are graded against each case's hand-written `expected_behavior` criteria, and judge verdicts are checked against human labels with Cohen's kappa, so a run can state how far the grader should be believed rather than just reporting a pass rate. See [09-evals](09-evals/README.md).
 - **Governance cites primary sources.** Every regulatory claim names the statute, enrolled bill, regulator page, or court docket it rests on, never a law firm alert or a vendor summary. When something changes (the EU AI Omnibus, Colorado's rewrite, Illinois penalties), the [changelog](CHANGELOG.md) says what moved.
@@ -78,7 +96,7 @@ The [skills README](11-skills/README.md) also has a human capability ladder: the
 | [07 · Agentic patterns](07-agentic-patterns/README.md) | Five architecture patterns with governance built in, agent design guide, testing framework, talent operating system architecture |
 | [08 · ROI measurement](08-roi-measurement/README.md) | Business case template, ROI framework, reporting cadence, live dashboard |
 | [09 · Evals](09-evals/README.md) | 29 test cases, rubric with launch-blocking gates, automated runner |
-| [10 · MCP agents](10-mcp-agents/README.md) | Four working tools on one MCP server: comp banding, bias-mitigated screening, recruiter intake, policy Q&A. 52 passing tests |
+| [10 · MCP agents](10-mcp-agents/README.md) | Four HR workflow packages expose six tools on one MCP server, backed by 52 passing tests |
 | [11 · Skills](11-skills/README.md) | Six installable agent skills, ranked adoption order, human capability ladder |
 
 ---
@@ -88,10 +106,10 @@ The [skills README](11-skills/README.md) also has a human capability ladder: the
 Whatever you build:
 
 1. **Humans make consequential employment decisions.** AI informs; it does not decide.
-2. **Employees have a right to know** when AI influences a process that affects them.
-3. **Fairness audits are required** on anything that scores or ranks employees or candidates.
+2. **Provide notice and transparency** when AI influences a process that affects employees or candidates.
+3. **Require fairness assessment and monitoring** for anything that scores or ranks employees or candidates.
 
-Every template, prompt, tool, and skill here is built to hold those lines. If you find one that doesn't, [open an issue](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new/choose).
+These are playbook design standards. Applicable legal requirements vary by jurisdiction and use case. Every template, prompt, tool, and skill here is built to hold those lines. If you find one that doesn't, [open an issue](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new/choose).
 
 ---
 

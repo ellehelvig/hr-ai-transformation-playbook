@@ -1,5 +1,11 @@
 # 11. Skills
 
+> **11 / OPERATIONALIZE** · Package the playbook into repeatable, human-governed agent behaviors.
+
+[← MCP agents](../10-mcp-agents/README.md) · [Playbook home](../README.md)
+
+---
+
 Six installable agent skills for HR teams, in the order to adopt them.
 
 A skill is a folder with a `SKILL.md` file: instructions an AI agent loads when a task matches the skill's description. Install one and your assistant stops improvising and starts following this playbook's actual templates, checklists, and gates. The skills here don't call external services and don't make decisions. They structure the work so a human can make the decision faster, with the right evidence in front of them.

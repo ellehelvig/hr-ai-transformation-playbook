@@ -1,5 +1,11 @@
 # Governance
 
+> **03 / GOVERN** · Translate principles, laws, and risk decisions into operating controls.
+
+[← Prompt library](../02-prompt-library/README.md) · [Playbook home](../README.md) · [Next: Enablement →](../04-enablement/README.md)
+
+---
+
 Frameworks for responsible AI adoption in HR, structured around the NIST AI Risk Management Framework 1.0 (Govern, Map, Measure, Manage) and ISO/IEC 42001. None of this is legal advice. All documents should be reviewed by Legal and Privacy before adoption.
 
 ## Contents
@@ -34,10 +40,10 @@ Neither order repeals disparate-impact liability. It remains codified in Title V
 Regardless of how you adapt these templates, three things are not optional:
 
 1. **Humans make consequential employment decisions.** AI may inform, not decide.
-2. **Employees have a right to know** when AI influences processes that affect them.
-3. **Fairness audits** on any use case that scores or ranks employees or candidates.
+2. **Provide notice and transparency** when AI influences processes that affect employees or candidates.
+3. **Require fairness assessment and monitoring** for any use case that scores or ranks employees or candidates.
 
-If your governance framework does not protect these three things, it is not enough.
+These are playbook design standards. Applicable legal requirements vary by jurisdiction and use case. If your governance framework does not protect these three things, it is not enough.
 
 ## Skills that run these documents
 
