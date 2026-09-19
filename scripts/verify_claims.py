@@ -66,6 +66,7 @@ class Check:
 class Report:
     checks: list[Check] = field(default_factory=list)
     em_dashes: list[tuple[str, int]] = field(default_factory=list)
+    matrix_errors: list[str] = field(default_factory=list)
 
 
 def read(relative: str) -> str:
@@ -155,6 +156,39 @@ def find_em_dashes() -> list[tuple[str, int]]:
     return hits
 
 
+MATRIX_WEIGHTS = (0.25, 0.20, 0.15, 0.15, 0.15, 0.10)
+MATRIX_TIERS = ((4.0, 1), (3.0, 2), (2.0, 3), (0.0, 4))
+
+
+def check_matrix_example() -> list[str]:
+    """Recompute the worked example in the prioritization matrix.
+
+    The example table shows six inputs, a weighted score, and a tier. A reader
+    will copy it, so a wrong total or a tier that contradicts the tier table is
+    a defect the way a wrong README count is.
+    """
+    errors = []
+    text = read("01-use-cases/prioritization-matrix.md")
+    section = text.split("## Example scoring", 1)[-1].split("\n---", 1)[0]
+    for line in section.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) != 9 or not cells[1].isdigit():
+            continue
+        name = cells[0]
+        scores = [int(c) for c in cells[1:7]]
+        stated = float(cells[7].strip("*"))
+        tier = int(cells[8])
+        actual = round(sum(w * v for w, v in zip(MATRIX_WEIGHTS, scores, strict=True)), 2)
+        if abs(actual - stated) > 0.005:
+            errors.append(f"{name}: table says {stated:.2f}, weights give {actual:.2f}")
+        expected_tier = next(t for floor, t in MATRIX_TIERS if actual >= floor)
+        if tier != expected_tier:
+            errors.append(f"{name}: tier {tier} in table, score {actual:.2f} is tier {expected_tier}")
+    if not errors and not section.strip():
+        errors.append("prioritization-matrix.md: example scoring table not found")
+    return errors
+
+
 def build_report() -> Report:
     report = Report()
     add = report.checks.append
@@ -222,6 +256,7 @@ def build_report() -> Report:
     ))
 
     report.em_dashes = find_em_dashes()
+    report.matrix_errors = check_matrix_example()
     return report
 
 
@@ -254,10 +289,20 @@ def render(report: Report) -> bool:
     else:
         print("No em dashes found.")
 
+    if report.matrix_errors:
+        print("Prioritization matrix example does not match its own weights:")
+        for err in report.matrix_errors:
+            print(f"  {err}")
+    else:
+        print("Prioritization matrix example scores and tiers recompute correctly.")
+
     failed = [c for c in report.checks if not c.ok or (c.claimed is None and not c.skipped)]
     print()
-    if failed or report.em_dashes:
-        print(f"FAILED: {len(failed)} claim mismatch(es), {len(report.em_dashes)} em dash(es).")
+    if failed or report.em_dashes or report.matrix_errors:
+        print(
+            f"FAILED: {len(failed)} claim mismatch(es), {len(report.em_dashes)} em dash(es), "
+            f"{len(report.matrix_errors)} matrix error(s)."
+        )
         return False
     print("All repository claims verified against the tree.")
     return True
