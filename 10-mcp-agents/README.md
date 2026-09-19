@@ -6,7 +6,7 @@
 
 ---
 
-Four working HR agent tools, exposed on one MCP server, built to close
+Four HR workflow packages expose six MCP tools on one server, built to close
 specific gaps this playbook had already identified in its own governance
 and use-case docs, not built as generic demos.
 
@@ -26,7 +26,7 @@ MCP) can call. The design choices here are the same ones argued for in
 `03-governance/`, just enforced in code instead of policy prose:
 
 - **Deterministic core, judgment left to the human or the calling agent.**
-  None of these four tools call an LLM internally. Comp banding does
+  None of these four workflow packages call an LLM internally. Comp banding does
   arithmetic. Resume screening does keyword evidence-mapping. Recruiter
   intake does string templating. Policy Q&A does lexical search over real
   files. That's deliberate: the parts of these workflows that need
@@ -52,7 +52,7 @@ MCP) can call. The design choices here are the same ones argued for in
 
 ```
 10-mcp-agents/
-  server.py                    single MCP server, registers all four tools
+  server.py                    single MCP server, registers all six tools
   requirements.txt
   pytest.ini                   makes `pytest` work both per-folder and from here
   README.md                    this file
@@ -73,7 +73,7 @@ MCP) can call. The design choices here are the same ones argued for in
 cd 10-mcp-agents
 pip install -r requirements.txt
 
-# run every tool's test suite (32 tests, all four folders, one command)
+# run every MCP test suite (52 tests, all four workflow folders, one command)
 pytest
 
 # or just one tool's suite, standalone, exactly as its ENABLEMENT.md describes
