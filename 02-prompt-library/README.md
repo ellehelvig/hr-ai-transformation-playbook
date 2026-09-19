@@ -6,7 +6,7 @@
 
 ---
 
-Production-ready prompts for HR workflows. Every prompt is structured to be tested, iterated on, and adapted to your organization's voice and policies.
+Implementation-ready prompt templates for HR workflows. Every prompt is structured to be tested, iterated on, and adapted to your organization's voice and policies.
 
 ## Contents
 
