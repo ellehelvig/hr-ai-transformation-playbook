@@ -1,10 +1,12 @@
 # Enablement
 
-> **04 / ENABLE** · Build the capability, trust, and feedback loops that make adoption durable.
+> **04 / ADOPT AND PROVE** · Build the capability, trust, and feedback loops that make adoption durable.
 
 [← Governance](../03-governance/README.md) · [Playbook home](../README.md) · [Next: Notebooks →](../05-notebooks/README.md)
 
 ---
+
+**For:** HR leaders and L&D teams building AI fluency. **Start with:** [HR AI literacy curriculum](hr-ai-literacy-curriculum.md).
 
 Training and adoption resources to build AI fluency across the People Team. Without this layer, even the best AI tools end up unused, misused, or used only by the early adopters who would have figured them out anyway.
 

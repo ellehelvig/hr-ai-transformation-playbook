@@ -1,10 +1,12 @@
 # HR agent eval framework
 
-> **09 / EVALUATE** · Test behavior, failure modes, and escalation before release.
+> **09 / BUILD** · Test behavior, failure modes, and escalation before release.
 
 [← ROI measurement](../08-roi-measurement/README.md) · [Playbook home](../README.md) · [Next: MCP agents →](../10-mcp-agents/README.md)
 
 ---
+
+**For:** Anyone signing off an HR AI tool for launch. **Start with:** [How evals work](#how-evals-work).
 
 Evals are structured test cases that verify an agent behaves correctly across a range of inputs, including edge cases, adversarial inputs, and emotionally sensitive scenarios. Running evals before release and after material changes is an important step toward a more reliable agent.
 

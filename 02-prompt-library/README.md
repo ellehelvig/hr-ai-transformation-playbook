@@ -1,10 +1,12 @@
 # Prompt library
 
-> **02 / PRACTICE** · Turn recurring HR work into testable, reviewable instructions.
+> **02 / BUILD** · Turn recurring HR work into testable, reviewable instructions.
 
 [← Use cases](../01-use-cases/README.md) · [Playbook home](../README.md) · [Next: Governance →](../03-governance/README.md)
 
 ---
+
+**For:** HR practitioners who want something useful today. **Start with:** the file for your function, such as [talent acquisition](talent-acquisition.md).
 
 Implementation-ready prompt templates for HR workflows. Every prompt is structured to be tested, iterated on, and adapted to your organization's voice and policies.
 

@@ -6,6 +6,8 @@
 
 ---
 
+**For:** Engineers, and the HR owners of each tool. **Start with:** the [Quickstart](#quickstart), then any tool folder's `ENABLEMENT.md`.
+
 Four HR workflow packages expose six MCP tools on one server, built to close
 specific gaps this playbook had already identified in its own governance
 and use-case docs, not built as generic demos.

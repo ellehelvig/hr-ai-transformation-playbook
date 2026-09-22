@@ -1,10 +1,12 @@
 # Agentic HR workflow patterns
 
-> **07 / DESIGN** · Match workflow autonomy to value, evidence, and risk.
+> **07 / BUILD** · Match workflow autonomy to value, evidence, and risk.
 
 [← Roadmap](../06-roadmap/README.md) · [Playbook home](../README.md) · [Next: ROI measurement →](../08-roi-measurement/README.md)
 
 ---
+
+**For:** HR technology and engineering teams designing agents. **Start with:** [Which pattern do I need?](#which-pattern-do-i-need).
 
 A reference guide for designing and deploying AI agents in People Team operations. Each pattern includes an architecture diagram, when to use it, implementation notes, and the governance requirements that apply.
 

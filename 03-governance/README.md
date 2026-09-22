@@ -6,6 +6,8 @@
 
 ---
 
+**For:** HR, Legal, Privacy, and Compliance partners. **Start with:** [AI use policy](ai-use-policy.md), then the [one-page pre-screen](quick-reference-checklist.md).
+
 Frameworks for responsible AI adoption in HR, structured around the NIST AI Risk Management Framework 1.0 (Govern, Map, Measure, Manage) and ISO/IEC 42001. None of this is legal advice. All documents should be reviewed by Legal and Privacy before adoption.
 
 ## Contents
