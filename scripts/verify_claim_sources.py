@@ -524,6 +524,24 @@ def check_markers(claims: list, errors: list) -> tuple[int, int]:
     return marked, unmarked
 
 
+def blocked_response_reason(status: int, headers, raw: bytes) -> str | None:
+    """Say why a response carries no document, or return None if it does.
+
+    EUR-Lex sits behind a bot challenge that answers every script with 202
+    Accepted and an empty body. Searching that body for the quote failed as
+    "the quote no longer appears", which reads as a changed statute and sends a
+    reviewer after a claim that is fine. A source that could not be read has to
+    fail as unreadable, never as wrong.
+    """
+    if headers.get("x-amzn-waf-action"):
+        return f"the site answered with a bot challenge ({headers.get('x-amzn-waf-action')})"
+    if status != 200:
+        return f"the site answered {status} instead of 200"
+    if not raw.strip():
+        return "the site answered with an empty page"
+    return None
+
+
 def check_sources_online(claims: list, errors: list) -> None:
     import urllib.error
     import urllib.request
@@ -544,14 +562,28 @@ def check_sources_online(claims: list, errors: list) -> None:
                 "User-Agent": (
                     "hr-ai-transformation-playbook claim verifier "
                     "(+https://github.com/ellehelvig/hr-ai-transformation-playbook)"
-                )
+                ),
+                # The EU Publications Office picks a format and language by
+                # content negotiation and answers 400 or 404 without these.
+                # Every other source ignores them.
+                "Accept": "application/xhtml+xml, text/html;q=0.9, */*;q=0.8",
+                "Accept-Language": "en",
             },
         )
         try:
             with urllib.request.urlopen(request, timeout=45) as response:
                 raw = response.read()
+                blocked = blocked_response_reason(response.status, response.headers, raw)
         except (urllib.error.URLError, TimeoutError, OSError) as exc:
             errors.append(f"{name}: could not fetch {url}: {exc}")
+            continue
+
+        if blocked:
+            errors.append(
+                f"{name}: could not fetch {url}: {blocked}. The quote was not "
+                "checked. This says nothing about whether the claim is still true; "
+                "the source needs a URL that serves its text to scripts."
+            )
             continue
 
         # Detect PDF by magic bytes rather than by a .pdf suffix on the URL.

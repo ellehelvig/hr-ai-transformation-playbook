@@ -8,7 +8,7 @@ statement: The penalty provisions in Articles 99 and 101 became operative on 2 A
 status: in-force
 effective: '2026-08-02'
 primary_source:
-  url: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689
+  url: https://publications.europa.eu/resource/celex/32024R1689
   citation: Regulation (EU) 2024/1689, Articles 99 and 101
 asserted_in:
 - 03-governance/README.md
@@ -17,3 +17,7 @@ asserted_in:
 last_verified: never
 verified_by: unverified
 review_interval_days: 180
+notes: The url is the EU Publications Office copy of the Official Journal text. The same text is
+  at https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689
+  for reading in a browser, but EUR-Lex answers scripts with a bot challenge, so the weekly
+  check cannot read it there.
