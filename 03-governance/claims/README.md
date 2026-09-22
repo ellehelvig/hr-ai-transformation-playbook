@@ -94,6 +94,10 @@ blocks a merge:
 - asserts the `quote` still appears in it, after normalizing whitespace and quote marks
 - a quote that no longer matches means either the source moved or the quote is wrong, and
   both need a human before anything resting on that claim is merged
+- a source that answers with a bot challenge, a status other than 200, or an empty page
+  fails as "could not fetch", not as a wrong quote. EUR-Lex does this to every script, so
+  EU records point at the Publications Office copy of the same Official Journal text and
+  keep the EUR-Lex link in `notes`
 
 ## PDF sources
 

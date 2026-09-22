@@ -258,6 +258,22 @@ def test_pdf_detected_by_magic_bytes_not_url_suffix():
     assert not b"<!DOCTYPE html>".startswith(b"%PDF-")
 
 
+def test_bot_challenge_is_unreadable_not_a_wrong_quote():
+    """EUR-Lex answers scripts with 202 and an empty body. That has to fail as
+    a fetch problem, or it reads as a statute that changed."""
+    reason = verifier.blocked_response_reason(202, {"x-amzn-waf-action": "challenge"}, b"")
+    assert reason and "bot challenge" in reason
+
+
+def test_non_200_and_empty_pages_are_unreadable():
+    assert "202" in verifier.blocked_response_reason(202, {}, b"<html></html>")
+    assert "empty" in verifier.blocked_response_reason(200, {}, b"  \n")
+
+
+def test_a_normal_page_is_readable():
+    assert verifier.blocked_response_reason(200, {}, b"<html>text</html>") is None
+
+
 # ---------------------------------------------------------------------------
 # Marker and drift gate
 #
