@@ -12,7 +12,7 @@ Training and adoption resources to build AI fluency across the People Team. With
 
 | File | Purpose |
 |---|---|
-| [hr-ai-literacy-curriculum.md](hr-ai-literacy-curriculum.md) | 4-module program for all People Team members (8 hours total) |
+| [hr-ai-literacy-curriculum.md](hr-ai-literacy-curriculum.md) | 4-module program for all People Team members (about 7 hours of sessions plus async work) |
 | [HR-AI-Literacy-Curriculum.pdf](HR-AI-Literacy-Curriculum.pdf) | Visual presentation deck (23 slides), readable in any browser |
 | [HR-AI-Literacy-Curriculum.pptx](HR-AI-Literacy-Curriculum.pptx) | Editable PowerPoint version for adaptation to your organization |
 | [workshop-facilitator-guide.md](workshop-facilitator-guide.md) | Logistics, pacing, resistance handling, and format adaptations for anyone facilitating the curriculum |

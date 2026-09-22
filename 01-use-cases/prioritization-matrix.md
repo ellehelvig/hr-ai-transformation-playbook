@@ -85,9 +85,9 @@ Score each use case from 1–5 on six dimensions. The weighted total determines 
 | New hire Q&A agent | 5 | 5 | 4 | 4 | 5 | 4 | **4.60** | 1 |
 | Personalized learning paths | 4 | 4 | 3 | 3 | 3 | 4 | **3.55** | 2 |
 | Attrition risk scoring | 5 | 4 | 2 | 2 | 2 | 3 | **3.25** | 2 |
-| Resume screening AI | 3 | 3 | 3 | 4 | 3 | 2 | **3.00** | 2 |
-| Succession planning model | 4 | 5 | 2 | 1 | 1 | 3 | **2.85** | 3 |
-| Autonomous offer decisions | 2 | 2 | 3 | 3 | 2 | 1 | **2.05** | 4 |
+| Resume screening AI | 3 | 3 | 3 | 4 | 3 | 2 | **3.05** | 2 |
+| Succession planning model | 4 | 5 | 2 | 1 | 1 | 3 | **2.90** | 3 |
+| Autonomous offer decisions | 2 | 2 | 2 | 2 | 2 | 1 | **1.90** | 4 |
 
 ---
 

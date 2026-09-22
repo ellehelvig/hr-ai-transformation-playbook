@@ -43,10 +43,10 @@ Red flag: vendor refuses to share any part of the technical documentation summar
 
 ### 3. Conformity assessment status
 
-For high-risk systems, the vendor must complete a conformity assessment before placing on the market.
+For high-risk systems, the vendor must complete a conformity assessment before placing on the market. For employment systems (Annex III point 4) the procedure is internal control under Annex VI (Article 43(2)), so there is no notified body to check. Ask for the vendor's own documented assessment instead. Until the high-risk date applies, expect a readiness plan rather than a finished declaration.
 
 - Has the vendor declared the system high-risk under Annex III?
-- Which conformity assessment procedure applies (internal control under Annex VI, or notified body under Annex VII)?
+- Which conformity assessment procedure did the vendor follow, and can they show the documentation? Internal control under Annex VI is the expected answer for employment systems. A notified-body claim needs an explanation.
 - Date of the EU declaration of conformity, and the version it covers.
 - CE marking status.
 - If the system is not declared high-risk, on what basis (Article 6(3) exemption analysis, or category does not apply).

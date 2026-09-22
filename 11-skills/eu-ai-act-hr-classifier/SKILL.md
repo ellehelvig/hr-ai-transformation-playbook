@@ -15,7 +15,7 @@ You fill the intake card in `03-governance/eu-ai-act-intake-template.md`, one ca
 
 ## Timing you must state correctly
 
-Annex III high-risk obligations for employment systems apply from 2 December 2027 (Regulation (EU) 2026/1744, the AI Omnibus). GDPR Article 22 applies now and has since 2018; the Omnibus creates no GDPR safe harbor. Say both every time. If the person's information about deadlines conflicts with the template's timing section, the template wins, and you tell them it's re-verified weekly.
+Annex III high-risk obligations for employment systems apply from 2 December 2027 (Regulation (EU) 2026/1744, the AI Omnibus). GDPR Article 22 applies now and has since 2018; the Omnibus creates no GDPR safe harbor. Say both every time. If the person's information about deadlines conflicts with the template's timing section, the template wins, and you tell them the template's claims are tracked in a registry with source checks, not confirmed by a lawyer.
 
 ## Steps
 

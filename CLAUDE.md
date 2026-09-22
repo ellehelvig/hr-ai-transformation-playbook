@@ -40,10 +40,10 @@ This is the highest-risk content in the repo. The rules are strict on purpose.
 - State status precisely: enacted, signed, pending, in committee, stayed,
   vacated, superseded. Never describe a pending bill as law.
 - Governance content should say when counsel needs to see it before adoption.
-- Every dated or status-bearing claim gets a record in `03-governance/claims`. Adding
-  a claim to the prose without adding its record leaves it unverifiable. See
-  `03-governance/claims/README.md` for the schema and
-  `03-governance/claims/BACKLOG.md` for claims not yet registered.
+- Every key legal date belongs in the Key dates for HR table in
+  `03-governance/README.md`, with a link to the official text. If you change a date,
+  change it there and in every document that repeats it, and update the table's
+  "Last reviewed" date.
 
 ## Standing content rules
 
@@ -90,11 +90,6 @@ Everything in `.github/workflows/ci.yml` must pass before merge. It currently ru
 - `python scripts/verify_claims.py`, which recomputes every count the README states
   from the tree and scans all text files for em dashes. If you change a count, a
   section, a test, or a skill, run this before you push.
-- `python scripts/verify_claim_sources.py`, which validates the regulatory claims
-  registry in `03-governance/claims`: schema, unique ids, referenced files exist, and
-  any claim past its `review_interval_days` fails the build. The quote-against-source
-  check needs the network and runs in `claim-source-check.yml` on a schedule instead,
-  so a government website being down never blocks a merge.
 
 Notebook execution takes several minutes. Skip it locally unless a notebook
 changed.

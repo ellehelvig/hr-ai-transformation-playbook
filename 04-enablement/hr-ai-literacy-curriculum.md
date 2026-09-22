@@ -2,7 +2,7 @@
 
 A 4-module learning program for HR professionals at all experience levels. Designed to be delivered as a facilitated series over 4–6 weeks, or adapted for self-paced completion.
 
-**Total time:** ~8 hours across all modules
+**Total time:** about 7 hours of sessions, plus async reading and hands-on practice (roughly 8 hours in all)
 **Format:** Workshop + async reading + hands-on practice
 **Audience:** All People Team members
 **Prerequisite:** None
@@ -126,7 +126,7 @@ Introduce and reinforce this heuristic:
 **Key legal risk areas to cover:**
 
 *Bias and disparate impact:*
-AI trained on historical HR data can encode and amplify past discrimination. An AI that learned from 10 years of hiring decisions at a company where 80% of engineering hires were male will score resumes accordingly. Annual adverse impact testing is not optional, it's legally and ethically required.
+AI trained on historical HR data can encode and amplify past discrimination. An AI that learned from 10 years of hiring decisions at a company where 80% of engineering hires were male will score resumes accordingly. Adverse impact testing is a core control. It is required by law in some jurisdictions (NYC Local Law 144 mandates an annual bias audit for covered tools) and expected as evidence of reasonable care in many others. Confirm the cadence with Legal.
 
 *Illinois AI Video Interview Act, NYC Local Law 144, and emerging state laws:*
 Several jurisdictions now require disclosure, impact assessments, or consent for AI use in hiring. Illinois's 2026 amendment raised the bar: employers now need explicit written consent before AI analyzes a video interview, continuing the interview no longer counts as implied consent. Illinois also amended its Human Rights Act via HB 3773 (effective January 1, 2026) to broadly prohibit discriminatory AI use in hiring and promotion, not just video interviews. A companion law, Public Act 104-0425 (SB 2487, effective January 1, 2026), gives the Human Rights Commission tiered civil penalty authority for violations: up to $16,000 for a first offense, up to $42,500 with one prior violation within five years, up to $70,000 for two or more within seven years. The regulatory landscape is shifting quickly. Use cases involving hiring must be reviewed against current state law.
@@ -259,7 +259,7 @@ First step to move forward:
 
 Participants who complete all four modules and the hands-on components receive a **HR AI Practitioner** acknowledgment from the People Team.
 
-Optional extension: Participants who complete a full use case spec and present it to the HR Technology team are recognized as **HR AI Champions** an informal internal designation that supports peer enablement.
+Optional extension: Participants who complete a full use case spec and present it to the HR Technology team are recognized as **HR AI Champions**, an informal internal designation that supports peer enablement.
 
 ---
 
