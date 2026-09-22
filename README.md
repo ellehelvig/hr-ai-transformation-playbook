@@ -117,7 +117,7 @@ These are playbook design standards. Applicable legal requirements vary by juris
 
 Covers the EU (AI Act, GDPR Article 22), the US (Title VII, NYC Local Law 144, Illinois, Colorado, California, Texas), the UK (Data (Use and Access) Act 2025), and Canada (Ontario disclosure rule). Does not cover APAC, Latin America, the Middle East, or Africa; get local counsel there.
 
-Claims are dated in the docs and checked against primary sources rather than secondary summaries. A credential-free workflow checks every registered primary-source URL weekly and compares stored quotations where available. It opens or updates one review issue when a source is unreachable or no longer contains its quotation, then closes that issue after a healthy recovery run. Automated checks do not replace human legal verification. Material changes land in [CHANGELOG.md](CHANGELOG.md). If you spot something stale, use the [regulatory update issue template](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new?template=regulatory-update.md) with a citation.
+Every key legal date is in one place, the [Key dates for HR](03-governance/README.md#key-dates-for-hr) table, with a link to the official text and the date it was last reviewed. The table is reviewed by hand each quarter. Material changes land in [CHANGELOG.md](CHANGELOG.md). If you spot something stale, use the [regulatory update issue template](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new?template=regulatory-update.md) with a citation.
 
 None of this is legal advice. Every governance document should be reviewed by Legal and Privacy before adoption.
 
