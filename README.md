@@ -8,8 +8,8 @@
 
 <p align="center">
   <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&amp;style=flat-square&amp;label=tests"></a>
-  <a href="https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html"><img alt="Live ROI calculator" src="https://img.shields.io/badge/live-ROI%20calculator-4f46a5?style=flat-square"></a>
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0e7490?style=flat-square"></a>
+  <a href="https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html"><img alt="Live ROI calculator" src="https://img.shields.io/badge/live-ROI%20calculator-5b4bdb?style=flat-square"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-1a2233?style=flat-square"></a>
 </p>
 
 <p align="center">
