@@ -12,6 +12,7 @@ Added
 
 Fixed
 
+- **Images on the GitHub Pages site.** The banner and the ROI walkthrough lived in `.github/assets/`, which Jekyll does not publish, so both were broken on the site while working on GitHub. They now live in `assets/`.
 - **EU AI Act penalties date.** Article 99 fines have applied since 2 August 2025, not 2 August 2026. Only Article 101, for general-purpose AI model providers, started in 2026.
 - **EU AI Act wording.** Articles 26(11), 26(12), and 50 are no longer run together, the Article 6(3) exemptions match the Act, and the Article 50 grace period to 2 December 2026 is stated.
 - **Notebooks.** The attrition model no longer uses age as an input and audits it instead. The skills gap analysis measures each skill only against the roles that need it. The Q&A demo no longer invents policy details.

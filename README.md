@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/playbook-banner.svg" alt="HR AI Transformation Playbook" width="100%">
+  <img src="assets/playbook-banner.svg" alt="HR AI Transformation Playbook" width="100%">
 </p>
 
 <p align="center">
@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html"><img src=".github/assets/roi-walkthrough.gif" alt="The ROI dashboard: a one-page monthly HR AI update, then the payback calculator showing payback move from 3.3 to 7.1 months when the realization rate is halved, and to 2.1 months at 60 people" width="100%"></a>
+  <a href="https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html"><img src="assets/roi-walkthrough.gif" alt="The ROI dashboard: a one-page monthly HR AI update, then the payback calculator showing payback move from 3.3 to 7.1 months when the realization rate is halved, and to 2.1 months at 60 people" width="100%"></a>
 </p>
 
 ---
