@@ -27,6 +27,7 @@ Removed
 
 Changed
 
+- **One color system across the portfolio.** The ROI dashboard, the GitHub Pages theme, and the README badges now use the portfolio's midnight, violet, and cyan palette in place of warm beige, Cayman's blue-green gradient, and mixed badge colors. Every text pair on the dashboard was checked in light and dark mode and meets WCAG AA. The walkthrough GIF is recaptured in dark mode.
 - **Model cost tiers** price input and output separately, rechecked on 18 September 2026 against each provider's pricing page.
 
 ## 2.2.0 (2026-09-12)
