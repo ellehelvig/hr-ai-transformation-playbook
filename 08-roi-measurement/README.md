@@ -1,10 +1,12 @@
 # HR AI ROI measurement
 
-> **08 / MEASURE** · Connect activity to business outcomes, risk, and investment decisions.
+> **08 / ADOPT AND PROVE** · Connect activity to business outcomes, risk, and investment decisions.
 
 [← Agent patterns](../07-agentic-patterns/README.md) · [Playbook home](../README.md) · [Next: Evals →](../09-evals/README.md)
 
 ---
+
+**For:** HR leaders and finance partners making the business case. **Start with:** [Live ROI calculator](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html).
 
 HR AI programs fail to scale for one of two reasons: they can't show value, or they can't show it in terms leadership cares about. This section provides a framework for measuring and communicating the business impact of HR AI investments.
 

@@ -1,10 +1,12 @@
 # 11. Skills
 
-> **11 / OPERATIONALIZE** · Package the playbook into repeatable, human-governed agent behaviors.
+> **11 / BUILD** · Package the playbook into repeatable, human-governed agent behaviors.
 
 [← MCP agents](../10-mcp-agents/README.md) · [Playbook home](../README.md)
 
 ---
+
+**For:** HR teams using an AI assistant such as Claude. **Start with:** [hr-ai-use-case-intake](hr-ai-use-case-intake/SKILL.md).
 
 Six installable agent skills for HR teams, in the order to adopt them.
 

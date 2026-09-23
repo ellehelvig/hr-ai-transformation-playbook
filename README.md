@@ -3,138 +3,70 @@
 </p>
 
 <p align="center">
-  A practical, inspectable system for moving HR AI from scattered experiments to responsible adoption.
+  How a People team moves from scattered AI experiments to responsible, measurable adoption.
 </p>
 
 <p align="center">
-  <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&amp;style=flat-square&amp;label=quality"></a>
-  <a href="03-governance/README.md"><img alt="Governance" src="https://img.shields.io/badge/governance-primary%20sources-4f46a5?style=flat-square"></a>
+  <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&amp;style=flat-square&amp;label=tests"></a>
+  <a href="https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html"><img alt="Live ROI calculator" src="https://img.shields.io/badge/live-ROI%20calculator-4f46a5?style=flat-square"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0e7490?style=flat-square"></a>
-  <a href="CONTRIBUTING.md"><img alt="Contributions" src="https://img.shields.io/badge/contributions-welcome-475569?style=flat-square"></a>
 </p>
 
+<p align="center">
+  <a href="https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html"><img src=".github/assets/roi-walkthrough.gif" alt="The ROI dashboard: a one-page monthly HR AI update, then the payback calculator showing payback move from 3.3 to 7.1 months when the realization rate is halved, and to 2.1 months at 60 people" width="100%"></a>
+</p>
 
 ---
 
-## A practical operating model for HR AI adoption
+## The point of view
 
-| Decide | Design | Govern | Adopt | Prove |
-|---|---|---|---|---|
-| Prioritize the right use cases | Build workflows with human boundaries | Translate policy into enforceable gates | Create capability and trust | Measure behavior, risk, and value |
-| [01 · Use cases](01-use-cases/README.md)<br>[06 · Roadmap](06-roadmap/README.md) | [02 · Prompt library](02-prompt-library/README.md)<br>[05 · Notebooks](05-notebooks/README.md)<br>[07 · Agent patterns](07-agentic-patterns/README.md)<br>[10 · MCP tools](10-mcp-agents/README.md) | [03 · Governance](03-governance/README.md) | [04 · Enablement](04-enablement/README.md)<br>[11 · Skills](11-skills/README.md) | [08 · ROI](08-roi-measurement/README.md)<br>[09 · Evals](09-evals/README.md) |
+Most HR AI programs stall in one of three places: they start with the wrong use case, they cannot get through Legal and Privacy, or nobody changes how they work. This playbook takes a position on each.
 
----
+1. **Start with the decision, not the tool.** Score every idea on value, risk, and readiness before anyone buys anything.
+2. **Governance is a design input, not a gate at the end.** Legal, Privacy, and employee representatives see the intake before the build starts.
+3. **Humans make consequential employment decisions.** AI can inform hiring, pay, and performance decisions. It never makes them, and the tools here enforce that in code.
+4. **Adoption is the product.** A tool nobody trusts is a cost. Training and measurement are planned from day one.
 
-## What makes this different
+## See it in five minutes
 
-Most HR AI guidance is either too abstract to act on or too tied to one vendor to reuse. This repo is neither, and you can check that claim against the repo itself:
-
-- **It runs.** Three notebooks execute in CI on every push. Four HR workflow packages expose six MCP tools backed by a 52-test suite. The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a deploy, and its scorer and LLM judge have 39 tests of their own.
-- **The guarantees are tested, not asserted.** Three governance claims in this repo turned out to be unenforced when reviewed against the code: a screening tool that "never produces a score" while returning counts you could divide, a comp guardrail that annotated a prohibited input instead of refusing it, and a citation finder whose "no match" only fired when a question shared zero words with the corpus. Each is now a behavioral test. See the 2.2.0 entry in [CHANGELOG.md](CHANGELOG.md) for what changed and why.
-- **The evals grade correctness, and the grader is itself measured.** Responses are graded against each case's hand-written `expected_behavior` criteria, and judge verdicts are checked against human labels with Cohen's kappa, so a run can state how far the grader should be believed rather than just reporting a pass rate. See [09-evals](09-evals/README.md).
-- **Governance cites primary sources.** Every regulatory claim names the statute, enrolled bill, regulator page, or court docket it rests on, never a law firm alert or a vendor summary. When something changes (the EU AI Omnibus, Colorado's rewrite, Illinois penalties), the [changelog](CHANGELOG.md) says what moved.
-- **Humans stay in the loop by construction.** The MCP tools have `human_review_required: true` with no code path that turns it off, and the resume screener's schema is tested to guarantee it can never emit a score.
-- **It's vendor-agnostic.** Nothing assumes a specific HRIS, ATS, or model provider.
-
----
-
-## Start here, by role
-
-**HR leader deciding where to begin**
-→ [Prioritization matrix](01-use-cases/prioritization-matrix.md), then the [18-month roadmap](06-roadmap/transformation-roadmap-template.md)
-
-**HR professional who wants something useful today**
-→ Install the [hr-prompt-picker](11-skills/hr-prompt-picker/SKILL.md) skill, or go straight to the [prompt library](02-prompt-library/README.md)
-
-**Legal, Privacy, or Compliance partner**
-→ [Governance suite](03-governance/README.md): start with the [AI use policy](03-governance/ai-use-policy.md) and the [one-page pre-screen](03-governance/quick-reference-checklist.md)
-
-**Operating in the EU**
-→ [EU AI Act intake template](03-governance/eu-ai-act-intake-template.md) and [deployer checklist](03-governance/deployer-checklist.md). Annex III employment obligations apply from 2 December 2027; GDPR Article 22 applies now.
-
-**People analytics or data science**
-→ [Attrition risk model with fairness audit](05-notebooks/attrition-risk-modeling.ipynb), then [fairness-audit-prep](11-skills/fairness-audit-prep/SKILL.md)
-
-**Engineer building HR agents**
-→ [Agentic pattern decision tree](07-agentic-patterns/README.md), the [MCP server](10-mcp-agents/README.md), and the [evals](09-evals/README.md)
-
-**Procurement or vendor management**
-→ [Vendor selection framework](03-governance/vendor-selection-framework.md), [vendor intake checklist](03-governance/vendor-intake-checklist.md), and the [hr-ai-vendor-review](11-skills/hr-ai-vendor-review/SKILL.md) skill
-
-**Five minutes and a skeptical CFO**
-→ The [live ROI dashboard](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html), a payback calculator you can run with your own numbers
-
----
-
-## Skills HR should install first
-
-New in 2.0: six agent skills that make an AI assistant follow this playbook's templates instead of improvising. Ranked by risk removed per hour of setup.
-
-| # | Skill | One line |
+| Time | Look at | What it shows |
 |---|---|---|
-| 1 | [hr-ai-use-case-intake](11-skills/hr-ai-use-case-intake/SKILL.md) | Idea in, completed intake card + prioritization score + risk tier out |
-| 2 | [hr-prompt-picker](11-skills/hr-prompt-picker/SKILL.md) | Right prompt from the library, adapted, with verify-before-use attached |
-| 3 | [hr-ai-vendor-review](11-skills/hr-ai-vendor-review/SKILL.md) | Vendor docs in, gap list + red flags + follow-up email out |
-| 4 | [fairness-audit-prep](11-skills/fairness-audit-prep/SKILL.md) | Disparate impact test plan and monitoring template for anything that scores people |
-| 5 | [eu-ai-act-hr-classifier](11-skills/eu-ai-act-hr-classifier/SKILL.md) | The 11-field Annex III card with Article 6(3) reasoning counsel can argue with |
-| 6 | [hr-ai-incident-triage](11-skills/hr-ai-incident-triage/SKILL.md) | First-hour incident report, severity, containment, routing |
+| 1 minute | [ROI calculator](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html) | A payback model a CFO can run with their own numbers |
+| 2 minutes | [Prioritization matrix](01-use-cases/prioritization-matrix.md) | How to pick the first three use cases, with a worked example |
+| 2 minutes | [Resume screening tool](10-mcp-agents/resume_screen/ENABLEMENT.md) | An AI tool that maps evidence against a job's requirements and is tested so it can never output a score or rank |
 
-The [skills README](11-skills/README.md) also has a human capability ladder: the practitioner skill each agent skill depends on, and where in the curriculum to build it.
+## How it fits together
 
----
+| Stage | The question it answers | Sections |
+|---|---|---|
+| **Decide** | What should we build first, and in what order? | [01 · Use cases](01-use-cases/README.md): 37 vetted HR AI use cases and a prioritization matrix<br>[06 · Roadmap](06-roadmap/README.md): an 18-month plan with phase gates |
+| **Govern** | Can we deploy this responsibly? | [03 · Governance](03-governance/README.md): AI use policy, risk assessment, EU AI Act intake, vendor review, incident response, and [key legal dates](03-governance/README.md#key-dates-for-hr) |
+| **Build** | How do we make it work, safely? | [02 · Prompts](02-prompt-library/README.md) for eight HR functions<br>[11 · Skills](11-skills/README.md): six installable agent skills<br>[07 · Agent patterns](07-agentic-patterns/README.md): five architecture patterns<br>[10 · MCP tools](10-mcp-agents/README.md), [09 · Evals](09-evals/README.md), [05 · Notebooks](05-notebooks/README.md) |
+| **Adopt and prove** | Will people use it, and is it worth it? | [04 · Enablement](04-enablement/README.md): a 4-module literacy curriculum and a 90-day adoption plan<br>[08 · ROI](08-roi-measurement/README.md): business case, metrics, and reporting |
 
-## What's inside
+**New here?** HR leaders start with [Decide](01-use-cases/README.md). Legal and Privacy partners start with the [AI use policy](03-governance/ai-use-policy.md). Engineers start with the [MCP tools](10-mcp-agents/README.md).
 
-| Section | What you get |
-|---|---|
-| [01 · Use cases](01-use-cases/README.md) | 37 vetted HR AI use cases with resources column, prioritization matrix, intake template with worked example |
-| [02 · Prompt library](02-prompt-library/README.md) | Tested prompts with tuning notes across talent acquisition, onboarding, performance, L&D, HR operations, people analytics, succession, internal mobility |
-| [03 · Governance](03-governance/README.md) | AI use policy, risk assessment, EU AI Act intake, vendor selection and intake, deployer checklist, incident report, pay equity governance, one-page pre-screen |
-| [04 · Enablement](04-enablement/README.md) | 4-module literacy curriculum (with slides and PDF), facilitator guide, 90-day adoption playbook |
-| [05 · Notebooks](05-notebooks/README.md) | Skills gap analysis, fairness-audited attrition model, HR Q&A agent demo. All synthetic data, all executed in CI |
-| [06 · Roadmap](06-roadmap/README.md) | 18-month transformation roadmap, KPI framework, phase gates |
-| [07 · Agentic patterns](07-agentic-patterns/README.md) | Five architecture patterns with governance built in, agent design guide, testing framework, talent operating system architecture |
-| [08 · ROI measurement](08-roi-measurement/README.md) | Business case template, ROI framework, reporting cadence, live dashboard |
-| [09 · Evals](09-evals/README.md) | 29 test cases, rubric with launch-blocking gates, automated runner |
-| [10 · MCP agents](10-mcp-agents/README.md) | Four HR workflow packages expose six tools on one MCP server, backed by 52 passing tests |
-| [11 · Skills](11-skills/README.md) | Six installable agent skills, ranked adoption order, human capability ladder |
+## What this demonstrates
 
----
+Built by Elle Helvig, an HR transformation leader. I defined the HR problems, designed the operating model and governance approach, and built the tools with AI-assisted development. The work shows four things a People AI program needs from one leader:
 
-## The three non-negotiables
+- **Strategy.** Turning a long list of AI ideas into a sequenced, fundable roadmap.
+- **Governance.** Translating the EU AI Act, GDPR, and US state and city laws into templates HR teams can actually fill in.
+- **Hands-on building.** Working tools, agent skills, and evaluations, not slideware.
+- **Adoption.** Training, change management, and the metrics that show whether it worked.
 
-Whatever you build:
+## For technical reviewers
 
-1. **Humans make consequential employment decisions.** AI informs; it does not decide.
-2. **Provide notice and transparency** when AI influences a process that affects employees or candidates.
-3. **Require fairness assessment and monitoring** for anything that scores or ranks employees or candidates.
+- Three notebooks execute in CI on every push, using synthetic data only.
+- Four HR workflows expose six MCP tools, backed by a 52-test suite. No tool calls an LLM internally, so their behavior is reproducible and auditable.
+- `human_review_required` is always true, with no code path that turns it off, and the tests check it.
+- The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a launch. Its scorer and LLM judge have 39 tests of their own, and the judge is checked against human labels.
+- Nothing assumes a specific HRIS, ATS, or model provider.
 
-These are playbook design standards. Applicable legal requirements vary by jurisdiction and use case. Every template, prompt, tool, and skill here is built to hold those lines. If you find one that doesn't, [open an issue](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new/choose).
+## Scope and limits
+
+Covers the EU, the US (federal, New York City, and several states), the UK, and Ontario. Not APAC, Latin America, the Middle East, or Africa. Legal dates are reviewed by hand each quarter in the [Key dates for HR](03-governance/README.md#key-dates-for-hr) table. None of this is legal advice; have Legal and Privacy review any document before you adopt it. All data is synthetic.
 
 ---
 
-## Regulatory coverage and currency
-
-Covers the EU (AI Act, GDPR Article 22), the US (Title VII, NYC Local Law 144, Illinois, Colorado, California, Texas), the UK (Data (Use and Access) Act 2025), and Canada (Ontario disclosure rule). Does not cover APAC, Latin America, the Middle East, or Africa; get local counsel there.
-
-Every key legal date is in one place, the [Key dates for HR](03-governance/README.md#key-dates-for-hr) table, with a link to the official text and the date it was last reviewed. The table is reviewed by hand each quarter. Material changes land in [CHANGELOG.md](CHANGELOG.md). If you spot something stale, use the [regulatory update issue template](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new?template=regulatory-update.md) with a citation.
-
-None of this is legal advice. Every governance document should be reviewed by Legal and Privacy before adoption.
-
----
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md). Practitioner contributions with real-world tuning notes are the most valuable thing you can send.
-
-## License
-
-MIT. Use it, adapt it for your organization, send improvements back.
-
-## Citation
-
-If this playbook informs your work, cite it via [CITATION.cff](CITATION.cff) or link the repo.
-
----
-
-Built and maintained by Elle Helvig · [LinkedIn](https://www.linkedin.com/in/ellehelvig/)
+MIT licensed. [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · [Cite this work](CITATION.cff) · [Elle Helvig on LinkedIn](https://www.linkedin.com/in/ellehelvig/)

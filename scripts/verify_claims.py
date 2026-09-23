@@ -195,13 +195,13 @@ def build_report() -> Report:
 
     add(Check(
         "Use cases in the library",
-        claim("README.md", r"\|\s*(\d+) vetted HR AI use cases"),
+        claim("README.md", r"(\d+) vetted HR AI use cases"),
         count_table_rows("01-use-cases/use-case-library.md"),
         "01-use-cases/use-case-library.md table rows",
     ))
     add(Check(
         "Installable agent skills",
-        claim("README.md", r"\|\s*(\w+) installable agent skills"),
+        claim("README.md", r"(\w+) installable agent skills"),
         count_dirs("11-skills"),
         "11-skills/ package directories",
     ))
@@ -225,26 +225,21 @@ def build_report() -> Report:
     ))
     add(Check(
         "Architecture patterns",
-        claim("README.md", r"\|\s*(\w+) architecture patterns"),
+        claim("README.md", r"(\w+) architecture patterns"),
         count_headings("07-agentic-patterns/README.md", r"^## Pattern \d+:"),
         "07-agentic-patterns/README.md pattern headings",
     ))
     add(Check(
         "Literacy curriculum modules",
-        claim("README.md", r"\|\s*(\d+)-module literacy curriculum"),
+        claim("README.md", r"(\d+)-module literacy curriculum"),
         count_headings("04-enablement/hr-ai-literacy-curriculum.md", r"^## Module \d+:"),
         "04-enablement/hr-ai-literacy-curriculum.md module headings",
     ))
 
     mcp_tests, mcp_skip = collect_tests("10-mcp-agents")
     add(Check(
-        "MCP test suite size (prose)",
+        "MCP test suite size",
         claim("README.md", r"a (\d+)-test suite"),
-        mcp_tests, "pytest 10-mcp-agents", mcp_skip,
-    ))
-    add(Check(
-        "MCP test suite size (table)",
-        claim("README.md", r"(\d+) passing tests"),
         mcp_tests, "pytest 10-mcp-agents", mcp_skip,
     ))
 
