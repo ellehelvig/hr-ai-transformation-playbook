@@ -2,7 +2,7 @@
 
 Notable changes to the playbook. Regulatory content is checked against primary sources; only material changes are logged here.
 
-## [Unreleased]
+## 2.3.0 (2026-09-23)
 
 Added
 
