@@ -4,18 +4,14 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
-Added
-
-- **Key dates for HR** now includes California's FEHA automated-decision rules (1 October 2025), Illinois HB 3773 (1 January 2026), California's CPPA automated decisionmaking rules (1 January 2027), and Colorado SB 26-189 (1 January 2027, enforcement stayed), each linked to official text.
-
 Fixed
 
 - **Evaluation example labeled as illustrative.** `09-evals/evals-summary-example.txt` described a "pilot run against a staging HR Q&A agent" and a prompt fix made "before launch." No such agent is part of this repository, so the file now says the agent and results are hypothetical.
-- **Four-fifths rule described precisely.** The attrition notebook called it "the standard EEOC threshold for disparate impact." It is a rule of thumb from the Uniform Guidelines, [29 CFR 1607.4(D)](https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607/section-1607.4), which also says smaller differences can still be adverse impact. The notebook also no longer claims its features "consistently show predictive value across organizations."
+- **Four-fifths rule described as a rule of thumb.** The attrition notebook called it "the standard EEOC threshold for disparate impact." It now describes the Uniform Guidelines provision, [29 CFR 1607.4(D)](https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607/section-1607.4), including that smaller differences can still be adverse impact. The notebook also no longer claims its features "consistently show predictive value across organizations."
+- **Unsupported Illinois claim removed.** The curriculum said a "2026 amendment" to the AI Video Interview Act requires explicit written consent. No amending act could be found, so the claim is removed and readers are pointed to the statute.
+- **California AB 1883 and SB 947 flagged as unverified.** Published summaries disagree about AB 1883's status. The curriculum and risk template no longer state either bill's procedural status and say to check the official bill history.
+- **Colorado stay described neutrally.** The risk template says a federal court stayed enforcement, without characterizing how.
 - **Resume screening claim matches the code.** The front page said the tool "can never output a score or rank," a claim the tool's own docstring retired in 2.1. It now states the enforced guarantees and points to the known limitations.
-- **Illinois video interview claim corrected.** The curriculum said a "2026 amendment" to the AI Video Interview Act now requires explicit written consent. No amending act was found; the 2020 Act ([820 ILCS 42](https://www.ilga.gov/Legislation/ILCS/Articles?ActID=4015&ChapterID=68)) already requires notice, an explanation, and consent before the interview. The claim appears to have come from secondary compliance blogs.
-- **Illinois notice rules.** The Department of Human Rights proposed HB 3773 notice rules in May 2026 and withdrew them in June 2026. Noted in the curriculum and the key dates table.
-- **Colorado stay described precisely.** The April 2026 stay was entered with the Attorney General's agreement, not imposed over objection.
 - **Section 10 is titled MCP tools.** The six tools are deterministic and call no model; the agent is whatever calls them. The folder name is unchanged so links keep working.
 
 ## 2.3.0 (2026-09-23)
