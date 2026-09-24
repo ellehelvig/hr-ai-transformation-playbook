@@ -6,6 +6,7 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 Changed
 
+- **Headcount is not the value measure.** The roadmap KPI framework no longer tracks employees per HR FTE as an efficiency target. The section is renamed Time and effort.
 - **One rule for numbers.** Templates now say "[Set after baseline]" instead of unsourced targets (enablement, use case library, roadmap phase gates and KPI framework). Worked examples label their numbers as examples (business case, ROI sample report, dashboard). Governance rows that were "100%" targets are stated as requirements. The roadmap no longer asserts that most large HR organizations are at Level 1 or 2.
 - **Principle 3 made precise.** The tools return a human-review flag, which a calling system could ignore; enforcement in code is demonstrated in Resolve's approval gate, not in these tools.
 - **Evaluation and review claims made precise.** The README said the LLM judge "is checked against human labels"; the runner can measure agreement with human labels, but no labeled run has been done. It also said every tool returns `human_review_required: true`; three of four do, and policy Q&A returns a disclaimer instead.

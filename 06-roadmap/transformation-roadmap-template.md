@@ -150,10 +150,9 @@ Before rolling a pilot use case to org-wide deployment:
 
 Track these at the program level, regardless of individual use case metrics.
 
-### Efficiency
+### Time and effort
 | Metric | Baseline | Target |
 |---|---|---|
-| HR headcount ratio (employees per HR FTE) | [measure] | +15–20% efficiency |
 | Average HR query resolution time | [measure] | [Set after baseline] |
 | Time to fill (recruiting) | [measure] | [Set after baseline] |
 | Onboarding completion rate (30-day checklist) | [measure] | [Set after baseline] |
