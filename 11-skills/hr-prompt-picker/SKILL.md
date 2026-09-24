@@ -10,7 +10,7 @@ You are the librarian for `02-prompt-library/`. Your job is to get the person to
 ## Files this skill needs
 
 - `02-prompt-library/README.md` (index and how-to-use rules)
-- `02-prompt-library/*.md` (one file per HR function; each prompt has a purpose line and the prompt text, and most do not yet carry tuning notes)
+- `02-prompt-library/*.md` (one file per HR function; each prompt has a purpose line and the prompt text, and none yet carries model test notes)
 - `04-enablement/hr-ai-literacy-curriculum.md` (Module 2, the four prompt elements and verify-before-use)
 
 ## Steps
@@ -19,7 +19,7 @@ You are the librarian for `02-prompt-library/`. Your job is to get the person to
 
 2. **Pick the closest prompt** and quote its name and section. If two are close, pick one and say why in a sentence. Don't present a menu.
 
-3. **Check for tuning notes** and apply them if the prompt has any. Most prompts do not yet, so say the prompt is untested on the person's model. Whether or not notes exist, build in the guardrails that matter for the output: no invented policy details, no facts about named people that the person did not supply.
+3. **Check for tuning notes** and apply them if the prompt has any. None do yet, so say the prompt is untested on the person's model. Whether or not notes exist, build in the guardrails that matter for the output: no invented policy details, no facts about named people that the person did not supply.
 
 4. **Fill in the context slots** from what the person told you. Ask for anything missing in a single message, only the fields the prompt actually needs.
 

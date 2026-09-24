@@ -49,7 +49,9 @@ This is the highest-risk content in the repo. The rules are strict on purpose.
 
 - Synthetic data only. No real employee or candidate data anywhere, including
   test fixtures, notebook outputs, and eval results.
-- Every prompt carries tuning notes naming the model tested and what changed.
+- Prompts are drafts and say so. Never state or imply that a prompt was tested on a
+  model unless the test was run. If it was, record the model, the date, and what
+  changed next to the prompt.
 - Skills stop at the human. A skill may draft, score against a rubric, or route.
   It may not make an employment decision, assign a score to a named person, or
   write to an HR system.
@@ -60,7 +62,7 @@ This is the highest-risk content in the repo. The rules are strict on purpose.
 | Path | Contents |
 |---|---|
 | `01-use-cases` | Vetted HR AI use cases, prioritization matrix, intake template |
-| `02-prompt-library` | Tested prompts with tuning notes, by HR function |
+| `02-prompt-library` | Draft prompts by HR function, not yet tested against a named model |
 | `03-governance` | Policy, risk assessment, EU AI Act intake, vendor and deployer checklists |
 | `04-enablement` | Literacy curriculum, facilitator guide, adoption playbook |
 | `05-notebooks` | Executable analyses, all synthetic data, all executed in CI |
