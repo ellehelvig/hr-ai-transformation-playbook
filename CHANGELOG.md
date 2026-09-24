@@ -6,6 +6,7 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 Changed
 
+- **Attrition notebook reframed.** The named-employee risk card is replaced by segment-level results with small segments suppressed; individual scores are described as a validation step, not an HR decision interface. Drivers use plain labels, the unsourced AUC 0.70 pass bar and the "works well in production" claim are removed, and a limitations section covers synthetic-data optimism and the consequences of predicting individuals.
 - **Quieter README header.** The decorative banner and license badge are replaced by a plain title; the tests badge remains.
 - **Contributor rules match the prompts.** CLAUDE.md, CONTRIBUTING, and the pull request template required tuning notes naming the model tested on every prompt; none exist. The rule now is that prompts are drafts, and model testing is recorded only when it happens.
 - **Fictional examples say so.** The intake template's exit-interview example described a "manual prototype run on Q1 2026 exit data (n=47)"; it is now labeled fictional throughout, with example targets marked. The incident report's worked example is labeled fictional.
