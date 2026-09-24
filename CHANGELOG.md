@@ -6,6 +6,7 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 Changed
 
+- **README tour starts with the work redesign case study.** The ROI calculator badge and tour entry are removed; the calculator remains in section 08.
 - **HRBP, People Partner, and HR case owner.** Helpdesk escalations in the eval cases, the business case example, and two prompts now route to the HR case owner rather than an HRBP. HRBP stays where it means the partner aligned to a business leader, including the performance plan dispute case. The case study defines both titles once.
 - **ROI walkthrough GIF removed.** It predated the target changes and made a modeled payback calculator the first thing a visitor sees. The live calculator is still linked.
 - **Approach taxonomy aligned with the work-design modes.** Rules, Augment, Assist, Human-led, and Analytics replace Agent, Copilot, and Automation in the use case library, intake template, risk assessment, and curriculum. Each of the 37 use cases was reclassified by what the proposed system does; mixed designs say so. Agent is defined and reserved; no use case currently meets it. The new hire Q&A spotlight now says unreviewed answers must be earned through evaluation, and the business case example no longer describes retrieval as training.

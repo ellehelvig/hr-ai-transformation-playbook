@@ -8,7 +8,6 @@
 
 <p align="center">
   <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&amp;style=flat-square&amp;label=tests"></a>
-  <a href="https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html"><img alt="Live ROI calculator" src="https://img.shields.io/badge/live-ROI%20calculator-5b4bdb?style=flat-square"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-1a2233?style=flat-square"></a>
 </p>
 
@@ -23,11 +22,11 @@ Most HR AI programs stall in one of three places: they start with the wrong use 
 3. **Humans make consequential employment decisions.** AI can inform hiring, pay, and performance decisions. It never makes them. The tools here return evidence flagged for human review, never a decision, and [Resolve](https://github.com/ellehelvig/peopleops-resolution-agent) enforces a human approval step in code.
 4. **Measure changed work, not launched tools.** A tool nobody trusts is a cost. Training and measurement are planned from day one.
 
-## See it in five minutes
+## Where to start
 
 | Time | Look at | What it shows |
 |---|---|---|
-| 1 minute | [ROI calculator](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html) | A payback model a CFO can run with their own numbers |
+| 5 minutes | [Work redesign: the People Partner role](01-use-cases/work-redesign-people-partner.md) | One HR role broken into tasks: where rules, AI, and people each belong, what evidence supports each choice, and why no task yet earns end-to-end model autonomy |
 | 2 minutes | [Prioritization matrix](01-use-cases/prioritization-matrix.md) | How to pick the first three use cases, with a worked example |
 | 2 minutes | [Resume screening tool](10-mcp-agents/resume_screen/ENABLEMENT.md) | A deterministic tool an AI assistant can call. It shows the evidence for each job requirement, returns no fitness score, never compares candidates, and lists what its design cannot prevent |
 
@@ -35,7 +34,7 @@ Most HR AI programs stall in one of three places: they start with the wrong use 
 
 | Stage | The question it answers | Sections |
 |---|---|---|
-| **Decide** | What should we build first, and in what order? | [01 · Use cases](01-use-cases/README.md): 37 vetted HR AI use cases and a prioritization matrix<br>[06 · Roadmap](06-roadmap/README.md): an 18-month plan with phase gates |
+| **Decide** | What should we build first, and in what order? | [01 · Use cases](01-use-cases/README.md): 37 vetted HR AI use cases, a prioritization matrix, and a [work redesign case study](01-use-cases/work-redesign-people-partner.md)<br>[06 · Roadmap](06-roadmap/README.md): an 18-month plan with phase gates |
 | **Govern** | Can we deploy this responsibly? | [03 · Governance](03-governance/README.md): AI use policy, risk assessment, EU AI Act intake, vendor review, incident response, and [key legal dates](03-governance/README.md#key-dates-for-hr) |
 | **Build** | How do we make it work, safely? | [02 · Prompts](02-prompt-library/README.md) for eight HR functions<br>[11 · Skills](11-skills/README.md): six installable agent skills<br>[07 · Workflow patterns](07-agentic-patterns/README.md): four architecture patterns<br>[10 · MCP tools](10-mcp-agents/README.md), [09 · Evals](09-evals/README.md), [05 · Notebooks](05-notebooks/README.md) |
 | **Adopt and prove** | Will people use it, and is it worth it? | [04 · Enablement](04-enablement/README.md): a 4-module literacy curriculum and a 90-day adoption plan<br>[08 · ROI](08-roi-measurement/README.md): business case, metrics, and reporting |
