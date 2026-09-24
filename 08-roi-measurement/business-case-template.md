@@ -65,7 +65,7 @@ Two things reviewers will push on. The realization rate is the share of saved mi
 **Go/no-go criteria**
 What must be true for this to succeed? State these before you start.
 
-*Example: Clean policy documentation available in structured format; HRBP team committed to reviewing escalations within 2 hours; IT approval for API integration.*
+*Example: Clean policy documentation available in structured format; HR case owners committed to reviewing escalations within 2 hours; IT approval for API integration.*
 
 ---
 

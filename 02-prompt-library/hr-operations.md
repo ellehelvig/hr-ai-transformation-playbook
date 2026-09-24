@@ -63,7 +63,7 @@ Generate a response that:
 2. Explains the process: what to submit, to whom, and by when
 3. States job protection and pay continuation terms exactly as written in the source material, does not paraphrase in a way that changes the meaning
 4. Notes if this leave type interacts with another (e.g., a state leave running concurrently with an FMLA-equivalent) only if the source material addresses it
-5. Routes to a leave specialist or HRBP for anything involving intermittent leave, leave extension, or a return-to-work accommodation
+5. Routes to a leave specialist or the HR case owner for anything involving intermittent leave, leave extension, or a return-to-work accommodation
 
 Do not:
 - State a leave duration or eligibility threshold not explicitly in the source material

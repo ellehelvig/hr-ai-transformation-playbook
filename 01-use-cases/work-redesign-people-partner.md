@@ -10,7 +10,7 @@ Request wording is not request intent. "Can I work from home two days a week?" i
 
 **Classification is not merely a language problem. It is a workflow, risk, and accountability problem.**
 
-This page redesigns one HR role around that idea, task by task, and tests the design against a working prototype.
+This page redesigns one HR role around that idea, task by task, and tests the design against a working prototype. Here, HRBP means the HR partner aligned to a business leader; People Partner means the HR professional who owns employee requests in a tiered service. Organizations use both titles for both scopes.
 
 ## Decisions
 

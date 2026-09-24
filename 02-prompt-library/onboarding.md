@@ -27,7 +27,7 @@ Generate a response that:
 1. Answers the question in the first sentence
 2. Cites the policy section name and version, so the employee can verify
 3. Flags any next steps the employee needs to take, with deadlines if relevant
-4. Routes to a human contact (HRBP, HR Ops) if the question involves individual circumstances or jurisdiction-specific rules
+4. Routes to the HR case owner if the question involves individual circumstances or jurisdiction-specific rules
 5. Keeps tone warm but direct, new hires are nervous, not stupid
 
 Do not:
