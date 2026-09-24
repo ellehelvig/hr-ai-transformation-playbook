@@ -115,7 +115,7 @@
 
 | Use case | AI approach | Business impact | Implementation effort | Key risk | Resources |
 |---|---|---|---|---|---|
-| HR helpdesk triage and response | Agent | High | Medium | Policy accuracy | [hr-operations.md, #3](../02-prompt-library/hr-operations.md) |
+| HR helpdesk triage and response | Copilot | High | Medium | Missed Employee Relations, legal, or health signals in routine-looking requests; policy accuracy | [hr-operations.md, #3](../02-prompt-library/hr-operations.md), [work redesign case study](work-redesign-people-partner.md) |
 | Benefits enrollment guidance | Copilot | High | Low | Benefits complexity, legal | [hr-operations.md, #1](../02-prompt-library/hr-operations.md) |
 | Leave request processing | Automation | Medium | Medium | Leave law variation by jurisdiction | [hr-operations.md, #2](../02-prompt-library/hr-operations.md) |
 | Employee survey sentiment analysis | Analytics | High | Low | Interpretation subjectivity | [people-analytics.md, #2](../02-prompt-library/people-analytics.md) |

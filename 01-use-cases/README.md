@@ -17,6 +17,7 @@ Everything in this section is designed to answer one question: **what should we 
 | [use-case-library.md](use-case-library.md) | 37 HR AI use cases organized by function, with AI approach, impact, effort, and risk ratings |
 | [prioritization-matrix.md](prioritization-matrix.md) | Scoring framework to rank use cases against your specific context |
 | [intake-template.md](intake-template.md) | Submit a new use case for review |
+| [work-redesign-people-partner.md](work-redesign-people-partner.md) | One HR role redesigned task by task: where rules, AI, and people each belong, tested against a working prototype |
 
 ## How to use this section
 
