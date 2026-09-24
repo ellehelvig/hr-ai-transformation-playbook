@@ -65,7 +65,7 @@ This is the highest-risk content in the repo. The rules are strict on purpose.
 | `04-enablement` | Literacy curriculum, facilitator guide, adoption playbook |
 | `05-notebooks` | Executable analyses, all synthetic data, all executed in CI |
 | `06-roadmap` | Transformation roadmap, KPI framework, phase gates |
-| `07-agentic-patterns` | Architecture patterns, agent design, testing framework |
+| `07-agentic-patterns` | Workflow patterns, scoping, testing and evaluation |
 | `08-roi-measurement` | Business case, ROI framework, live dashboard |
 | `09-evals` | Eval cases, rubric with launch-blocking gates, runner and judge |
 | `10-mcp-agents` | Working MCP server: comp banding, screening, intake, policy Q and A |

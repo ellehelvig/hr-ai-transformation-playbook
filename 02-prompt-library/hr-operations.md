@@ -75,7 +75,7 @@ Do not:
 
 ## 3. HR helpdesk ticket triage and routing
 
-**What it does:** Classifies an inbound HR helpdesk ticket for routing and urgency. Used inside a ticketing system or as a tool-use agent action (see [Pattern 2](../07-agentic-patterns/README.md#pattern-2-tool-use-agent-with-human-handoff) in the agentic patterns library).
+**What it does:** Classifies an inbound HR helpdesk ticket for routing and urgency. Used inside a ticketing system or as a tool-use agent action (see [Pattern 2](../07-agentic-patterns/README.md#pattern-2-tool-use-with-human-handoff) in the agentic patterns library).
 
 ```
 You are triaging an inbound HR helpdesk ticket. Classify it for routing, do not attempt to resolve it yourself.

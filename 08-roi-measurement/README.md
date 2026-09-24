@@ -2,7 +2,7 @@
 
 > **08 / ADOPT AND PROVE** · Connect activity to business outcomes, risk, and investment decisions.
 
-[← Agent patterns](../07-agentic-patterns/README.md) · [Playbook home](../README.md) · [Next: Evals →](../09-evals/README.md)
+[← Workflow patterns](../07-agentic-patterns/README.md) · [Playbook home](../README.md) · [Next: Evals →](../09-evals/README.md)
 
 ---
 

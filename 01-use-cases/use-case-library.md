@@ -43,7 +43,7 @@
 |---|---|---|---|---|---|
 | Personalized onboarding plan generation | Agent | High | Medium | Role/team data quality | [onboarding.md, #2](../02-prompt-library/onboarding.md) |
 | New hire Q&A assistant | Agent | High | Low | Policy accuracy, hallucination | [onboarding.md, #1](../02-prompt-library/onboarding.md); [hr-qa-agent-demo.ipynb](../05-notebooks/hr-qa-agent-demo.ipynb) |
-| Onboarding task automation (IT provisioning triggers) | Automation | High | High | System integration complexity | [Pattern 5, agentic patterns](../07-agentic-patterns/README.md) |
+| Onboarding task automation (IT provisioning triggers) | Automation | High | High | System integration complexity | [Pattern 4, workflow patterns](../07-agentic-patterns/README.md#pattern-4-multi-step-workflow-with-checkpoints) |
 | 30/60/90 day check-in synthesis | Analytics | Medium | Low | Survey fatigue | [onboarding.md, #4](../02-prompt-library/onboarding.md) |
 | Manager onboarding prep guide | Copilot | High | Low | Template staleness | [onboarding.md, #3](../02-prompt-library/onboarding.md) |
 | Buddy program matching | Analytics | Medium | Low | Thin data for new orgs | [onboarding.md, #5](../02-prompt-library/onboarding.md) |
@@ -99,7 +99,7 @@
 | Course content summarization | Copilot | Medium | Low | Copyright compliance | *None yet* |
 | Compliance training completion prediction | Analytics | Medium | Low | Prediction accuracy floor | *None yet* |
 | Manager effectiveness coaching | Copilot | High | Medium | Psychological safety concerns | [learning-development.md, #3](../02-prompt-library/learning-development.md) |
-| Internal knowledge base Q&A | Agent | High | Medium | Knowledge freshness | [Pattern 3: RAG](../07-agentic-patterns/README.md); [hr-qa-agent-demo.ipynb](../05-notebooks/hr-qa-agent-demo.ipynb) |
+| Internal knowledge base Q&A | Agent | High | Medium | Knowledge freshness | [Pattern 1: retrieval with verification](../07-agentic-patterns/README.md#pattern-1-retrieval-with-verification); [hr-qa-agent-demo.ipynb](../05-notebooks/hr-qa-agent-demo.ipynb) |
 
 ### Spotlight: personalized learning paths
 

@@ -4,6 +4,10 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+Changed
+
+- **Section 07 consolidated around evidence.** Renamed Workflow patterns. Rules come before models in the decision flow, each pattern states what this repository demonstrates, and four patterns replace five: the multi-agent orchestrator is removed because nothing here demonstrates it. Removed the model price table, generic LLM primer, "most common" and "replace an entire HR process" claims, a system-prompt sentence presented as injection protection, confidence-threshold escalation, and fixed evaluation thresholds (95% accuracy, 5 to 20% escalation, 100% injection resistance, a 20-case minimum). The talent systems page is reduced to its fairness gate and marked proposed. About 6,270 words become about 2,300.
+
 Fixed
 
 - **Unsupported targets removed.** "Reduce helpdesk tickets by 40%+" (use case library, business case template) and "escalation rate target 5 to 20%" (ROI README and dashboard) had no source. The library now lists measures worth tracking and says targets are set after a baseline; volume is observed, not targeted; escalation is checked by sampled review for misses and unnecessary escalations.

@@ -161,7 +161,7 @@ Neither framework is HR-specific. Both are general-purpose AI governance framewo
 - [Vendor intake checklist](vendor-intake-checklist.md): evidence required from vendors before adoption.
 - [Deployer checklist](deployer-checklist.md): ongoing obligations once an EU high-risk system is deployed.
 - [Risk assessment template](risk-assessment-template.md): the intake process referenced above.
-- [Designing HR agents](../07-agentic-patterns/agent-design.md): scope, escalation, and oversight design for agentic tools.
+- [Scoping an HR AI system](../07-agentic-patterns/agent-design.md): scope, information rules, escalation, and controls enforced in code.
 
 ---
 
