@@ -3,10 +3,13 @@
 37 vetted use cases organized by HR function. Each entry includes the AI approach, effort/impact rating, key risks, and success metrics, plus a Resources column linking to a starter prompt, notebook, or governance document already in this playbook where one exists. Use this as a starting point, not every use case fits every organization.
 
 **AI approach key:**
-- **Agent**: autonomous multi-step task completion with tool use
-- **Copilot**: AI assists a human who retains decision authority
-- **Automation**: rule-based + AI for structured, repeatable workflows
-- **Analytics**: AI-augmented data analysis and insight generation
+- **Rules**: deterministic logic or conventional software. No model.
+- **Augment**: AI produces work that a person reviews, edits, and owns.
+- **Assist**: AI provides information, analysis, options, classification, or recommendations; a person decides.
+- **Human-led**: the substantive judgment stays with a person; technology may support administrative steps.
+- **Analytics**: structured reporting, measurement, or statistical analysis. "AI-assisted" marks where a model reads free text.
+
+Where a use case combines modes, the row says so. **Agent** is reserved for a model that plans and carries out several steps through tools with limited human review between them. No use case here currently meets that definition; see the [work redesign case study](work-redesign-people-partner.md) for why autonomy has to be earned through evidence.
 
 ---
 
@@ -14,13 +17,13 @@
 
 | Use case | AI approach | Business impact | Implementation effort | Key risk | Resources |
 |---|---|---|---|---|---|
-| Resume screening and scoring | Copilot | High | Medium | Bias amplification | *None yet* |
-| Job description optimization | Copilot | Medium | Low | Over-standardization | [talent-acquisition.md, #1](../02-prompt-library/talent-acquisition.md) |
-| Candidate sourcing from internal talent pools | Agent | High | Medium | Data freshness | [internal-mobility.md, #2](../02-prompt-library/internal-mobility.md) |
-| Interview question generation by competency | Copilot | Medium | Low | Validity of competency mapping | [talent-acquisition.md, #2](../02-prompt-library/talent-acquisition.md) |
-| Offer letter drafting | Automation | Medium | Low | Compliance with local law | *None yet* |
-| Candidate disposition communications | Automation | Medium | Low | Tone consistency | [talent-acquisition.md, #3](../02-prompt-library/talent-acquisition.md) |
-| Recruiter coaching on interview feedback quality | Copilot | High | Medium | Adoption resistance | [talent-acquisition.md, #4](../02-prompt-library/talent-acquisition.md) |
+| Resume screening and scoring | Assist | High | Medium | Bias amplification | *None yet* |
+| Job description optimization | Augment | Medium | Low | Over-standardization | [talent-acquisition.md, #1](../02-prompt-library/talent-acquisition.md) |
+| Candidate sourcing from internal talent pools | Assist | High | Medium | Data freshness | [internal-mobility.md, #2](../02-prompt-library/internal-mobility.md) |
+| Interview question generation by competency | Augment | Medium | Low | Validity of competency mapping | [talent-acquisition.md, #2](../02-prompt-library/talent-acquisition.md) |
+| Offer letter drafting | Rules | Medium | Low | Compliance with local law | *None yet* |
+| Candidate disposition communications | Rules + Augment | Medium | Low | Tone consistency | [talent-acquisition.md, #3](../02-prompt-library/talent-acquisition.md) |
+| Recruiter coaching on interview feedback quality | Assist | High | Medium | Adoption resistance | [talent-acquisition.md, #4](../02-prompt-library/talent-acquisition.md) |
 | Headcount forecasting from business plans | Analytics | High | High | Data quality in source systems | *None yet* |
 
 ### Spotlight: resume screening
@@ -41,16 +44,16 @@
 
 | Use case | AI approach | Business impact | Implementation effort | Key risk | Resources |
 |---|---|---|---|---|---|
-| Personalized onboarding plan generation | Agent | High | Medium | Role/team data quality | [onboarding.md, #2](../02-prompt-library/onboarding.md) |
-| New hire Q&A assistant | Agent | High | Low | Policy accuracy, hallucination | [onboarding.md, #1](../02-prompt-library/onboarding.md); [hr-qa-agent-demo.ipynb](../05-notebooks/hr-qa-agent-demo.ipynb) |
-| Onboarding task automation (IT provisioning triggers) | Automation | High | High | System integration complexity | [Pattern 4, workflow patterns](../07-agentic-patterns/README.md#pattern-4-multi-step-workflow-with-checkpoints) |
-| 30/60/90 day check-in synthesis | Analytics | Medium | Low | Survey fatigue | [onboarding.md, #4](../02-prompt-library/onboarding.md) |
-| Manager onboarding prep guide | Copilot | High | Low | Template staleness | [onboarding.md, #3](../02-prompt-library/onboarding.md) |
+| Personalized onboarding plan generation | Augment | High | Medium | Role/team data quality | [onboarding.md, #2](../02-prompt-library/onboarding.md) |
+| New hire Q&A assistant | Assist | High | Low | Policy accuracy, hallucination | [onboarding.md, #1](../02-prompt-library/onboarding.md); [hr-qa-agent-demo.ipynb](../05-notebooks/hr-qa-agent-demo.ipynb) |
+| Onboarding task automation (IT provisioning triggers) | Rules | High | High | System integration complexity | [Pattern 4, workflow patterns](../07-agentic-patterns/README.md#pattern-4-multi-step-workflow-with-checkpoints) |
+| 30/60/90 day check-in synthesis | Analytics (AI-assisted) | Medium | Low | Survey fatigue | [onboarding.md, #4](../02-prompt-library/onboarding.md) |
+| Manager onboarding prep guide | Augment | High | Low | Template staleness | [onboarding.md, #3](../02-prompt-library/onboarding.md) |
 | Buddy program matching | Analytics | Medium | Low | Thin data for new orgs | [onboarding.md, #5](../02-prompt-library/onboarding.md) |
 
 ### Spotlight: new hire Q&A assistant
 
-**What it does:** Answers policy, benefit, and process questions from new hires within seconds, 24/7. Routes complex or sensitive questions to the right HR contact.
+**What it does:** Answers policy, benefit, and process questions from new hires, citing the policy it relies on. Screens every question for signals that change how it must be handled and routes those, and anything it cannot answer from a cited source, to the right HR contact. Sending answers without human review is a later step for informational questions only, earned through evaluation.
 
 **What it does not do:** Make benefit elections on behalf of employees or interpret individual circumstances.
 
@@ -70,11 +73,11 @@
 
 | Use case | AI approach | Business impact | Implementation effort | Key risk | Resources |
 |---|---|---|---|---|---|
-| Performance review draft generation | Copilot | High | Low | Over-reliance, generic output | [performance.md, #1](../02-prompt-library/performance.md) |
-| Calibration prep, manager briefing doc | Copilot | High | Medium | Data access permissions | [performance.md, #2](../02-prompt-library/performance.md) |
-| Goal-setting quality scoring | Analytics | Medium | Medium | Subjectivity of scoring rubric | [performance.md, #3](../02-prompt-library/performance.md) |
-| Mid-year feedback synthesis | Analytics | Medium | Low | Feedback recency bias | [performance.md, #5](../02-prompt-library/performance.md) |
-| PIP documentation drafting | Copilot | High | Low | Legal exposure if misused | [performance.md, #4](../02-prompt-library/performance.md) |
+| Performance review draft generation | Augment | High | Low | Over-reliance, generic output | [performance.md, #1](../02-prompt-library/performance.md) |
+| Calibration prep, manager briefing doc | Augment | High | Medium | Data access permissions | [performance.md, #2](../02-prompt-library/performance.md) |
+| Goal-setting quality scoring | Assist | Medium | Medium | Subjectivity of scoring rubric | [performance.md, #3](../02-prompt-library/performance.md) |
+| Mid-year feedback synthesis | Augment | Medium | Low | Feedback recency bias | [performance.md, #5](../02-prompt-library/performance.md) |
+| PIP documentation drafting | Augment; decision human-led | High | Low | Legal exposure if misused | [performance.md, #4](../02-prompt-library/performance.md) |
 | Succession planning gap analysis | Analytics | High | High | Data completeness | [succession-planning.md, #1 & #3](../02-prompt-library/succession-planning.md) |
 
 ### Spotlight: calibration prep
@@ -95,11 +98,11 @@
 | Use case | AI approach | Business impact | Implementation effort | Key risk | Resources |
 |---|---|---|---|---|---|
 | Skills gap identification by role | Analytics | High | High | Skills taxonomy maintenance | [learning-development.md, #1](../02-prompt-library/learning-development.md); [skills-gap-analysis.ipynb](../05-notebooks/skills-gap-analysis.ipynb) |
-| Personalized learning path generation | Agent | High | Medium | LMS integration quality | [learning-development.md, #2](../02-prompt-library/learning-development.md) |
-| Course content summarization | Copilot | Medium | Low | Copyright compliance | *None yet* |
+| Personalized learning path generation | Assist | High | Medium | LMS integration quality | [learning-development.md, #2](../02-prompt-library/learning-development.md) |
+| Course content summarization | Augment | Medium | Low | Copyright compliance | *None yet* |
 | Compliance training completion prediction | Analytics | Medium | Low | Prediction accuracy floor | *None yet* |
-| Manager effectiveness coaching | Copilot | High | Medium | Psychological safety concerns | [learning-development.md, #3](../02-prompt-library/learning-development.md) |
-| Internal knowledge base Q&A | Agent | High | Medium | Knowledge freshness | [Pattern 1: retrieval with verification](../07-agentic-patterns/README.md#pattern-1-retrieval-with-verification); [hr-qa-agent-demo.ipynb](../05-notebooks/hr-qa-agent-demo.ipynb) |
+| Manager effectiveness coaching | Assist | High | Medium | Psychological safety concerns | [learning-development.md, #3](../02-prompt-library/learning-development.md) |
+| Internal knowledge base Q&A | Assist | High | Medium | Knowledge freshness | [Pattern 1: retrieval with verification](../07-agentic-patterns/README.md#pattern-1-retrieval-with-verification); [hr-qa-agent-demo.ipynb](../05-notebooks/hr-qa-agent-demo.ipynb) |
 
 ### Spotlight: personalized learning paths
 
@@ -119,11 +122,11 @@
 
 | Use case | AI approach | Business impact | Implementation effort | Key risk | Resources |
 |---|---|---|---|---|---|
-| HR helpdesk triage and response | Copilot | High | Medium | Missed Employee Relations, legal, or health signals in routine-looking requests; policy accuracy | [hr-operations.md, #3](../02-prompt-library/hr-operations.md), [work redesign case study](work-redesign-people-partner.md) |
-| Benefits enrollment guidance | Copilot | High | Low | Benefits complexity, legal | [hr-operations.md, #1](../02-prompt-library/hr-operations.md) |
-| Leave request processing | Automation | Medium | Medium | Leave law variation by jurisdiction | [hr-operations.md, #2](../02-prompt-library/hr-operations.md) |
-| Employee survey sentiment analysis | Analytics | High | Low | Interpretation subjectivity | [people-analytics.md, #2](../02-prompt-library/people-analytics.md) |
-| Exit interview theme synthesis | Analytics | High | Low | Sample size at small orgs | [people-analytics.md, #3](../02-prompt-library/people-analytics.md) |
+| HR helpdesk triage and response | Mixed: rules, assist, augment; human-led for sensitive requests | High | Medium | Missed Employee Relations, legal, or health signals in routine-looking requests; policy accuracy | [hr-operations.md, #3](../02-prompt-library/hr-operations.md), [work redesign case study](work-redesign-people-partner.md) |
+| Benefits enrollment guidance | Assist | High | Low | Benefits complexity, legal | [hr-operations.md, #1](../02-prompt-library/hr-operations.md) |
+| Leave request processing | Rules; a person decides | Medium | Medium | Leave law variation by jurisdiction | [hr-operations.md, #2](../02-prompt-library/hr-operations.md) |
+| Employee survey sentiment analysis | Analytics (AI-assisted) | High | Low | Interpretation subjectivity | [people-analytics.md, #2](../02-prompt-library/people-analytics.md) |
+| Exit interview theme synthesis | Analytics (AI-assisted) | High | Low | Sample size at small orgs | [people-analytics.md, #3](../02-prompt-library/people-analytics.md) |
 | Org design modeling | Analytics | High | High | Political sensitivity | [people-analytics.md, #5](../02-prompt-library/people-analytics.md) |
 
 ---

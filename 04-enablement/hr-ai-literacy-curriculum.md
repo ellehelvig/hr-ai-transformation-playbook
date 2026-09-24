@@ -43,12 +43,12 @@ A 4-module learning program for HR professionals at all experience levels. Desig
 *What LLMs actually are:*
 Large language models predict the next most likely word given context. They don't "know" things the way a database knows things, they pattern-match against training data. This is why they can sound authoritative while being wrong.
 
-*The spectrum from rule-based to agentic:*
+*The spectrum from rules to agents:*
 ```
-Rule-based automation → AI Copilot → AI Agent
-(deterministic)         (assisted)    (autonomous)
+Rules            →  Assist / Augment              →  Agent
+(deterministic)     (a person decides or owns)       (a model acts across several steps)
 ```
-Most HR AI today sits in the middle. True agentic AI, where the model takes multi-step actions autonomously, is emerging and brings new governance requirements.
+Use rules when rules reliably give the right answer. Most HR uses of AI belong in the middle. An agent, where a model takes several actions through tools with limited review between them, has to earn that autonomy through evidence and brings new governance requirements.
 
 *Prompt quality drives output quality:*
 The single highest-leverage skill for HR professionals using AI is prompt construction. Vague prompts produce generic output. Specific, well-structured prompts with good context produce usable output.
@@ -244,7 +244,7 @@ Participants complete this for their team's top-ranked use case:
 Use case name:
 Problem it solves (1 sentence):
 Who benefits and how:
-AI approach (Agent / Copilot / Automation / Analytics):
+AI approach (Rules / Augment / Assist / Human-led / Analytics):
 Data needed:
 Human review gate:
 Success metric(s):

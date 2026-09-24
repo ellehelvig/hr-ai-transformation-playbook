@@ -6,6 +6,7 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 Changed
 
+- **Approach taxonomy aligned with the work-design modes.** Rules, Augment, Assist, Human-led, and Analytics replace Agent, Copilot, and Automation in the use case library, intake template, risk assessment, and curriculum. Each of the 37 use cases was reclassified by what the proposed system does; mixed designs say so. Agent is defined and reserved; no use case currently meets it. The new hire Q&A spotlight now says unreviewed answers must be earned through evaluation, and the business case example no longer describes retrieval as training.
 - **Headcount is not the value measure.** The roadmap KPI framework no longer tracks employees per HR FTE as an efficiency target. The section is renamed Time and effort.
 - **One rule for numbers.** Templates now say "[Set after baseline]" instead of unsourced targets (enablement, use case library, roadmap phase gates and KPI framework). Worked examples label their numbers as examples (business case, ROI sample report, dashboard). Governance rows that were "100%" targets are stated as requirements. The roadmap no longer asserts that most large HR organizations are at Level 1 or 2.
 - **Principle 3 made precise.** The tools return a human-review flag, which a calling system could ignore; enforcement in code is demonstrated in Resolve's approval gate, not in these tools.

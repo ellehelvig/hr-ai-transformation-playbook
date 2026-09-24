@@ -14,7 +14,7 @@ What is painful, slow, or inconsistent today? Who feels it? What does it cost?
 **Proposed solution**
 One sentence: what will the AI do?
 
-*Example: Deploy a RAG-based Q&A agent trained on onboarding policies and FAQs, available 24/7, escalating to HR Ops for complex or sensitive questions.*
+*Example: Deploy a Q&A assistant that retrieves and cites onboarding policies and FAQs, available 24/7, routing complex or sensitive questions to HR Ops.*
 
 **Investment required**
 Be specific. Include build time, ongoing model costs, maintenance, and enablement.

@@ -18,7 +18,7 @@ What is painful, slow, or inconsistent today without this use case?
 Who uses it, and what is their experience improved?
 
 ## AI approach
-(Agent / Copilot / Automation / Analytics)
+(Rules / Augment / Assist / Human-led / Analytics, or a combination; see the [approach key](use-case-library.md))
 
 ## Data required
 What data does this use case need? Where does it come from?
@@ -58,7 +58,7 @@ Exit interview data sits unanalyzed because HR Ops doesn't have time to read eve
 HR leadership and HRBPs get monthly attrition theme reports instead of quarterly. Specific managers receive aggregated feedback about patterns in their team's exits within 30 days. People Analytics frees up ~20 hours/quarter previously spent on manual synthesis.
 
 ### AI approach
-Analytics. Copilot-style. AI generates the theme synthesis; HRBP reviews and validates before it reaches leadership or managers.
+Analytics (AI-assisted). AI drafts the theme synthesis; HRBP reviews and validates before it reaches leadership or managers.
 
 ### Data required
 - Exit interview free-text responses (from existing survey tool)

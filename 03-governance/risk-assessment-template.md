@@ -29,10 +29,12 @@ Complete this template before deploying any new AI use case in HR. Submit to the
 **Tool / vendor:** [Name, or "internally built"]
 
 **AI approach:**
-- [ ] Agent (autonomous multi-step task completion)
-- [ ] Copilot (AI-assisted, human makes final decision)
-- [ ] Automation (structured workflow with AI components)
-- [ ] Analytics (AI-augmented data analysis)
+- [ ] Rules (deterministic software, no model)
+- [ ] Augment (AI produces work a person reviews and owns)
+- [ ] Assist (AI informs or recommends; a person decides)
+- [ ] Human-led (technology supports administrative steps only)
+- [ ] Analytics (reporting or statistical analysis; note if AI reads free text)
+- [ ] Agent (a model carries out several steps through tools with limited review between them)
 
 ---
 
