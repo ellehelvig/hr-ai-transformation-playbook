@@ -38,8 +38,10 @@ MCP) can call. The design choices here are the same ones argued for in
   reproducible, auditable behavior are handled in plain code; the parts
   that need real judgment (explaining a result, drafting outreach, making
   the actual call) are left to whoever's calling the tool.
-- **`human_review_required: true` with no code path that turns it off.**
-  Every tool's test suite checks this, not just the docstring.
+- **`human_review_required: true` with no code path that turns it off,**
+  in the comp banding, resume screening, and recruiter intake tools, and
+  their tests check it. Policy Q&A always returns a not-legal-advice
+  disclaimer instead, also tested.
 - **No black-box scores.** The resume-screening tool returns no single
   fitness number and never compares candidates, and its tests check both.
   It also says what it cannot prevent: its per-requirement counts could be

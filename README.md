@@ -59,8 +59,8 @@ Built by Elle Helvig, an HR transformation leader. I defined the HR problems, de
 
 - Three notebooks execute in CI on every push, using synthetic data only.
 - Four HR workflows expose six MCP tools, backed by a 52-test suite. No tool calls an LLM internally, so their behavior is reproducible and auditable.
-- `human_review_required` is always true, with no code path that turns it off, and the tests check it.
-- The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a launch. Its scorer and LLM judge have 39 tests of their own, and the judge is checked against human labels.
+- The comp banding, resume screening, and recruiter intake tools always return `human_review_required: true`, with no code path that turns it off, and their tests check it. The policy Q&A tool instead always returns a not-legal-advice disclaimer, also tested.
+- The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a launch. Its scorer and LLM judge have 39 tests of their own, and the runner can measure the judge's agreement with human labels (Cohen's kappa). No labeled run has been done yet, so judge verdicts are not a launch gate.
 - Nothing assumes a specific HRIS, ATS, or model provider.
 
 ## Scope and limits

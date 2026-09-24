@@ -4,7 +4,7 @@ The job of testing is to find where the system breaks. This page covers building
 
 [← Workflow patterns](README.md)
 
-Two parts of this portfolio demonstrate it: the playbook's [evaluation runner](../09-evals/README.md), with launch-blocking gates and an LLM judge checked against human labels, and Resolve's [evaluation methodology](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md), with held-out cases, confidence bounds, and acceptance criteria.
+Two parts of this portfolio demonstrate it: the playbook's [evaluation runner](../09-evals/README.md), with launch-blocking gates and a way to measure an LLM judge's agreement with human labels (not yet run on real labels), and Resolve's [evaluation methodology](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md), with held-out cases, confidence bounds, and acceptance criteria.
 
 ## Build the test set from real work
 
