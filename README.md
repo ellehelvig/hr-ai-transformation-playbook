@@ -1,15 +1,8 @@
-<p align="center">
-  <img src="assets/playbook-banner.svg" alt="HR AI Transformation Playbook" width="100%">
-</p>
+# HR AI Transformation Playbook
 
-<p align="center">
-  How a People team moves from scattered AI experiments to responsible, measurable adoption.
-</p>
+How a People team moves from scattered AI experiments to responsible, measurable adoption.
 
-<p align="center">
-  <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&amp;style=flat-square&amp;label=tests"></a>
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-1a2233?style=flat-square"></a>
-</p>
+[![Tests](https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&style=flat-square&label=tests)](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml)
 
 ---
 
