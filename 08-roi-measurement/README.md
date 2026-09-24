@@ -120,7 +120,7 @@ USE CASES LIVE: [N]
 Onboarding Q&A Agent
   Response time:     3 min avg    (target: <5 min) ✓
   CSAT:             4.3/5.0      (target: >4.0)   ✓
-  Escalation rate:  12%          (target: 5–20%)  ✓
+  Escalation rate:  12%          (misses checked by sampled review)
   Helpdesk deflection: 380 tickets (↑18% vs last month)
 
 Performance Review Assistant
@@ -172,7 +172,7 @@ Every metric you track should have an owner, a review cadence, and a response pr
 | Metric | Owner | Review cadence | Response if off-target |
 |---|---|---|---|
 | Agent accuracy | HR Tech | Weekly | Investigate and update knowledge base or prompt |
-| Escalation rate | HRBP team | Weekly | If >25%: retrain; if <5%: audit for under-escalation |
+| Appropriate escalation | HR service delivery, with Employee Relations | Monthly | Review a sample of non-escalated requests for missed concerns and a sample of escalations for necessity; each confirmed miss is an incident and a new test case |
 | Employee CSAT | HR Ops | Monthly | If <3.8: pause and investigate; if <4.0: improvement sprint |
 | Fairness scores | People Analytics | Quarterly | If flagged: immediate halt of use case pending review |
 | Cost per task | HR Finance | Monthly | If >2× target: review model choice and prompt efficiency |

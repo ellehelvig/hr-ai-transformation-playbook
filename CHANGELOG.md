@@ -6,6 +6,7 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 Fixed
 
+- **Unsupported targets removed.** "Reduce helpdesk tickets by 40%+" (use case library, business case template) and "escalation rate target 5 to 20%" (ROI README and dashboard) had no source. The library now lists measures worth tracking and says targets are set after a baseline; volume is observed, not targeted; escalation is checked by sampled review for misses and unnecessary escalations.
 - **Evaluation example labeled as illustrative.** `09-evals/evals-summary-example.txt` described a "pilot run against a staging HR Q&A agent" and a prompt fix made "before launch." No such agent is part of this repository, so the file now says the agent and results are hypothetical.
 - **Four-fifths rule described as a rule of thumb.** The attrition notebook called it "the standard EEOC threshold for disparate impact." It now describes the Uniform Guidelines provision, [29 CFR 1607.4(D)](https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607/section-1607.4), including that smaller differences can still be adverse impact. The notebook also no longer claims its features "consistently show predictive value across organizations."
 - **Unsupported Illinois claim removed.** The curriculum said a "2026 amendment" to the AI Video Interview Act requires explicit written consent. No amending act could be found, so the claim is removed and readers are pointed to the statute.

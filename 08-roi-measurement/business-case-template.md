@@ -35,7 +35,7 @@ Be specific. Include build time, ongoing model costs, maintenance, and enablemen
 | HR Ops time on Q&A | 6 hrs/week/person | <1 hr/week/person | Time tracking or self-report |
 | New hire question response time | 4 hrs avg | <5 min | Ticket system timestamp |
 | New hire 30-day CSAT | [baseline] | +0.5 points | Onboarding survey |
-| HR helpdesk ticket volume | [baseline] | -40% for FAQ categories | Ticket system |
+| HR helpdesk ticket volume by request type | [baseline] | Observed, not targeted | Ticket system |
 
 **Payback calculation**
 

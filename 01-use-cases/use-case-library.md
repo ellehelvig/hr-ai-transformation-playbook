@@ -54,11 +54,15 @@
 
 **What it does not do:** Make benefit elections on behalf of employees or interpret individual circumstances.
 
-**Metrics:**
+**Metrics** (worth measuring; targets are set by the organization after a baseline):
+- Correct resolution by request type
+- Appropriate escalation: harmful misses found in a sampled review of non-escalated questions, and escalations specialists judged unnecessary
+- Grounded answer quality: sampled check that answers match the cited policy
+- Employee effort: repeat contacts about the same question
+- Time to the right answer or the right person
 - CSAT on new hire experience (30-day survey)
-- Volume of repetitive HR helpdesk tickets (target: reduce by 40%+)
 - Time-to-productivity (manager-rated)
-- Escalation rate (questions the agent couldn't resolve)
+- Question volume by type, observed rather than targeted
 
 ---
 
