@@ -30,7 +30,7 @@
 **What it does not do:** Reject candidates. Every disposition decision is made by a human recruiter.
 
 **Metrics:**
-- Time to first screen (target: ≤24 hrs from application)
+- Time to first screen (target: [Set after baseline])
 - Recruiter review time per requisition
 - Offer acceptance rate (proxy for quality-of-hire signal)
 - Demographic parity across candidate pool scores (fairness audit)
@@ -84,7 +84,7 @@
 **What it does not do:** Make rating recommendations.
 
 **Metrics:**
-- Calibration session duration (target: reduce by 20%)
+- Calibration session duration (target: [Set after baseline])
 - Rating distribution spread vs. prior year
 - Manager satisfaction with calibration prep
 

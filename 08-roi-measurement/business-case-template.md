@@ -30,6 +30,8 @@ Be specific. Include build time, ongoing model costs, maintenance, and enablemen
 
 **Expected outcomes**
 
+*Example values from the worked example above. Set your own targets after measuring a baseline.*
+
 | Metric | Baseline | Target | Measurement method |
 |---|---|---|---|
 | HR Ops time on Q&A | 6 hrs/week/person | <1 hr/week/person | Time tracking or self-report |

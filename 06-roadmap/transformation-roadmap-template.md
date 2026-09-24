@@ -24,7 +24,7 @@ Before planning where to go, be honest about where you are.
 | **4. Transforming** | AI embedded in HR operating model; continuous innovation | AI influence on HR strategy; feedback loops to improve models |
 | **5. Leading** | HR AI program is a competitive differentiator | External recognition; exporting practices to broader org |
 
-**Honest starting point is essential.** Most large HR organizations are at Level 1 or 2. Plans built from an assumed Level 3 starting point fail.
+**Honest starting point is essential.** A plan built for Level 3 fails in an organization that is actually at Level 1 or 2.
 
 ---
 
@@ -117,11 +117,11 @@ Before rolling a pilot use case to org-wide deployment:
 - [ ] Rollback plan defined
 
 **Phase gate criteria to exit Phase 2:**
-- 80%+ of People Team trained through Module 1–3 of literacy curriculum
-- 5+ use cases live in production with monitoring
+- [Set after baseline] of the People Team trained through Modules 1 to 3 of the literacy curriculum
+- [Set after baseline] use cases live in production with monitoring
 - Quarterly fairness audit complete for all employment-decision-adjacent use cases
 - HR AI Champions network active in all major regions/functions
-- Positive ROI demonstrated on at least 3 use cases
+- Value measured on the live use cases, with each result labeled observed or modeled
 
 ---
 
@@ -154,32 +154,32 @@ Track these at the program level, regardless of individual use case metrics.
 | Metric | Baseline | Target |
 |---|---|---|
 | HR headcount ratio (employees per HR FTE) | [measure] | +15–20% efficiency |
-| Average HR query resolution time | [measure] | −30% |
-| Time to fill (recruiting) | [measure] | −20% |
-| Onboarding completion rate (30-day checklist) | [measure] | +15pp |
+| Average HR query resolution time | [measure] | [Set after baseline] |
+| Time to fill (recruiting) | [measure] | [Set after baseline] |
+| Onboarding completion rate (30-day checklist) | [measure] | [Set after baseline] |
 
 ### Quality
 | Metric | Baseline | Target |
 |---|---|---|
-| New hire 90-day satisfaction (survey) | [measure] | +0.5 point |
-| Manager performance review quality score | [measure] | +20% |
-| HR helpdesk CSAT | [measure] | +10pp |
-| Internal mobility rate | [measure] | +5pp |
+| New hire 90-day satisfaction (survey) | [measure] | [Set after baseline] |
+| Manager performance review quality score | [measure] | [Set after baseline] |
+| HR helpdesk CSAT | [measure] | [Set after baseline] |
+| Internal mobility rate | [measure] | [Set after baseline] |
 
 ### Capability
 | Metric | Baseline | Target |
 |---|---|---|
 | % of HR team trained (AI literacy program) | 0% | 100% by Phase 2 end |
-| Number of AI use cases live in production | 0 | 8+ by month 18 |
-| Number of HR AI Champions | 0 | 1 per team or region |
+| Number of AI use cases live in production | 0 | [Set after baseline] |
+| Number of HR AI Champions | 0 | [Set after baseline] |
 
 ### Governance
 | Metric | Baseline | Target |
 |---|---|---|
-| % of live use cases with active monitoring | [measure] | 100% |
-| Fairness audits completed on schedule | [measure] | 100% |
-| Risk assessments completed before deployment | [measure] | 100% |
-| Governance issues identified (target: find and fix) | [measure] | 0 unresolved >30 days |
+| % of live use cases with active monitoring | [measure] | All (a requirement, not a target) |
+| Fairness audits completed on schedule | [measure] | All (a requirement, not a target) |
+| Risk assessments completed before deployment | [measure] | All (a requirement, not a target) |
+| Days to resolve governance issues | [measure] | [Set after baseline] |
 
 ---
 

@@ -112,6 +112,8 @@ This is the hardest to quantify and the most strategically important. Document i
 
 Focus on: outcomes achieved, KPIs vs. targets, issues flagged, next month priorities.
 
+*Example values, not observed results.*
+
 ```
 HR AI Program, [Month] Update
 
