@@ -2,7 +2,7 @@
 
 > **11 / BUILD** · Package the playbook into repeatable, human-governed agent behaviors.
 
-[← MCP agents](../10-mcp-agents/README.md) · [Playbook home](../README.md)
+[← MCP tools](../10-mcp-agents/README.md) · [Playbook home](../README.md)
 
 ---
 
@@ -71,6 +71,6 @@ Copy the structure of any skill here: frontmatter with `name` and `description`,
 
 ## Cross-links
 
-- [10 · MCP agents](../10-mcp-agents/README.md): the tools these skills can call when they need deterministic, tested logic (comp banding, policy Q&A)
+- [10 · MCP tools](../10-mcp-agents/README.md): the tools these skills can call when they need deterministic, tested logic (comp banding, policy Q&A)
 - [09 · Evals](../09-evals/README.md): how to test a skill's outputs before rolling it out to a team
 - [03 · Governance](../03-governance/README.md): the source documents every skill points back to

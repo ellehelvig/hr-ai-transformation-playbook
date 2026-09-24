@@ -1,4 +1,4 @@
-# 10. MCP agents
+# 10. MCP tools
 
 > **10 / BUILD** · Put deterministic controls behind narrow, inspectable HR tools.
 
@@ -8,12 +8,15 @@
 
 **For:** Engineers, and the HR owners of each tool. **Start with:** the [Quickstart](#quickstart), then any tool folder's `ENABLEMENT.md`.
 
+These are tools, not agents. An agent is whatever model calls them; the folder
+name predates that distinction and is kept so existing links work.
+
 Four HR workflow packages expose six MCP tools on one server, built to close
 specific gaps this playbook had already identified in its own governance
 and use-case docs, not built as generic demos.
 
-Comp banding for compensation analysts. Bias-mitigated resume screening
-that closes the "None yet" mitigation gap flagged in
+Comp banding for compensation analysts. Resume screening designed as a
+mitigation for the "None yet" gap flagged in
 `01-use-cases/use-case-library.md`. Recruiter intake calibration. A
 governance policy citation-finder grounded in this repo's own
 `03-governance/` docs. Every tool is real, runnable Python with a passing
@@ -37,9 +40,11 @@ MCP) can call. The design choices here are the same ones argued for in
   the actual call) are left to whoever's calling the tool.
 - **`human_review_required: true` with no code path that turns it off.**
   Every tool's test suite checks this, not just the docstring.
-- **No black-box scores.** The resume-screening tool's schema is tested to
-  guarantee no `score`, `rank`, or `fit_percent` field can ever appear in
-  its output (`resume_screen/test_resume_screen.py::test_output_never_contains_a_score_field`).
+- **No black-box scores.** The resume-screening tool returns no single
+  fitness number and never compares candidates, and its tests check both.
+  It also says what it cannot prevent: its per-requirement counts could be
+  turned into a percentage by whatever calls it. Each response carries its
+  `ENFORCED_GUARANTEES` and `KNOWN_LIMITATIONS`.
 - **Grounded in this repo's own content, not a separate copy of it.** The
   policy Q&A tool reads `03-governance/*.md` directly at call time. Edit a
   governance doc, the next question against it reflects the edit

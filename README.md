@@ -33,7 +33,7 @@ Most HR AI programs stall in one of three places: they start with the wrong use 
 |---|---|---|
 | 1 minute | [ROI calculator](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html) | A payback model a CFO can run with their own numbers |
 | 2 minutes | [Prioritization matrix](01-use-cases/prioritization-matrix.md) | How to pick the first three use cases, with a worked example |
-| 2 minutes | [Resume screening tool](10-mcp-agents/resume_screen/ENABLEMENT.md) | An AI tool that maps evidence against a job's requirements and is tested so it can never output a score or rank |
+| 2 minutes | [Resume screening tool](10-mcp-agents/resume_screen/ENABLEMENT.md) | A deterministic tool an AI assistant can call. It shows the evidence for each job requirement, returns no fitness score, never compares candidates, and lists what its design cannot prevent |
 
 ## How it fits together
 

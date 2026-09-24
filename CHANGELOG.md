@@ -2,6 +2,15 @@
 
 Notable changes to the playbook. Regulatory content is checked against primary sources; only material changes are logged here.
 
+## [Unreleased]
+
+Fixed
+
+- **Evaluation example labeled as illustrative.** `09-evals/evals-summary-example.txt` described a "pilot run against a staging HR Q&A agent" and a prompt fix made "before launch." No such agent is part of this repository, so the file now says the agent and results are hypothetical.
+- **Four-fifths rule described precisely.** The attrition notebook called it "the standard EEOC threshold for disparate impact." It is a rule of thumb from the Uniform Guidelines, [29 CFR 1607.4(D)](https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607/section-1607.4), which also says smaller differences can still be adverse impact. The notebook also no longer claims its features "consistently show predictive value across organizations."
+- **Resume screening claim matches the code.** The front page said the tool "can never output a score or rank," a claim the tool's own docstring retired in 2.1. It now states the enforced guarantees and points to the known limitations.
+- **Section 10 is titled MCP tools.** The six tools are deterministic and call no model; the agent is whatever calls them. The folder name is unchanged so links keep working.
+
 ## 2.3.0 (2026-09-23)
 
 Added
