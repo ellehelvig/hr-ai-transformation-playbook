@@ -24,7 +24,7 @@ Most HR AI programs stall in one of three places: they start with the wrong use 
 
 1. **Start with the decision, not the tool.** Score every idea on value, risk, and readiness before anyone buys anything.
 2. **Governance is a design input, not a gate at the end.** Legal, Privacy, and employee representatives see the intake before the build starts.
-3. **Humans make consequential employment decisions.** AI can inform hiring, pay, and performance decisions. It never makes them, and the tools here enforce that in code.
+3. **Humans make consequential employment decisions.** AI can inform hiring, pay, and performance decisions. It never makes them. The tools here return evidence flagged for human review, never a decision, and [Resolve](https://github.com/ellehelvig/peopleops-resolution-agent) enforces a human approval step in code.
 4. **Measure changed work, not launched tools.** A tool nobody trusts is a cost. Training and measurement are planned from day one.
 
 ## See it in five minutes

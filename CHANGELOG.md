@@ -6,6 +6,7 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 Changed
 
+- **Principle 3 made precise.** The tools return a human-review flag, which a calling system could ignore; enforcement in code is demonstrated in Resolve's approval gate, not in these tools.
 - **Evaluation and review claims made precise.** The README said the LLM judge "is checked against human labels"; the runner can measure agreement with human labels, but no labeled run has been done. It also said every tool returns `human_review_required: true`; three of four do, and policy Q&A returns a disclaimer instead.
 - **Section 07 consolidated around evidence.** Renamed Workflow patterns. Rules come before models in the decision flow, each pattern states what this repository demonstrates, and four patterns replace five: the multi-agent orchestrator is removed because nothing here demonstrates it. Removed the model price table, generic LLM primer, "most common" and "replace an entire HR process" claims, a system-prompt sentence presented as injection protection, confidence-threshold escalation, and fixed evaluation thresholds (95% accuracy, 5 to 20% escalation, 100% injection resistance, a 20-case minimum). The talent systems page is reduced to its fairness gate and marked proposed. About 6,270 words become about 2,300.
 
