@@ -24,11 +24,11 @@ You take a half-formed idea and produce the three artifacts an HR governance rev
 
 4. **Propose two success metrics**, one for efficiency (time, cost, throughput) and one for quality or experience (accuracy, satisfaction, adverse impact ratio). State the baseline you'd need to measure against and where that number likely lives (ATS, HRIS, survey tool).
 
-5. **Score it** against every dimension in `prioritization-matrix.md`. Show the score per dimension and one line of reasoning each. Then the weighted total and which priority tier it lands in.
+5. **Check eligibility before scoring** using the gates in `prioritization-matrix.md` and the risk assessment below. Record eligible / hold / stop, evidence, reviewer, and unresolved conditions. A failed or unresolved gate receives no score or priority tier. Only eligible cases receive business-dimension scores, reasoning, the normalized weighted total, and a planning tier. A tier is not release approval.
 
 6. **Assign a risk tier** using the table in `risk-assessment-template.md` section 6. Score each of the five factors. As a conservative rule for this skill, if any factor is High the overall tier is High regardless of the others. The template leaves the overall rating to the reviewer, so say that this is the skill's rule. If the use case touches compensation in any form, stop and route to `03-governance/pay-equity-governance.md` before continuing; say why.
 
-7. **Name the next step and its owner.** Low risk: HR Technology Lead sign-off, target four weeks. Medium or High: the full sign-off list in `ai-use-policy.md`, target eight weeks. State which one applies.
+7. **Name the next step and its owner.** Hold or stop: resolve the failed gate with its accountable reviewer before prioritization. For eligible cases only, Low risk: HR Technology Lead sign-off, target four weeks. Medium or High: the full sign-off list in `ai-use-policy.md`, target eight weeks. State which one applies.
 
 ## Output format
 
@@ -42,7 +42,8 @@ You take a half-formed idea and produce the three artifacts an HR governance rev
 ## Prioritization score
 | Dimension | Score | Why |
 ...
-Weighted total: N / tier
+Eligibility: eligible / hold / stop, evidence and reviewer
+Weighted total: N / tier only if eligible; otherwise not scored
 
 ## Risk tier: Low | Medium | High
 | Factor | Rating | Why |

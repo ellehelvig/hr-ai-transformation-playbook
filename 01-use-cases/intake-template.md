@@ -26,6 +26,9 @@ What data does this use case need? Where does it come from?
 ## Human review gate
 Where does a human review AI output before it affects an employee?
 
+## Eligibility decision before prioritization
+Record eligible / hold / stop, gate evidence, unresolved conditions, and accountable reviewer using the [matrix](prioritization-matrix.md#eligibility-before-scoring). Do not calculate a priority score for a failed or unresolved gate.
+
 ## Proposed success metric(s)
 
 ## Known risks or governance considerations
@@ -68,6 +71,9 @@ Analytics (AI-assisted). AI drafts the theme synthesis; HRBP reviews and validat
 
 ### Human review gate
 HRBP reviews and validates synthesis before delivery to leadership or managers. Manager-specific reports require HRBP sign-off. Themes flagged as "potential systemic issue" route to People Analytics for deeper investigation before action.
+
+### Eligibility decision before prioritization
+Hold pending Privacy and HRBP review of access, cohort suppression, and quote handling. This fictional submission has no completed eligibility review and therefore receives no priority score.
 
 ### Proposed success metric(s)
 

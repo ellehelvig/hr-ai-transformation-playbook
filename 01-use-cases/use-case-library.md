@@ -135,7 +135,7 @@ Where a use case combines modes, the row says so. **Agent** is reserved for a mo
 
 | Use case | AI approach | Business impact | Implementation effort | Key risk | Resources |
 |---|---|---|---|---|---|
-| Attrition risk scoring | Analytics | High | High | Data staleness, fairness | [attrition-risk-modeling.ipynb](../05-notebooks/attrition-risk-modeling.ipynb); [people-analytics.md, #1](../02-prompt-library/people-analytics.md) |
+| Segment-level attrition inquiry | Analytics | High | High | Data staleness, fairness | [attrition-risk-modeling.ipynb](../05-notebooks/attrition-risk-modeling.ipynb); [people-analytics.md, #1](../02-prompt-library/people-analytics.md) |
 | Workforce planning models | Analytics | High | High | Forecast uncertainty | *None yet* |
 | Pay equity analysis | Analytics | High | Medium | Legal exposure if mishandled | [pay-equity-governance.md](../03-governance/pay-equity-governance.md) |
 | Engagement driver analysis | Analytics | High | Medium | Correlation ≠ causation | [people-analytics.md, #2](../02-prompt-library/people-analytics.md) |

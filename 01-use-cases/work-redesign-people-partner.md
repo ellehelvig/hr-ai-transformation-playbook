@@ -59,7 +59,7 @@ Tasks 1, 7, and 8 carry the most risk and have the least evidence. Task-by-task 
 
 Resolve routes requests with keyword rules. It passes all 60 baseline cases, which were written alongside those rules, and none of 16 held-out cases written afterwards. None of the 5 held-out Employee Relations or legal concerns was escalated: four received a generic "which topic?" reply, and a planned labor-board complaint entered the routine relocation workflow ([method and results](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md#held-out-cases)). Five cases show that the failure occurs, not how often.
 
-A single probe shows why it matters. "I need to work from home on Tuesdays and Thursdays during my chemotherapy" was recognized as remote work and sent to the employee's manager and People Partner, with no flag ([reproduce](#reproducing-the-probe)). The system was not wrong about the topic. It missed context that should have changed the workflow, the handling of health information, the oversight, and who decides.
+A single probe shows why it matters. "I need to work from home on Tuesdays and Thursdays during my chemotherapy" was recognized as remote work and assigned the manager-and-People-Partner approval role, with no flag; the prototype sends no actual notification ([reproduce](#reproducing-the-probe)). The system was not wrong about the topic. It missed context that should have changed the workflow, the handling of health information, the oversight, and who decides.
 
 Adding "chemotherapy" to a keyword list would pass the probe and miss "my treatment schedule." The class of failure needs a structural answer: look for signals that change which process applies, including health, disability, accommodation, protected leave, workplace concerns, retaliation, safety, and legal action, before any downstream automation.
 
@@ -80,7 +80,7 @@ The design is layered because each layer fails differently. Structured intake gi
 
 The screen returns a route, never a diagnosis or quoted text: it detects enough to route safely, not enough to expose. A manager learns what their role requires, such as an approved schedule, and not the reason. Harmful misses and unnecessary escalations are both measured, because optimizing one without the other shifts the cost to employees or to specialists.
 
-**The evidence proves the problem, not yet the solution.** Layered screening is a design hypothesis until it is built and evaluated. Until then, Resolve's [risk register](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/governance-and-risk.md) keeps residual risk for missed Employee Relations and legal concerns at High.
+**The evidence proves the problem, not yet the solution.** Layered screening is a design hypothesis until it is built and evaluated. Until then, Resolve's [risk register](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/governance-and-risk.md) keeps residual risk for missed Employee Relations and legal concerns at High, and production use is withheld.
 
 ## Decision sequence
 
@@ -160,7 +160,7 @@ The rest of the portfolio follows the same chain: work, risk, [technology choice
 | Data sensitivity | High. Free text may contain health, family, or complaint details the employee did not label. |
 | Failure | A missed concern cannot be undone; an unnecessary escalation can. Wording that tries to talk the screen out of escalating is a failure mode to test. |
 | Governance | Model-provider data-retention terms approved before the screen reads employee text. Each miss becomes an incident and a new kind of test case, not a new keyword. |
-| Evaluation | Held-out cases across every signal category, written by practitioners who do not tune the screen, including indirect disclosures, euphemisms, several intents in one request, attempts to suppress escalation, incomplete context, and benign requests that resemble sensitive ones. Harmful misses reported with confidence bounds; unnecessary escalations with their cost. See the [acceptance criteria](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md#acceptance-criteria-for-a-model-classifier). |
+| Evaluation | Held-out cases across every signal category, written by practitioners who do not tune the screen, including indirect disclosures, euphemisms, several intents in one request, attempts to suppress escalation, incomplete context, and benign requests that resemble sensitive ones. Harmful misses reported with confidence bounds; unnecessary escalations with their cost. See the [acceptance criteria](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md#acceptance-criteria-for-redesigned-routing). |
 | Status | Keyword layer tested for known phrasing (`test_employee_relations_language_escalates_without_fact_finding`, `test_legal_language_routes_to_legal`); held-out failures observed. Intake and model layers proposed. |
 
 </details>

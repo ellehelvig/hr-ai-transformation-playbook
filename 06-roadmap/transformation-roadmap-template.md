@@ -130,14 +130,14 @@ Before rolling a pilot use case to org-wide deployment:
 **Goal:** Move from assisting HR workflows to transforming them. Introduce agentic automation and predictive analytics.
 
 **Target use cases:**
-- Attrition risk modeling with HRBP workflow integration (high-risk use: completed risk assessment, fairness audit, and Legal sign-off before any score reaches a manager)
+- Segment-level attrition inquiry for People Analytics and HR leadership (risk assessment, privacy safeguards, fairness evaluation, and relevant sign-off before aggregate findings are shared; individual predictions remain internal to model validation)
 - Workforce planning models
 - Personalized learning path generation with LMS integration
 - Agentic onboarding workflow automation
 - Pay equity analysis (run under Legal's direction so findings are handled correctly, and see [pay equity governance](../03-governance/pay-equity-governance.md))
 
 **Key activities:**
-- [ ] Commission full attrition risk model (requires clean HRIS data, see [05 · Notebooks](../05-notebooks/README.md))
+- [ ] Assess whether segment-level attrition analysis supports a defined workforce question; evaluate any model internally before considering business use (requires governed HRIS data, see [05 · Notebooks](../05-notebooks/README.md))
 - [ ] Build agentic workflows for highest-volume HR processes
 - [ ] Integrate AI recommendations into HRIS where technically feasible
 - [ ] Establish HR AI as a function, dedicated headcount or formal role(s)

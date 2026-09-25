@@ -21,7 +21,7 @@ Everything in this section is designed to answer one question: **what should we 
 
 ## How to use this section
 
-Start with the [prioritization matrix](prioritization-matrix.md). Score your top 5 to 8 ideas before committing to any of them. The use case library is a menu, not a prescription.
+Start with the [prioritization matrix](prioritization-matrix.md). Check eligibility for your top 5 to 8 ideas, then score only those that pass before committing to any of them. The use case library is a menu, not a prescription.
 
 If you'd rather have an assistant fill the card and score it for you, install the [hr-ai-use-case-intake](../11-skills/hr-ai-use-case-intake/SKILL.md) skill. It uses the same template and matrix and stops short of recommending a build.
 

@@ -37,7 +37,7 @@ A short rollup table for leadership and audit. Keep it current.
 | Resume screening AI | Sourcing / screening | Deployer | 4(a) recruitment | Possible high-risk |
 | Interview scheduling bot | Sourcing / screening | Deployer | None (procedural) | Likely limited risk |
 | Internal mobility recommender | Internal mobility | Deployer | 4(b) promotion / task allocation | Possible high-risk |
-| Attrition risk model (HRBP-facing) | Retention | Provider + deployer | 4(b) work conditions | Counsel needed |
+| Attrition analysis (segment-level inquiry) | Workforce inquiry | Provider + deployer | Classification requires review for the actual intended use | Counsel needed |
 | Performance review summarizer | Performance | Deployer | 4(b) performance evaluation | Counsel needed |
 
 ## Example cards

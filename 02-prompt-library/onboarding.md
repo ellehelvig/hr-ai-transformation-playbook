@@ -130,14 +130,14 @@ New hire context:
 Produce a synthesis with:
 
 1. **Top 3 themes** that appear across multiple responses (not just one person's complaint)
-2. **Risk signals** for individual new hires, flag anyone whose responses suggest disengagement, confusion, or early attrition risk. Quote the specific language that triggered the flag.
+2. **Support needs** explicitly raised in responses, such as missing information or onboarding barriers. Summarize patterns without predicting departure or labeling employees as attrition risks. Route explicit sensitive concerns through the established human support process.
 3. **What's working**: themes worth reinforcing or replicating
 4. **Recommended actions** for HRBP and manager follow-up, broken out by:
    - Things the HRBP should address centrally (process gaps, missing resources)
    - Things individual managers should address with their direct report
 5. **What's missing from the data**: questions that should have been asked but weren't
 
-Be direct about risks. Soft framing of attrition signals helps no one.
+Be clear about reported barriers. Do not infer an employee’s intention to leave from their responses.
 ```
 
 ---

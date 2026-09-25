@@ -19,7 +19,7 @@ Implementation-ready prompt templates for HR workflows. Every prompt is structur
 | [performance.md](performance.md) | Prompts for review drafts, calibration prep, goal-setting feedback, PIP documentation, and 360 synthesis |
 | [learning-development.md](learning-development.md) | Prompts for skills gap analysis, learning path generation, manager coaching, and program evaluation |
 | [hr-operations.md](hr-operations.md) | Prompts for benefits enrollment support, leave eligibility and process explanation, helpdesk triage, return-to-work check-ins, and employment verification |
-| [people-analytics.md](people-analytics.md) | Prompts for attrition risk explanation, engagement survey synthesis, exit interview themes, workforce composition narrative, and org health flags |
+| [people-analytics.md](people-analytics.md) | Prompts for segment-level attrition inquiry, engagement survey synthesis, exit interview themes, workforce composition narrative, and org health flags |
 | [succession-planning.md](succession-planning.md) | Prompts for readiness narratives, slate calibration prep, critical role risk assessment, development planning, and leadership talking points |
 | [internal-mobility.md](internal-mobility.md) | Prompts for internal posting optimization, candidate fit narratives, manager release conversations, program outreach, and skills-matching explanations |
 

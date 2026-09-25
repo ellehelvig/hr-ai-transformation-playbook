@@ -156,36 +156,47 @@ def find_em_dashes() -> list[tuple[str, int]]:
     return hits
 
 
-MATRIX_WEIGHTS = (0.25, 0.20, 0.15, 0.15, 0.15, 0.10)
+MATRIX_WEIGHTS = (0.25, 0.20, 0.15, 0.15, 0.15)
 MATRIX_TIERS = ((4.0, 1), (3.0, 2), (2.0, 3), (0.0, 4))
 
 
 def check_matrix_example() -> list[str]:
-    """Recompute the worked example in the prioritization matrix.
-
-    The example table shows six inputs, a weighted score, and a tier. A reader
-    will copy it, so a wrong total or a tier that contradicts the tier table is
-    a defect the way a wrong README count is.
-    """
+    """Check eligibility gating and normalized business scores in the example."""
     errors = []
     text = read("01-use-cases/prioritization-matrix.md")
     section = text.split("## Example scoring", 1)[-1].split("\n---", 1)[0]
+    eligible_count = 0
+    blocked_count = 0
     for line in section.splitlines():
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) != 9 or not cells[1].isdigit():
+        if len(cells) != 9 or cells[0] == "Use case" or set(cells[0]) == {"-"}:
             continue
-        name = cells[0]
-        scores = [int(c) for c in cells[1:7]]
-        stated = float(cells[7].strip("*"))
-        tier = int(cells[8])
-        actual = round(sum(w * v for w, v in zip(MATRIX_WEIGHTS, scores, strict=True)), 2)
-        if abs(actual - stated) > 0.005:
+        name, eligibility = cells[:2]
+        if eligibility.startswith(("Hold:", "Stop:")):
+            blocked_count += 1
+            if cells[7:] != ["Not scored", "None"] or any(cells[2:7]):
+                errors.append(f"{name}: failed gates must have no business score or tier")
+            continue
+        if eligibility != "Eligible":
+            errors.append(f"{name}: unrecognized eligibility status")
+            continue
+        eligible_count += 1
+        try:
+            scores = [int(c) for c in cells[2:7]]
+            stated, tier = float(cells[7]), int(cells[8])
+        except ValueError:
+            errors.append(f"{name}: invalid example score")
+            continue
+        if any(score < 1 or score > 5 for score in scores):
+            errors.append(f"{name}: scores must be between 1 and 5")
+        actual = sum(w * v for w, v in zip(MATRIX_WEIGHTS, scores, strict=True)) / sum(MATRIX_WEIGHTS)
+        if abs(round(actual, 2) - stated) > 0.005:
             errors.append(f"{name}: table says {stated:.2f}, weights give {actual:.2f}")
         expected_tier = next(t for floor, t in MATRIX_TIERS if actual >= floor)
         if tier != expected_tier:
             errors.append(f"{name}: tier {tier} in table, score {actual:.2f} is tier {expected_tier}")
-    if not errors and not section.strip():
-        errors.append("prioritization-matrix.md: example scoring table not found")
+    if not eligible_count or not blocked_count:
+        errors.append("prioritization-matrix.md: eligible and blocked examples are required")
     return errors
 
 

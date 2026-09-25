@@ -58,27 +58,19 @@ Use the [business case template](business-case-template.md) for any HR AI invest
 ### Efficiency ROI (time saved)
 
 ```
-Annual hours saved  = (time_before - time_after) × frequency × people_affected × 48 weeks
-Realized hours      = annual_hours_saved × realization_rate      (40 to 70% is defensible; 100% is not)
-Value of hours      = realized_hours × blended_hourly_cost
-Net annual value    = value_of_hours - annual_run_cost
-ROI%                = (net_annual_value / annual_run_cost) × 100
-Payback (months)    = one_time_investment / (net_annual_value / 12)
+Potential hours released = (hours_before - hours_after) × weekly_frequency × people × working_weeks
+Modeled redeployed hours = potential_hours_released × assumed_redeployment_share
+Modeled capacity value   = modeled_redeployed_hours × blended_hourly_cost
+Net annual capacity value = modeled_capacity_value - annual_run_cost
+Capacity return on run cost (%) = (net_annual_capacity_value / annual_run_cost) × 100
+Modeled payback (months) = one_time_investment / (net_annual_capacity_value / 12)
 ```
 
-The realization rate is the line most business cases skip and the one a CFO will ask about first. Saved minutes only count when they turn into redeployed capacity, avoided hiring, or reduced overtime. Pick a rate, state it, and measure it after launch.
+Use measured before/after handling time for comparable completed tasks, including review and rework. State the population, period, weekly frequency per person, and exclusions; do not count a refused or unresolved request as a completed task. The examples use 48 working weeks as an editable assumption, not a benchmark.
 
-**Common efficiency benchmarks for HR AI:**
+The redeployment share is an assumption until actual capacity use is observed. State its basis and test sensitivity; there is no universal defensible range. Valuing time at an hourly cost does not establish cash savings. Report cash savings only where actual spending reductions or documented avoided costs exist, separately from redeployed capacity and observed service or workforce outcomes.
 
-| Use case | Typical time saving | Source |
-|---|---|---|
-| Performance review draft | 45–90 min per review | Manager time studies |
-| HR helpdesk Q&A deflection | 3–5 min per ticket | Ticket handling time |
-| Onboarding plan generation | 60–120 min per new hire | HR Ops time studies |
-| Job description writing | 30–60 min per JD | Recruiter surveys |
-| Exit interview synthesis | 4–6 hrs per cohort | People Analytics estimate |
-
-*Note: Always validate benchmarks with your own baseline measurement before building a business case.*
+The return denominator above is annual recurring cost, not total first-year investment. Report one-time costs separately. Return is undefined when run cost is zero; payback has no finite value when net annual value is nonpositive. Capacity-based payback is a scenario, not cash recovery.
 
 ### Quality ROI (error reduction and consistency)
 
@@ -100,9 +92,9 @@ Harder to quantify but often larger in impact than efficiency. Use proxy metrics
 
 This is the hardest to quantify and the most strategically important. Document it qualitatively:
 
-- *Before:* Could not predict attrition risk; found out when employees resigned
-- *After:* Identifying at-risk employees 60–90 days before potential departure; enabling proactive retention conversations
-- *Value:* Cost of turnover avoided (typically 50–200% of annual salary per role)
+- *Before:* Departure patterns were reviewed without a consistent segment-level comparison.
+- *After, proposed:* People Analytics can compare approved workforce segments and investigate work conditions, with small groups suppressed.
+- *Evidence needed:* Whether the inquiry improves decisions and workforce outcomes. A prediction is not proof of preventable turnover; do not monetize assumed employee-specific interventions.
 
 ---
 

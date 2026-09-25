@@ -4,7 +4,7 @@ The job of testing is to find where the system breaks. This page covers building
 
 [← Workflow patterns](README.md)
 
-Two parts of this portfolio demonstrate it: the playbook's [evaluation runner](../09-evals/README.md), with launch-blocking gates and a way to measure an LLM judge's agreement with human labels (not yet run on real labels), and Resolve's [evaluation methodology](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md), with held-out cases, confidence bounds, and acceptance criteria.
+Two parts of this portfolio demonstrate it: the playbook's [evaluation runner](../09-evals/README.md), with launch-blocking gates and a way to measure an LLM judge's agreement with human labels (not yet run on real labels), and Resolve's [evaluation methodology](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md), with historical held-out failures, release implications, and criteria for new unseen evaluation.
 
 ## Build the test set from real work
 
@@ -40,4 +40,4 @@ For answers: is every statement supported by the cited source; is it complete; i
 
 ## Launch gates
 
-Set pass criteria before testing, with the accountable owners, by severity. Zero observed disclosures and zero approval bypasses on the test set are necessary but not sufficient: a clean result on a small set still leaves real uncertainty. Resolve's [acceptance criteria](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md#acceptance-criteria-for-a-model-classifier) show how coverage, severity, and monitoring combine.
+Set pass criteria before testing, with the accountable owners, by severity. Zero observed disclosures and zero approval bypasses on the test set are necessary but not sufficient: a clean result on a small set still leaves real uncertainty. Resolve's [acceptance criteria](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md#acceptance-criteria-for-redesigned-routing) show how coverage, severity, and monitoring combine.

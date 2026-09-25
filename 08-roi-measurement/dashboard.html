@@ -135,7 +135,7 @@
 
     <div class="calc-controls">
       <div>
-        <div class="control-label"><span>Hours saved per person, per week</span><span id="hrs-out">5</span></div>
+        <div class="control-label"><span>Potential hours released per person, per week</span><span id="hrs-out">5</span></div>
         <input type="range" min="0.5" max="15" step="0.5" value="5" id="hrs">
       </div>
       <div>
@@ -147,7 +147,7 @@
         <input type="range" min="20" max="150" step="5" value="55" id="rate">
       </div>
       <div>
-        <div class="control-label"><span>Realization rate</span><span id="real-out">60%</span></div>
+        <div class="control-label"><span>Assumed redeployment share</span><span id="real-out">60%</span></div>
         <input type="range" min="10" max="100" step="5" value="60" id="real">
       </div>
       <div>
@@ -161,12 +161,12 @@
     </div>
 
     <div class="calc-out">
-      <div class="metric-card"><p>Annual hours saved</p><p id="out-hours">4,800</p></div>
-      <div class="metric-card"><p>Value of realized time</p><p id="out-value">$158,400</p></div>
-      <div class="metric-card"><p>Net annual value</p><p id="out-net">$146,400</p></div>
-      <div class="metric-card"><p>Payback period</p><p id="out-payback">3.3 mo</p></div>
+      <div class="metric-card"><p>Potential annual hours released</p><p id="out-hours">4,800</p></div>
+      <div class="metric-card"><p>Modeled capacity value</p><p id="out-value">$158,400</p></div>
+      <div class="metric-card"><p>Net annual capacity value</p><p id="out-net">$146,400</p></div>
+      <div class="metric-card"><p>Modeled capacity payback</p><p id="out-payback">3.3 mo</p></div>
     </div>
-    <p class="lede" style="font-size:13px;">Realized hours = hours × people × 48 weeks × realization rate. Net annual value = realized hours × rate minus run cost. Payback = one-time investment ÷ (net annual value ÷ 12). Realization rate is the share of saved minutes that become redeployed capacity or avoided cost; 100% is never credible.</p>
+    <p class="lede" style="font-size:13px;">Modeled redeployed hours = potential hours released × people × 48 working weeks (fixed scenario assumption in this calculator) × assumed redeployment share. Net capacity value = modeled hours × hourly cost minus run cost. Modeled payback = one-time investment ÷ (net capacity value ÷ 12). All inputs are editable scenario assumptions, not benchmarks. Include review and rework in time estimates for comparable completed tasks. Capacity value is not observed redeployment or cash savings.</p>
   </section>
 
   <footer>
@@ -196,7 +196,7 @@
     if (net <= 0) {
       paybackText = 'Never';
     } else if (inv === 0) {
-      paybackText = (12 * cost / value).toFixed(1) + ' mo to cover run cost';
+      paybackText = '0.0 mo (no initial investment)';
     } else {
       paybackText = (inv / (net / 12)).toFixed(1) + ' mo';
     }
