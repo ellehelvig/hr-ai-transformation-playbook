@@ -124,11 +124,12 @@ You do not need to label all 29 cases. Label a sample, get a kappa on that sampl
 `prompt_tests.py` runs templates from the [prompt library](../02-prompt-library/README.md) on a real model and grades each output against its own rules. Each fixture in `prompt-fixtures.yaml` fills one template with synthetic inputs and plants a trap the template says to avoid: health details in calibration notes, an age reference in PIP evidence, a retaliation threat inside a payroll ticket. The template text is read from the library at run time, so a test always runs the prompt as written.
 
 ```bash
-python prompt_tests.py --list   # offline: check fixtures against the library and show coverage
-python prompt_tests.py --run    # needs ANTHROPIC_API_KEY; writes prompt-test-results.json
+python prompt_tests.py --list                          # offline: check fixtures against the library
+python prompt_tests.py --run --backend claude-code     # on a Claude plan, no API key
+python prompt_tests.py --run                           # on API credits; needs ANTHROPIC_API_KEY
 ```
 
-Or run the manual **Prompt library smoke tests** workflow in GitHub Actions, which opens a pull request with the results.
+The `claude-code` backend runs each prompt and each grading call through `claude -p`, the [Claude Code](https://code.claude.com) CLI, with its tools disabled and its own system prompt replaced by a one-line neutral one. It needs Claude Code installed and signed in, counts toward the plan's usage limits, and makes about 20 calls. Both backends write `prompt-test-results.json`. The manual **Prompt library smoke tests** workflow in GitHub Actions runs the API backend and opens a pull request with the results.
 
 **Coverage:** 10 of 41 templates, the HR operations and performance prompts. **Results: none yet.** No run has been done.
 

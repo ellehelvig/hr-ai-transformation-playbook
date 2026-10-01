@@ -6,6 +6,7 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 Added
 
+- **Run the smoke tests on a Claude plan.** `prompt_tests.py --run --backend claude-code` runs prompts and grading through the Claude Code CLI with its tools disabled, so no API key is needed. Any `ANTHROPIC_API_KEY` in the shell is withheld from the CLI so it cannot bill the API.
 - **Prompt library smoke tests.** `09-evals/prompt_tests.py` runs library templates on a real model and grades them with the LLM judge. Ten fixtures cover the HR operations and performance prompts, each with a planted trap. A manual workflow runs them with an `ANTHROPIC_API_KEY` secret and opens a pull request with the results. No results are recorded yet, and no prompt is described as tested.
 
 Fixed

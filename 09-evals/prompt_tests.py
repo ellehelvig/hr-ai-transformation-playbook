@@ -1,7 +1,8 @@
 """Run prompt library templates on a real model and grade them against their own rules.
 
     python 09-evals/prompt_tests.py --list           # check fixtures against the library, offline
-    python 09-evals/prompt_tests.py --run            # needs ANTHROPIC_API_KEY and `pip install anthropic`
+    python 09-evals/prompt_tests.py --run --backend claude-code   # your Claude plan; needs the `claude` CLI
+    python 09-evals/prompt_tests.py --run                         # API credits; needs ANTHROPIC_API_KEY
 
 Each fixture in prompt-fixtures.yaml fills one template's placeholders with
 synthetic inputs, usually planting a trap the template says to avoid, such as
@@ -108,6 +109,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--list", action="store_true", help="validate fixtures and list coverage, offline")
     parser.add_argument("--run", action="store_true", help="run every fixture on the model and grade it")
+    parser.add_argument("--backend", choices=("anthropic", "claude-code"), default="anthropic",
+                        help="anthropic: API credits. claude-code: the signed-in Claude Code CLI on your plan")
     args = parser.parse_args()
 
     library, cases = load_library(), load_cases()
@@ -125,8 +128,15 @@ def main() -> int:
     model = os.environ.get(MODEL_ENV, DEFAULT_MODEL)
     results = []
     for case in cases:
-        output = run_model(case["input"], model)
-        graded = judge.grade_response(case, output, judge.anthropic_judge)
+        if args.backend == "claude-code":
+            try:
+                output = judge.run_claude_cli(case["input"], model)
+            except RuntimeError as exc:
+                output = f"ERROR: {exc}"
+            graded = judge.grade_response(case, output, judge.claude_code_judge)
+        else:
+            output = run_model(case["input"], model)
+            graded = judge.grade_response(case, output, judge.anthropic_judge)
         results.append({"id": case["id"], "title": case["title"], "trap": case["trap"],
                         "prompt_sha256": case["sha256"], "output": output, "grading": graded.to_dict()})
         print(f"{case['id']:28} met={graded.criteria_met} not_met={graded.criteria_failed} "
@@ -134,7 +144,8 @@ def main() -> int:
 
     output_path = Path(os.environ.get("PROMPT_TEST_RESULTS", RESULTS))
     output_path.write_text(json.dumps({
-        "model": model, "judge_model": os.environ.get(judge.JUDGE_MODEL_ENV, judge.DEFAULT_JUDGE_MODEL),
+        "backend": args.backend, "model": model,
+        "judge_model": os.environ.get(judge.JUDGE_MODEL_ENV, judge.DEFAULT_JUDGE_MODEL),
         "run_at": datetime.now(timezone.utc).isoformat(),
         "note": ("One synthetic input per prompt, one run, graded by an unvalidated LLM judge. "
                  "Smoke test, not a benchmark."),
