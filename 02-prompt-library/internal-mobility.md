@@ -159,5 +159,5 @@ Do not:
 
 ## Cross-links
 
-- [Talent operating system architecture](../07-agentic-patterns/talent-operating-system-architecture.md): the skills ontology and confidence-scoring system prompt 5 above assumes as its data source.
+- [Performance data in talent systems](../07-agentic-patterns/talent-operating-system-architecture.md): the fairness check to run before performance data updates the skill estimates prompt 5 above relies on.
 - [Skills gap analysis notebook](../05-notebooks/skills-gap-analysis.ipynb): where the underlying skill proficiency data in these prompts typically originates.

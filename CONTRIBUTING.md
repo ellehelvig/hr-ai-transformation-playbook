@@ -5,7 +5,7 @@ This playbook improves when practitioners send back what they learned in product
 ## What to contribute
 
 - **Use cases** not in the library. Use the [intake template](01-use-cases/intake-template.md) or the [issue form](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new?template=new-use-case.md).
-- **Prompt improvements** you've tested, with tuning notes that name the model and what changed.
+- **Prompt improvements.** If you tested one on a model, say which model, when, and what you observed. If not, say it is untested.
 - **Skills.** New skills for `11-skills/`, or fixes to existing ones. Follow the structure in the [skills README](11-skills/README.md#writing-your-own).
 - **Governance updates.** New jurisdictions, changed law, better templates. Use the [regulatory update form](https://github.com/ellehelvig/hr-ai-transformation-playbook/issues/new?template=regulatory-update.md).
 - **Notebooks and tools.** New analyses, or improvements to the MCP tools in `10-mcp-agents/`.
@@ -22,7 +22,7 @@ This playbook improves when practitioners send back what they learned in product
 
 - **Primary sources for legal claims.** Cite statute text, court orders, or regulator pages. A law firm's summary is a lead, not a citation.
 - **Synthetic data only.** No real employee or candidate data anywhere, including notebook outputs and eval results.
-- **Tuning notes on every prompt.** Name the model you tested on and what you observed.
+- **No untested claims.** Record model testing only when it happened: the model, the date, and what you observed.
 - **Skills stop at the human.** A skill may draft, score against a rubric, or route. It may not make an employment decision, assign a score to a named person, or write to an HR system.
 - **Plain language, no em dashes.** Short sentences. No jargon that only makes sense inside one company.
 - **Flag legal review.** Governance content should say when counsel needs to see it before adoption.

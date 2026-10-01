@@ -4,9 +4,20 @@ Use this framework to score and rank AI use cases for your People Team. It preve
 
 ---
 
+## Eligibility before scoring
+
+Record **eligible**, **hold**, or **stop**, the evidence, and the accountable reviewer before calculating any score. These are portfolio design gates, not a statement of legal requirements.
+
+- **Purpose and accountability:** a defined task, intended users, and a named owner for meaningful human oversight.
+- **Data and access:** a justified data need and an approved access and handling approach. Sensitive data without adequate oversight fails the gate.
+- **Decision boundary:** no autonomous hiring, pay, termination, or other consequential employment decisions. Specify what the system may draft and what a person must decide.
+- **Risk and evidence:** review the risk assessment and relevant evaluation failures. Unacceptable risks or failed stop-ship conditions block progression, including when a high business score is possible.
+
+Missing evidence or unresolved safeguards means **hold**. An unacceptable design means **stop** until redesigned and reviewed. Neither receives a priority tier. Record the reason and owner; business value cannot override it. Eligibility allows comparison, not release: pilot and production gates still apply.
+
 ## Scoring dimensions
 
-Score each use case from 1–5 on six dimensions. The weighted total determines priority tier.
+Score only eligible use cases from 1–5 on the five business dimensions below. The original business weights are normalized by their sum (0.90); risk is assessed separately and cannot be averaged away. The weighted total determines planning priority, not permission to deploy.
 
 | Dimension | Weight | What to evaluate |
 |---|---|---|
@@ -15,9 +26,10 @@ Score each use case from 1–5 on six dimensions. The weighted total determines 
 | **Time savings** | 15% | How many hours per week does this recover for HR professionals or employees? |
 | **Data readiness** | 15% | Is the data needed clean, accessible, and governed? |
 | **Implementation feasibility** | 15% | Can this be done in <90 days with current resources and tooling? |
-| **Risk level (inverse)** | 10% | Score 5 = low risk, 1 = high risk. Be honest. |
 
-**Weighted score** = (Strategic × 0.25) + (Impact × 0.20) + (Time savings × 0.15) + (Data × 0.15) + (Feasibility × 0.15) + (Risk inverse × 0.10)
+**Weighted score** = [(Strategic × 0.25) + (Impact × 0.20) + (Time savings × 0.15) + (Data × 0.15) + (Feasibility × 0.15)] / 0.90
+
+The weights are relative business weights, totaling 90 before normalization. Time estimates are planning assumptions until measured.
 
 ---
 
@@ -58,46 +70,41 @@ Score each use case from 1–5 on six dimensions. The weighted total determines 
 - **2**: 3–6 months; requires significant integration or procurement
 - **1**: Significant technical or organizational barriers; >6 months
 
-### Risk level, score inversely (1–5)
-- **5**: Low risk: no sensitive employee data, no employment decisions, easy to audit
-- **4**: Low-medium: uses some personal data, decisions are advisory only
-- **3**: Medium: touches employment decisions or sensitive data; requires legal review
-- **2**: Medium-high: automated decisions, potential for bias, regulatory exposure
-- **1**: High: autonomous decisions on hiring, compensation, termination, or sensitive data without human review
-
----
-
 ## Priority tiers
 
 | Weighted score | Tier | Recommendation |
 |---|---|---|
-| 4.0–5.0 | **Tier 1. Start now** | High-confidence investment; prioritize in next planning cycle |
-| 3.0–3.9 | **Tier 2. Plan for next quarter** | Strong candidate; address blockers before committing |
-| 2.0–2.9 | **Tier 3. Backlog** | Worth tracking; revisit when capacity or data readiness improves |
+| 4.0–5.0 | **Tier 1. Prioritize planning** | Eligible opportunity; complete pilot gates before deployment |
+| 3.0–<4.0 | **Tier 2. Plan for next quarter** | Strong candidate; address blockers before committing |
+| 2.0–<3.0 | **Tier 3. Backlog** | Worth tracking; revisit when capacity or data readiness improves |
 | <2.0 | **Tier 4. Defer** | Not the right time; document the blocker and revisit annually |
 
 ---
 
 ## Example scoring
 
-| Use case | Strategic | Impact | Time | Data | Feasibility | Risk⁻¹ | **Weighted** | Tier |
+These hypothetical eligible rows assume the gates above have been documented and passed. Real submissions need their own evidence. Scores use full precision for tier assignment and two decimals for display.
+
+| Use case | Eligibility | Strategic | Impact | Time | Data | Feasibility | Weighted | Tier |
 |---|---|---|---|---|---|---|---|---|
-| New hire Q&A agent | 5 | 5 | 4 | 4 | 5 | 4 | **4.60** | 1 |
-| Personalized learning paths | 4 | 4 | 3 | 3 | 3 | 4 | **3.55** | 2 |
-| Attrition risk scoring | 5 | 4 | 2 | 2 | 2 | 3 | **3.25** | 2 |
-| Resume screening AI | 3 | 3 | 3 | 4 | 3 | 2 | **3.05** | 2 |
-| Succession planning model | 4 | 5 | 2 | 1 | 1 | 3 | **2.90** | 3 |
-| Autonomous offer decisions | 2 | 2 | 2 | 2 | 2 | 1 | **1.90** | 4 |
+| New hire Q&A agent | Eligible | 5 | 5 | 4 | 4 | 5 | 4.67 | 1 |
+| Personalized learning paths | Eligible | 4 | 4 | 3 | 3 | 3 | 3.50 | 2 |
+| Segment-level attrition inquiry | Eligible | 5 | 4 | 2 | 2 | 2 | 3.28 | 2 |
+| Resume screening support | Hold: oversight evidence missing |  |  |  |  |  | Not scored | None |
+| Succession planning model | Hold: data safeguards unresolved |  |  |  |  |  | Not scored | None |
+| Autonomous offer decisions | Stop: consequential decision delegated |  |  |  |  |  | Not scored | None |
+
+Even if autonomous offer decisions scored 5 on every business dimension, the failed gate would still prevent scoring and progression.
 
 ---
 
 ## How to run this as a team exercise
 
 1. **Gather stakeholders**: HR leadership, HRBPs, HR Ops, and at least one People Systems rep
-2. **Score independently first**: each person scores all use cases before discussion; prevents anchoring
+2. **Review eligibility first**: record gates, evidence, owner, and any stop condition. Score only eligible cases independently before discussion
 3. **Surface disagreements**: focus discussion on dimensions with the widest spread, not averages
 4. **Validate data readiness scores** with People Systems before finalizing, this dimension is most often over-estimated
-5. **Pressure-test risk scores** with Legal or your Privacy team before committing Tier 1 investments
+5. **Confirm eligibility and release conditions** with the accountable reviewers before committing Tier 1 investments
 6. **Revisit quarterly**: scores change as data matures, capacity shifts, and strategy evolves
 
 ---
@@ -110,10 +117,8 @@ The most impressive demo is rarely the highest-value use case.
 **Underestimating data readiness.**
 Most HR AI projects are blocked by data quality, not model capability. Score this dimension conservatively.
 
-**Skipping the risk inverse score.**
-Regulatory exposure in HR AI (EEOC guidance, GDPR, CCPA, NYC Local Law 144, Illinois AI Video Interview Act, Colorado AI Act) can kill a project months in. Score it first, not last.
-
-*Specific regulations listed are current as of September 2026. Note Colorado: SB 26-189 (signed May 14, 2026) replaced the 2024 AI Act with a disclosure-focused regime effective January 1, 2027, dropping the duty of care and the deployer risk-management and impact-assessment requirements. Enforcement of both the old and new law is stayed by a federal court pending xAI's constitutional challenge and the AG's rulemaking. Weight it accordingly if scoring risk today. Laws change fast; confirm current law for your jurisdiction(s) when assigning risk scores.*
+**Averaging away a failed gate.**
+A high business score cannot authorize an unacceptable design. Relevant legal review remains part of the governance process; this matrix does not determine legal eligibility.
 
 **Treating the matrix as the answer.**
 It's a forcing function for structured conversation, not a substitute for judgment.

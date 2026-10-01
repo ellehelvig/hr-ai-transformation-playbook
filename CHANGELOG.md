@@ -2,6 +2,35 @@
 
 Notable changes to the playbook. Regulatory content is checked against primary sources; only material changes are logged here.
 
+## [Unreleased]
+
+Changed
+
+- **Attrition notebook reframed.** The named-employee risk card is replaced by segment-level results with small segments suppressed; individual scores are described as a validation step, not an HR decision interface. Drivers use plain labels, the unsourced AUC 0.70 pass bar and the "works well in production" claim are removed, and a limitations section covers synthetic-data optimism and the consequences of predicting individuals.
+- **Quieter README header.** The decorative banner and license badge are replaced by a plain title; the tests badge remains.
+- **Contributor rules match the prompts.** CLAUDE.md, CONTRIBUTING, and the pull request template required tuning notes naming the model tested on every prompt; none exist. The rule now is that prompts are drafts, and model testing is recorded only when it happens.
+- **Fictional examples say so.** The intake template's exit-interview example described a "manual prototype run on Q1 2026 exit data (n=47)"; it is now labeled fictional throughout, with example targets marked. The incident report's worked example is labeled fictional.
+- **README tour starts with the work redesign case study.** The ROI calculator badge and tour entry are removed; the calculator remains in section 08.
+- **HRBP, People Partner, and HR case owner.** Helpdesk escalations in the eval cases, the business case example, and two prompts now route to the HR case owner rather than an HRBP. HRBP stays where it means the partner aligned to a business leader, including the performance plan dispute case. The case study defines both titles once.
+- **ROI walkthrough GIF removed.** It predated the target changes and made a modeled payback calculator the first thing a visitor sees. The live calculator is still linked.
+- **Approach taxonomy aligned with the work-design modes.** Rules, Augment, Assist, Human-led, and Analytics replace Agent, Copilot, and Automation in the use case library, intake template, risk assessment, and curriculum. Each of the 37 use cases was reclassified by what the proposed system does; mixed designs say so. Agent is defined and reserved; no use case currently meets it. The new hire Q&A spotlight now says unreviewed answers must be earned through evaluation, and the business case example no longer describes retrieval as training.
+- **Headcount is not the value measure.** The roadmap KPI framework no longer tracks employees per HR FTE as an efficiency target. The section is renamed Time and effort.
+- **One rule for numbers.** Templates now say "[Set after baseline]" instead of unsourced targets (enablement, use case library, roadmap phase gates and KPI framework). Worked examples label their numbers as examples (business case, ROI sample report, dashboard). Governance rows that were "100%" targets are stated as requirements. The roadmap no longer asserts that most large HR organizations are at Level 1 or 2.
+- **Principle 3 made precise.** The tools return a human-review flag, which a calling system could ignore; enforcement in code is demonstrated in Resolve's approval gate, not in these tools.
+- **Evaluation and review claims made precise.** The README said the LLM judge "is checked against human labels"; the runner can measure agreement with human labels, but no labeled run has been done. It also said every tool returns `human_review_required: true`; three of four do, and policy Q&A returns a disclaimer instead.
+- **Section 07 consolidated around evidence.** Renamed Workflow patterns. Rules come before models in the decision flow, each pattern states what this repository demonstrates, and four patterns replace five: the multi-agent orchestrator is removed because nothing here demonstrates it. Removed the model price table, generic LLM primer, "most common" and "replace an entire HR process" claims, a system-prompt sentence presented as injection protection, confidence-threshold escalation, and fixed evaluation thresholds (95% accuracy, 5 to 20% escalation, 100% injection resistance, a 20-case minimum). The talent systems page is reduced to its fairness gate and marked proposed. About 6,270 words become about 2,300.
+
+Fixed
+
+- **Unsupported targets removed.** "Reduce helpdesk tickets by 40%+" (use case library, business case template) and "escalation rate target 5 to 20%" (ROI README and dashboard) had no source. The library now lists measures worth tracking and says targets are set after a baseline; volume is observed, not targeted; escalation is checked by sampled review for misses and unnecessary escalations.
+- **Evaluation example labeled as illustrative.** `09-evals/evals-summary-example.txt` described a "pilot run against a staging HR Q&A agent" and a prompt fix made "before launch." No such agent is part of this repository, so the file now says the agent and results are hypothetical.
+- **Four-fifths rule described as a rule of thumb.** The attrition notebook called it "the standard EEOC threshold for disparate impact." It now describes the Uniform Guidelines provision, [29 CFR 1607.4(D)](https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607/section-1607.4), including that smaller differences can still be adverse impact. The notebook also no longer claims its features "consistently show predictive value across organizations."
+- **Unsupported Illinois claim removed.** The curriculum said a "2026 amendment" to the AI Video Interview Act requires explicit written consent. No amending act could be found, so the claim is removed and readers are pointed to the statute.
+- **California AB 1883 and SB 947 flagged as unverified.** Published summaries disagree about AB 1883's status. The curriculum and risk template no longer state either bill's procedural status and say to check the official bill history.
+- **Colorado stay described neutrally.** The risk template says a federal court stayed enforcement, without characterizing how.
+- **Resume screening claim matches the code.** The front page said the tool "can never output a score or rank," a claim the tool's own docstring retired in 2.1. It now states the enforced guarantees and points to the known limitations.
+- **Section 10 is titled MCP tools.** The six tools are deterministic and call no model; the agent is whatever calls them. The folder name is unchanged so links keep working.
+
 ## 2.3.0 (2026-09-23)
 
 Added

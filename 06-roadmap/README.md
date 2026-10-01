@@ -2,7 +2,7 @@
 
 > **06 / DECIDE** · Move from ambition to phased investment, learning, and explicit gates.
 
-[← Notebooks](../05-notebooks/README.md) · [Playbook home](../README.md) · [Next: Agent patterns →](../07-agentic-patterns/README.md)
+[← Notebooks](../05-notebooks/README.md) · [Playbook home](../README.md) · [Next: Workflow patterns →](../07-agentic-patterns/README.md)
 
 ---
 

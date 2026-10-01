@@ -14,7 +14,7 @@ What is painful, slow, or inconsistent today? Who feels it? What does it cost?
 **Proposed solution**
 One sentence: what will the AI do?
 
-*Example: Deploy a RAG-based Q&A agent trained on onboarding policies and FAQs, available 24/7, escalating to HR Ops for complex or sensitive questions.*
+*Example: Deploy a Q&A assistant that retrieves and cites onboarding policies and FAQs, available 24/7, routing complex or sensitive questions to HR Ops.*
 
 **Investment required**
 Be specific. Include build time, ongoing model costs, maintenance, and enablement.
@@ -30,26 +30,30 @@ Be specific. Include build time, ongoing model costs, maintenance, and enablemen
 
 **Expected outcomes**
 
+*Example values from the worked example above. Set your own targets after measuring a baseline.*
+
 | Metric | Baseline | Target | Measurement method |
 |---|---|---|---|
 | HR Ops time on Q&A | 6 hrs/week/person | <1 hr/week/person | Time tracking or self-report |
 | New hire question response time | 4 hrs avg | <5 min | Ticket system timestamp |
 | New hire 30-day CSAT | [baseline] | +0.5 points | Onboarding survey |
-| HR helpdesk ticket volume | [baseline] | -40% for FAQ categories | Ticket system |
+| HR helpdesk ticket volume by request type | [baseline] | Observed, not targeted | Ticket system |
 
 **Payback calculation**
 
 ```
-Annual HR time saved:   5 hrs/week × 3 HR Ops staff × 48 weeks = 720 hrs
-Realized hours:         720 hrs × [realization rate, e.g. 60%] = 432 hrs
-Value of HR time:       432 hrs × $[blended hourly rate] = $[X]
+Potential hours released:   5 hrs/week × 3 HR Ops staff × 48 weeks = 720 hrs
+Modeled redeployed hours:         720 hrs × [realization rate, e.g. 60%] = 432 hrs
+Modeled capacity value:       432 hrs × $[blended hourly rate] = $[X]
 Annual run cost:        $[model costs + maintenance + licenses]
 Net annual value:       $[X - annual run cost]
 One-time investment:    $[build, integration, change management]
 Payback period (months): one-time investment ÷ (net annual value ÷ 12)
 ```
 
-Two things reviewers will push on. The realization rate is the share of saved minutes that turn into redeployed capacity or avoided cost; 100 percent is never credible, 40 to 70 percent usually is, and you should say which you picked and why. And keep run cost separate from one-time investment: run cost reduces net annual value, one-time investment is what the payback period recovers. If there is no one-time investment, report months of value needed to cover a year of run cost instead: 12 × run cost ÷ value.
+All numbers above are illustrative editable assumptions, including 48 working weeks and 60% redeployment, not benchmarks or observed savings. Measure comparable completed work including review and rework, record the population and period, and justify the redeployment share. Modeled capacity value is not cash savings; report actual redeployment, spending reductions, and observed outcomes separately.
+
+Run cost reduces net annual capacity value; one-time investment is the numerator of modeled payback. Payback is not finite if net annual value is nonpositive. This capacity scenario does not establish cash recovery. See the ROI framework for the recurring-cost return denominator.
 
 **Risks and mitigations**
 
@@ -63,7 +67,7 @@ Two things reviewers will push on. The realization rate is the share of saved mi
 **Go/no-go criteria**
 What must be true for this to succeed? State these before you start.
 
-*Example: Clean policy documentation available in structured format; HRBP team committed to reviewing escalations within 2 hours; IT approval for API integration.*
+*Example: Clean policy documentation available in structured format; HR case owners committed to reviewing escalations within 2 hours; IT approval for API integration.*
 
 ---
 

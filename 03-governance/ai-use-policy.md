@@ -103,7 +103,7 @@ The following uses of AI in HR are prohibited without explicit approval from Leg
 | AI Q&A for HR policy | Approved with monitoring | Responses must be grounded in authoritative source; escalation path required |
 | Resume screening tools | Approved with conditions | Requires annual adverse impact review; human review of all shortlists |
 | Survey sentiment analysis | Approved | Aggregate insights only; no individual scoring |
-| Attrition risk models | Approved with conditions | HR leadership review required before any action taken on individual scores |
+| Segment-level attrition inquiry | Conditional on governance review | Individual predictions remain internal to validation; business outputs use approved aggregate segments, with suppression. No employee-specific action from risk scores. |
 | Autonomous offer generation | Under review | Not approved until legal review complete |
 | Performance rating automation | Not approved | Employment decision; requires human judgment |
 | Agents with HRIS or system write access | Approved with conditions | Requires a per-action confirmation gate for any employment-affecting action, not just approval of the agent's overall plan; scope and escalation rules documented per [agent design guidance](../07-agentic-patterns/agent-design.md) |
@@ -161,7 +161,7 @@ Neither framework is HR-specific. Both are general-purpose AI governance framewo
 - [Vendor intake checklist](vendor-intake-checklist.md): evidence required from vendors before adoption.
 - [Deployer checklist](deployer-checklist.md): ongoing obligations once an EU high-risk system is deployed.
 - [Risk assessment template](risk-assessment-template.md): the intake process referenced above.
-- [Designing HR agents](../07-agentic-patterns/agent-design.md): scope, escalation, and oversight design for agentic tools.
+- [Scoping an HR AI system](../07-agentic-patterns/agent-design.md): scope, information rules, escalation, and controls enforced in code.
 
 ---
 

@@ -44,8 +44,8 @@ The curriculum is designed for facilitator-led delivery but can be adapted for s
 
 Track these against a baseline measured before launch:
 
-- **Tool adoption**: % of People Team actively using approved AI tools weekly (target: 70%+ within 90 days of completion)
-- **Self-rated confidence**: pre/post survey on "I can use AI tools in my HR work effectively" (target: +1.5 points on 5-point scale)
+- **Tool adoption**: % of People Team actively using approved AI tools weekly (target: [Set after baseline])
+- **Self-rated confidence**: pre/post survey on "I can use AI tools in my HR work effectively" (target: [Set after baseline])
 - **Quality of prompt use**: sample of prompts scored against the four-elements rubric from Module 2
 - **Escalation appropriateness**: for any AI agent the team uses, are HR professionals correctly identifying when to override or escalate?
 

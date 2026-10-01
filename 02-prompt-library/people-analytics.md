@@ -1,34 +1,32 @@
 # Prompt library: people analytics
 
-Prompts for translating workforce data into decision-ready narrative for HR leaders, HRBPs, and managers. These prompts explain and synthesize, they do not score, rank, or decide. Anything that generates a risk score or model output belongs upstream of these prompts, see the [attrition risk model](../05-notebooks/attrition-risk-modeling.ipynb) for a worked example of a properly governed model these prompts can sit downstream of.
+Prompts for translating workforce data into decision-ready narrative for HR leaders, HRBPs, and managers. These prompts explain and synthesize, they do not score, rank, or decide. Anything that generates a risk score or model output belongs upstream of these prompts, see the [attrition risk model](../05-notebooks/attrition-risk-modeling.ipynb) for a synthetic evaluation example, not a validated HR decision tool. Individual predictions stay within calibration and error analysis; business briefings use approved segment-level outputs.
 
 ---
 
-## 1. Attrition risk score explanation
+## 1. Segment-level attrition inquiry
 
-**What it does:** Translates a model's attrition risk score and contributing factors into a plain-language narrative an HRBP or manager can act on, without disclosing model mechanics or making a retention decision.
+**What it does:** Turns approved aggregate analysis into questions about workforce conditions for People Analytics and HR leadership, without identifying employees for intervention.
 
 ```
-You are explaining an attrition risk score to an HRBP who will use it to decide whether and how to intervene. You are not deciding whether to intervene, and the model's contributing factors are signals about patterns across the workforce, not proven facts about why this specific person might leave.
+Explain the supplied segment-level attrition analysis. Do not infer who will leave or recommend employee-specific intervention.
 
-Employee context:
-- Role: [TITLE, LEVEL]
-- Tenure: [DURATION]
-- Risk score: [SCORE / TIER, e.g., "High, 78th percentile"]
-- Contributing factors from the model, feature importances or SHAP-style output: [LIST, e.g., "no promotion in 24 months (+), below-market pay percentile (+), high manager tenure with team (-)"]
-- Manager's most recent qualitative note on this employee, if any: [PASTE, OR "none"]
+Inputs:
+- Reporting period and population: [SCOPE]
+- Approved segments and counts: [DEPARTMENT / TENURE BANDS]
+- Suppression rules approved for this analysis: [RULES]
+- Observed departure rates and comparison groups: [AGGREGATES]
+- Modeled aggregate estimates, uncertainty, and validation limits: [IF AVAILABLE]
+- Potential factors and their comparison groups: [AGGREGATE ASSOCIATIONS]
 
-Generate a briefing that:
-1. States the risk tier and what percentile or threshold it represents
-2. Translates each contributing factor into plain language, avoids restating model jargon
-3. Distinguishes factors the organization can influence (pay, promotion timing, manager relationship) from factors it generally cannot (tenure, external market conditions)
-4. Suggests 2-3 conversation starters for the manager or HRBP, framed as questions to ask, not conclusions to state
-5. States the limits of this score explicitly: it is a probability based on patterns across the workforce, not a prediction about this individual, and should never be shared with the employee or referenced in a performance conversation
+Produce a short briefing:
+1. Separate observed departures from modeled estimates. State periods, denominators, and comparison groups.
+2. Respect suppression rules; omit small or identifiable groups and do not reconstruct them from totals.
+3. Explain associations as hypotheses, not causes or individual explanations.
+4. Propose questions about work conditions and additional evidence for People Analytics to investigate.
+5. State what the analysis cannot establish, including whether any particular employee will leave or whether an intervention would improve retention.
 
-Do not:
-- State the risk score as a certainty ("this employee will leave")
-- Recommend a specific retention action (counteroffer, promotion) without human judgment on context
-- Suggest sharing the score or its contributing factors directly with the employee
+Do not request names, individual scores, manager notes about a person, or employee-specific actions. If only individual records are supplied, stop and request an approved aggregate report.
 ```
 
 ---

@@ -18,13 +18,16 @@ What is painful, slow, or inconsistent today without this use case?
 Who uses it, and what is their experience improved?
 
 ## AI approach
-(Agent / Copilot / Automation / Analytics)
+(Rules / Augment / Assist / Human-led / Analytics, or a combination; see the [approach key](use-case-library.md))
 
 ## Data required
 What data does this use case need? Where does it come from?
 
 ## Human review gate
 Where does a human review AI output before it affects an employee?
+
+## Eligibility decision before prioritization
+Record eligible / hold / stop, gate evidence, unresolved conditions, and accountable reviewer using the [matrix](prioritization-matrix.md#eligibility-before-scoring). Do not calculate a priority score for a failed or unresolved gate.
 
 ## Proposed success metric(s)
 
@@ -40,7 +43,7 @@ Name and email for follow-up questions
 
 ## Worked example: filled-in intake submission
 
-Below is an illustrative example (the numbers are invented) of how to fill out this template. Use it as a reference for the level of detail expected when submitting your own.
+Below is a fictional submission. The scenario, numbers, and test result are invented to show the level of detail expected; no real exit data was used.
 
 ### Use case name
 Exit interview theme synthesis
@@ -58,7 +61,7 @@ Exit interview data sits unanalyzed because HR Ops doesn't have time to read eve
 HR leadership and HRBPs get monthly attrition theme reports instead of quarterly. Specific managers receive aggregated feedback about patterns in their team's exits within 30 days. People Analytics frees up ~20 hours/quarter previously spent on manual synthesis.
 
 ### AI approach
-Analytics. Copilot-style. AI generates the theme synthesis; HRBP reviews and validates before it reaches leadership or managers.
+Analytics (AI-assisted). AI drafts the theme synthesis; HRBP reviews and validates before it reaches leadership or managers.
 
 ### Data required
 - Exit interview free-text responses (from existing survey tool)
@@ -69,7 +72,13 @@ Analytics. Copilot-style. AI generates the theme synthesis; HRBP reviews and val
 ### Human review gate
 HRBP reviews and validates synthesis before delivery to leadership or managers. Manager-specific reports require HRBP sign-off. Themes flagged as "potential systemic issue" route to People Analytics for deeper investigation before action.
 
+### Eligibility decision before prioritization
+Hold pending Privacy and HRBP review of access, cohort suppression, and quote handling. This fictional submission has no completed eligibility review and therefore receives no priority score.
+
 ### Proposed success metric(s)
+
+*Example targets, not observed results.*
+
 - Time-to-insight on attrition patterns: 90 days → 30 days
 - HRBP time spent on exit data synthesis: −75%
 - Manager-specific intervention rate (managers who receive a flagged report and act within 30 days): target 60%+
@@ -83,7 +92,7 @@ HRBP reviews and validates synthesis before delivery to leadership or managers. 
 - Exit interview data subject to existing retention policy; AI synthesis stored with same controls
 
 ### Have you tested this?
-Yes, manual prototype run on Q1 2026 exit data (n=47). HRBP rated 5 of 6 themes as accurate; one was a false pattern from a 3-exit cohort, which is what surfaced the need for minimum-sample thresholds.
+*Fictional answer.* In this example, a manual trial on a quarter's exit data found one theme that came from a cohort of only three exits and did not hold up, which is why the submission sets a minimum group size. A real submission would name its data source, dates, and sample size.
 
 ### Contact
 [Your name, your email]

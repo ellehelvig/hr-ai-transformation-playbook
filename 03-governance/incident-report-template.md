@@ -83,13 +83,15 @@ A score of 1 on the [eval rubric's](../09-evals/eval-rubric.md) information safe
 
 ## Worked example
 
-**What happened:** The new hire Q&A agent told an employee they had unlimited PTO carryover into the next calendar year. The actual policy caps carryover at 5 days. Employee flagged it after checking with their HRBP.
+*A fictional incident, written to show the level of detail expected.*
+
+**What happened:** The new hire Q&A agent told an employee they had unlimited PTO carryover into the next calendar year. The actual policy caps carryover at 5 days. Employee flagged it after checking with their HR case owner.
 
 **Severity:** Sev 2 (incorrect information on a consequential topic, single employee, caught before financial harm).
 
 **Root cause:** Knowledge base gap. The PTO policy document in the RAG store was the prior year's version; the carryover cap was added in a policy update that hadn't been re-indexed.
 
-**Fix:** Re-indexed the policy store, added a monthly freshness check owned by HR Ops (see [Pattern 3 governance requirement](../07-agentic-patterns/agent-design.md)).
+**Fix:** Re-indexed the policy store, added a monthly freshness check owned by HR Ops (see [Pattern 1 key controls](../07-agentic-patterns/README.md#pattern-1-retrieval-with-verification)).
 
 **Regression coverage:** Added eval case checking PTO carryover cap citation against the current policy version.
 

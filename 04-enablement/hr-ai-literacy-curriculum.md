@@ -43,12 +43,12 @@ A 4-module learning program for HR professionals at all experience levels. Desig
 *What LLMs actually are:*
 Large language models predict the next most likely word given context. They don't "know" things the way a database knows things, they pattern-match against training data. This is why they can sound authoritative while being wrong.
 
-*The spectrum from rule-based to agentic:*
+*The spectrum from rules to agents:*
 ```
-Rule-based automation → AI Copilot → AI Agent
-(deterministic)         (assisted)    (autonomous)
+Rules            →  Assist / Augment              →  Agent
+(deterministic)     (a person decides or owns)       (a model acts across several steps)
 ```
-Most HR AI today sits in the middle. True agentic AI, where the model takes multi-step actions autonomously, is emerging and brings new governance requirements.
+Use rules when rules reliably give the right answer. Most HR uses of AI belong in the middle. An agent, where a model takes several actions through tools with limited review between them, has to earn that autonomy through evidence and brings new governance requirements.
 
 *Prompt quality drives output quality:*
 The single highest-leverage skill for HR professionals using AI is prompt construction. Vague prompts produce generic output. Specific, well-structured prompts with good context produce usable output.
@@ -129,7 +129,7 @@ Introduce and reinforce this heuristic:
 AI trained on historical HR data can encode and amplify past discrimination. An AI that learned from 10 years of hiring decisions at a company where 80% of engineering hires were male will score resumes accordingly. Adverse impact testing is a core control. It is required by law in some jurisdictions (NYC Local Law 144 mandates an annual bias audit for covered tools) and expected as evidence of reasonable care in many others. Confirm the cadence with Legal.
 
 *Illinois AI Video Interview Act, NYC Local Law 144, and emerging state laws:*
-Several jurisdictions now require disclosure, impact assessments, or consent for AI use in hiring. Illinois's 2026 amendment raised the bar: employers now need explicit written consent before AI analyzes a video interview, continuing the interview no longer counts as implied consent. Illinois also amended its Human Rights Act via HB 3773 (effective January 1, 2026) to broadly prohibit discriminatory AI use in hiring and promotion, not just video interviews. A companion law, Public Act 104-0425 (SB 2487, effective January 1, 2026), gives the Human Rights Commission tiered civil penalty authority for violations: up to $16,000 for a first offense, up to $42,500 with one prior violation within five years, up to $70,000 for two or more within seven years. The regulatory landscape is shifting quickly. Use cases involving hiring must be reviewed against current state law.
+Several jurisdictions now require disclosure, impact assessments, or consent for AI use in hiring. Illinois's AI Video Interview Act ([820 ILCS 42](https://www.ilga.gov/Legislation/ILCS/Articles?ActID=4015&ChapterID=68)) governs AI analysis of recorded video interviews, including notice and consent before the interview. Confirm its current requirements against the statute before relying on them. Illinois also amended its Human Rights Act via HB 3773 (effective January 1, 2026) to broadly prohibit discriminatory AI use in hiring and promotion, not just video interviews. A companion law, Public Act 104-0425 (SB 2487, effective January 1, 2026), gives the Human Rights Commission tiered civil penalty authority for violations: up to $16,000 for a first offense, up to $42,500 with one prior violation within five years, up to $70,000 for two or more within seven years. The regulatory landscape is shifting quickly. Use cases involving hiring must be reviewed against current state law.
 
 NYC Local Law 144 enforcement is entering a stricter phase. A December 2025 NY State Comptroller audit found DCWP's enforcement "ineffective": DCWP's own review of 32 companies' bias-audit disclosures caught 1 likely non-compliance issue, where the Comptroller's review of the same 32 found at least 17. Expect more investigations and higher penalties as DCWP responds to the audit's recommendations, not just the disclosure-and-audit paperwork the law describes on paper.
 
@@ -159,9 +159,9 @@ One provision to catch in procurement: Section 8(c) lets a developer contract to
 *California: FEHA algorithmic discrimination rules and CPPA ADMT regulations:*
 Two separate California regimes apply now, not one generic "CCPA" reference. The Civil Rights Council's FEHA regulations on automated decision systems took effect October 1, 2025: they prohibit AI-driven disparate treatment or disparate impact in employment decisions, require four years of recordkeeping, and hold employers liable for discriminatory outcomes even when the tool comes from a third-party vendor. Separately, the CPPA's ADMT regulations under the CCPA take effect January 1, 2027, and require pre-use notice, an opt-out right, and a formal risk assessment for AI used in hiring, promotion, or other significant employment decisions.
 
-Two more California bills are **pending on the Governor's desk, not law**, with a signing deadline of September 30, 2026. Don't train or advise on either as settled:
+Two more California bills passed the Legislature in 2026. **Their current status has not been verified against the official bill history** ([leginfo.legislature.ca.gov](https://leginfo.legislature.ca.gov/)), and published summaries disagree about AB 1883. Don't train or advise on either as law until someone checks:
 
-- **AB 1883** (workplace surveillance tools) would add Labor Code Part 5.8 to bar employers from using AI-driven surveillance tools to recognize or infer an employee's emotional state, or to collect neural data, meaning data measured from the central or peripheral nervous system and not inferred from nonneural information. Safety uses are preserved, and there is a narrow carve-out for federally mandated aerospace and national security work. Enforcement runs through the Labor Commissioner or a public prosecutor, with penalties up to $500 per violation. It was enrolled and presented to the Governor on September 10, 2026. Several published summaries state it was signed on September 3; that date is the publication of the enrolled text, not a signature. Check the bill history before relying on it.
+- **AB 1883** (workplace surveillance tools) would add Labor Code Part 5.8 to bar employers from using AI-driven surveillance tools to recognize or infer an employee's emotional state, or to collect neural data, meaning data measured from the central or peripheral nervous system and not inferred from nonneural information. Safety uses are preserved, and there is a narrow carve-out for federally mandated aerospace and national security work. Enforcement runs through the Labor Commissioner or a public prosecutor, with penalties up to $500 per violation. Some published summaries report it signed on September 3, 2026; others describe it as awaiting the Governor. Unresolved: verify in the official bill history.
 - **SB 947** (the "No Robo Bosses Act") would bar sole reliance on automated systems for discipline or termination and require human oversight plus post-use notice. Newsom vetoed its predecessor, SB 7, in October 2025.
 
 *Texas: Responsible AI Governance Act (TRAIGA):*
@@ -244,7 +244,7 @@ Participants complete this for their team's top-ranked use case:
 Use case name:
 Problem it solves (1 sentence):
 Who benefits and how:
-AI approach (Agent / Copilot / Automation / Analytics):
+AI approach (Rules / Augment / Assist / Human-led / Analytics):
 Data needed:
 Human review gate:
 Success metric(s):
