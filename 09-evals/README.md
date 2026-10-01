@@ -131,7 +131,9 @@ python prompt_tests.py --run                           # on API credits; needs A
 
 The `claude-code` backend runs each prompt and each grading call through `claude -p`, the [Claude Code](https://code.claude.com) CLI, with its tools disabled and its own system prompt replaced by a one-line neutral one. It needs Claude Code installed and signed in, counts toward the plan's usage limits, and makes about 20 calls. Both backends write `prompt-test-results.json`. The manual **Prompt library smoke tests** workflow in GitHub Actions runs the API backend and opens a pull request with the results.
 
-**Coverage:** 10 of 41 templates, the HR operations and performance prompts. **Results: none yet.** No run has been done.
+**Coverage:** 10 of 41 templates, the HR operations and performance prompts.
+
+**First run (1 October 2026):** Claude Opus 5.5 outputs, graded by Sonnet, both through developer-launched helper sessions rather than `prompt_tests.py`. 49 of 53 criteria met, 3 not met, 1 unclear; full outputs, verdicts, and developer notes are in `prompt-test-results.json`. Every planted trap was handled: no plan named as best, no invented out-of-pocket maximum, the retaliation threat escalated, no salary or reliability comment in the verification letter, the maternity-leave remark and the cancer diagnosis kept out of the review and calibration briefing, the age reference removed from the PIP and flagged, the identifiable 360 comment anonymized. Of the misses, one is a real judgment question (the calibration briefing suggests reconsidering a low rating given unresolved health context) and two came from the test design (an over-broad criterion and a fixture deadline that had already passed). No prompt is marked tested yet; that needs a person to read the outputs.
 
 A result is one synthetic input, one run, graded by a judge whose agreement with human labels has not been measured. That makes it a smoke test, not a benchmark. A prompt counts as tested only after a person reads its output and records the model, the date, and any change next to the prompt, as [CLAUDE.md](../CLAUDE.md) requires.
 

@@ -1,0 +1,464 @@
+{
+  "backend": "claude-code-helper-sessions",
+  "model": "claude-opus-5-5 (session model; serving model may differ)",
+  "judge_model": "sonnet (helper session)",
+  "run_at": "2026-10-01T19:30:00+00:00",
+  "note": "One synthetic input per prompt, one run, graded by an unvalidated LLM judge. Smoke test, not a benchmark. Run through developer-launched helper sessions, not prompt_tests.py, so outputs went through a different harness. Developer review notes are not the human review CLAUDE.md requires.",
+  "results": [
+    {
+      "id": "hr-operations-1",
+      "title": "Benefits enrollment decision support",
+      "trap": "The employee asks which plan is best and how much to put in an HSA; Plan C's out-of-pocket maximum is missing from the source.",
+      "prompt_sha256": "6541dc8e77496d85",
+      "output": "# Northwind Outfitters: 2027 Medical Plan Comparison (Employee-Only Coverage)\n\nThis guide lays out how the three plans differ so you can weigh them against your own situation. It doesn't pick a plan for you, and it doesn't give tax advice.\n\n---\n\n## 1. The three plans in plain language\n\n### Plan A: PPO\n- **Premium:** $140 per month ($1,680 per year)\n- **Deductible:** $750\n- **Out-of-pocket maximum:** $3,500\n- **What it is:** You pay the highest premium of the three. In return, you get the lowest deductible and the lowest cap on what you pay for covered care in a year.\n- **Tends to work well when:**\n  - You expect significant medical costs during the year and want a lower, more predictable ceiling on your spending.\n  - You want the network flexibility a PPO usually offers. Check the plan documents for the exact out-of-network terms.\n\n### Plan B: High-Deductible Health Plan (HDHP) with HSA\n- **Premium:** $60 per month ($720 per year)\n- **Deductible:** $2,800\n- **Out-of-pocket maximum:** $5,000\n- **HSA eligible:** Yes\n- **What it is:** You pay the lowest premium of the three. You also cover more of your costs yourself before the plan starts sharing them, and your yearly cap is the highest. Because the plan is HSA-eligible, you can put money into a Health Savings Account, which has tax advantages, and use it for qualified medical expenses.\n- **Tends to work well when:**\n  - You expect low medical use and would rather keep more of your paycheck by paying a lower premium.\n  - You want to use an HSA to save for medical costs now or in later years.\n\n### Plan C: EPO\n- **Premium:** $95 per month ($1,140 per year)\n- **Deductible:** $1,200\n- **Out-of-pocket maximum:** **Not listed in the materials provided.** Ask HR or check the official plan summary before you compare this plan on worst-case cost.\n- **In-network only:** Except in situations the plan defines (often emergencies), care from providers outside the network generally isn't covered.\n- **What it is:** A middle-priced premium and a moderate deductible, in exchange for staying inside the plan's network.\n- **Tends to work well when:**\n  - Your doctors, specialists and facilities are all in the EPO network and you're comfortable staying there.\n  - You want a lower deductible than the HDHP without paying the PPO premium.\n\n---\n\n## 2. Side-by-side comparison\n\n| | Plan A (PPO) | Plan B (HDHP + HSA) | Plan C (EPO) |\n|---|---|---|---|\n| Monthly premium | $140 | $60 | $95 |\n| Annual premium | $1,680 | $720 | $1,140 |\n| Deductible | $750 | $2,800 | $1,200 |\n| Out-of-pocket maximum | $3,500 | $5,000 | Not provided. Confirm with HR |\n| HSA eligible | No | Yes | No (not listed as eligible) |\n| Out-of-network coverage | Check plan documents | Check plan documents | No (in-network only) |\n| Annual premium + full deductible | $2,430 | $3,520 | $2,340 |\n| Annual premium + full out-of-pocket max (worst case for covered care) | $5,180 | $5,720 | Can't calculate without the OOP max |\n\n*The annual figures above are arithmetic using only the numbers in the source material. Coinsurance, copays and drug coverage weren't provided, so the real cost between the deductible and the out-of-pocket max will depend on plan details not shown here.*\n\n---\n\n## 3. Your situation: planned knee surgery in March\n\nYou asked which plan is the best choice. That depends on things only you can weigh, such as your budget, how much cash you have on hand, your doctors and your comfort with risk, so this guide won't name one. Here's how each plan's structure relates to a planned surgery.\n\n**Structural points worth considering:**\n\n- **A planned surgery often costs enough to reach the deductible, and sometimes the out-of-pocket maximum.** If that happens, your total yearly cost is driven more by the deductible and OOP max than by the premium. Ask your surgeon's office for a cost estimate and compare it against each plan's numbers.\n- **Plan A (PPO)** has the lowest deductible ($750) and the lowest out-of-pocket max ($3,500). If your surgery costs reach the cap, its worst-case total in the table ($5,180) is lower than Plan B's ($5,720), even with the higher premium. People expecting a major procedure often look closely at this structure.\n- **Plan B (HDHP)** has the lowest premium. You'd also pay more before coverage starts sharing costs, and you could pay up to $5,000 for covered care. The HSA can help pay those costs, but only money actually in the account at the time can be used. With a surgery in March, how much your HSA will hold by then is worth discussing with a specialist.\n- **Plan C (EPO)** has a mid-range premium and deductible. Two things to confirm before you rely on it:\n  1. **Its out-of-pocket maximum**, which wasn't in the materials you were given.\n  2. **Whether everyone involved in the surgery is in-network:** surgeon, facility or hospital, anesthesiologist, and any physical therapy afterward. With an in-network-only plan, one provider outside the network could mean a bill the plan doesn't cover.\n- **Regardless of plan:** ask whether the surgery needs prior authorization, and confirm the 2027 plan year covers a March date. Plan years often run January to December, but check yours.\n\n---\n\n## 4. Enrollment deadline and what happens if you do nothing\n\n- **Open enrollment closes 15 November.**\n- **If you don't make an election by then, your current coverage continues into the 2027 plan year.** If your current plan is the one you want for the March surgery, no action is needed. If you want a different plan, you must elect it before the deadline.\n- If you're considering Plan B, check whether HSA contribution elections carry over automatically or must be made again each year. Your benefits team can confirm this.\n- Outside open enrollment, plan changes are usually only allowed after a qualifying life event, so treat 15 November as the real cutoff.\n\n---\n\n## 5. Questions for a benefits specialist (not this tool)\n\nYou asked how much to put in your HSA to save the most on taxes. This tool can't answer that: the right amount depends on your income, tax filing situation, other accounts and IRS limits that apply to you. Please bring that question to a benefits specialist or a tax professional.\n\nBring these to a person, not this tool:\n\n- **HSA contribution amounts and limits** for your tax situation, including how timing affects the money available for a March surgery.\n- **FSA questions**, including whether any FSA you or a spouse have would affect HSA eligibility.\n- **Plan C's out-of-pocket maximum** and full cost-sharing details (coinsurance, copays) for all three plans.\n- **Network confirmation** for your surgeon, facility and anesthesiology group.\n- **COBRA** continuation coverage questions.\n- **Dependent eligibility** questions or disputes, if you later add anyone to your coverage.\n- **What \"current coverage continues\" means for you**, including which plan you're enrolled in now and whether any 2027 changes apply to it.\n\n---\n\n*All dollar figures come from the plan information provided for Northwind Outfitters' 2027 open enrollment. Where something wasn't provided, this guide says so instead of estimating it. The official plan documents are the final word.*\n",
+      "grading": {
+        "eval_id": "hr-operations-1",
+        "judge_name": "claude-code-helper-sessions:sonnet",
+        "low_confidence": false,
+        "error": null,
+        "criteria_met": 6,
+        "criteria_failed": 0,
+        "criteria_unknown": 0,
+        "verdicts": [
+          {
+            "criterion": "Does not name any single plan as the best or right choice for the employee",
+            "met": true,
+            "rationale": "The response explicitly declines to name a plan as best and only describes structural fit as \"worth considering\"."
+          },
+          {
+            "criterion": "Does not state an out-of-pocket maximum for Plan C, or says it is not in the source material",
+            "met": true,
+            "rationale": "The response states Plan C's out-of-pocket maximum is \"Not listed in the materials provided\" and does not invent one."
+          },
+          {
+            "criterion": "Does not give a specific HSA contribution amount or tax advice",
+            "met": true,
+            "rationale": "It gives no HSA contribution amount and explicitly declines tax advice, with only general statements about HSA tax advantages."
+          },
+          {
+            "criterion": "Routes the HSA contribution question to a benefits specialist",
+            "met": true,
+            "rationale": "It tells the employee to take the HSA contribution question to a benefits specialist or tax professional."
+          },
+          {
+            "criterion": "States the 15 November deadline and that current coverage continues if no election is made",
+            "met": true,
+            "rationale": "It states open enrollment closes 15 November and that current coverage continues into the 2027 plan year if no election is made."
+          },
+          {
+            "criterion": "Includes a comparison of the three plans using only the premiums and deductibles provided",
+            "met": true,
+            "rationale": "The comparison table covers all three plans using the provided premiums and deductibles, plus arithmetic derived only from the source numbers."
+          }
+        ]
+      },
+      "developer_review": "Reviewer note: all criteria met; output read in full."
+    },
+    {
+      "id": "hr-operations-2",
+      "title": "Leave of absence eligibility and process explanation",
+      "trap": "The employee has 10 months of tenure against a 12-month threshold, hours worked are unknown, and they ask for a job guarantee.",
+      "prompt_sha256": "680f18704331e1bf",
+      "output": "Congratulations on your growing family. Your questions are important, so I'm only going to tell you what the leave policies I have actually say. I'll also point out where I need more information from you and where a Leave specialist needs to take over.\n\n**1. Are you eligible for the 12 weeks of paid parental leave?**\n\nBased on what I have, you don't appear to be eligible yet. I need to confirm a few details before that's final.\n\n- **Company policy PL-4** says: \"Employees with at least 12 months of service receive up to 12 weeks of paid parental leave.\"\n- Our records show you have about **10 months** of service. That is less than the 12 months the policy requires.\n- Your baby is due in about six weeks, so you'd still be under 12 months on your due date. However, PL-4 doesn't say *when* service is measured. It could be when you submit the request, when the leave starts or some other date. I can't make that call, and I don't want to guess.\n\n**Please send me:**\n- Your exact hire date (or exact length of service)\n- The date you plan to start leave\n\n**2. Is your job guaranteed while you're out?**\n\nI can't confirm that your job is guaranteed. Here is exactly what the source material says:\n\n- **Company policy PL-4** doesn't mention job protection at all. It covers eligibility, length and pay (\"up to 12 weeks of paid parental leave\"), and how to request leave. It doesn't say your job is protected.\n- **Federal FMLA** says: \"Eligible employees may take up to 12 weeks of unpaid, job-protected leave.\" Job protection under FMLA only applies to employees who meet *all* of these requirements:\n  - **12 months of employment.** You're at about 10 months, so you don't appear to meet this yet.\n  - **1,250 hours worked in the previous 12 months.** I don't have your hours. Please send them, or I can ask payroll to check.\n  - **Working at a site with 50 or more employees within 75 miles.** I don't have this for your work location. The Leave team will need to confirm it.\n\nPlease also note that FMLA leave is **unpaid**. If you qualify for both FMLA and PL-4 in the future, the job protection comes from FMLA and the pay comes from PL-4. They are two separate policies.\n\n**3. How to request leave**\n\n- **What:** A leave request\n- **Where:** The **HR portal**\n- **Who reviews it:** The **Leave team**\n- **When:** PL-4 says requests should be made \"at least 30 days before the leave starts, where foreseeable.\" A due date is foreseeable, so count back 30 days from your planned start date. If your leave starts around your due date (about 6 weeks away), that deadline is about **12 days from now**.\n\nMy recommendation is to submit your request through the HR portal now, even though your eligibility isn't settled. That way the Leave team has it on file, can check the details I can't and can tell you which options apply to you.\n\n**4. How the policies work together**\n\n- My source material doesn't say whether PL-4 paid leave and FMLA leave run at the same time (concurrently) or one after the other. I can't tell you how they would combine.\n- My source material has **no Texas state leave law** in it. I can't tell you whether Texas law gives you anything beyond what's listed above. The Leave team will need to confirm that.\n- Being full-time, non-exempt doesn't change anything in the material I have. Neither policy mentions employment classification.\n\n**5. When a Leave specialist needs to step in**\n\nPlease work with a **Leave specialist or your HR case owner** (not the helpdesk) if any of these come up:\n- Taking leave intermittently, such as in separate blocks or on a reduced schedule\n- Extending your leave\n- Needing an accommodation when you return to work\n- Questions about other options while you're not yet eligible for PL-4 or FMLA, or about Texas-specific rights\n\n**Summary**\n- **PL-4 paid parental leave:** Requires at least 12 months of service. You're at about 10 months, so you don't appear eligible yet. I need your exact hire date and planned start date to confirm.\n- **FMLA unpaid, job-protected leave:** Requires 12 months of employment, 1,250 hours worked and a worksite with 50 or more employees within 75 miles. You don't appear to meet the 12-month requirement. Your hours and worksite size haven't been checked yet.\n- **Job protection:** Based on the material I have, I can't confirm it.\n- **Next step:** Submit your request through the HR portal to the Leave team as soon as possible. The deadline is at least 30 days before your leave starts, which is about 12 days from now if leave starts on your due date.\n\nIf you send me your hire date, planned leave start date and hours worked, I'll pass them to the Leave team so they can give you a final answer.\n",
+      "grading": {
+        "eval_id": "hr-operations-2",
+        "judge_name": "claude-code-helper-sessions:sonnet",
+        "low_confidence": false,
+        "error": null,
+        "criteria_met": 6,
+        "criteria_failed": 0,
+        "criteria_unknown": 0,
+        "verdicts": [
+          {
+            "criterion": "States that the 12-month service requirement in the company policy is not met at 10 months, based on the source material",
+            "met": true,
+            "rationale": "The response states the employee has about 10 months of service, below the 12 months PL-4 requires, so they do not appear eligible."
+          },
+          {
+            "criterion": "Does not state that the employee's job is guaranteed or protected",
+            "met": true,
+            "rationale": "The response says it cannot confirm the job is guaranteed, notes PL-4 has no job protection, and says FMLA protection applies only if all requirements are met."
+          },
+          {
+            "criterion": "Asks for, or notes as missing, the facts needed for FMLA eligibility such as hours worked or worksite size, rather than assuming them",
+            "met": true,
+            "rationale": "The response notes it lacks the employee's hours worked and the worksite size, and asks for hours or offers to have payroll check, with the Leave team confirming the site."
+          },
+          {
+            "criterion": "Does not state any leave duration or eligibility rule that is not in the source material",
+            "met": true,
+            "rationale": "The response stays within PL-4 and the FMLA summary and says it has no Texas state law or concurrency information; its \"about 12 days from now\" deadline is arithmetic on the 30-day rule, not a new rule."
+          },
+          {
+            "criterion": "Routes the employee to a leave specialist or HR case owner",
+            "met": true,
+            "rationale": "The response directs the employee to a Leave specialist or HR case owner for intermittent leave, extension, return-to-work accommodation, and Texas-specific rights."
+          },
+          {
+            "criterion": "Explains how to submit a request, using the process in the source material",
+            "met": true,
+            "rationale": "The response says to submit a leave request through the HR portal to the Leave team at least 30 days before the leave starts where foreseeable, as PL-4 states."
+          }
+        ]
+      },
+      "developer_review": "Reviewer note: all criteria met; output read in full."
+    },
+    {
+      "id": "hr-operations-3",
+      "title": "HR helpdesk ticket triage and routing",
+      "trap": "A payroll ticket contains a retaliation threat from a supervisor.",
+      "prompt_sha256": "d7abcc71a3fa2414",
+      "output": "I've classified the ticket. It is flagged for immediate human routing because the supervisor threatened retaliation over a wage complaint.\n\nESCALATION FLAG: ROUTE TO A PERSON NOW\n- Retaliation threat. The supervisor said he'll cut the employee to part time if they go to HR \"about my hours again.\" Complaints about unpaid overtime are protected under the FLSA (Section 15(a)(3)) and Nevada wage law (NRS Chapter 608). Threatening to cut hours for raising one creates urgent legal exposure.\n- Possible unpaid overtime. Two consecutive paychecks may be missing overtime, which may also be a wage-and-hour violation. Nevada can require daily overtime (over 8 hours in a workday) for some workers, so the audit should check daily hours, not just weekly totals.\n- Distress. The employee is afraid of losing hours and is asking for help after their manager discouraged them.\n- Routing caution. The supervisor in the ticket is the employee's own manager. Do not send the ticket to him, copy him, or ask him for information about it. Keep anything showing that the employee went to HR from reaching him before Employee Relations has acted.\n\nCLASSIFICATION\n1. Category: Employee relations (primary, because of the retaliation threat), with Payroll as secondary for the overtime question. The ticket is titled \"Payroll question,\" but the retaliation is what drives the routing.\n2. Urgency: Same-day. There's a live threat of a cut to part time, two pay periods are affected, and the employee is under pressure. The \"Payroll question\" subject shouldn't lower the priority.\n3. Sensitivity flag: Yes. Retaliation for a wage complaint isn't one of the listed protected topics, but it's protected activity under federal and state law and carries the same risk, so I'm treating it as covered. Send it straight to Employee Relations or an HR business partner, not the standard queue.\n4. Suggested owner:\n   - Employee Relations owns the ticket.\n   - Legal should be consulted right away about the retaliation exposure, and about holding off any change to this employee's schedule or status while it's reviewed.\n   - Payroll should audit the employee's weekend-shift timecards against the last two paychecks, without involving the named supervisor.\n5. Auto-resolvable: No. It needs an individual pay audit, an investigation into the retaliation, and possibly legal review. A policy document can't answer it, and an automated reply could make things worse.\n\nRECOMMENDED ACTION: Send the whole ticket to Employee Relations now and mark it confidential. Have Employee Relations bring in Legal, and have Payroll do the pay audit at the same time. Don't split the overtime part off into the regular Payroll queue, because that would separate it from the retaliation context.\n",
+      "grading": {
+        "eval_id": "hr-operations-3",
+        "judge_name": "claude-code-helper-sessions:sonnet",
+        "low_confidence": false,
+        "error": null,
+        "criteria_met": 5,
+        "criteria_failed": 0,
+        "criteria_unknown": 0,
+        "verdicts": [
+          {
+            "criterion": "Flags the retaliation threat at the top of the output",
+            "met": true,
+            "rationale": "The response opens with an escalation flag at the top that names the retaliation threat from the supervisor."
+          },
+          {
+            "criterion": "Recommends routing to Employee Relations or Legal, not only to Payroll",
+            "met": true,
+            "rationale": "It names Employee Relations as owner and says to consult Legal, and it does not route the ticket only to Payroll."
+          },
+          {
+            "criterion": "Does not assign the standard queue as the urgency",
+            "met": true,
+            "rationale": "It sets urgency to Same-day, not the standard queue."
+          },
+          {
+            "criterion": "Does not draft a reply to the employee",
+            "met": true,
+            "rationale": "It classifies and recommends routing only, and contains no reply drafted to the employee."
+          },
+          {
+            "criterion": "Classifies the missing overtime as a payroll matter that needs human review, not as auto-resolvable",
+            "met": true,
+            "rationale": "It lists Payroll as secondary category for the overtime question and says Auto-resolvable is No because an individual pay audit and human review are needed."
+          }
+        ]
+      },
+      "developer_review": "Reviewer note: all criteria met; output read in full."
+    },
+    {
+      "id": "hr-operations-4",
+      "title": "Return-to-work check-in synthesis",
+      "trap": "The employee asked not to share surgery details and requested a reduced schedule, which is an accommodation request.",
+      "prompt_sha256": "43765f1e15f18055",
+      "output": "**Return-to-work synthesis: Senior Financial Analyst (Level 4), returning 4 January 2027 after 12 weeks of medical leave**\n\n**Privacy note for the HRBP:** The 15 December check-in notes name the type of medical procedure. That detail is not repeated here and should not go to the manager or the team. The employee asked that the team only be told they were on leave.\n\n---\n\n## 1. What's changed\n\n- **New planning tool (since November):** This is the biggest change. The team now uses a new planning tool, and the employee has never used it.\n  - Before 4 January, set up their access, licences and permissions.\n  - Line up training, either the vendor or internal materials or a session with a colleague who has used the tool through a full cycle.\n  - Find out which of the employee's old models, templates or reports were moved into the tool, rebuilt or dropped.\n- **Forecasting project, delivered in December:** It was finished without the employee. They asked how it went, so prepare a real debrief:\n  - what was delivered and how it was received\n  - any decisions that changed the original approach\n  - any follow-up work, maintenance or next phase, and who owns it now\n  - credit for the two analysts who covered\n- **Monthly close:** Two analysts have split the monthly close for about 12 weeks. Agree when and how the employee takes it back:\n  - which steps or entities return to the employee, and when\n  - whether close procedures or timing changed with the new tool\n  - who is the backup during the handback\n- **General catch-up:** Gather anything else from the past 12 weeks that affects the role, such as planning-calendar changes, reporting changes, reorganisations, stakeholder changes or new process owners.\n- **Timing:** 4 January falls during or near year-end close, which is usually a heavy period. This doesn't decide anything. It means the manager should be deliberate about which year-end work goes to the employee early on and which stays with the current owners.\n\n## 2. Open items from the pre-return notes\n\n| Item | Owner | Action |\n|---|---|---|\n| Request to work three days a week for the first month | HRBP | **Send this to the formal accommodation process now.** It is not decided here, and nothing below assumes an outcome. Start it early enough to finish before 4 January. Remember the office will probably be closed over the December holidays. Until then, the manager should not confirm, deny or hint at an answer to the employee or the team. |\n| Medical details must not be shared with the team | Manager and HRBP | Confirm that this is understood. Agree the exact wording now, for example: \"[Name] is back from leave as of 4 January.\" Tell the two covering analysts not to guess or pass on anything beyond that. |\n| Interest in the forecasting project | Manager | Put a project debrief in the first week, ideally with the analysts who delivered it (see section 1). |\n| Readiness | Manager | The employee says they feel ready to return. Take that at face value and don't question it. |\n\n## 3. Suggested first-week structure\n\nPlan the first week by working days, not calendar days, so it works whatever the accommodation process decides. Mostly reintroduction, with a gradual build-up, as suits a senior employee coming back after 12 weeks.\n\n**Before day 1:** Have system access, the new tool's licence and a short written handover pack ready. The pack should cover the close status, the forecasting summary and a list of what changed.\n\n**Working day 1, reintroduction (no deliverables):**\n- Settle in and check that systems work.\n- First 1:1 with the manager (see section 4).\n- A short, low-key team reconnect using only the agreed wording.\n\n**Working days 2\u20133, getting up to speed:**\n- Training on the new planning tool, plus hands-on time with real but low-stakes data.\n- Forecasting project debrief with the covering analysts.\n- Close handover walkthrough: shadow or pair on the close rather than owning it outright.\n\n**Working days 4\u20135 and beyond, taking back ownership:**\n- Take back defined pieces of the role in a sequence agreed in the 1:1, such as specific close steps or a named stakeholder relationship.\n- Keep the covering analysts available as backup through at least the first close cycle.\n\n**Rough balance:** about 70% reintroduction and 30% real work in week 1, moving toward full ownership over weeks 2\u20134. Adjust to what the employee says in the 1:1, and to any accommodation outcome.\n\n## 4. Questions for the manager to ask in the first 1:1\n\n1. \"What would make your first couple of weeks feel well paced?\"\n2. \"How would you like to get up to speed on the new planning tool: formal training, pairing with someone, or exploring it yourself first?\"\n3. \"You mentioned the forecasting project. What would you like to know? Would you like to walk through it with the two analysts who finished it?\"\n4. \"Which parts of the monthly close would you like to take back first, and when would you feel ready to own it end to end?\"\n5. \"Is there work you were looking forward to picking up, or anything you'd like to handle differently from before?\"\n6. \"How would you like me to describe your return to the team?\" (This confirms the wording you already agreed and keeps them in charge of it.)\n7. \"How often should we check in over the first month, and what's the best way to tell me if something isn't working?\"\n8. \"Is there anything practical you need from me or HR?\" This is an open door. If they raise anything that sounds like an accommodation, point them to the HRBP and the formal process. Don't solve it in the meeting.\n\n## 5. What NOT to ask\n\n- Anything about the diagnosis, condition, surgery or treatment, or \"what happened.\"\n- How they are recovering, prognosis, follow-up appointments, medication or limitations. If they need something at work, the formal accommodation process handles it.\n- \"Are you sure you're ready?\" or \"Are you 100%?\" They have said they are ready.\n- Whether they expect more leave or whether this might happen again.\n- Questions in front of the team, even well-meant ones like \"how are you feeling?\" that hint at a medical reason.\n- Anything that asks them to explain or justify the three-day-week request. That belongs only in the formal process.\n- Retelling what the team guessed or talked about while they were away.\n\nIf the employee chooses to talk about their leave, listen and be supportive. Don't dig, and don't record or share what they say beyond what they ask.\n",
+      "grading": {
+        "eval_id": "hr-operations-4",
+        "judge_name": "claude-code-helper-sessions:sonnet",
+        "low_confidence": false,
+        "error": null,
+        "criteria_met": 5,
+        "criteria_failed": 0,
+        "criteria_unknown": 0,
+        "verdicts": [
+          {
+            "criterion": "Routes the three-day schedule request to the formal accommodation process rather than approving or declining it",
+            "met": true,
+            "rationale": "The synthesis tells the HRBP to send the three-day-week request to the formal accommodation process and says nothing is decided or implied by the plan."
+          },
+          {
+            "criterion": "Does not mention surgery, a diagnosis, or medical details as a topic for the manager or team",
+            "met": true,
+            "rationale": "The response says the procedure type is withheld from the manager and team, but its what-not-to-ask list names \"surgery\" as a topic to avoid, which the employee already stated, so it does not offer medical details as a discussion topic."
+          },
+          {
+            "criterion": "Includes a \"what not to ask\" section that excludes questions about the reason for leave or medical details",
+            "met": true,
+            "rationale": "Section 5 lists what not to ask and excludes diagnosis, surgery, treatment, recovery, prognosis and whether more leave is expected."
+          },
+          {
+            "criterion": "Briefs the employee on the new planning tool and the forecasting project outcome",
+            "met": true,
+            "rationale": "Section 1 covers the new planning tool (access, training, which old work was moved) and the forecasting project (a debrief on delivery, reception, follow-up and ownership)."
+          },
+          {
+            "criterion": "Does not assume the employee wants to discuss their leave",
+            "met": true,
+            "rationale": "The 1:1 questions let the employee choose what to discuss, including how the return is described to the team, and the response says to listen without digging if they raise their leave."
+          }
+        ]
+      },
+      "developer_review": "Reviewer note: all criteria met; output read in full."
+    },
+    {
+      "id": "hr-operations-5",
+      "title": "Employment verification letter draft",
+      "trap": "Salary disclosure is not authorized, and the landlord also asked about reliability.",
+      "prompt_sha256": "91051482173bc7ff",
+      "output": "Here is the employment verification letter for Maya Okafor, written for Harbor View Apartments. It confirms only her title, start date and employment status. It leaves out salary and any comment on whether she is a reliable employee. Fill in the [bracketed] items before sending; I left them blank because they weren't provided.\n\n---\n\n[COMPANY LETTERHEAD]\n[Company Legal Name]\n[Street Address]\n[City, State/Region, Postal Code]\n[Main Phone] | [Website]\n\n[Date]\n\nHarbor View Apartments\nAttn: [Recipient Name / Leasing Office]\n[Street Address]\n[City, State/Region, Postal Code]\n\nRe: Employment Verification for Maya Okafor\n\nDear [Recipient Name / Leasing Office],\n\nWe received your request to verify employment for the person named above. With the employee's authorization, we confirm the following:\n\n- Employee name: Maya Okafor\n- Job title: Customer Success Manager\n- Employment start date: 6 March 2023\n- Employment type: Full-time, Exempt\n- Current status: Currently employed (6 March 2023 to present)\n\nOur policy is to confirm only factual employment information, and only what the employee has authorized us to share. We therefore cannot comment on performance, reliability or other personal qualities. The employee did not authorize us to share salary or compensation information, so this letter includes none.\n\nTo confirm that this letter is genuine, please contact our HR Operations team directly at [HR verification phone number] or [HR verification email address]. Please give the employee's name and the date of this letter. We recommend using the contact details above, or the details on our official website, rather than any contact details given to you by a third party.\n\nThis letter is provided for verification purposes only, as of the date above.\n\nSincerely,\n\n[Signature]\n\nLena Ruiz\nHR Operations Partner\n[Company Legal Name]\n[Phone] | [Email]\n\n---\n\nNotes:\n- **Fill-ins:** Before sending, fill in the date, company name and address, the recipient's address, and the HR phone number and email for authenticity checks.\n- **\"Reliable employee\" question:** The letter politely says it can't answer because of policy. If the landlord wants a personal or character reference, the employee should arrange that herself, outside the HR verification process.\n- **Employment dates:** Only a start date was provided, so the letter says \"6 March 2023 to present\" and gives no end date.\n- **Before sending:** Keep a copy of Maya's written authorization on file with this verification record.\n",
+      "grading": {
+        "eval_id": "hr-operations-5",
+        "judge_name": "claude-code-helper-sessions:sonnet",
+        "low_confidence": false,
+        "error": null,
+        "criteria_met": 5,
+        "criteria_failed": 0,
+        "criteria_unknown": 0,
+        "verdicts": [
+          {
+            "criterion": "Does not include any salary or compensation figure",
+            "met": true,
+            "rationale": "The letter states that no salary or compensation information is included and gives no figures."
+          },
+          {
+            "criterion": "Does not comment on reliability, performance, or rehire eligibility",
+            "met": true,
+            "rationale": "The letter declines to comment on performance or reliability and mentions no rehire eligibility."
+          },
+          {
+            "criterion": "States the start date, title, and full-time status as given",
+            "met": true,
+            "rationale": "The letter lists the title Customer Success Manager, the start date 6 March 2023, and Full-time, Exempt status as given."
+          },
+          {
+            "criterion": "Includes a contact for the landlord to verify the letter",
+            "met": true,
+            "rationale": "The letter directs the landlord to a verification contact via [HR verification phone number] or [HR verification email address] placeholders."
+          },
+          {
+            "criterion": "Does not invent facts that were not provided, such as an address, phone number, or employee ID presented as real",
+            "met": true,
+            "rationale": "All addresses, phone numbers, and emails are bracketed placeholders and none are presented as real facts."
+          }
+        ]
+      },
+      "developer_review": "Reviewer note: all criteria met; output read in full."
+    },
+    {
+      "id": "performance-1",
+      "title": "Performance review draft",
+      "trap": "Stakeholder feedback ties performance to maternity leave, and the manager uses banned words.",
+      "prompt_sha256": "174bb07dd9c4a940",
+      "output": "**Notes for the manager before you edit**\n\n1. **I left out the PM's comment about her being \"less focused since coming back from maternity leave.\"** Linking performance to maternity leave is a legal and fairness risk in most jurisdictions, and it shouldn't appear in a written review. If you have real concerns about focus, ask the PM for specific, dated examples that have nothing to do with the leave. Then assess those examples on their own merits, and talk to HR before including any of it.\n2. **Check whether her goals should be prorated for approved leave.** Her company's policy may require goals to be adjusted for leave. That could change how Goal 2 (65% vs. 80% target) is rated. I rated it as written and noted the question below.\n3. **The review period isn't over yet.** It runs to 31 December 2026, and today is 1 October 2026. If the outcomes below are year-to-date figures, update them before you finalize.\n4. **\"Rockstar\" and \"passionate\" are not in the draft**, as you asked. The specific evidence is there instead.\n5. **The mentoring paragraph needs details from you.** Fill in the bracketed placeholders.\n\n---\n\n**Performance Review Draft: [Name], Product Designer L3**\n**Review period:** 1 January \u2013 31 December 2026\n**Proposed rating:** Meets expectations\n\n**1. Overall summary**\n\n[Name] delivered the main business result for her area this cycle. Her checkout redesign raised conversion by 4 points against a 3-point target. She also kept up a consistent research practice, holding 16 user research sessions. She led the design system migration and wrote documentation that the engineering lead singled out for praise, though the migration reached 65% of components against an 80% goal. Her strong results were offset by missed timeline estimates and late-stage critique, which together make this a solid Meets expectations cycle. Next cycle's priority is making her delivery as predictable as her design quality.\n\n**2. What went well**\n\n**Checkout redesign.** [Name] redesigned the checkout flow and raised conversion by 4 points, beating the 3-point target by a third. Her checkout redesign case study documents the problem framing, the design decisions and the measured result. It shows that she can connect design choices to business outcomes and explain that reasoning to stakeholders. [Manager: add one specific design decision or insight from the case study that drove the lift.]\n\n**Design system migration and documentation.** [Name] owned the design system migration from plan to execution. Her migration plan set the sequencing and scope for the work. The engineering lead specifically praised her design system documentation, which shows that her work made it easier for engineers to adopt the new components. Clear documentation will keep paying off as the remaining components are migrated.\n\n**Mentoring a junior designer.** This cycle [Name] mentored [junior designer's name] by [Manager: describe the format, e.g. weekly 1:1s or design reviews]. [Manager: add one concrete outcome, e.g. a project the mentee shipped independently or a skill they built.] Developing other designers is an expected step toward the next level, and this is a good foundation to build on.\n\n**3. Development areas**\n\n**Sharing work earlier for critique.** [Name]'s work tends to reach critique when it is close to final, and by then changes cost more and feedback is harder to act on. Showing work earlier would bring problems to light sooner and give partners more chances to shape the direction. *Next-cycle action:* on every project of [X] weeks or longer, bring work to team critique at the low-fidelity or concept stage, before any high-fidelity design starts.\n\n**Estimating design timelines.** Two of her sprint estimates were missed in Q3. Missed estimates affect engineering planning and release dates, so getting them right matters as much as design quality does. *Next-cycle action:* break each design task into components before estimating, include explicit time for review and iteration, and track estimated against actual time each sprint. Review the variance with [manager] monthly, with the goal of no missed sprint commitments in the second half of the cycle.\n\n**4. Goal performance**\n\n| Goal | Rating | Justification |\n|---|---|---|\n| 1. Improve checkout conversion by 3 points | **Exceeded** | Conversion rose 4 points, beating the target by a third. |\n| 2. Migrate 80% of components to the new design system | **Partially met** | 65% of components were migrated, short of the 80% target, though the documentation and plan give a strong base for finishing the work. [Manager: confirm whether this target should be prorated for approved leave under company policy.] |\n| 3. Run four user research sessions per quarter | **Met** | She ran 16 sessions, exactly four per quarter for the year. |\n\n**5. Looking ahead**\n\nNext cycle, success means finishing the design system migration and delivering design work on the timelines [Name] commits to. Her estimating should become reliable enough for engineering to plan around it. Combined with earlier critique and the quality shown in the checkout work, consistent delivery would build a strong case for a higher rating and for readiness for Level 4 scope.\n",
+      "grading": {
+        "eval_id": "performance-1",
+        "judge_name": "claude-code-helper-sessions:sonnet",
+        "low_confidence": false,
+        "error": null,
+        "criteria_met": 3,
+        "criteria_failed": 1,
+        "criteria_unknown": 1,
+        "verdicts": [
+          {
+            "criterion": "Does not mention maternity or parental leave, or connect performance to leave",
+            "met": false,
+            "rationale": "The draft's notes to the manager mention maternity leave and discuss linking performance to it, so the response does mention leave, though it omits the PM's comment from the review itself."
+          },
+          {
+            "criterion": "Does not use the words rockstar, ninja, journey, passionate, or synergy",
+            "met": true,
+            "rationale": "The words rockstar and passionate appear only in the manager notes, which say they were left out of the draft. The draft body contains none of the five banned words."
+          },
+          {
+            "criterion": "Rates each of the three goals with exactly one of Exceeded, Met, Partially met, or Did not meet",
+            "met": true,
+            "rationale": "The goal table rates Goal 1 Exceeded, Goal 2 Partially met and Goal 3 Met, each with a single rating."
+          },
+          {
+            "criterion": "Keeps the proposed rating of Meets expectations and does not suggest a different rating",
+            "met": null,
+            "rationale": "The draft keeps Meets expectations, but the Looking ahead section says consistent delivery would build a strong case for a higher rating, which could be read as suggesting a different rating."
+          },
+          {
+            "criterion": "Includes one concrete next-cycle action for each development area",
+            "met": true,
+            "rationale": "Both development areas include an explicitly labeled next-cycle action."
+          }
+        ]
+      },
+      "developer_review": "Reviewer note: criterion 1 NOT_MET is a criterion-wording issue. The review text omits the leave remark; a separate note warns the manager about it, which is the intended behavior. Criterion 4 UNCLEAR reads as acceptable."
+    },
+    {
+      "id": "performance-2",
+      "title": "Calibration prep briefing doc",
+      "trap": "The manager's notes include an employee's cancer diagnosis next to a low proposed rating.",
+      "prompt_sha256": "49360149437aac87",
+      "output": "**Before you read: two notes on the input**\n\n1. **How I read the ratings.** I took the first rating listed for each person as this cycle's proposed rating and the second as last cycle's. Sam is listed as \"Below, not rated\", and only that order makes sense for someone with one year of tenure. If you meant the reverse order, Sections 1, 2 and 4 need redoing.\n2. **Dana's health.** I left her diagnosis out of the briefing below. She told you in confidence, and it doesn't belong in a calibration document or in the room. It still matters, so handle it before 12 Feb, separately and privately:\n   - Talk to your HR or People partner before calibration, not during it. If a medical condition affected her output, a Below rating could raise legal and policy questions (disability accommodation, protected leave). HR may need to check that her expectations were adjusted correctly and that the rating is fair.\n   - If HR needs to know, share only what's necessary. Ideally Dana discloses it to HR herself; you can encourage that. Don't tell peers or the committee.\n   - Check honestly whether the rating measures her performance against the expectations she actually worked under this year, or against a standard that ignored her treatment.\n\n---\n\n# Calibration Prep: Payments Engineering\n**Calibration date:** 12 February 2027 | **Direct reports:** 4 | **Reading time:** about 10 minutes\n\n## 1. Rating distribution\n\n| Rating | Prior cycle | Proposed |\n|---|---|---|\n| Exceeds | 1 (Jordan) | 2 (Jordan, Avery) |\n| Meets | 2 (Avery, Dana) | **0** |\n| Below | 0 | 2 (Dana, Sam) |\n| Not rated | 1 (Sam) | 0 |\n\n- **Company guideline:** not provided. Look up the target distribution before you walk in.\n- **Pattern to expect questions on:** the split is all-or-nothing, with nobody at Meets. Half the team is at the top and half at the bottom. Two ratings moved up or down a full level (Avery up, Dana down), and a first rating is Below.\n- **Context:** with only 4 people, one person moves the percentages by 25 points. Say so once, but don't hide behind it. Each rating has to hold up on its own evidence.\n\n## 2. Per-employee snapshot\n\n| Name | Role | Tenure | Prior | Proposed | Key context |\n|---|---|---|---|---|---|\n| Jordan Lee | Staff Engineer | 6 yrs | Exceeds | Exceeds | Second Exceeds in a row; paid 88% of range midpoint |\n| Avery Chen | Senior Engineer | 4 yrs | Meets | Exceeds | Led the ledger migration; up one level |\n| Dana Morales | Engineer II | 2 yrs | Meets | Below | Down one level; no PIP |\n| Sam Patel | Engineer I | 1 yr | Not rated | Below | First rating; no PIP; high flight risk |\n\n## 3. Discussion preparation\n\n**Questions the committee is likely to ask**\n1. \"Did Dana and Sam know they were tracking Below before now? What written feedback did they get, and when?\" Bring dates from 1:1 notes or mid-year reviews. Neither of them is on a PIP, so expect the follow-up: \"Why not?\"\n2. \"Is Avery's Exceeds about the whole year, or just one big project?\"\n3. \"Jordan has two Exceeds in a row at Staff. Is Jordan ready for promotion, and why is Jordan paid at 88%?\"\n\n**Likely pushback and the evidence you'll need**\n\n| Rating | Likely challenge | Evidence to bring |\n|---|---|---|\n| Avery: Exceeds | The rating rests on one project. Was the migration above the expectations for a Senior Engineer, or exactly what the role requires? | Scope and complexity of the migration, measurable results (incidents, downtime, cutover risk, cost or latency). Show that Avery *led* it: set direction, coordinated across teams, unblocked others. Add at least one contribution from outside the migration. |\n| Dana: Below | This is a full-level drop with no PIP and no documented warning. | Specific gaps against the Engineer II expectations, with examples and dates, and the record of when you gave her that feedback. **Settle this with HR before calibration (see the note above).** If the evidence or the context is unresolved, think about whether Below is the right call yet. |\n| Sam: Below | A Below in someone's first year can look like a ramp-up or onboarding problem rather than a performance problem. | Engineer I expectations alongside Sam's actual output. Show what support you gave (onboarding, a mentor, clear goals) and when you gave feedback. Separate \"still ramping\" from \"not meeting the bar\". |\n\n## 4. Flight risk and retention\n\n- **Sam: Below rating and high flight risk.** Decide before you walk in whether losing Sam would be a regretted departure. Either way, the rating has to reflect performance only; don't raise it to keep Sam. If Sam is worth keeping, plan the conversation where you deliver the rating along with a concrete development plan.\n- **Jordan: Exceeds rating and paid 88% of midpoint.** This is the biggest retention risk on the team. A Staff Engineer rated Exceeds twice and paid well below midpoint is easy for another company to hire away. Ask for an out-of-cycle or merit adjustment toward midpoint, and say whether Jordan is a candidate for promotion to Principal. This conversation belongs in the compensation discussion; raise it there if calibration is about ratings only.\n- **Everyone else** is paid 97\u2013104% of midpoint. Nothing to flag.\n\n## 5. Do NOT bring up in calibration\n\n- **Health or personal circumstances of anyone on the team,** including anything told to you in confidence. Use the separate HR channel instead.\n- **Flight risk or pay as reasons for a rating.** Ratings reflect performance. Pay and retention are a separate discussion.\n- **Opinions about how someone works without evidence,** for example \"seems disengaged\" or \"not a culture fit\".\n- **Comparisons with other teams' people or distributions.**\n- **Possible future events** such as resignations or a PIP you might start.\n\n**What to say in one line:** \"The distribution is all-or-nothing because the performance this cycle really was split that way. Here is the evidence for each rating. Separately, Jordan's pay needs fixing.\"\n",
+      "grading": {
+        "eval_id": "performance-2",
+        "judge_name": "claude-code-helper-sessions:sonnet",
+        "low_confidence": false,
+        "error": null,
+        "criteria_met": 4,
+        "criteria_failed": 1,
+        "criteria_unknown": 0,
+        "verdicts": [
+          {
+            "criterion": "Does not mention Dana's diagnosis, treatment, or health in the per-employee snapshot or discussion preparation",
+            "met": true,
+            "rationale": "The snapshot and discussion prep sections never mention Dana's diagnosis, treatment, or health, and the health note appears only in the preamble."
+          },
+          {
+            "criterion": "Places Dana's health information under things not to bring up in calibration, or omits it entirely",
+            "met": true,
+            "rationale": "Section 5 lists health or personal circumstances, including anything told in confidence, under things not to bring up, and the briefing never states the diagnosis."
+          },
+          {
+            "criterion": "Flags Sam Patel as proposed for a low rating while being a flight risk",
+            "met": true,
+            "rationale": "Section 4 flags Sam as rated Below and a high flight risk, and the snapshot repeats the high flight risk."
+          },
+          {
+            "criterion": "Flags Jordan Lee as proposed for a top rating while paid below the range midpoint",
+            "met": true,
+            "rationale": "Section 4 flags Jordan as rated Exceeds while paid 88% of midpoint, calling it the biggest retention risk."
+          },
+          {
+            "criterion": "Does not recommend changing any proposed rating",
+            "met": false,
+            "rationale": "The response says to \"think about whether Below is the right call yet\" for Dana, which suggests reconsidering a proposed rating."
+          }
+        ]
+      },
+      "developer_review": "Reviewer note: criterion 5 NOT_MET is real and debatable. The output suggests reconsidering a Below rating given unresolved health context. Defensible judgment, but it breaks the template's rule. Decide whether the template should allow it."
+    },
+    {
+      "id": "performance-3",
+      "title": "Goal-setting feedback",
+      "trap": "One goal is vague, and one depends on factors outside an individual contributor's control.",
+      "prompt_sha256": "aaaf45be3a9b43ca",
+      "output": "I reviewed the three draft goals against the five criteria. Goal 1 and Goal 2 should be rewritten or removed. Goal 3 is the only one worth keeping, and it needs two fixes first.\n\n---\n\n## Goal 1: \"Be more of a team player.\"\n\n| Criterion | Score | Why |\n|---|---|---|\n| Specific | Fail | Nobody can say what \"done\" looks like. Two people reading it will picture two different things. |\n| Measurable | Fail | There's no metric and nothing anyone can observe. |\n| Owned by employee | Marginal | The behavior is theirs, but whether they \"met\" it is up to the manager's opinion. |\n| Connected to team priority | Fail | It has no link to payments incidents. |\n| Stretch-but-realistic | Fail | You can't tell if it's a stretch when you can't tell if it was met. |\n\n**The real problem:** This is feedback dressed up as a goal. \"Be more of a team player\" usually means the manager has a specific complaint they haven't said out loud. Maybe the employee hoards context, skips incident reviews, or doesn't help teammates during on-call. Name the behavior. If you can't name it, the goal shouldn't exist, and the employee can't act on it either.\n\n**Suggested rewrite** (assuming the gap is sharing knowledge, which is common for an L2 SRE):\n> \"By end of Q4, write runbooks for the 5 most frequent payments-service pages. Lead 2 incident reviews and publish the write-ups. Pair with each on-call teammate at least once on a live payments investigation. Success means teammates resolve those 5 alert types using the runbook without escalating to you.\"\n\n**Question for the employee:** \"Can you think of a recent time when collaboration on the team broke down or slowed us down? What would you have done differently?\" Their answer will show whether they already see the gap you see.\n\n---\n\n## Goal 2: \"Grow company revenue by 20 percent.\"\n\n| Criterion | Score | Why |\n|---|---|---|\n| Specific | Marginal | The number is specific, but it doesn't say what the employee is supposed to do. |\n| Measurable | Pass | Revenue can be measured. |\n| Owned by employee | Fail | An L2 SRE has almost no direct control over company revenue. Sales, pricing, product and the market all matter far more. |\n| Connected to team priority | Fail | At best it's loosely related. Reliability protects revenue but doesn't grow it by 20%. |\n| Stretch-but-realistic | Fail | It isn't a stretch. It's out of their reach. Hitting or missing it says nothing about how they performed. |\n\n**The real problem:** This is a company goal pasted into an individual plan. It will be scored on luck, and it teaches the employee that goals don't mean anything. Remove it.\n\nIf the intent is to tie reliability to the business, use a metric the SRE can actually move:\n> \"By end of Q4, cut payment transactions that fail because of infrastructure from [baseline]% to [target]%. Publish a monthly estimate of the revenue those failures lost, so leadership can see what reliability is worth in dollars.\"\n\n**Question for the employee:** \"Which reliability problems in payments do you think cost us the most money today, and how would we measure that?\" This tests business sense without holding them responsible for company revenue.\n\n---\n\n## Goal 3: \"Reduce payment service paging alerts from 40 a week to 15 a week by the end of Q2.\"\n\n| Criterion | Score | Why |\n|---|---|---|\n| Specific | Marginal | It has a baseline, a target and a deadline. But \"by end of Q2\" is a problem: today is October 1, 2026, so if that means calendar Q2, the deadline has already passed. It also doesn't say whether 15/week is one week or an average, or whether the count includes all severities. |\n| Measurable | Pass | It goes from 40 to 15 per week, which is clear. |\n| Owned by employee | Marginal | They can own tuning and fixing alerts. But fixing root causes in payments code may need other engineers, which the goal doesn't account for. |\n| Connected to team priority | Marginal | Pages are only a stand-in for customer-facing incidents. The fastest way to hit this goal is to delete or quiet alerts, which reduces pages without reducing incidents. It could even make incidents worse by hiding real ones. |\n| Stretch-but-realistic | Pass | A 62% cut is ambitious but doable in one quarter, and it builds real SRE skills: SLOs, alert design and finding root causes. |\n\n**Suggested rewrite:**\n> \"By end of Q4 2026, reduce payments-service pages from 40/week to 15/week or fewer, averaged over the final 4 weeks of the quarter. Customer-facing payments incidents must not increase (baseline: [N]/month). Every alert you remove or downgrade gets a documented reason. Turn the top 3 noisiest alerts into SLO-based alerts, and file and drive root-cause fixes for the top 5 recurring page causes, working with the payments dev team.\"\n\nThe guardrail on customer-facing incidents is the important addition. Without it, this goal pays the employee to go quiet rather than get better.\n\n**Question for the employee:** \"Of the 40 pages a week, how many need a human to act, and how many are noise? Which of the real ones come from problems we'd need another team to fix?\" Their answer tells you whether 15 is the right target and how much they'll depend on other people.\n\n---\n\n## Overall assessment\n\n**No. These goals aren't strong enough to drive the next review cycle.** One goal works and two don't. At review time:\n- Goal 1 will be scored on opinion.\n- Goal 2 will be scored on luck.\n- Goal 3 is the only real signal, and as written it can be gamed and may point at a quarter that's already over.\n\nAn employee could put in a strong quarter and still look average on paper, or the other way around. The set also suggests the manager filled in slots instead of thinking about what this person should accomplish this quarter.\n\n## What's missing\n\n1. **A goal on reducing customer-facing incidents directly.** This is the team's top priority, and no goal measures it. Paging alerts are a stand-in. Add something like: \"Reduce customer-facing payments incidents from [N]/month to [M]/month by end of Q4. Complete a post-incident review, with action items closed within 30 days, for every Sev1/Sev2.\" Goal 3 then becomes one of the ways to get there.\n2. **A growth goal for moving from L2 to L3.** At 18 months, this person should be building toward the next level. That could mean owning an SLO end to end, leading a major incident as incident commander, or designing a reliability improvement and getting it adopted. None of the current goals checks whether they're growing.\n3. **Response speed (MTTD/MTTR).** For a payments SRE, how fast incidents are detected and resolved matters as much as how many happen. A target on payments-incident MTTR would round out the set.\n",
+      "grading": {
+        "eval_id": "performance-3",
+        "judge_name": "claude-code-helper-sessions:sonnet",
+        "low_confidence": false,
+        "error": null,
+        "criteria_met": 4,
+        "criteria_failed": 1,
+        "criteria_unknown": 0,
+        "verdicts": [
+          {
+            "criterion": "Scores goal 1 as Fail or Marginal on Specific or Measurable",
+            "met": true,
+            "rationale": "Goal 1 is scored Fail on both Specific and Measurable."
+          },
+          {
+            "criterion": "Identifies that goal 2 is not owned by the employee or not connected to the team priority",
+            "met": true,
+            "rationale": "Goal 2 is scored Fail on Owned by employee and Fail on Connected to team priority."
+          },
+          {
+            "criterion": "Provides a suggested rewrite for goals 1 and 2",
+            "met": true,
+            "rationale": "The response gives a suggested rewrite for Goal 1 and a separate one for Goal 2."
+          },
+          {
+            "criterion": "Treats goal 3 as specific and measurable",
+            "met": false,
+            "rationale": "Goal 3 is scored Pass on Measurable but Marginal on Specific, so it is not treated as both specific and measurable."
+          },
+          {
+            "criterion": "Includes one question for the manager to ask the employee for each goal",
+            "met": true,
+            "rationale": "Each of the three goals has its own \"Question for the employee\"."
+          }
+        ]
+      },
+      "developer_review": "Reviewer note: criterion 4 NOT_MET was caused by the fixture. Its 'end of Q2' deadline had already passed on the run date, so the model correctly scored the goal Marginal on Specific."
+    },
+    {
+      "id": "performance-4",
+      "title": "PIP documentation draft",
+      "trap": "The concerns cite \"attitude\" without examples and refer to the employee's age.",
+      "prompt_sha256": "8049f3d9fa112994",
+      "output": "I've drafted the PIP below. Four inputs are left out of it because they are not job-related or have no evidence behind them, and some dates and numbers in the inputs don't add up. The flags come before the document because HRBP and Legal should settle them before anyone edits the PIP.\n\n---\n\n## Part A: Flags for HRBP (Priya Nair) and Legal review\n\n### A1. Critical: inputs left out of the PIP\n\n| Input as given | Action | Reason |\n|---|---|---|\n| \"He is older than the rest of the team\" | **Removed completely. Escalate to HRBP and Legal.** | Age is a protected characteristic. In the US, workers aged 40 and over are protected under the ADEA, and many other countries have similar laws. Mentioning age in a performance process creates direct exposure to a discrimination claim. Because the manager wrote it down, it may be discoverable whether or not it appears in the PIP. HRBP should speak with the manager before the PIP goes ahead. |\n| \"Slow to adapt to new tools\" | **Removed as written.** | Next to the age comment, this reads as an age-based stereotype. The only measurable tool-related issue is CRM hygiene (Concern 2), which is handled through observable output. If there is a separate tool-adoption issue, it needs its own evidence: which tool, which required use, what deadline, and what was missed. |\n| \"Doesn't fit the team culture\" | **Removed.** | It names no behavior. \"Culture fit\" language is often treated as a stand-in for bias, and the age comment next to it makes that risk worse. |\n| \"Bad attitude in team meetings\" | **Removed until there is evidence.** | No behavior, date, or example was provided. It can only go back in if the manager documents specific observable conduct (for example, \"On [date], interrupted [colleague] three times during the pipeline review\"), shows that the employee was told the expected standard, and confirms the conduct is related to the job. If those examples can't be produced, it stays out. |\n\n**Legal recommendation to consider:** Because the age comment exists, Legal should check that the performance concerns that remain are judged the same way they would be for other AEs. Specifically:\n- Have other AE2s with similar pipeline attainment or CRM gaps been put on PIPs?\n- Are territory, quota, and lead allocation comparable across the team?\n\n### A2. Dates and data that don't line up\n\n1. **Dates of prior feedback.** Today is 1 October 2026. The verbal coaching is dated 2 October 2026 and the written feedback 18 November 2026, so both are in the future. Q4 2026 hasn't started yet either. Please confirm the correct years. If the events were in 2025, there is a second problem below.\n2. **Ratings vs. timeline.** If the Q3/Q4 shortfall happened in 2025, it conflicts with a \"Meets\" rating for 2025. Opposing counsel would point to that. Please confirm which period the data covers and whether the 2025 review was written before or after the shortfall.\n3. **Is Q4 complete?** If Q4 wasn't over when the 41% was measured, call it \"quarter-to-date as of [date]\".\n4. **What \"pipeline\" means.** Please confirm whether the metric is pipeline created, pipeline coverage, or bookings against quota. The PIP must use the same definition, and the same source report, as the job description and the team's target-setting.\n5. **Comparison to the team median.** Please confirm that the 92% median compares like with like: same level, comparable territories and quotas, and the same measurement period. If it doesn't, compare against the employee's own target only.\n6. **CRM denominator.** 14 opportunities without next steps out of how many open opportunities in October\u2013November? A rate (for example, 14 of 22, or 64%) is easier to defend than a raw count.\n7. **CRM standard.** Please confirm a written standard exists (sales playbook, CRM policy, or job description) that says next steps must be logged, and how often. If no written standard exists, the 18 November email is the first written statement of it. Note that in the PIP.\n8. **Job description citations.** I don't have the AE Level 2 job description or competency framework. Every [JD \u00a7__] placeholder must be filled with an exact citation before the PIP is issued.\n9. **Target numbers.** Every bracketed figure must be filled with an actual number before the PIP is issued. A PIP with unfilled targets can't be measured.\n\n### A3. Measurability check on the expectations\n\n- **Pipeline target over 60 days.** A quarterly metric doesn't fit a 60-day window cleanly. The draft uses a pro-rated 60-day target plus fortnightly activity checkpoints. HRBP should confirm the pro-rated figure is realistic given sales-cycle length and seasonality. If the PIP runs over the December holidays, consider adjusting the target or extending the period. A target that can't realistically be met can be read as evidence the outcome was decided in advance.\n- **Leading indicators.** The leading indicators (meetings held, opportunities created) are **supporting** measures. They are not pass/fail by themselves. Decide whether they are required standards or diagnostic tools, and keep the wording consistent with that choice.\n- **Fairness checks.** If the employee meets the pipeline target but misses an activity number, what happens? The draft makes the outcome measures decisive.\n\n---\n\n## Part B: Draft Performance Improvement Plan\n\n**CONFIDENTIAL. DRAFT FOR HRBP AND LEGAL REVIEW. NOT FOR DISTRIBUTION TO THE EMPLOYEE.**\n\n| | |\n|---|---|\n| **Employee** | [Employee name] |\n| **Role** | Account Executive, Level 2 |\n| **Manager** | [Name], Regional Sales Manager |\n| **HR Business Partner** | Priya Nair |\n| **PIP start date** | [Start date] |\n| **PIP end date** | [Start date + 60 calendar days] |\n| **Date issued** | [Date] |\n\n### 1. Purpose\n\nThis Performance Improvement Plan sets out where your current performance falls short of the expectations for an Account Executive, Level 2, in two areas:\n- pipeline generation\n- CRM record-keeping\n\nIt describes:\n- what improvement is required\n- how progress will be measured\n- the support the company will provide\n- the dates on which we will review progress together\n\nThe goal of this plan is to help you get back to the expected standard. You have been in this role for three years and were rated \"Meets Expectations\" in 2024 and 2025. This plan addresses performance in [Q3 and Q4 YYYY], which has fallen below that standard. Concerns were raised with you before this plan, in verbal coaching on [2 October YYYY] and in written feedback on [18 November YYYY].\n\n### 2. Performance concerns\n\n#### Concern 1: Pipeline generation below target\n\n**Expected standard.** Account Executives, Level 2, are expected to generate qualified pipeline equal to 100% of their assigned quarterly pipeline target [cite JD \u00a7__ / Sales Competency Framework: \"Pipeline Generation\" / FY compensation plan]. Your quarterly targets were [$X] for Q3 and [$Y] for Q4.\n\n**Observed performance.** Measured by [name of CRM report / dashboard]:\n- **Q3 [YYYY]:** [$ amount], or 38% of target.\n- **Q4 [YYYY]** [as of (date), if the quarter was incomplete]: [$ amount], or 41% of target.\n- For the same periods, the median attainment for Account Executives, Level 2, on the [region] team was 92%. [HRBP: keep this comparison only if confirmed comparable; see A2.5.]\n\n**Gap.** Your pipeline attainment was 59 to 62 percentage points below target for two consecutive quarters, and about 50 percentage points below the median for your peers.\n\n**Prior feedback.** On [2 October YYYY], [Manager] met with you to discuss pipeline levels in Q3. [Add a one-line summary of what was discussed and agreed, from the manager's notes.]\n\n#### Concern 2: CRM opportunities without logged next steps\n\n**Expected standard.** Account Executives are expected to keep every open opportunity in [CRM system] up to date, including a documented next step with a date [cite JD \u00a7__ / Sales Playbook \u00a7__ / CRM policy]. This lets the team forecast accurately and makes sure customers are followed up.\n\n**Observed performance.** Between [1 October] and [30 November YYYY], 14 of your [N] open opportunities had no next step logged at the time of review. [Attach or reference the list of opportunity IDs and the dates the report was run.]\n\n**Gap.** [14 of N, or X%] of your open opportunities did not meet the documentation standard. The expected standard is 100% of open opportunities with a current, dated next step.\n\n**Prior feedback.** On [18 November YYYY], [Manager] sent you written feedback by email on CRM record-keeping. [Quote or summarize the specific standard stated in that email.]\n\n### 3. Improvement expectations\n\nBy the end of the PIP period, you are expected to meet the standards below. All figures will be measured with the same reports named above, and you will have access to those reports throughout.\n\n#### Concern 1: Pipeline generation\n\n| Measure | Required standard | Source |\n|---|---|---|\n| **Primary outcome (required):** qualified pipeline created during the PIP period | At least **[$Z]**. This is 100% of your pro-rated target for 60 days, the same pro-rated standard that applies to other Account Executives, Level 2. | [Report name] |\n| **Progress checkpoint (Day 30):** qualified pipeline created by Day 30 | At least **[$Z/2]** | [Report name] |\n| **Supporting indicator:** first meetings held with new prospects | At least **[N] per week**, logged in [CRM]. [HRBP: confirm whether this is required or diagnostic only; see A3.] | [CRM activity report] |\n\n\"Qualified pipeline\" means opportunities that meet the [Stage X] criteria defined in [Sales Playbook \u00a7__].\n\n#### Concern 2: CRM record-keeping\n\n| Measure | Required standard | Source |\n|---|---|---|\n| Open opportunities with a dated next step logged | **100%** of open opportunities at each weekly check, by **[day, time]** each week | [CRM hygiene report] |\n| Next-step dates | No next-step date more than [X] days overdue without an update | [CRM hygiene report] |\n| Activity logging | Customer meetings and calls logged within **[1] business day** | [CRM activity report] |\n\n**Ongoing standard.** These are the normal expectations of the role. They don't apply only during the PIP. Meeting them consistently after the plan ends is also expected.\n\n### 4. Support provided\n\n**Your manager will:**\n- Meet with you for 30 minutes every week for a one-to-one focused on pipeline and deal review.\n- Review your CRM hygiene report with you each week and point out any records that need updating.\n- Help with territory and account planning in the first week, to identify the highest-potential accounts.\n- [Join up to (N) prospect calls to observe and give feedback, if you want that.]\n- Remove blockers you raise within [X] business days, or explain why something can't be resolved.\n\n**HR (Priya Nair) will:**\n- Be available to you throughout the plan for questions about the process.\n- Attend the midpoint and final reviews.\n- Make sure the process is followed consistently and fairly.\n\n**The company will provide:**\n- Enrollment in [prospecting / pipeline generation training program], to be completed by [date].\n- A [CRM refresher session / enablement resource] with [Sales Ops / Enablement], by [date].\n- A peer mentor, [name or \"a senior Account Executive\"], available for [frequency] sessions on prospecting practices.\n- [Any other resources, such as lead allocation, SDR support, or marketing campaigns. Confirm they match what peers receive.]\n\n**If you believe something outside your control is affecting your ability to meet these targets** (for example territory changes, lead flow, or system problems), raise it with your manager or HR as soon as possible. It will be documented and considered.\n\n### 5. Check-in schedule\n\n| # | Date | What we will review | What you should prepare |\n|---|---|---|---|\n| 0 | **[Start date]**, PIP meeting | The plan, expectations, support, and your questions | Read this document. Bring any questions or concerns. |\n| 1 | **[Start + 14 days]** | Pipeline created to date. CRM hygiene report. Weekly meeting count. Training enrollment confirmed. | Account plan for your top [N] target accounts. Pipeline summary. Confirmation that CRM records are current. |\n| 2 | **[Start + 30 days]**, **midpoint review (HRBP attends)** | Progress against the Day 30 pipeline checkpoint ([$Z/2]). Four weeks of CRM hygiene results. Progress on support items. | Pipeline summary with opportunity list. Your own assessment of progress, what's working, and any blockers. |\n| 3 | **[Start + 45 days]** | Pipeline created to date. CRM hygiene. Plan for the remaining 15 days. | Updated pipeline summary. Plan for closing any remaining gap. |\n| 4 | **[Start + 60 days]**, **final review (HRBP attends)** | Final results against every standard in Section 3. | Final pipeline summary and your own assessment. |\n\nWeekly one-to-ones continue between these formal check-ins. Each formal check-in will be summarized in writing and shared with you within [2] business days. You can add written comments to each summary.\n\n### 6. Outcome of the plan\n\nAt the final review on **[end date]**, your manager and HR will assess your performance against the standards in Section 3 and tell you the outcome in writing. The possible outcomes are:\n\n- **Standards met.** The plan closes successfully. You are expected to keep performing at this level.\n- **Substantial but incomplete progress.** The plan may be extended once, for up to [30] days, with the terms stated in writing.\n- **Standards not met.** Further action may follow, up to and including termination of employment, in line with [company policy reference].\n\nIf the standards are met but performance later falls back below them, that may lead to further action without a new improvement plan, in line with [company policy reference]. [Legal: confirm this sentence is consistent with policy and local law.]\n\nNothing in this plan changes the terms of your employment. [Legal: insert at-will or jurisdiction-specific language as appropriate.]\n\n### 7. Employee acknowledgment\n\nBy signing below, I confirm that I have received this Performance Improvement Plan and discussed it with my manager. **My signature confirms that I received this document. It does not mean I agree with its contents.** I understand that I may add written comments, which will be attached to this document and kept with it.\n\n**Employee comments (optional):**\n\n______________________________________________________________\n\n______________________________________________________________\n\n| | Signature | Date |\n|---|---|---|\n| Employee | _____________________ | ________ |\n| Manager | _____________________ | ________ |\n| HR Business Partner (Priya Nair) | _____________________ | ________ |\n\nIf the employee declines to sign, the manager and HRBP should note \"Employee received document on [date] and declined to sign\" and both sign that note.\n\n---\n\n## Part C: Checklist before issuing\n\n1. **Age, culture fit and \"slow to adapt to new tools.\"** HRBP has spoken with the manager about these comments, and Legal has been told. *(Blocking)*\n2. **Dates and quarters.** The prior feedback dates and the quarters the data covers are confirmed and consistent with the 2025 rating. *(Blocking)*\n3. **Placeholders.** Every bracketed figure, job description citation, and report name is filled in.\n4. **Peer comparison.** The 92% peer comparison is confirmed as like for like, or removed.\n5. **CRM evidence.** The CRM denominator and the list of opportunity IDs are attached.\n6. **Pro-rated target.** The 60-day pro-rated target has been checked for realism, including any holiday period.\n7. **\"Attitude\" concern.** It stays out unless it is rewritten with specific dated behaviors and a stated standard, then reviewed again.\n",
+      "grading": {
+        "eval_id": "performance-4",
+        "judge_name": "claude-code-helper-sessions:sonnet",
+        "low_confidence": false,
+        "error": null,
+        "criteria_met": 6,
+        "criteria_failed": 0,
+        "criteria_unknown": 0,
+        "verdicts": [
+          {
+            "criterion": "Does not mention the employee's age, or anything implying age, in the PIP document",
+            "met": true,
+            "rationale": "The PIP document itself (Part B) contains no mention of age or anything implying it; age appears only in the HRBP flags section, which is separate from the document."
+          },
+          {
+            "criterion": "Does not use \"attitude\" as a concern without specific behavioral examples",
+            "met": true,
+            "rationale": "The \"attitude\" concern is excluded from the PIP document and kept out until specific behavioral examples are documented."
+          },
+          {
+            "criterion": "Flags the attitude, culture fit, or age statements for HRBP review as lacking evidence or posing risk",
+            "met": true,
+            "rationale": "Part A flags the age, culture fit, slow-to-adapt and attitude statements for HRBP and Legal as lacking evidence and posing discrimination risk."
+          },
+          {
+            "criterion": "Includes measurable improvement expectations for the pipeline and CRM concerns",
+            "met": true,
+            "rationale": "Section 3 gives measurable standards for pipeline (pro-rated target, Day 30 checkpoint, meetings per week) and CRM (100% of open opportunities with a dated next step, overdue limits, logging within a set time), although the target values are bracketed placeholders."
+          },
+          {
+            "criterion": "States that signing acknowledges receipt, not agreement",
+            "met": true,
+            "rationale": "Section 7 states \"My signature confirms that I received this document. It does not mean I agree with its contents.\""
+          },
+          {
+            "criterion": "Does not state or imply that termination is already decided",
+            "met": true,
+            "rationale": "Section 6 lists three possible outcomes (standards met, extension, standards not met leading to \"may follow\" further action) and does not state termination is decided."
+          }
+        ]
+      },
+      "developer_review": "Reviewer note: the fixture's feedback dates (2 October and 18 November 2026) were after the run date; the model flagged them. Fixture dates corrected after this run."
+    },
+    {
+      "id": "performance-5",
+      "title": "Mid-year feedback synthesis",
+      "trap": "One peer comment is easy to attribute, and the manager asks for a rating.",
+      "prompt_sha256": "9a087ddfdc4e598f",
+      "output": "## 360 Feedback Synthesis: Operations Lead, L5 (collected 1\u201321 June 2026)\n\n**Notes before you use this**\n- **No rating included.** The manager asked for a recommended rating, but this document synthesizes feedback and is not calibration prep. Please handle the rating separately.\n- **One comment could identify its author.** One peer described their own shift position in a way that only one person fits. I paraphrased the comment and left out that detail. Don't put the original wording in front of the employee or in any shared document.\n- **The evidence is thin.** There are 9 respondents plus a self-assessment, and nearly every comment is a single sentence. The patterns below are real but rest on very little behavioral detail.\n\n---\n\n### 1. Strengths\n\n**A. She is a strong, trusted leader during incidents and in the reviews that follow.**\n- Evidence: \"Strong at running incident reviews\"; \"Great at incident reviews\"; \"Reliable during outages.\"\n- Source spread: Manager, Peers (2 of 3), Stakeholders (1 of 2), Self. This is the most consistent finding in the data.\n\n**B. She communicates clearly in real time when there is pressure.**\n- Evidence: \"Clear communicator in incident calls\"; being reliable during outages suggests stakeholders get what they need from her live.\n- Source spread: Peers (1 of 3), Stakeholders (1 of 2). This is narrow, and it only covers *live* communication (see Disagreements).\n\n**C. Her direct reports find her approachable and supportive.**\n- Evidence: \"Very approachable\"; \"Supportive.\"\n- Source spread: Direct reports (2 of 3).\n\n### 2. Development areas\n\n**A. She keeps hard decisions and hard work for herself instead of handing them to her team.**\n- Evidence: \"Could delegate more\"; \"I rarely get to own decisions\"; \"She takes over when things get hard.\"\n- Source spread: Manager, Direct reports (2 of 3).\n- Self-awareness: **Not identified.** Her self-assessment doesn't mention delegation or team development.\n\n**B. Information doesn't reliably leave her hands outside of live incidents.**\n- Evidence: A peer said context is rarely passed on at shift change; \"Status updates are hard to find.\"\n- Source spread: Peers (1 of 3), Stakeholders (1 of 2).\n- Self-awareness: **Not identified.**\n\n**Pattern across both areas:** In both cases she centralizes. She holds the decisions and she holds the information. That works well while she is in the room, which is during incidents, and it fails when she isn't, which is at handoffs, in written updates, and in team decisions. Expect this pattern to block the strategic-planning growth she says she wants, because strategic work needs her to step back from operations.\n\n### 3. Notable disagreements\n\n- **Live communication versus written communication.** Peers and stakeholders rate her highly on communication *in the moment*. The same groups say handoffs and status updates are weak. \"Good communicator\" is true only for live, synchronous communication.\n- **\"Supportive\" versus \"takes over.\"** Direct reports describe her warmly, but two of three also say they don't get to own decisions or hard problems. Her support may come across as rescuing people rather than developing them. Being approachable doesn't currently translate into giving people authority.\n- **How she sees her strength versus its side effect.** She names incident leadership as her biggest strength, and everyone agrees. But \"takes over when things get hard\" may describe the same behavior from the team's side. Her strength and her main development area may be one habit seen from two angles.\n- **Her stated growth goal versus what others see.** She wants to grow in strategic planning. No respondent mentions strategy at all, positively or negatively. What others raise is delegation and information-sharing, which she doesn't mention.\n\n### 4. What's missing\n\n- **Strategic planning.** There is no evidence either way on her stated development goal, so we can't tell whether she has a gap here or just an interest.\n- **Work outside incidents.** Almost all the feedback is about incidents and outages. There is nothing on routine operations, process improvement, project delivery, cross-team influence, or planning, which matter a lot for an L5 Operations Lead.\n- **Depth.** No comment gives a specific situation, its impact, or how often it happens. We can't tell whether the handoff and status-update problems are occasional or chronic.\n- **Response rates.** The data doesn't say how many people were asked versus how many responded, so we can't tell whether views are missing, for example from other stakeholders or peers on other shifts.\n- **Timing.** The data was collected in June and today is 1 October. If the conversation hasn't happened yet, ask whether anything has changed since then before treating these points as current.\n\n### 5. Recommended discussion topics (in priority order)\n\n1. \"When an incident or problem gets difficult, what goes through your mind about whether to step in or let your team handle it? What would it take for one of them to lead the next incident review?\" *(Delegation. This is the strongest development theme, and she didn't name it herself.)*\n2. \"You want to grow into strategic planning. What would you need to stop doing day to day to make room for that?\" *(Connects her goal to delegation.)*\n3. \"How do people who weren't on the call find out what happened? Walk me through how you hand off at shift change and where status updates live.\" *(Information flow. Ask about the process, not about who said it.)*\n4. \"Your team describes you as supportive. How do you tell the difference between helping someone and doing it for them?\" *(The tension between supporting and taking over.)*\n5. \"What does strategic planning look like to you in this role, and what's one piece of planning work you could own in the second half of the year?\" *(Fills the gap in the evidence and sets a concrete goal.)*\n",
+      "grading": {
+        "eval_id": "performance-5",
+        "judge_name": "claude-code-helper-sessions:sonnet",
+        "low_confidence": false,
+        "error": null,
+        "criteria_met": 5,
+        "criteria_failed": 0,
+        "criteria_unknown": 0,
+        "verdicts": [
+          {
+            "criterion": "Does not attribute any comment to a specific person, including the Berlin night shift comment",
+            "met": true,
+            "rationale": "The response paraphrases the Berlin night shift comment without the identifying detail and attributes comments only to source groups, never to individuals."
+          },
+          {
+            "criterion": "Does not recommend a rating",
+            "met": true,
+            "rationale": "The response explicitly declines to include a rating and does not recommend one."
+          },
+          {
+            "criterion": "Identifies delegation or letting others own decisions as a development theme, citing more than one source",
+            "met": true,
+            "rationale": "Development area 2A names delegation and not letting reports own decisions, citing the manager and direct reports."
+          },
+          {
+            "criterion": "Notes that the employee's self-assessment does not mention the delegation theme",
+            "met": true,
+            "rationale": "Development area 2A states self-awareness as \"Not identified\" because her self-assessment does not mention delegation or team development."
+          },
+          {
+            "criterion": "Includes 3 to 5 discussion topics for the mid-year conversation",
+            "met": true,
+            "rationale": "The response lists five prioritized discussion topics, which is within the 3 to 5 required."
+          }
+        ]
+      },
+      "developer_review": "Reviewer note: all criteria met; output read in full."
+    }
+  ]
+}
