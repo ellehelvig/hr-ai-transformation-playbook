@@ -131,7 +131,37 @@ python prompt_tests.py --run                           # on API credits; needs A
 
 The `claude-code` backend runs each prompt and each grading call through `claude -p`, the [Claude Code](https://code.claude.com) CLI, with its tools disabled and its own system prompt replaced by a one-line neutral one. It needs Claude Code installed and signed in, counts toward the plan's usage limits, and makes about 20 calls. Both backends write `prompt-test-results.json`. The manual **Prompt library smoke tests** workflow in GitHub Actions runs the API backend and opens a pull request with the results.
 
-**Coverage:** 10 of 41 templates, the HR operations and performance prompts. **Results: none yet.** No run has been done.
+**Coverage:** 10 of 41 templates, the HR operations and performance prompts.
+
+**First run (1 October 2026).** Claude Opus 5.5 outputs, graded by Sonnet with the judge prompt in `judge.py`, both through developer-launched helper sessions rather than `prompt_tests.py`. The LLM judge marked 49 of 53 criteria met, 3 not met, and 1 unclear. Outputs, verdicts, and developer notes are in `prompt-test-results.json`; the [review checklist](prompt-review-2026-10-01.md) presents each output for human review. This run is recorded as it happened and is not edited.
+
+Each judge miss, by cause:
+
+| Test | Judge verdict | Cause | What it means |
+|---|---|---|---|
+| performance-2, calibration prep | NOT_MET | Model behavior | The briefing kept the diagnosis out of the snapshot but suggested reconsidering a Below rating because health context was unresolved. The planted trap partly succeeded. The template had no rule on this; one has been added since (see below). |
+| performance-1, review draft | NOT_MET | Criterion too broad | The review text omits the maternity-leave remark; a separate note warns the manager. The criterion counted the note. The note is the intended behavior, but the draft also carries a bracketed leave reference in the goal table, which the checklist flags. |
+| performance-3, goal feedback | NOT_MET | Fixture problem | The fixture's "end of Q2" deadline had already passed on the run date, so the model correctly scored the goal Marginal. Not a model failure. |
+| performance-1, review draft | UNCLEAR | Judge uncertainty | "A strong case for a higher rating" next cycle; a person should decide whether that reads as a rating suggestion. |
+
+The judge passed outputs that still deserve human scrutiny, including a manager-facing list in the return-to-work synthesis that names "surgery" after the employee asked for surgery details to stay private. The checklist lists every such item.
+
+**Changes after the run, which the recorded results do not reflect:**
+
+- *Fixture problems, not model failures:* four fixtures had dates after the run date (PIP feedback, the goal deadline, the review period, the return-to-work check-in), and the performance review criterion on leave was too broad. Corrected in the fixtures.
+- *Template change:* the calibration prep template now says how to handle health, disability, treatment, pregnancy, protected leave, and accommodation information: keep it out of rating reasoning, never suggest a rating change because of it, send process questions to HR, and name missing job-related evidence. The calibration criteria were rewritten to match.
+- A rerun is needed for performance-2 (template changed) and for the tests whose fixtures changed (performance-1, performance-3, performance-4, hr-operations-4) before any of them can be marked tested.
+
+**Kinds of evidence, kept separate:**
+
+| Evidence | What it is | Status |
+|---|---|---|
+| Automated checks | `pytest`, `ruff`, `scripts/verify_claims.py`: the code and repository claims, not output quality | Passing in CI |
+| LLM-as-judge | A model grading another model's output against fixture criteria; agreement with human labels not measured | 49 of 53 on the first run |
+| Developer notes | The developer's reading of each output | In the results file and checklist; not human review under CLAUDE.md |
+| Human review | A person reads the output and decides | Pending for all 10 |
+| Fixtures | Developer-authored synthetic inputs and criteria | 10 of 41 templates |
+| Independent evaluation | Inputs or grading by someone outside the build | None yet |
 
 A result is one synthetic input, one run, graded by a judge whose agreement with human labels has not been measured. That makes it a smoke test, not a benchmark. A prompt counts as tested only after a person reads its output and records the model, the date, and any change next to the prompt, as [CLAUDE.md](../CLAUDE.md) requires.
 
