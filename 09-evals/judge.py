@@ -51,7 +51,7 @@ from pathlib import Path
 from typing import Callable
 
 JUDGE_MODEL_ENV = "EVAL_JUDGE_MODEL"
-DEFAULT_JUDGE_MODEL = "claude-sonnet-5"
+DEFAULT_JUDGE_MODEL = "claude-sonnet-5-5"
 
 # Below this kappa, treat judge verdicts as unvalidated signal rather than
 # scores. 0.6 is the conventional boundary for "substantial" agreement; it is a
@@ -170,8 +170,11 @@ def anthropic_judge(question: str, response: str, criteria: list[str]) -> tuple[
     """Call the Anthropic Messages API. Returns (reply_text, judge_name).
 
     Imported lazily so the rest of this module, and the whole test suite, work
-    without the SDK installed. temperature=0 because a grader that disagrees
-    with itself between runs cannot be used to detect regressions.
+    without the SDK installed. Current Claude models reject non-default
+    sampling parameters such as temperature, so a judge cannot be made
+    deterministic by setting one. A grader that disagrees with itself between
+    runs cannot detect regressions, so measure run-to-run agreement by grading
+    the same transcripts twice before trusting a comparison.
     """
     try:
         from anthropic import Anthropic
@@ -189,8 +192,8 @@ def anthropic_judge(question: str, response: str, criteria: list[str]) -> tuple[
     numbered = "\n".join(f"{i + 1}. {c}" for i, c in enumerate(criteria))
     message = client.messages.create(
         model=model,
-        max_tokens=1024,
-        temperature=0,
+        max_tokens=16000,
+        output_config={"effort": "medium"},
         messages=[{
             "role": "user",
             "content": JUDGE_PROMPT.format(question=question, response=response, criteria=numbered),

@@ -26,7 +26,7 @@ Frameworks for responsible AI adoption in HR, structured around the NIST AI Risk
 
 ## Key dates for HR
 
-**Last reviewed: 22 September 2026.** Review this table once a quarter. When a date changes, update it here, in the documents that repeat it, and in the [changelog](../CHANGELOG.md). Each source link goes to the official text.
+**Last reviewed: 1 October 2026.** Review this table once a quarter. When a date changes, update it here, in the documents that repeat it, and in the [changelog](../CHANGELOG.md). Each source link goes to the official text.
 
 ### Already in force
 
@@ -34,6 +34,8 @@ Frameworks for responsible AI adoption in HR, structured around the NIST AI Risk
 |---|---|---|---|
 | GDPR, Article 22 (EU) | People have the right not to be subject to a decision made solely by automated means that significantly affects them, such as an automated rejection. Keep a human in the decision. | 25 May 2018 | [Regulation (EU) 2016/679](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679) |
 | NYC Local Law 144 | An automated tool used to screen candidates or employees for hiring or promotion needs a bias audit within the past year, published results, and advance notice to the people it assesses. | 5 July 2023 | [Local Law 144 of 2021](https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=B051915D-A9AC-451E-81F8-6596032FA3F9&ID=4344524) |
+| California FEHA automated-decision system regulations | Using an automated tool that discriminates in hiring or employment is unlawful, even if a vendor built it. Keep automated-decision data for four years. | 1 October 2025 | [Civil Rights Council announcement](https://calcivilrights.ca.gov/2025/06/30/civil-rights-council-secures-approval-for-regulations-to-protect-against-employment-discrimination-related-to-artificial-intelligence/) |
+| Illinois HB 3773 (Public Act 103-0804) | Using AI that has the effect of discriminating in hiring, promotion, discipline, or discharge is a civil rights violation. Employers must tell employees when AI is used for these decisions. | 1 January 2026 | [Public Act 103-0804](https://www.ilga.gov/legislation/PublicActs/View/103-0804) |
 | New Jersey Law Against Discrimination | The existing anti-discrimination law covers AI tools. Buying the tool from a vendor, or not knowing how it works, is no defense. | Applies now (state guidance, January 2025) | [NJ Attorney General guidance](https://www.nj.gov/oag/newsreleases25/2025-0108_DCR-Guidance-on-Algorithmic-Discrimination.pdf) |
 | EU AI Act, fines | Breaking the AI Act's transparency rules can be fined up to EUR 15 million or 3% of worldwide turnover, whichever is higher. For SMEs it is whichever is lower. | Fine rules since 2 August 2025 | [Regulation (EU) 2024/1689](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689), Article 99 |
 | Texas TRAIGA (HB 149) | Bans using AI with the intent to discriminate. Disparate impact alone does not prove intent, and the Act's consumer protections exclude employment. | 1 January 2026 | [HB 149, enrolled](https://capitol.texas.gov/tlodocs/89R/billtext/html/HB00149F.HTM) |
@@ -45,10 +47,14 @@ Frameworks for responsible AI adoption in HR, structured around the NIST AI Risk
 | Law | What it means for HR | From | Source |
 |---|---|---|---|
 | Connecticut Public Act 26-15 | Using an AI tool is no defense to a discrimination complaint. Evidence of bias testing, and how you acted on the results, can be weighed in your favor. | 1 October 2026 | [Public Act 26-15](https://www.cga.ct.gov/2026/ACT/PA/PDF/2026PA-00015-R00SB-00005-PA.PDF) |
+| California AB 1883 (Ch. 853, Stats. 2026) | Bans workplace surveillance tools that use AI to infer an employee's emotional state or collect neural data. | 1 January 2027 by default; confirm the operative date in the chaptered text | [AB 1883](https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1883) |
+| California CPPA ADMT regulations | Using automated decision-making technology for significant decisions such as hiring or promotion requires pre-use notice, an opt-out or appeal path, and a risk assessment. | 1 January 2027 | [CPPA announcement](https://cppa.ca.gov/announcements/2025/20250923.html) |
+| Colorado SB 26-189 (ADMT Act) | Notice when automated technology is used in an employment decision, and an explanation plus human review after an adverse decision. Enforcement is stayed by a federal court; check the docket in *xAI v. Weiser*, No. 1:26-cv-01515 (D. Colo.), before treating it as enforceable. | Applies to decisions on and after 1 January 2027 | [SB 26-189](https://leg.colorado.gov/bills/sb26-189) |
+| California SB 947 (Ch. 859, Stats. 2026) | No discipline or termination based solely on an automated system. When one is primarily relied on, a person must corroborate the decision and the employee gets written notice. | 1 January 2027 by default; 1 July 2027 is reported but unconfirmed | [SB 947](https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB947) |
 | EU AI Act, high-risk HR systems | AI used in recruiting, promotion, termination, task allocation, or performance monitoring must meet the high-risk rules, including human oversight, logging, and telling workers. This is a fixed date, so don't plan around further delay. | 2 December 2027 | [Regulation (EU) 2026/1744](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32026R1744) (the AI Omnibus) |
 | EU AI Act, AI inside regulated products | A separate, later date for AI built into products such as machinery. Rarely an HR question. | 2 August 2028 | [Regulation (EU) 2026/1744](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32026R1744) |
 
-Other laws this playbook discusses, including Illinois, Colorado, California, the UK, and Ontario, are covered in the documents above but are not yet in this table.
+Other laws this playbook discusses, including the Illinois AI Video Interview Act, the UK, and Ontario, are covered in the documents above but are not yet in this table.
 
 The European Commission's draft guidelines on which systems count as high-risk (published 19 May 2026, final text expected around the end of 2026) are the best current guide to the employment categories. They are draft and non-binding. See the [EU AI Act intake template](eu-ai-act-intake-template.md).
 

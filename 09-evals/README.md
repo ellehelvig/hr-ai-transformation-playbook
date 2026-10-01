@@ -24,6 +24,8 @@ This directory contains an eval set for the HR Q&A agent, plus a framework for w
 | [evals-summary-example.txt](evals-summary-example.txt) | Illustrative output showing what the runner produces, including a flagged case. Hypothetical agent and results |
 | [evals-results-example.json](evals-results-example.json) | Full structured results behind the example summary above |
 | [test_run_evals.py](test_run_evals.py) | Tests for the scorer and the exit-code gate; run with `pytest 09-evals -q` |
+| [prompt_tests.py](prompt_tests.py) | Runs prompt library templates on a real model and grades them; see [prompt library smoke tests](#prompt-library-smoke-tests) |
+| [prompt-fixtures.yaml](prompt-fixtures.yaml) | Synthetic inputs, planted traps, and grading criteria for 10 prompt templates |
 
 ---
 
@@ -116,6 +118,21 @@ You do not need to label all 29 cases. Label a sample, get a kappa on that sampl
 - Refusal and escalation detection is still substring matching against a fixed phrase list, so a refusal worded outside that list reads as a failure. The scorer's own accuracy has not been measured against human labels the way the judge's now can be. That is the next gap to close.
 
 ---
+
+## Prompt library smoke tests
+
+`prompt_tests.py` runs templates from the [prompt library](../02-prompt-library/README.md) on a real model and grades each output against its own rules. Each fixture in `prompt-fixtures.yaml` fills one template with synthetic inputs and plants a trap the template says to avoid: health details in calibration notes, an age reference in PIP evidence, a retaliation threat inside a payroll ticket. The template text is read from the library at run time, so a test always runs the prompt as written.
+
+```bash
+python prompt_tests.py --list   # offline: check fixtures against the library and show coverage
+python prompt_tests.py --run    # needs ANTHROPIC_API_KEY; writes prompt-test-results.json
+```
+
+Or run the manual **Prompt library smoke tests** workflow in GitHub Actions, which opens a pull request with the results.
+
+**Coverage:** 10 of 41 templates, the HR operations and performance prompts. **Results: none yet.** No run has been done.
+
+A result is one synthetic input, one run, graded by a judge whose agreement with human labels has not been measured. That makes it a smoke test, not a benchmark. A prompt counts as tested only after a person reads its output and records the model, the date, and any change next to the prompt, as [CLAUDE.md](../CLAUDE.md) requires.
 
 ## Writing new eval cases
 
