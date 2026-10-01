@@ -4,6 +4,14 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+Added
+
+- **Prompt library smoke tests.** `09-evals/prompt_tests.py` runs library templates on a real model and grades them with the LLM judge. Ten fixtures cover the HR operations and performance prompts, each with a planted trap. A manual workflow runs them with an `ANTHROPIC_API_KEY` secret and opens a pull request with the results. No results are recorded yet, and no prompt is described as tested.
+
+Fixed
+
+- **The LLM judge would fail on its first real run.** It sent `temperature=0` to `claude-sonnet-5`, and current Claude models reject non-default sampling parameters. The judge now sends none, uses `claude-sonnet-5-5`, and allows enough output for its reasoning. A new test checks the live request shape.
+
 Changed
 
 - **California AB 1883 and SB 947 are law.** Both were approved by the Governor on 30 September 2026 (Chapters 853 and 859, Statutes of 2026). The curriculum and risk assessment no longer describe them as unverified. AB 1883's "signed 3 September" reports are explained: that was the enrollment date. Operative dates are stated as the constitutional default of 1 January 2027, with SB 947's reported 1 July 2027 marked unconfirmed.

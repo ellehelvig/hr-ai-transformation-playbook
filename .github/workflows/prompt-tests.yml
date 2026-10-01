@@ -1,0 +1,74 @@
+name: Prompt library smoke tests
+
+# Runs each prompt fixture in 09-evals/prompt-fixtures.yaml on a real model,
+# grades the output with the LLM judge, and opens a pull request with the
+# results for a person to read. Manual only: each run calls the Anthropic API
+# and costs money.
+#
+# Setup: add a repository secret named ANTHROPIC_API_KEY
+# (Settings > Secrets and variables > Actions > New repository secret).
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: Claude model the prompts run on
+        required: true
+        default: claude-opus-5-5
+      judge_model:
+        description: Claude model that grades the outputs
+        required: true
+        default: claude-sonnet-5-5
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prompt-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install "PyYAML>=6.0" "anthropic>=1.11,<2"
+
+      - name: Run and grade the prompt fixtures
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PROMPT_TEST_MODEL: ${{ inputs.model }}
+          EVAL_JUDGE_MODEL: ${{ inputs.judge_model }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::Add a repository secret named ANTHROPIC_API_KEY first."
+            exit 1
+          fi
+          python 09-evals/prompt_tests.py --run | tee "$RUNNER_TEMP/summary.txt"
+
+      - name: Open a pull request with the results
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MODEL: ${{ inputs.model }}
+        run: |
+          branch="prompt-tests/${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add 09-evals/prompt-test-results.json
+          git commit -m "Record prompt library smoke test results (${MODEL})"
+          git push origin "$branch"
+          {
+            echo "Prompt library smoke tests on \`${MODEL}\`, run ${GITHUB_RUN_ID}."
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/summary.txt"
+            echo '```'
+            echo
+            echo "Read every output in 09-evals/prompt-test-results.json before merging. The judge has not been validated against human labels, so a met criterion is a lead, not a verdict. Per CLAUDE.md, record the model, date, and any prompt change next to each prompt a person has reviewed."
+          } > "$RUNNER_TEMP/body.md"
+          gh pr create --base main --head "$branch" --title "Record prompt library smoke test results (${MODEL})" --body-file "$RUNNER_TEMP/body.md"
