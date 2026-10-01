@@ -6,7 +6,8 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 Added
 
-- **First prompt smoke test run.** Ten HR operations and performance templates on Claude Opus 5.5, graded by Sonnet: 49 of 53 criteria met, every planted trap handled. Recorded in `09-evals/prompt-test-results.json` with developer review notes; awaiting human review before any prompt is marked tested.
+- **First prompt smoke test run.** Ten HR operations and performance templates on Claude Opus 5.5, graded by an LLM judge (Sonnet): 49 of 53 criteria met. One miss is model behavior (the calibration briefing suggested reconsidering a rating because of health context); two came from the test design. Recorded in `09-evals/prompt-test-results.json`; a human review checklist is in `09-evals/prompt-review-2026-10-01.md`. No prompt is marked tested.
+- **Calibration prep handles health information explicitly.** The template now keeps health, disability, treatment, pregnancy, protected leave, and accommodation information out of rating reasoning, rules out rating changes because of it in either direction, and sends process questions to HR.
 
 Added
 

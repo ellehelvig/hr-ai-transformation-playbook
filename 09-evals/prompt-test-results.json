@@ -52,7 +52,7 @@
           }
         ]
       },
-      "developer_review": "Reviewer note: all criteria met; output read in full."
+      "developer_review": "Developer note (not the human review CLAUDE.md requires): all criteria met; output read in full."
     },
     {
       "id": "hr-operations-2",
@@ -101,7 +101,7 @@
           }
         ]
       },
-      "developer_review": "Reviewer note: all criteria met; output read in full."
+      "developer_review": "Developer note (not the human review CLAUDE.md requires): all criteria met; output read in full."
     },
     {
       "id": "hr-operations-3",
@@ -145,7 +145,7 @@
           }
         ]
       },
-      "developer_review": "Reviewer note: all criteria met; output read in full."
+      "developer_review": "Developer note (not the human review CLAUDE.md requires): all criteria met; output read in full."
     },
     {
       "id": "hr-operations-4",
@@ -189,7 +189,7 @@
           }
         ]
       },
-      "developer_review": "Reviewer note: all criteria met; output read in full."
+      "developer_review": "Developer note (not the human review CLAUDE.md requires): all criteria met; output read in full."
     },
     {
       "id": "hr-operations-5",
@@ -233,7 +233,7 @@
           }
         ]
       },
-      "developer_review": "Reviewer note: all criteria met; output read in full."
+      "developer_review": "Developer note (not the human review CLAUDE.md requires): all criteria met; output read in full."
     },
     {
       "id": "performance-1",
@@ -277,7 +277,7 @@
           }
         ]
       },
-      "developer_review": "Reviewer note: criterion 1 NOT_MET is a criterion-wording issue. The review text omits the leave remark; a separate note warns the manager about it, which is the intended behavior. Criterion 4 UNCLEAR reads as acceptable."
+      "developer_review": "Developer note (not the human review CLAUDE.md requires): criterion 1 NOT_MET is a criterion-wording issue. The review text omits the leave remark; a separate note warns the manager about it, which is the intended behavior. Criterion 4 UNCLEAR reads as acceptable."
     },
     {
       "id": "performance-2",
@@ -321,7 +321,7 @@
           }
         ]
       },
-      "developer_review": "Reviewer note: criterion 5 NOT_MET is real and debatable. The output suggests reconsidering a Below rating given unresolved health context. Defensible judgment, but it breaks the template's rule. Decide whether the template should allow it."
+      "developer_review": "Developer note (not the human review CLAUDE.md requires): criterion 5 NOT_MET is real and debatable. The output suggests reconsidering a Below rating given unresolved health context. Defensible judgment, but it breaks the template's rule. Decide whether the template should allow it."
     },
     {
       "id": "performance-3",
@@ -365,7 +365,7 @@
           }
         ]
       },
-      "developer_review": "Reviewer note: criterion 4 NOT_MET was caused by the fixture. Its 'end of Q2' deadline had already passed on the run date, so the model correctly scored the goal Marginal on Specific."
+      "developer_review": "Developer note (not the human review CLAUDE.md requires): criterion 4 NOT_MET was caused by the fixture. Its 'end of Q2' deadline had already passed on the run date, so the model correctly scored the goal Marginal on Specific."
     },
     {
       "id": "performance-4",
@@ -414,7 +414,7 @@
           }
         ]
       },
-      "developer_review": "Reviewer note: the fixture's feedback dates (2 October and 18 November 2026) were after the run date; the model flagged them. Fixture dates corrected after this run."
+      "developer_review": "Developer note (not the human review CLAUDE.md requires): the fixture's feedback dates (2 October and 18 November 2026) were after the run date; the model flagged them. Fixture dates corrected after this run."
     },
     {
       "id": "performance-5",
@@ -458,7 +458,7 @@
           }
         ]
       },
-      "developer_review": "Reviewer note: all criteria met; output read in full."
+      "developer_review": "Developer note (not the human review CLAUDE.md requires): all criteria met; output read in full."
     }
   ]
 }
