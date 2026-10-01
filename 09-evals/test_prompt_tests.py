@@ -99,3 +99,28 @@ def test_run_path_end_to_end_with_a_fake_sdk(monkeypatch, tmp_path):
     assert first["output"] == "DRAFT"
     assert first["grading"]["criteria_met"] == 1
     assert all(call["fallbacks"] == "default" and "temperature" not in call for call in sent)
+
+
+def test_claude_cli_strips_api_key_and_disables_tools(monkeypatch):
+    calls = []
+
+    def run(cmd, **kwargs):
+        calls.append((cmd, kwargs))
+        return types.SimpleNamespace(returncode=0, stdout=json.dumps({"is_error": False, "result": "1|MET|ok"}))
+
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-should-not-pass")
+    assert judge.run_claude_cli("hello", "claude-sonnet-5-5", run=run) == "1|MET|ok"
+    cmd, kwargs = calls[0]
+    assert cmd[cmd.index("--tools") + 1] == ""
+    assert "--system-prompt" in cmd
+    assert "ANTHROPIC_API_KEY" not in kwargs["env"]
+    assert kwargs["input"] == "hello"
+
+
+@pytest.mark.parametrize("stdout,code", [("not json", 0), (json.dumps({"is_error": True}), 0), ("", 1)])
+def test_claude_cli_failures_raise(stdout, code):
+    def run(cmd, **kwargs):
+        return types.SimpleNamespace(returncode=code, stdout=stdout)
+
+    with pytest.raises(RuntimeError):
+        judge.run_claude_cli("hello", "m", run=run)

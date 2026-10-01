@@ -203,6 +203,47 @@ def anthropic_judge(question: str, response: str, criteria: list[str]) -> tuple[
     return text, f"anthropic:{model}"
 
 
+CLI_SYSTEM_PROMPT = "You are a careful assistant. Follow the user's instructions exactly."
+
+
+def run_claude_cli(prompt: str, model: str, system_prompt: str = CLI_SYSTEM_PROMPT, run=None) -> str:
+    """Run one prompt through the Claude Code CLI on the signed-in Claude plan.
+
+    `claude -p` with Claude Code's system prompt replaced and every tool
+    disabled, so the model only answers. ANTHROPIC_API_KEY is removed from the
+    child environment so a key in the shell cannot bill the API. Raises
+    RuntimeError on any failure.
+    """
+    import shutil
+    import subprocess
+
+    run = run or subprocess.run
+    command = [shutil.which("claude") or "claude", "-p", "--model", model, "--system-prompt", system_prompt,
+               "--tools", "", "--output-format", "json", "--no-session-persistence", "--strict-mcp-config"]
+    env = {k: v for k, v in os.environ.items() if k not in {"ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN"}}
+    try:
+        done = run(command, input=prompt, capture_output=True, text=True, timeout=600, env=env)
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise RuntimeError(f"claude CLI failed: {type(exc).__name__}") from exc
+    if done.returncode != 0:
+        raise RuntimeError(f"claude CLI exited {done.returncode}")
+    try:
+        envelope = json.loads(done.stdout)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError("claude CLI returned unparseable output") from exc
+    if envelope.get("is_error") or not isinstance(envelope.get("result"), str):
+        raise RuntimeError("claude CLI reported an error")
+    return envelope["result"]
+
+
+def claude_code_judge(question: str, response: str, criteria: list[str]) -> tuple[str, str]:
+    """Grade through the Claude Code CLI instead of the API. Same prompt as anthropic_judge."""
+    model = os.environ.get(JUDGE_MODEL_ENV, DEFAULT_JUDGE_MODEL)
+    numbered = "\n".join(f"{i + 1}. {c}" for i, c in enumerate(criteria))
+    text = run_claude_cli(JUDGE_PROMPT.format(question=question, response=response, criteria=numbered), model)
+    return text, f"claude-code:{model}"
+
+
 def make_canned_judge(path: Path) -> Callable[[str, str, list[str]], tuple[str, str]]:
     """Build a judge that replays verdicts from a JSON file.
 
