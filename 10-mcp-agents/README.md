@@ -78,22 +78,20 @@ MCP) can call. The design choices here are the same ones argued for in
 
 ## Quickstart
 
+From the repository root, follow the [reproducible setup](../docs/reproducible-setup.md).
+Then run:
+
 ```bash
-cd 10-mcp-agents
-pip install -r requirements.txt
+# Run all four tool suites from the repository root.
+python -m pytest 10-mcp-agents -q
 
-# run every MCP test suite (52 tests, all four workflow folders, one command)
-pytest
+# Start the stdio server.
+python 10-mcp-agents/server.py
 
-# or just one tool's suite, standalone, exactly as its ENABLEMENT.md describes
-cd comp_banding && pytest
-
-# start the server
-cd 10-mcp-agents && python server.py
-
-# or inspect it interactively
-mcp dev server.py
+# Or inspect the server interactively.
+mcp dev 10-mcp-agents/server.py
 ```
+
 
 Connect from Claude Desktop by adding to `claude_desktop_config.json`:
 

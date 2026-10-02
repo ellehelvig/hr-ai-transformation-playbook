@@ -28,7 +28,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install Python deps
-        run: pip install -r requirements.txt -r 10-mcp-agents/requirements.txt ruff pytest
+        run: pip install -r requirements-lock.txt
 
       - name: Validate YAML files
         run: |
