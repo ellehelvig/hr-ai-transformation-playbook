@@ -1,60 +1,79 @@
 # HR AI Transformation Playbook
 
-How a People team moves from scattered AI experiments to responsible, measurable adoption.
+This toolkit helps People teams prioritize AI use cases, design controls, and plan adoption. It is for HR and talent leaders, enablement partners, and engineers who need a shared way to decide what to build and how to evaluate it.
+
+[Browse the playbook](https://ellehelvig.github.io/hr-ai-transformation-playbook/) · [People Partner work redesign](01-use-cases/work-redesign-people-partner.md) · [Try the ROI calculator](https://ellehelvig.github.io/hr-ai-transformation-playbook/08-roi-measurement/dashboard.html)
 
 [![Tests](https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&style=flat-square&label=tests)](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml)
 
----
+## Why I built this
 
-## The point of view
+HR AI adoption needs more than a tool choice. It needs a useful problem, clear ownership, controls that people can inspect, and a plan to change the work. I built this playbook to connect those decisions in one practical toolkit. I defined the HR problems, operating model, and governance approach, and built the implementation with AI-assisted development.
 
-Most HR AI programs stall in one of three places: they start with the wrong use case, they cannot get through Legal and Privacy, or nobody changes how they work. This playbook takes a position on each.
+## Start here
 
-1. **Start with the decision, not the tool.** Score every idea on value, risk, and readiness before anyone buys anything.
-2. **Governance is a design input, not a gate at the end.** Legal, Privacy, and employee representatives see the intake before the build starts.
-3. **Humans make consequential employment decisions.** AI can inform hiring, pay, and performance decisions. It never makes them. The tools here return evidence flagged for human review, never a decision, and [Resolve](https://github.com/ellehelvig/peopleops-resolution-agent) enforces a human approval step in code.
-4. **Measure changed work, not launched tools.** A tool nobody trusts is a cost. Training and measurement are planned from day one.
+| You want to | Start with |
+|---|---|
+| Understand where AI belongs in an HR role | [People Partner work redesign](01-use-cases/work-redesign-people-partner.md) |
+| Choose an initial use case | [Prioritization matrix](01-use-cases/prioritization-matrix.md) |
+| Review risk and ownership | [AI use policy](03-governance/ai-use-policy.md) and [risk assessment](03-governance/risk-assessment-template.md) |
+| Inspect runnable tools | [MCP tools](10-mcp-agents/README.md) |
+| Plan training and adoption | [Enablement](04-enablement/README.md) |
 
-## Where to start
+## Setup and a first example
 
-| Time | Look at | What it shows |
-|---|---|---|
-| 5 minutes | [Work redesign: the People Partner role](01-use-cases/work-redesign-people-partner.md) | One HR role broken into tasks: where rules, AI, and people each belong, what evidence supports each choice, and why no task yet earns end-to-end model autonomy |
-| 2 minutes | [Prioritization matrix](01-use-cases/prioritization-matrix.md) | How to pick the first three use cases, with a worked example |
-| 2 minutes | [Resume screening tool](10-mcp-agents/resume_screen/ENABLEMENT.md) | A deterministic tool an AI assistant can call. It shows the evidence for each job requirement, returns no fitness score, never compares candidates, and lists what its design cannot prevent |
+The templates can be read and adapted without installing anything. For the Python tools and local checks, use Python 3.11 or later:
 
-## How it fits together
+```bash
+git clone https://github.com/ellehelvig/hr-ai-transformation-playbook.git
+cd hr-ai-transformation-playbook
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt -r 10-mcp-agents/requirements.txt ruff
+python -m pytest 10-mcp-agents 09-evals -q
+```
 
-| Stage | The question it answers | Sections |
-|---|---|---|
-| **Decide** | What should we build first, and in what order? | [01 · Use cases](01-use-cases/README.md): 37 vetted HR AI use cases, a prioritization matrix, and a [work redesign case study](01-use-cases/work-redesign-people-partner.md)<br>[06 · Roadmap](06-roadmap/README.md): an 18-month plan with phase gates |
-| **Govern** | Can we deploy this responsibly? | [03 · Governance](03-governance/README.md): AI use policy, risk assessment, EU AI Act intake, vendor review, incident response, and [key legal dates](03-governance/README.md#key-dates-for-hr) |
-| **Build** | How do we make it work, safely? | [02 · Prompts](02-prompt-library/README.md) for eight HR functions<br>[11 · Skills](11-skills/README.md): six installable agent skills<br>[07 · Workflow patterns](07-agentic-patterns/README.md): four architecture patterns<br>[10 · MCP tools](10-mcp-agents/README.md), [09 · Evals](09-evals/README.md), [05 · Notebooks](05-notebooks/README.md) |
-| **Adopt and prove** | Will people use it, and is it worth it? | [04 · Enablement](04-enablement/README.md): a 4-module literacy curriculum and a 90-day adoption plan<br>[08 · ROI](08-roi-measurement/README.md): business case, metrics, and reporting |
+On Windows, activate the environment with `.venv\Scripts\Activate.ps1` in PowerShell.
 
-**New here?** HR leaders start with [Decide](01-use-cases/README.md). Legal and Privacy partners start with the [AI use policy](03-governance/ai-use-policy.md). Engineers start with the [MCP tools](10-mcp-agents/README.md).
+Inspect a synthetic compensation benchmark without calling a model:
 
-## What this demonstrates
+```bash
+python - <<'PY'
+import sys
+sys.path.insert(0, "10-mcp-agents")
+from comp_banding.tool import get_band_position
+result = get_band_position("Recruiter", "IC3", "tier1", 105000, False)
+print(result["human_review_required"])
+PY
+```
 
-Built by Elle Helvig, an HR transformation leader. I defined the HR problems, designed the operating model and governance approach, and built the tools with AI-assisted development. The work shows four things a People AI program needs from one leader:
+Expected output: `True`. This example uses illustrative benchmark data, not real pay data. The tool does not approve compensation. See [the handoff notes](10-mcp-agents/comp_banding/ENABLEMENT.md) for the required historical-pay declaration and other limits.
 
-- **Strategy.** Turning a long list of AI ideas into a sequenced, fundable roadmap.
-- **Governance.** Translating the EU AI Act, GDPR, and US state and city laws into templates HR teams can actually fill in.
-- **Hands-on building.** Working tools, agent skills, and evaluations, not slideware.
-- **Adoption.** Training, change management, and the metrics that show whether it worked.
+For notebooks, follow [their setup instructions](05-notebooks/README.md). For an MCP client, use the [server quick start](10-mcp-agents/README.md#quickstart). Live model evaluations are optional and may incur provider costs. Keep API credentials in environment variables or platform secrets.
 
-## For technical reviewers
+## What is included
 
-- Three notebooks execute in CI on every push, using synthetic data only.
-- Four HR workflows expose six MCP tools, backed by a 52-test suite. No tool calls an LLM internally, so their behavior is reproducible and auditable.
-- The comp banding, resume screening, and recruiter intake tools always return `human_review_required: true`, with no code path that turns it off, and their tests check it. The policy Q&A tool instead always returns a not-legal-advice disclaimer, also tested.
-- The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a launch. Its scorer and LLM judge have 49 tests of their own, and the runner can measure the judge's agreement with human labels (Cohen's kappa). No labeled run has been done yet, so judge verdicts are not a launch gate.
-- Nothing assumes a specific HRIS, ATS, or model provider.
+| Stage | Contents |
+|---|---|
+| Decide | [01 · Use cases](01-use-cases/README.md): 37 vetted HR AI use cases and prioritization; [06 · Roadmap](06-roadmap/README.md): an 18-month template |
+| Govern | [03 · Governance](03-governance/README.md): use policy, risk assessment, EU AI Act intake, vendor review, and incident response |
+| Build | [02 · Prompts](02-prompt-library/README.md), [05 · Notebooks](05-notebooks/README.md), [07 · Workflow patterns](07-agentic-patterns/README.md): four architecture patterns, [09 · Evals](09-evals/README.md), [10 · MCP tools](10-mcp-agents/README.md), and [11 · Skills](11-skills/README.md): six installable agent skills |
+| Adopt and measure | [04 · Enablement](04-enablement/README.md): a 4-module literacy curriculum and adoption plan; [08 · ROI](08-roi-measurement/README.md): business-case templates and a calculator |
 
-## Scope and limits
+## Current status and evidence
 
-Covers the EU, the US (federal, New York City, and several states), the UK, and Ontario. Not APAC, Latin America, the Middle East, or Africa. Legal dates are reviewed by hand each quarter in the [Key dates for HR](03-governance/README.md#key-dates-for-hr) table. None of this is legal advice; have Legal and Privacy review any document before you adopt it. All data is synthetic.
+This is an actively developed reference toolkit using synthetic data. It is not a production HR system. Templates need local adaptation and specialist review before use.
 
----
+- Three notebooks execute in CI. The HR Q&A notebook can use reference responses without an API key; those outputs are not evidence of live model quality.
+- Four workflow packages expose six MCP tools, backed by a 52-test suite. No tool calls an LLM internally. Compensation, screening, and recruiter-intake tools require human review in their outputs. That flag is not an authenticated approval system.
+- The 29-case eval runner blocks failed refusal, escalation, and empty-response gates. Its scorer and LLM judge have 49 tests of their own.
+- The first prompt smoke-test run is recorded in the [evaluation notes](09-evals/README.md#prompt-library-smoke-tests). Human review is pending. The judge's agreement with human labels has not been measured, so its verdicts are not a launch gate.
+- The [People Partner case study](01-use-cases/work-redesign-people-partner.md) explains the work-design decisions. [Resolve](https://github.com/ellehelvig/peopleops-resolution-agent) is a separate executable prototype with its own evaluation evidence and production hold.
 
-MIT licensed. [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · [Cite this work](CITATION.cff) · [Elle Helvig on LinkedIn](https://www.linkedin.com/in/ellehelvig/)
+Run `python scripts/verify_claims.py` to compare the counts above with the repository. Published counts describe this code and content, not field outcomes.
+
+## Scope and maintenance
+
+The governance materials cover the EU, US federal and selected state and city requirements, the UK, and Ontario. They do not cover every jurisdiction. Review the [key legal dates](03-governance/README.md#key-dates-for-hr) and have Legal and Privacy review materials before adoption. This is not legal advice.
+
+MIT licensed. [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Cite this work](CITATION.cff) · [Elle Helvig on LinkedIn](https://www.linkedin.com/in/ellehelvig/)
