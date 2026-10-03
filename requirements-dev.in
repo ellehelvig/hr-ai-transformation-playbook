@@ -1,0 +1,4 @@
+# Reproducible local and CI validation environment.
+-r requirements.txt
+-r 10-mcp-agents/requirements.txt
+ruff>=0.12,<1
