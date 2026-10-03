@@ -35,18 +35,19 @@ Map your specific organization's version of this table before launch. The most c
 ## A 90-day adoption roadmap
 
 **Days 1-30: Foundation**
-- Deliver Module 1-2 of the literacy curriculum to a pilot group (one function or team, not the whole org)
+- Deliver Modules 1-3, including governance and data handling, to a pilot group (one function or team, not the whole org)
 - Identify 2-3 use cases from the [use case library](../01-use-cases/use-case-library.md) that solve a real, currently-annoying problem for the pilot group specifically
+- Complete use-case intake and risk assessment; confirm accountable owners, intended/prohibited uses, approved tools, permissions, provider handling, evaluation criteria, rollback, and escalation. Obtain the required Legal/Privacy/Security approval before using employee data.
 - Set up a lightweight feedback channel (a Slack channel, a shared doc) for "this worked" / "this didn't" reports
 
 **Days 31-60: Proof**
-- Pilot group uses the 2-3 use cases in real work, not a sandbox
+- Move from synthetic rehearsals to a bounded real-work pilot only after the approval and evaluation gates above pass. Use minimum necessary data and human review; remain in the sandbox if a gate is unresolved.
 - Weekly 15-minute check-in: what worked, what broke, what would make this easier
 - Document one concrete before/after example with a real time or quality metric. This becomes the story you tell everyone else
 
 **Days 61-90: Expansion**
 - Share the pilot's concrete results with the next cohort before training them. Proof beats persuasion
-- Deliver Module 3-4 to the pilot group; deliver the full curriculum to the next cohort
+- Deliver Module 4 to the pilot group; deliver the full curriculum to the next cohort before their real-work pilot
 - Identify one person per team as a peer resource (not a formal role, just "who do I ask when I'm stuck"). This scales faster than routing every question to the program owner
 
 Do not attempt to roll out to the entire HR function simultaneously. A visible, credible pilot is worth more than a wide, shallow launch.
@@ -61,7 +62,7 @@ Avoid vanity metrics (training completion, login counts). Track:
 |---|---|
 | % of pilot group using a tool 2+ weeks after training | Whether training converted to habit |
 | Time saved per use case (self-reported, spot-checked) | Whether the value story is real |
-| Escalation rate on agent-facing use cases | Whether governance boundaries are working as designed |
+| Escalation rate, sampled harmful misses, unnecessary escalation, and reviewer workload | Whether routing protects employees and remains usable; escalation rate alone cannot establish this |
 | Ratio of "this worked" to "this didn't" feedback reports | Early warning on trust erosion |
 | Requests for new use cases from the field | The clearest signal that adoption is becoming pull, not push |
 
