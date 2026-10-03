@@ -39,6 +39,10 @@ npx markdownlint-cli --config .markdownlint.json '**/*.md' --ignore node_modules
 
 CI also executes the notebooks, validates YAML, checks internal links, and validates skill frontmatter. Notebook execution takes a few minutes; you can skip it locally unless you changed a notebook.
 
+## Portfolio maintenance
+
+Use the [portfolio health check](docs/portfolio-health-check.md) for monthly maintenance, quarterly strategy review, and improvements after significant learning. Record evidence and blockers before changing featured projects.
+
 ## Questions
 
 Open an issue. For anything involving personal data or a security concern, see [SECURITY.md](SECURITY.md) instead.
