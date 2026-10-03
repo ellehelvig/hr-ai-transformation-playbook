@@ -30,6 +30,14 @@ jobs:
       - name: Install Python deps
         run: pip install -r requirements-lock.txt
 
+      - name: Verify MCP server imports with installed SDK
+        run: |
+          python - <<'PYTHON'
+          import runpy
+          runpy.run_path("10-mcp-agents/server.py", run_name="portfolio_import_check")
+          print("MCP server import passed")
+          PYTHON
+
       - name: Validate YAML files
         run: |
           python - <<'PY'
