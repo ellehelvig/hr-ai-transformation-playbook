@@ -51,7 +51,7 @@ Rules            →  Assist / Augment              →  Agent
 Use rules when rules reliably give the right answer. Most HR uses of AI belong in the middle. An agent, where a model takes several actions through tools with limited review between them, has to earn that autonomy through evidence and brings new governance requirements.
 
 *Prompt quality drives output quality:*
-The single highest-leverage skill for HR professionals using AI is prompt construction. Vague prompts produce generic output. Specific, well-structured prompts with good context produce usable output.
+Clear prompts help define a task and its boundaries. Output quality also depends on the model, source material, workflow controls, and verification. A well-written prompt does not establish factual accuracy or safe HR judgment.
 
 **Pre-reading (assign before session):**
 - [Your organization's AI use policy](../03-governance/ai-use-policy.md)
@@ -73,7 +73,7 @@ The single highest-leverage skill for HR professionals using AI is prompt constr
 | 0:00–0:15 | Share-back from Module 1 homework, what did you try, what happened? |
 | 0:15–0:45 | Prompt engineering for HR: the four elements of a good prompt |
 | 0:45–1:10 | Live demo: Onboarding plan, performance review draft, policy Q&A |
-| 1:10–1:50 | Hands-on lab: Each participant works through 2 prompts from the library using their own real work |
+| 1:10–1:50 | Hands-on lab: Each participant works through 2 prompts using synthetic HR scenarios in organization-approved tools |
 | 1:50–2:00 | Debrief: What surprised you? What didn't work? |
 
 **The four elements of an effective HR prompt:**
@@ -265,7 +265,9 @@ Optional extension: Participants who complete a full use case spec and present i
 
 ## Facilitator notes
 
-- Module 3 generates the most discussion and sometimes the most resistance. Budget flex time.
-- The hands-on lab in Module 2 is the highest-value session, don't let it get cut for time.
-- Adapt the case studies and scenarios in Module 3 to your organization's actual context. Generic examples land less well than ones that feel real.
+These are facilitation suggestions, not measured delivery findings. Use synthetic examples; removing names alone does not establish anonymity. Do not upload real employee, candidate, compensation, or employer-confidential information for a training exercise.
+
+- Budget flex time in Module 3 for questions and disagreement about risk.
+- Protect time for the Module 2 lab, and check whether participants can identify errors and verify outputs afterward.
+- Adapt synthetic scenarios to familiar workflows, without identifiable employee cases or confidential documents.
 - Keep an AI skeptic on the facilitation team if possible. The best discussions happen when the room has range.
