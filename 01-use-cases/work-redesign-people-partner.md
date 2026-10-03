@@ -80,7 +80,7 @@ The design is layered because each layer fails differently. Structured intake gi
 
 The screen returns a route, never a diagnosis or quoted text: it detects enough to route safely, not enough to expose. A manager learns what their role requires, such as an approved schedule, and not the reason. Harmful misses and unnecessary escalations are both measured, because optimizing one without the other shifts the cost to employees or to specialists.
 
-**The evidence proves the problem, not yet the solution.** Layered screening is a design hypothesis until it is built and evaluated. Until then, Resolve's [risk register](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/governance-and-risk.md) keeps residual risk for missed Employee Relations and legal concerns at High, and production use is withheld.
+**The evidence proves the problem, not yet the solution.** Resolve now includes an experimental model screen in its evaluation harness. The first untuned run used developer-authored cases and also produced false refusals; it does not validate this broader work redesign. The default browser/API demo remains rules-based. Pending fresh practitioner evaluation, Resolve's [risk register](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/governance-and-risk.md) keeps residual risk for missed Employee Relations and legal concerns at High, and production use is withheld.
 
 ## Decision sequence
 
@@ -134,8 +134,8 @@ Before scaling, the business case would start from baselines rather than estimat
 
 ## Limitations
 
-- No model screen, structured intake, drafting, recommendation, or theme discovery has been built.
-- Resolve's current routing contradicts this design: it sends remote-work requests to the manager whatever they contain.
+- Resolve implements an optional evaluation screen and fixed-template policy recommendations. The structured intake and broader drafting, recommendation, and theme-discovery workflows described here have not been built or validated.
+- Resolve's rules-only demo can miss sensitive context in remote-work requests. Known ER/legal terms stop routine routing, but the original held-out failures show that this is insufficient. The optional screen adds routing and uncertainty handling; it still needs independent validation.
 - The task list has not been grounded against O\*NET task statements for Human Resources Specialists (13-1071).
 - People Partners have not taken part in this redesign. The method calls for it.
 - No business outcome has been observed.
