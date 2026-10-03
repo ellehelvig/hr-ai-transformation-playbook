@@ -20,6 +20,12 @@ Training and adoption resources to build AI fluency across the People Team. With
 | [workshop-facilitator-guide.md](workshop-facilitator-guide.md) | Logistics, pacing, resistance handling, and format adaptations for anyone facilitating the curriculum |
 | [adoption-playbook.md](adoption-playbook.md) | The change management work that happens alongside training, stakeholder map, 90-day rollout plan, adoption metrics, and handling the first public failure |
 
+## Download status
+
+The Markdown curriculum is the current facilitation reference. The PDF and PowerPoint need synchronization before delivery: their cover says 8 hours without distinguishing 7 hours of sessions from async practice, the lab calls for real work without stating data safeguards, and their delivery-experience language is not supported by evidence in this repository. Their regulatory reference date is May 2026. Review current primary sources before adapting legal material.
+
+Use synthetic examples in approved tools. Do not upload real employee, candidate, compensation, or employer-confidential content for a training exercise. Removing names alone does not establish anonymity.
+
 ## Why enablement is the bottleneck
 
 Most HR AI programs over-invest in tooling and under-invest in capability. The result: shiny pilots that don't scale because the HR professionals who'd benefit either don't know the tools exist, don't trust them, or don't know how to use them well.
@@ -27,17 +33,17 @@ Most HR AI programs over-invest in tooling and under-invest in capability. The r
 This curriculum is the counterweight. It is built on three assumptions:
 
 1. **HR professionals don't need to understand the math.** They need to understand the failure modes, hallucination, bias, scope drift, well enough to spot them.
-2. **Hands-on practice with real HR work beats theoretical training every time.** Module 2 is the hardest to deliver and the most valuable. Don't cut it.
+2. **Practice should resemble HR workflows.** Use synthetic scenarios in Module 2 and test whether the lab improves participants' judgment and verification habits.
 3. **AI resistance is rational until people experience the lift.** Module 3 surfaces concerns instead of suppressing them. The best discussions happen when the room has range.
 
 ## Delivery guidance
 
 The curriculum is designed for facilitator-led delivery but can be adapted for self-paced use. Specific notes:
 
-- **Cadence:** One module per week over 4 weeks, with async practice between sessions, is the highest-completion format.
+- **Cadence:** Suggested cadence: one module per week over 4 weeks, with async practice. Compare completion and learning against your own baseline; no comparative completion evidence is supplied here.
 - **Audience mix:** Don't separate HR Tech from HRBPs from HR Ops. The discussion is richer with the full mix.
-- **Module 2 lab:** Reserve real time for participants to work through prompts with their actual work. The lab is where confidence is built.
-- **Module 3 case studies:** Substitute your organization's own examples for the generic scenarios. Local cases land harder.
+- **Module 2 lab:** Reserve time for participants to work through synthetic HR scenarios using organization-approved tools. Review provider data handling and tool settings before delivery.
+- **Module 3 case studies:** Adapt synthetic examples to familiar workflows. Do not use identifiable employee cases or confidential company documents.
 - **Facilitator pairing:** Where possible, pair an AI-enthusiastic facilitator with an AI-skeptical one. The conversation that produces, not the lecture, is what people remember.
 
 ## Measuring program success
