@@ -27,6 +27,14 @@ For this repository, run the checks in [CONTRIBUTING](../CONTRIBUTING.md#running
 
 For new knowledge in evaluations, MCP, RAG, agent architectures, AI security, governance, or operating models: identify an existing workflow that benefits; document the decision and tradeoff; implement only where useful; test; update the limitations and evidence. A new concept alone is not a reason for a new repository.
 
+## Evidence standard
+
+- **OBSERVED:** measured or directly demonstrated. Name the version, population or dataset, method, date, and scope. A synthetic test demonstrates behavior in that test, not business impact or production readiness.
+- **ESTIMATED:** calculated or projected from stated assumptions. Show the assumptions, method, uncertainty, and sensitivity; do not present capacity value as observed cash savings.
+- **ILLUSTRATIVE:** hypothetical or simulated examples used to explain a framework. Label inputs and outputs where readers encounter them.
+
+Owner-reported results without supporting measurement context remain unverified; do not relabel them as observed, estimated, or fabricated. For controls, separately state demonstrated, simulated, proposed, or not yet validated. Record failure modes, human judgment points, and the evidence that would block deployment or be required before increased autonomy. Passing tests cannot erase a stop criterion.
+
 ## Prioritization and review record
 
 | Priority | Use when |
