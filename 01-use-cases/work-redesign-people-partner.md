@@ -1,6 +1,6 @@
 # Work redesign: the People Partner who handles employee requests
 
-> **01 / DECIDE** · A task-level redesign of one HR role, tested against working code.
+> **01 / DECIDE** · A task-level redesign of one HR role, examined against a synthetic prototype.
 
 [← Use case library](README.md) · [Playbook home](../README.md) · [Resolve, the working prototype](https://github.com/ellehelvig/peopleops-resolution-agent)
 
@@ -11,6 +11,19 @@ Request wording is not request intent. "Can I work from home two days a week?" i
 **Classification is not merely a language problem. It is a workflow, risk, and accountability problem.**
 
 This page redesigns one HR role around that idea, task by task, and tests the design against a working prototype. Here, HRBP means the HR partner aligned to a business leader; People Partner means the HR professional who owns employee requests in a tiered service. Organizations use both titles for both scopes.
+
+## Problem, current state, and scope
+
+**Illustrative current state:** an employee contacts HR, a People Partner clarifies the request, finds the applicable policy, checks eligibility, consults specialists, prepares a reply, and records the decision. This is a reference workflow, not an observed process study at an employer. Hidden disclosures, reassignment, duplicate contacts, and specialist queues are hypotheses to investigate with practitioners.
+
+**Proposed AI opportunity:** reduce retrieval and drafting work while improving access to the right human process. The first question is whether a request needs a different owner, not whether a model can answer it fluently. The existing task map explains why rules, assistance, and human-led work differ.
+
+| Boundary | Allowed in the proposed workflow | Out of scope |
+|---|---|---|
+| Intake and routing | Identify a topic, missing context, and possible specialist need; offer a visible human path | Diagnose, investigate allegations, or determine protected status |
+| Policy support | Retrieve approved policy, check bounded eligibility inputs, prepare a cited draft | Invent entitlement, automatically deny a benefit, or use unapproved policy |
+| Consequential decisions | Assemble evidence for an accountable reviewer | Approve leave/relocation, change a manager, or execute an employment action |
+| People data | Minimum authorized case/eligibility fields | Candidate ranking, performance/pay decisions, monitoring, medical inference, or another person's restricted data |
 
 ## Decisions
 
@@ -36,7 +49,7 @@ This page redesigns one HR role around that idea, task by task, and tests the de
 3. Test the classifications against Resolve, including held-out cases and probes. *Done for what Resolve implements.*
 4. Validate with People Partners: task decomposition, exceptions and invisible work, realistic failure scenarios, workflow tests, unintended consequences, workload changes, and improvement after deployment. *Not yet done.*
 
-Status in this document uses five terms. **Observed:** seen in a test or probe. **Proposed:** designed, not built. **Implemented:** built, with no test. **Tested:** built, and a named test checks it. **Validated:** shown to work with real users and data. Nothing here is validated.
+Evidence labels apply to a specific claim, not the whole project. **Observed:** reproduced or measured. **Tested:** verified by a named check. **Simulated:** generated in a controlled synthetic setting. **Illustrative:** explains a reference process. **Estimated:** calculated from stated assumptions. **Proposed:** a design not yet in operation. **Not validated:** evidence is still missing. Implemented means code exists; it does not mean a deployed control works. Nothing here establishes an organizational outcome or production authorization.
 
 ## Task map
 
@@ -62,6 +75,8 @@ Resolve routes requests with keyword rules. It passes all 60 baseline cases, whi
 A single probe shows why it matters. "I need to work from home on Tuesdays and Thursdays during my chemotherapy" was recognized as remote work and assigned the manager-and-People-Partner approval role, with no flag; the prototype sends no actual notification ([reproduce](#reproducing-the-probe)). The system was not wrong about the topic. It missed context that should have changed the workflow, the handling of health information, the oversight, and who decides.
 
 Adding "chemotherapy" to a keyword list would pass the probe and miss "my treatment schedule." The class of failure needs a structural answer: look for signals that change which process applies, including health, disability, accommodation, protected leave, workplace concerns, retaliation, safety, and legal action, before any downstream automation.
+
+**Proposed target architecture, not the current browser demo:**
 
 ```mermaid
 flowchart LR
@@ -117,6 +132,23 @@ A task earns more autonomy only when question 8 has an answer backed by evidence
 | Understanding what the system can and cannot catch | Accountability for outcomes |
 | Recognizing when information quality is too poor for automation | Explaining decisions to employees and managers |
 
+## Data and authorization
+
+**Observed source boundary:** Resolve uses synthetic employees, policies, and in-memory case records. Its optional screen sees request text, not the employee record. The demo's employee IDs and reviewer identities are self-reported. Workflow roles and an approval state are not authenticated access controls. No HR action or specialist notification is executed.
+
+**Proposed deployment contract:** identity and permissions are established outside the model and checked before each tool operation. Request text cannot grant a role. Policy owners approve policy versions; ER, accommodations, Legal, Privacy, and HR operations approve their boundaries before a pilot. Counsel reviews any adoption with legal implications.
+
+| Component | Minimum data and permission | Required boundary before a pilot |
+|---|---|---|
+| Intake | Request text, verified case owner, topic and contact channel | User can submit only their own request; visible human referral; sensitive text restricted |
+| Model screen | Minimum request context needed to route; no general HRIS access | Approved provider/retention; bounded schema; no executing tools; uncertainty/error routes to a person |
+| Policy/eligibility tools | Approved policy metadata; only needed region, employment type, service days, or role category | Identity-bound field/record permission; no compensation, medical, demographic, or contact fields in model/tool outputs |
+| People Partner/specialist | Assigned case and need-to-know supporting information | Server-enforced case and specialist access; manager receives only approved operational information |
+| Approval workflow | Reviewer identity, required evidence, decision and rationale | Authenticated assigned reviewer; actor cannot approve their own case; replay/duplicate protection; no model approval |
+| Records and reporting | Minimal case metadata, versions, events, outcomes | Protected storage and event capture; retention/deletion ownership; aggregate reporting with re-identification review |
+
+These are **proposed controls**. The prototype does not demonstrate deployed RBAC/ABAC, cross-user isolation, persistent approval state, or protected audit storage. Do not connect it to employer systems to demonstrate this case. Synthetic fixtures can test access boundaries without publishing employee data.
+
 ## How success is measured
 
 Measure changed work, not launched tools.
@@ -131,6 +163,48 @@ Measure changed work, not launched tools.
 | Health details found in manager-visible fields | 8 |
 
 Before scaling, the business case would start from baselines rather than estimates: request volume by type, current handling time, escalation volume, rework and reassignment, reviewer workload, build effort, and the ongoing cost of evaluation and monitoring. None has been measured here.
+
+## Pilot and evidence package
+
+**Proposed pilot:** start with practitioner walkthroughs and synthetic shadow cases. HR service delivery owns the pilot, specialists own routing criteria, Privacy/Security approve data and access, and a policy owner approves source versions. Name actual accountable people privately before starting. Nobody has filled those roles or participated in a pilot here.
+
+1. Map the current service with People Partners. Record invisible work, exceptions, channels, ownership, and handoffs. Keep interviews and employer material private; publish only approved nonconfidential findings.
+2. Establish a baseline with agreed denominators and periods. Count handling/reviewer minutes, time to the right owner, reassignment, repeat contact, and escalation load. No baseline values are available here.
+3. Freeze synthetic evaluation sets written by practitioners who do not tune the screen. Include hidden risks, benign negative controls, negation, combined requests, injection, missing/wrong policy, unavailable tools, and access attempts.
+4. Compare human-only handling, rules-only routing, and the proposed assisted path. Record version, reviewer rubric, disagreements, missed routes, false refusals, unnecessary escalations, and end-to-end reviewer time. Synthetic tests cannot establish population fairness or field reliability.
+5. Only after access, privacy, source-quality, and specialist gates pass, consider an approved, reversible shadow pilot. A person makes every decision. Any real-data evidence stays in the approved environment; no real employee/candidate data belongs in this repository.
+
+| Evidence item | Current state | Required next evidence |
+|---|---|---|
+| Rules reproduce their own examples | **Observed / Simulated:** 60/60 baseline; developer-authored | Broader frozen practitioner cases; do not call this field accuracy |
+| Rules miss contextual risk | **Observed / Simulated:** original 0/16; five ER/legal concerns not correctly escalated | [Case-level review](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-results.md) and independently reviewed response choices |
+| Optional model screen | **Tested / Simulated:** code and recorded developer-led evaluation exist | Repeated current-prompt recordings, unseen private practitioner evaluation, and specialist acceptance |
+| Current service baseline | **Not validated:** no organizational volume, time, or rework data | Agreed periods, denominators, data owner, and nonconfidential measurement method |
+| Business benefit / ROI | **Not validated:** no observed organizational benefit or ROI estimate here | Measure all reviewer, implementation, and monitoring cost against baseline before estimating value |
+| Adoption and employee experience | **Proposed:** no usage or satisfaction result | Eligible-user denominator, uptake/repeat use, human-channel choice, abandonment, repeat contact, and reason-coded feedback |
+| Deployed authorization and audit | **Not validated:** demo identities/stores are insufficient | Negative cross-user/action tests and verified protected storage before real data |
+
+[Resolve evaluation results](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-results.md) preserve historical failures and recording limitations. They support withholding autonomy; they do not prove that this target architecture works. No measured result is inferred from a proposed control.
+
+### Adoption review
+
+**Proposed:** teach reviewers how to challenge a route or draft, identify sensitive context, record overrides, and ask for specialist help. Tell employees what the system does, what reaches a person, and how to choose a human channel. Track uptake against eligible users and review reasons for non-use or abandonment. High usage with worse access, unresolved cases, or excessive specialist workload is a failed pilot, not successful adoption. Review aggregated feedback by permitted service cohorts; Privacy reviews small-group disclosure risk.
+
+### Deployment decision and stop criteria
+
+**Proposed decision gates:** agree tolerances before testing. Use [Resolve's acceptance criteria](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md#acceptance-criteria-for-redesigned-routing), with ER/Legal-owned severity thresholds, appropriate sampling, and separate excessive-escalation ceilings. Add access/privacy tests, policy correctness, reviewer capacity, and employee access to a human. HR service delivery and specialist owners record the decision; Security/Privacy sign off on their controls. A passing CI run cannot approve deployment.
+
+Expansion requires evidence for the particular task and version. A time saving in retrieval does not permit autonomous employment decisions. Start with reviewed assistance; reassess each material model, prompt, policy, data, or permission change.
+
+| Stop or hold trigger | Response |
+|---|---|
+| Cross-user exposure/write, sensitive manager disclosure, approval bypass, or unapproved data/provider use | Stop affected processing; restrict access, preserve protected evidence, notify the accountable incident owner, and require revalidation |
+| Confirmed critical routing miss or missed specialist concern | Pause the affected path; human handling and specialist review before restart |
+| Wrong policy/entitlement, unreliable source, unavailable control, or model/tool failure | Hold the recommendation and route to a person; no silent fallback to broader permissions |
+| Excessive false refusals, specialist load above agreed capacity, or deteriorating employee access | Hold expansion; review workload and scope rather than raise autonomy to clear a queue |
+| Missing independent evaluation, baseline, or named approval | No real-data pilot or autonomy expansion; record what evidence is missing |
+
+Restart requires the owner to record cause, corrective action, test evidence, version, and approval. This is a proposed lifecycle discipline, not an incident process already operating here.
 
 ## Limitations
 
@@ -161,7 +235,7 @@ The rest of the portfolio follows the same chain: work, risk, [technology choice
 | Failure | A missed concern cannot be undone; an unnecessary escalation can. Wording that tries to talk the screen out of escalating is a failure mode to test. |
 | Governance | Model-provider data-retention terms approved before the screen reads employee text. Each miss becomes an incident and a new kind of test case, not a new keyword. |
 | Evaluation | Held-out cases across every signal category, written by practitioners who do not tune the screen, including indirect disclosures, euphemisms, several intents in one request, attempts to suppress escalation, incomplete context, and benign requests that resemble sensitive ones. Harmful misses reported with confidence bounds; unnecessary escalations with their cost. See the [acceptance criteria](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-methodology.md#acceptance-criteria-for-redesigned-routing). |
-| Status | Keyword layer tested for known phrasing (`test_employee_relations_language_escalates_without_fact_finding`, `test_legal_language_routes_to_legal`); held-out failures observed. Intake and model layers proposed. |
+| Status | Keyword layer tested for known phrasing (`test_employee_relations_language_escalates_without_fact_finding`, `test_legal_language_routes_to_legal`); held-out failures observed. Structured intake remains proposed. Resolve implements an optional evaluation screen; it is not independently validated or enabled in the rules-only browser demo. |
 
 </details>
 
