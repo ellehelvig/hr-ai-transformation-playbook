@@ -104,7 +104,7 @@ matplotlib-inline==0.2.2
     # via
     #   ipykernel
     #   ipython
-mcp==1.30.0
+mcp==2.3.0
     # via -r 10-mcp-agents/requirements.txt
 narwhals==2.26.0
     # via scikit-learn
