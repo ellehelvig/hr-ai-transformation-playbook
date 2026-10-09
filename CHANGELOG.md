@@ -11,11 +11,12 @@ Added
 
 Fixed
 
+- **CPPA effective and compliance dates separated.** The regulator's package took effect on 1 January 2026, with risk-assessment compliance beginning in 2026 and ADMT compliance beginning on 1 January 2027. The curriculum, risk template, and dates table no longer label the entire package as effective in 2027. Scope and transition rules remain necessary. Source: [CPPA announcement](https://cppa.ca.gov/announcements/2025/20250923.html).
 - **The LLM judge would fail on its first real run.** It sent `temperature=0` to `claude-sonnet-5`, and current Claude models reject non-default sampling parameters. The judge now sends none, uses `claude-sonnet-5-5`, and allows enough output for its reasoning. A new test checks the live request shape.
 
 Changed
 
-- **California AB 1883 and SB 947 are law.** Both were approved by the Governor on 30 September 2026 (Chapters 853 and 859, Statutes of 2026). The curriculum and risk assessment no longer describe them as unverified. AB 1883's "signed 3 September" reports are explained: that was the enrollment date. Operative dates are stated as the constitutional default of 1 January 2027, with SB 947's reported 1 July 2027 marked unconfirmed.
+- **Four California workplace laws verified against chaptered text on 9 October 2026.** AB 1331, AB 1883, SB 947, and SB 951 were approved and chaptered on 30 September 2026 (Chapters 851, 853, 859, and 860). AB 1331, AB 1883, and SB 951 take effect on 1 January 2027 under Constitution Article IV, section 8(c)(1). SB 947 takes effect that day but its new Labor Code part is expressly operative on 1 July 2027 under section 1526.7. Adds the two omitted laws, distinguishes effective from operative dates, and records sources in [the California source register](03-governance/claims/california-workplace-laws.json). SB 951 retains 60-day Cal/WARN notice, not the earlier 90-day proposal. AB 1883's 3 September enrollment date remains distinguished from signing.
 - **Key dates table covers the US state laws.** Adds California's FEHA ADS rules, Illinois HB 3773, California AB 1883, the CPPA ADMT rules, Colorado SB 26-189 (with the federal stay), and California SB 947. Last reviewed 1 October 2026.
 - **Colorado dates made precise.** SB 26-189's core duties apply to decisions on and after 1 January 2027; some sections took effect on signing.
 
