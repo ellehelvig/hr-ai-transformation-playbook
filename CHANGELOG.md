@@ -11,6 +11,8 @@ Added
 
 Fixed
 
+- **Colorado enforcement status deferred.** The statutory applicability date is supported by the legislature, but the current court orders and rulemaking were not verified. The dates table and risk template no longer state a continuing stay as settled fact. Counsel must confirm the operative orders and rules.
+
 - **Risk evidence no longer stated as certainty.** Historical hiring and pay distributions can create model bias but do not guarantee it. Connecticut's bias-testing evidence rule does not establish that an old audit is categorically worse than no audit. Pay-transparency guidance removes an unsupported state count and distinguishes national implementation and conditional vertical direct effect from blanket private-employer applicability across the EU. Sources are linked beside each correction.
 - **CPPA effective and compliance dates separated.** The regulator's package took effect on 1 January 2026, with risk-assessment compliance beginning in 2026 and ADMT compliance beginning on 1 January 2027. The curriculum, risk template, and dates table no longer label the entire package as effective in 2027. Scope and transition rules remain necessary. Source: [CPPA announcement](https://cppa.ca.gov/announcements/2025/20250923.html).
 - **The LLM judge would fail on its first real run.** It sent `temperature=0` to `claude-sonnet-5`, and current Claude models reject non-default sampling parameters. The judge now sends none, uses `claude-sonnet-5-5`, and allows enough output for its reasoning. A new test checks the live request shape.
