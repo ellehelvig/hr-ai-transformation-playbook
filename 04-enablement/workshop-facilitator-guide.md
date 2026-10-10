@@ -26,7 +26,7 @@ Operational guidance for anyone facilitating the [HR AI literacy curriculum](hr-
 
 **Module 1 (How AI works):** This is the module most likely to run long because of tangents into "but is my job safe" discussion. Acknowledge the concern directly and briefly, then redirect: "That's real, and it's exactly what Module 3 on governance and Module 4 on scaling responsibly are for. Let's get the mental model right first." Don't skip the redirect. An unaddressed anxiety in the room will resurface and derail later modules.
 
-**Module 2 (Hands-on lab):** This is the highest-value session. If time is tight anywhere in the series, protect this module and cut elsewhere. Walk the room during the lab. Don't just present and wait. Most learning happens when you're standing next to someone whose prompt didn't work, asking "what did you actually want it to do?"
+**Module 2 (Hands-on lab):** Protect time for this practical session. If time is tight anywhere in the series, protect this module and cut elsewhere. Walk the room during the lab. Don't just present and wait. Most learning happens when you're standing next to someone whose prompt didn't work, asking "what did you actually want it to do?"
 
 **Module 3 (Governance):** Generates the most pushback, usually from two directions: people who think the rules are overkill, and people who think no amount of governance makes this safe. Both reactions are useful signal, not a problem to shut down. Budget real discussion time. This module should not be delivered as a monologue.
 
@@ -61,3 +61,7 @@ Operational guidance for anyone facilitating the [HR AI literacy curriculum](hr-
 - Send the prompt library and governance docs as reference material, not just slides
 - Collect one thing that worked and one thing that didn't from each cohort and feed it back into this guide
 - Track who completed the hands-on lab vs. who just attended. Completion of Module 2 is the best candidate predictor of tool adoption, so track it and check whether that holds in your cohorts
+
+## Lab data boundary
+
+Use synthetic HR scenarios in organization-approved tools. Do not upload real employee, candidate, compensation, or confidential employer information for training. Removing names alone does not establish anonymity. Review provider handling and account settings before delivery. Delivery suggestions should be tested against participants' learning and verification performance, not treated as measured comparative results.
