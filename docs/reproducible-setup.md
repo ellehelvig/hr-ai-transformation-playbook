@@ -49,3 +49,21 @@ interface the application actually uses.
 The lock does not prove that packages are vulnerability-free. Security updates
 still need review and validation. Optional model SDKs installed for live runs
 are separate from this offline environment.
+
+## Reviewed dependency PR disposition (10 October 2026)
+
+PR #42 supersedes #36: `uv pip compile requirements-dev.in --python-version
+3.11 --universal --no-header --upgrade-package pydantic --output-file
+requirements-lock.txt` resolves Pydantic 2.14.0 with its exact core 2.50.0.
+Only those two lock entries changed. A clean Python 3.12 environment passes
+`pip check`, 101 tests, Ruff, server import and self-description checks.
+Dependabot groups the parent and core for future reviews, but the compiler and
+CI remain the contract checks. Grouping alone cannot prove compatibility.
+
+PR #39 should close as incompatible with the supported MCP 1 interface.
+MCP 2 migration is deferred to a separate implementation with an actual server
+import and tool contract tests. MCP remains 1.30.0, below 2. No security alert
+is dismissed and no dependency check is disabled. Owner: repository maintainer.
+
+Local notebook kernel launch is constrained by socket permissions. Use the
+exact-head CI notebook job as execution evidence, not a local pass.
