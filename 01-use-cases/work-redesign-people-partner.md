@@ -1,16 +1,55 @@
 # Work redesign: the People Partner who handles employee requests
 
-> **01 / DECIDE** · A task-level redesign of one HR role, examined against a synthetic prototype.
+**Fictional workflow. Proposed redesign. Synthetic prototype evidence. No completed employee pilot or measured business benefit.**
 
-[← Use case library](README.md) · [Playbook home](../README.md) · [Resolve, the working prototype](https://github.com/ellehelvig/peopleops-resolution-agent)
+[Select a use case](prioritization-matrix.md) → **Redesign the work** → [Plan the pilot](../04-enablement/adoption-playbook.md)
 
----
+## The HR problem
 
-Request wording is not request intent. "Can I work from home two days a week?" is correctly labeled a remote-work request. If the next sentence mentions chemotherapy, the label is still correct, but the right process, the risk, who should see the request, what may be disclosed, and what can safely be automated have all changed.
+A routine request can contain a very different need. “Can I work from home two days a week?” sounds administrative. Add “during my chemotherapy” and the same topic now requires restricted handling and an appropriate human process. Correctly naming the topic does not establish that the workflow is appropriate.
 
-**Classification is not merely a language problem. It is a workflow, risk, and accountability problem.**
+This case asks how a People Partner could spend less time searching and drafting while retaining responsibility for exceptions and sensitive conversations. It draws on Elle Helvig's HR problem framing and AI-assisted prototype development. It is an independent portfolio exercise, not an employer implementation. People Partners have not yet validated the proposed redesign.
 
-This page redesigns one HR role around that idea, task by task, and tests the design against a working prototype. Here, HRBP means the HR partner aligned to a business leader; People Partner means the HR professional who owns employee requests in a tiered service. Organizations use both titles for both scopes.
+## One request, before and after
+
+The before column is an illustrative manual process, not an observed baseline. The after column is a proposed operating model. All example people, policies, and requests are fictional.
+
+| Step | Before: manual reference process | After: proposed handoff | Accountable person |
+|---|---|---|---|
+| Receive | People Partner reads an open-ended request | Structured intake offers a human channel. Restricted context goes to a specialist, not a manager's ordinary queue | HR service delivery owner |
+| Find evidence | People Partner searches policy and checks applicability | Ordinary rules retrieve approved policy and minimum authorized eligibility fields. Missing or conflicting sources stop the draft | Policy owner |
+| Prepare | People Partner writes the reply | AI may draft routine wording from verified evidence. Reviewer checks every material claim and can reject it | Assigned People Partner |
+| Handle exceptions | People Partner consults a specialist | Any sensitive signal, uncertainty, control failure, or employee request for a person interrupts routine handling | Relevant specialist |
+| Decide and communicate | Authorized person decides and records the outcome | Authorized person still decides. Manager receives only necessary operational information | Decision owner |
+
+Permitted inputs in a future approved pilot would be the minimum request context and authorized eligibility fields. Expected outputs are a proposed route, source references, a reviewable draft, and a documented human decision. Health details, allegations, or another person's records must not flow into routine manager messages. These are requirements to implement and verify, not assurances provided by today's demo.
+
+## The choice to keep sensitive work human-led
+
+I would not automate the substance of an accommodation assessment or workplace investigation. A request can require dialogue, discretion, competing obligations, and information the initial text does not contain. The system may help a person reach the right owner. It must not diagnose, determine protected status, decide entitlement, or automatically approve or deny an employment action.
+
+The redesign also changes the manager's role. Managers need to recognize a referral boundary, avoid requesting unnecessary personal detail, and make space for reviewers to challenge an output. A fast response is not useful if it sends the employee to the wrong process.
+
+## What the prototype taught us
+
+Resolve implements deterministic routing, fictional policy selection, bounded eligibility fields, a simulated approval queue, and temporary activity history. Its default browser demonstration does not use a model. Employee and reviewer identities are self-reported. There is no executing employment-action integration.
+
+The original rules passed their 60 development cases but met none of the full pass conditions in 16 later developer-authored synthetic paraphrases. The test unit was a case with expected routing and other pass conditions, not a model response rated for general accuracy. Four ER/legal concerns received generic clarification. A fifth entered relocation review without recognizing the complaint. Other failures included missing security-event classification, unrecognized routine requests, and negation. These failures do not establish data disclosure or employee harm.
+
+That result changed the design direction: preserve the failure record, retain human ownership, and investigate layered routing instead of adding a keyword and declaring the problem solved. An optional model screen now exists, but its initial developer-led recordings also contain false refusals. Replay checks those recordings, not a fresh model or unseen cases. The original paraphrases have informed development and are now regression evidence. Production use remains withheld.
+
+## What would justify a pilot
+
+Start with practitioner walkthroughs and synthetic shadow cases. Compare the manual process, rules-only route, and proposed assisted route using a common reviewer rubric. Measure time to the correct owner, policy accuracy, missed specialist concerns, unnecessary escalation, reviewer minutes, repeat contacts, and access to a human. Record implementation and maintenance effort too.
+
+There is no measured baseline or ROI here. The [pilot plan](../04-enablement/adoption-playbook.md) specifies owners, learning activities, measurement cadence, and expand/pause/stop decisions. New private cases need actual independent practitioner authorship and separation from development. Assistant-written examples remain development material.
+
+[Inspect Resolve's case-level results](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/evaluation-results.md) · [Research and interpretation](../docs/practitioner-research-2026-10-10.md)
+
+## Supporting design and evidence
+
+<details>
+<summary>Open the task map, data boundaries, evaluation method, and proposed controls</summary>
 
 ## Problem, current state, and scope
 
@@ -79,9 +118,9 @@ Adding "chemotherapy" to a keyword list would pass the probe and miss "my treatm
 **Proposed target architecture, not the current browser demo:**
 
 ```mermaid
-flowchart LR
+flowchart TD
   R[Request] --> I[Structured intake]
-  I -- employee asks for support --> P[Specialist or<br/>People Partner]
+  I -- employee asks for support --> P[Specialist or People Partner]
   I --> D[Deterministic signals]
   D -- explicit signal --> P
   D --> M[Model screen]
@@ -93,7 +132,7 @@ flowchart LR
 
 The design is layered because each layer fails differently. Structured intake gives employees an explicit path, but people often do not know their situation is an accommodation, protected leave, or retaliation matter. Deterministic signals catch explicit terms and nothing else. A model may recognize context described in ordinary words, which is the hypothesis to test, but a probabilistic classifier should never be the only safeguard between an employee and the right process. Any layer can send a request to a person. None can clear one alone. If the screen errors or is unavailable, everything goes to a person. HR service delivery operates the routing; Employee Relations, accommodations, leave, Legal, and Privacy set its criteria; the People Partner or specialist owns each case after routing.
 
-The screen returns a route, never a diagnosis or quoted text: it detects enough to route safely, not enough to expose. A manager learns what their role requires, such as an approved schedule, and not the reason. Harmful misses and unnecessary escalations are both measured, because optimizing one without the other shifts the cost to employees or to specialists.
+The screen returns a route, never a diagnosis or quoted text: its intended role is limited routing support. Whether it recognizes the needed context reliably remains unproven. A manager learns what their role requires, such as an approved schedule, and not the reason. Harmful misses and unnecessary escalations are both measured, because optimizing one without the other shifts the cost to employees or to specialists.
 
 **The evidence proves the problem, not yet the solution.** Resolve now includes an experimental model screen in its evaluation harness. The first untuned run used developer-authored cases and also produced false refusals; it does not validate this broader work redesign. The default browser/API demo remains rules-based. Pending fresh practitioner evaluation, Resolve's [risk register](https://github.com/ellehelvig/peopleops-resolution-agent/blob/main/docs/governance-and-risk.md) keeps residual risk for missed Employee Relations and legal concerns at High, and production use is withheld.
 
@@ -155,7 +194,7 @@ Measure changed work, not launched tools.
 
 | Measure | Tasks |
 |---|---|
-| Harmful misses, from a monthly Employee Relations review of non-escalated requests | 1 |
+| Harmful misses, from a weekly pilot Employee Relations review of non-escalated requests | 1 |
 | Unnecessary escalations, and the specialist time they cost | 1 |
 | Time from request to the right owner | 1, 6, 7, 8 |
 | Reasons drafts are edited and recommendations rejected | 4, 6 |
@@ -408,3 +447,5 @@ These were written to find weaknesses.
 - Ground the task list against O\*NET task statements for 13-1071 from the primary source.
 - Validate classifications and the skills view with People Partners.
 - Build Resolve's broad held-out set across all signal categories, measuring harmful misses and unnecessary escalations.
+
+</details>

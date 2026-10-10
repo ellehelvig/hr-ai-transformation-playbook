@@ -4,6 +4,8 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+- **Portfolio review, 10 October 2026.** Added a concise fictional People Partner narrative, a complete hold decision in the use-case tool, and dated primary-source interpretations. Preserved detailed design and failure evidence.
+
 Added
 
 - **Run the smoke tests on a Claude plan.** `prompt_tests.py --run --backend claude-code` runs prompts and grading through the Claude Code CLI with its tools disabled, so no API key is needed. Any `ANTHROPIC_API_KEY` in the shell is withheld from the CLI so it cannot bill the API.
