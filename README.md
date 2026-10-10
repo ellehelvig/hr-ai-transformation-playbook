@@ -45,6 +45,11 @@ Built by Elle Helvig, an HR transformation leader. I defined the HR problems, de
 
 ## For technical reviewers
 
+This is a reference toolkit with tested deterministic tools and synthetic
+notebooks, not a production HR service. Prompts, model judges, and governance
+templates need their own evaluation and qualified review before use. Follow the
+[locked local and CI setup](docs/reproducible-setup.md) to reproduce the tools.
+
 - Three notebooks execute in CI on every push, using synthetic data only.
 - Four HR workflows expose six MCP tools, backed by a 52-test suite. No tool calls an LLM internally, so their behavior is reproducible and auditable.
 - The comp banding, resume screening, and recruiter intake tools always return `human_review_required: true`, with no code path that turns it off, and their tests check it. The policy Q&A tool instead always returns a not-legal-advice disclaimer, also tested.

@@ -30,6 +30,9 @@ jobs:
       - name: Install Python deps
         run: pip install -r requirements-lock.txt
 
+      - name: Verify installed dependency consistency
+        run: python -m pip check
+
       - name: Verify MCP server imports with installed SDK
         run: |
           python - <<'PYTHON'

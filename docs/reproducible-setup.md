@@ -15,6 +15,7 @@ From the repository root, with Python 3.11 or later:
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-lock.txt
+python -m pip check
 python -m pytest 10-mcp-agents 09-evals -q
 python -m ruff check .
 python scripts/verify_claims.py
@@ -39,6 +40,30 @@ Confirm notebook execution in CI before merging. Commit the range changes and
 lock together. The MCP SDK remains below version 2 because this server uses
 the version 1 FastMCP interface; a major migration needs its own review.
 
+Do not update `pydantic-core` independently of `pydantic`: the parent package
+requires an exact core version. Regenerate the complete lock with compatible
+parent versions rather than hand-editing transitive pins. `pip check` verifies
+installed package contracts; the server import check separately verifies the
+interface the application actually uses.
+
 The lock does not prove that packages are vulnerability-free. Security updates
 still need review and validation. Optional model SDKs installed for live runs
 are separate from this offline environment.
+
+## Reviewed dependency PR disposition (10 October 2026)
+
+PR #42 supersedes #36: `uv pip compile requirements-dev.in --python-version
+3.11 --universal --no-header --upgrade-package pydantic --output-file
+requirements-lock.txt` resolves Pydantic 2.14.0 with its exact core 2.50.0.
+Only those two lock entries changed. A clean Python 3.12 environment passes
+`pip check`, 101 tests, Ruff, server import and self-description checks.
+Dependabot groups the parent and core for future reviews, but the compiler and
+CI remain the contract checks. Grouping alone cannot prove compatibility.
+
+PR #39 should close as incompatible with the supported MCP 1 interface.
+MCP 2 migration is deferred to a separate implementation with an actual server
+import and tool contract tests. MCP remains 1.30.0, below 2. No security alert
+is dismissed and no dependency check is disabled. Owner: repository maintainer.
+
+Local notebook kernel launch is constrained by socket permissions. Use the
+exact-head CI notebook job as execution evidence, not a local pass.

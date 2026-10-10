@@ -30,7 +30,10 @@ This playbook improves when practitioners send back what they learned in product
 ## Running the checks locally
 
 ```bash
-pip install -r requirements.txt -r 10-mcp-agents/requirements.txt ruff pytest
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-lock.txt
+python -m pip check
 ruff check .
 pytest 10-mcp-agents 09-evals -q
 python scripts/verify_claims.py
@@ -38,6 +41,8 @@ npx markdownlint-cli --config .markdownlint.json '**/*.md' --ignore node_modules
 ```
 
 CI also executes the notebooks, validates YAML, checks internal links, and validates skill frontmatter. Notebook execution takes a few minutes; you can skip it locally unless you changed a notebook.
+
+See [reproducible setup](docs/reproducible-setup.md) for Windows activation and dependency refresh. The lock is the reviewed validation environment; installing unconstrained tooling does not reproduce CI.
 
 ## Questions
 
