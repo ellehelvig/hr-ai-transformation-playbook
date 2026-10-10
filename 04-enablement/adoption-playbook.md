@@ -1,103 +1,88 @@
-# AI adoption playbook
+# Pilot and adoption plan: make the new work worth doing
 
-Training builds skill. Adoption is a separate problem. Most HR AI programs fail not because people can't use the tools, but because nothing in the surrounding system makes using them the path of least resistance. This playbook covers the change management work that has to happen alongside (not after) the [literacy curriculum](hr-ai-literacy-curriculum.md).
+**Proposed plan with a fictional People Partner example. No pilot, adoption result, or business benefit has been observed.**
 
----
+[Select the use case](../01-use-cases/prioritization-matrix.md) → [Redesign the work](../01-use-cases/work-redesign-people-partner.md) → **Judge the pilot**
 
-## Why enablement alone doesn't produce adoption
+A pilot should answer whether the redesigned work is useful, dependable within its scope, and workable for the people who own it. Training completion alone cannot answer that. This plan starts with synthetic rehearsal and keeps employee-facing use on hold until its own gates pass.
 
-A team can complete every module of the literacy curriculum and still not use AI in their daily work six months later. The usual reasons:
+## Pilot charter to adapt
 
-- **No time was actually freed up.** If AI use is additive to an already-full workload instead of replacing a slower manual step, it gets deprioritized the first busy week.
-- **No one modeled it.** If the HRBP's manager doesn't visibly use AI tools, "this is optional" is the message received, regardless of what training said.
-- **The first bad output wasn't recoverable.** One early hallucination or wrong policy citation, without a quick way to report and learn from it, teaches the team "don't trust this" faster than ten good outputs teach "trust this."
-- **Success wasn't visible.** If wins aren't shared, adoption stays individual and fragile instead of becoming a team norm.
+**Fictional scope:** People Partner policy lookup and draft review for remote-work questions. Ordinary rules retrieve approved fictional policy. AI drafting is a proposed option to compare, not an implemented feature of Resolve's default demo. Sensitive context goes to a person. No employment decision or HRIS write is automated.
 
-Design against all four, not just the training gap.
+**Decision today:** synthetic rehearsal only after its tool/data approvals. Resolve is not approved for employee-facing use. Trusted identity, protected records, independent evaluation, and operating ownership remain prerequisites.
 
----
-
-## Stakeholder map
-
-| Stakeholder | What they need from the program | What they can block |
-|---|---|---|
-| CHRO / HR leadership | Clear business case, risk posture they can defend upward | Budget, executive air cover |
-| People managers | Confidence their team won't create legal exposure | Whether their team actually uses it day to day |
-| HRBPs / practitioners | Tools that save real time, not extra process | Grassroots adoption or quiet non-use |
-| Legal / Privacy | Governance framework they trust | Approval to deploy any use case touching employee data |
-| IT / Security | Vendor and data security assurance | Technical access to tools |
-| Employees (as end users, for agent-facing use cases) | Transparency, a human escalation path | Trust in the program if handled badly once |
-
-Map your specific organization's version of this table before launch. The most common failure is treating HRBPs as the only stakeholder and skipping people managers, who control whether adoption becomes a team habit or an individual side project.
-
----
-
-## A 90-day adoption roadmap
-
-**Days 1-30: Foundation**
-- Deliver Modules 1-3, including governance and data handling, to a pilot group (one function or team, not the whole org)
-- Identify 2-3 use cases from the [use case library](../01-use-cases/use-case-library.md) that solve a real, currently-annoying problem for the pilot group specifically
-- Complete use-case intake and risk assessment; confirm accountable owners, intended/prohibited uses, approved tools, permissions, provider handling, evaluation criteria, rollback, and escalation. Obtain the required Legal/Privacy/Security approval before using employee data.
-- Set up a lightweight feedback channel (a Slack channel, a shared doc) for "this worked" / "this didn't" reports
-
-**Days 31-60: Proof**
-- Move from synthetic rehearsals to a bounded real-work pilot only after the approval and evaluation gates above pass. Use minimum necessary data and human review; remain in the sandbox if a gate is unresolved.
-- Weekly 15-minute check-in: what worked, what broke, what would make this easier
-- Document one concrete before/after example with a real time or quality metric. This becomes the story you tell everyone else
-
-**Days 61-90: Expansion**
-- Share the pilot's concrete results with the next cohort before training them. Proof beats persuasion
-- Deliver Module 4 to the pilot group; deliver the full curriculum to the next cohort before their real-work pilot
-- Identify one person per team as a peer resource (not a formal role, just "who do I ask when I'm stuck"). This scales faster than routing every question to the program owner
-
-Do not attempt to roll out to the entire HR function simultaneously. A visible, credible pilot is worth more than a wide, shallow launch.
-
----
-
-## Adoption metrics that actually mean something
-
-Avoid vanity metrics (training completion, login counts). Track:
-
-| Metric | What it tells you |
+| Role | Responsibility before and during a pilot |
 |---|---|
-| % of pilot group using a tool 2+ weeks after training | Whether training converted to habit |
-| Time saved per use case (self-reported, spot-checked) | Whether the value story is real |
-| Escalation rate, sampled harmful misses, unnecessary escalation, and reviewer workload | Whether routing protects employees and remains usable; escalation rate alone cannot establish this |
-| Ratio of "this worked" to "this didn't" feedback reports | Early warning on trust erosion |
-| Requests for new use cases from the field | The clearest signal that adoption is becoming pull, not push |
+| Sponsor: Head of People | Authorize scope and resources; decide expand/pause/stop with accountable partners |
+| Operator: HR service delivery lead | Own daily handling, capacity, version record, incidents, and retirement of the workflow |
+| Policy owner and People Partners | Verify policy, review outputs, record edits and exceptions, retain decision authority |
+| Employee Relations / accommodations / Legal | Set specialist boundaries and severity criteria; own sensitive substantive decisions and legal review |
+| HR systems / IT / Security | Verify permitted tools, identity-bound access, technical failures, integration limits, and rollback |
+| Privacy | Approve minimum data, provider handling, retention, access to evidence, and small-group reporting |
+| Enablement owner and managers | Protect practice time, explain changed responsibilities, support challenge and non-use feedback |
+| Employees or representatives | Review clarity, accessibility, human-channel choice, and concerns before employee-facing design is approved |
 
-Review these monthly for the first two quarters, then fold into your standard [ROI reporting cadence](../08-roi-measurement/README.md).
+These are role assignments to make, not people who have already participated. Record actual named owners privately before work begins. No accountable owner means hold.
 
----
+## A staged plan, with no automatic expansion
 
-## Handling the first public failure
+### Days 1-30: understand and rehearse
 
-Every program has one: a wrong answer, a bad draft that went out unedited, a hallucinated policy detail an employee caught. How this is handled in the first 90 days sets the trust ceiling for the next two years. Use the [incident report template](../03-governance/incident-report-template.md) to work the fix; use the four steps below to work the trust.
+Map the manual process with practitioners, including exceptions and invisible review work. Confirm an approved tool and synthetic data scope. Deliver literacy Modules 1-3, including governance and data handling, before practice. See the [curriculum](hr-ai-literacy-curriculum.md) and [facilitator guide](workshop-facilitator-guide.md).
 
-1. Acknowledge it specifically and quickly. Don't let it circulate without a response from the program owner
-2. Explain what went wrong in plain language (which verification step was skipped, not just "the AI made a mistake")
-3. Fix the actual gap (a missing verify-before-use step, a prompt issue, a scope boundary) and say what changed
-4. Do not respond by restricting the whole program if the failure was isolated. A proportionate fix builds more trust than an overcorrection
+Measure a human-only synthetic baseline on the same scope and rubric planned for comparison. Treat it as rehearsal evidence, not an operational employee baseline. Before any later real-work pilot, establish a separately authorized operational baseline in the approved environment. Never put employer data in this repository.
 
-A well-handled failure in month one often does more for long-term adoption than an unbroken string of quiet successes, because it proves the governance actually works.
+Have reviewers practice three fictional requests: a routine policy question, an ambiguous request, and a sensitive disclosure hidden inside a routine topic. Require source checking, an override, and a specialist referral. These are assistant-authored learning examples, not independent evaluation cases. Ask managers to rehearse explaining why a person needs more information without asking for unnecessary health details.
 
----
+### Days 31-60: compare the work
 
-## Manager enablement (the most skipped step)
+Compare manual handling, rules-only support, and any separately approved assisted option. Use the same case scope and independently labeled evaluation set where required. Separate development cases from unseen evaluation. Record versions, errors, disagreement, handling time, review time, and rework. Include accessibility and an easy route to a human in practitioner walkthroughs.
 
-People managers who don't use AI themselves become adoption bottlenecks even if they don't intend to. Before wide rollout:
+Run a weekly 15-minute practice and feedback session. Managers protect review time and ask which step became easier or harder. The operator records reasons for non-use and false escalation without pressuring people to accept poor outputs. Employee participation is a design input, not a claim that trust has been earned.
 
-- Brief managers separately, ahead of their teams, on what's coming and why
-- Give managers one visible use case they can model themselves (e.g., using a prompt from the [performance prompt library](../02-prompt-library/performance.md) for their own review drafting)
-- Ask managers directly what would make them comfortable modeling this. Don't assume the barrier is the same as their team's barrier
+Remain in synthetic rehearsal if an access, privacy, evaluation, or ownership gate is unresolved. A date on this plan is not permission to process employee data.
 
----
+### Days 61-90: decide, then prepare the next cohort
 
-## Signs adoption is becoming self-sustaining
+The sponsor reviews the evidence with HR, specialists, IT/Security, and Privacy. Complete the curriculum, including Module 4, before a new cohort starts real-work use. Expand only the tested task, data scope, and version after its gates pass. Share both failures and useful findings. Record a pause or stop with the same care as an expansion.
 
-- Use case requests come from the field, unprompted
-- People ask "is there a prompt for this" before asking "can someone help me with this"
-- Feedback shifts from "does this work" to "can we make this better"
-- A manager mentions using a tool in a context you didn't train them on, it's been generalized, not just followed by rote
+## Measure the entire task
 
-At that point, shift program effort from adoption to [scaling and measurement](../08-roi-measurement/README.md).
+Set periods, denominators, severity tolerances, and reviewer-capacity limits before evaluation. No numerical success threshold is validated by this template.
+
+| Measure | Baseline / comparison | Cadence and owner |
+|---|---|---|
+| Correct policy and useful output | Reviewed cases meeting the predefined rubric / all reviewed cases; report critical defects separately | Weekly, policy owner |
+| Missed specialist concerns | Review failures individually; sample non-escalated cases as well as escalations | Weekly during pilot, specialist owner |
+| Unnecessary escalation and false refusal | Report each separately with specialist minutes and delays | Weekly, operator |
+| Total handling effort | Intake + retrieval/drafting + review + rework + escalation effort per comparable case | Weekly, operator |
+| Employee experience | Correct-owner time, repeat contacts, abandonment, accessibility concerns, human-channel availability | Weekly, HR owner; use approved aggregate feedback |
+| Sustained use | Repeat users / eligible participants with access; pair with quality and reasons for non-use | Weekly cohort review, enablement owner |
+| Operating cost | Implementation, learning, software, evaluation, maintenance, incident handling | At each decision, sponsor and finance partner |
+
+Use within-scope comparison and report case-mix differences. Synthetic performance is not field fairness, employee satisfaction, or independent validation.
+
+## A transparent value calculation
+
+**Illustrative assumptions only, not a target or observed saving:** 100 cases in one month. Manual effort is 20 minutes per case. Proposed assisted effort is 8 minutes preparation + 7 review + 3 rework, or 18 minutes total. Net case-handling capacity is `100 × (20 - 18) / 60 = 3.33 hours`.
+
+If review instead takes 10 minutes, total effort becomes 21 minutes and the same volume **adds 1.67 hours**. This sensitivity shows why review burden matters. Add proposed setup of 12 hours, learning of 4 hours, and ongoing evaluation/maintenance of 2 hours for month one: `3.33 - 12 - 4 - 2 = -14.67 net hours` before software cost. In later months at the original assumptions, `3.33 - 2 = 1.33 net hours`, with software and any new incident cost still to account for.
+
+Capacity is not cash. Do not convert it into headcount reduction or claim realized savings without an actual financial change. If a monetary business case is later approved, disclose the hourly-cost assumption, period, usage, and all costs: `ROI = (monetized benefit - total cost) / total cost`. Keep avoided spending distinct from redeployed time; do not count labor cost twice. Quality and safety gates apply even when projected ROI is positive.
+
+## Expand, pause, or stop
+
+- **Expand:** agreed quality and employee-access criteria pass; reviewer capacity is adequate; independent evaluation and access/privacy gates pass; owners approve the specific version and scope. Evidence supports only that expansion.
+- **Pause:** missing baseline, uncertain source quality, excessive review/rework, unexplained non-use, absent owner, or unverified control. Keep manual handling available and resolve the gap.
+- **Stop affected processing:** cross-user exposure, unapproved sensitive data, bypassed approval, or a confirmed critical routing miss. Contain access, notify the incident owner, and preserve evidence in the approved environment. Missing critical evidence cannot be offset by speed or adoption.
+
+After a failure, explain what is known, investigate the actual cause, and choose containment based on severity and reach. Do not assume the user skipped a verification step. Restart requires a recorded corrective action, fresh evidence, and the relevant owner's approval. Use the [incident template](../03-governance/incident-report-template.md).
+
+Review again when the model, prompt, policy, permissions, provider, or intended use changes. Retire the workflow if the need disappears or operating capacity cannot sustain it. Preserve decisions and approved evidence under the organization's retention rules.
+
+## Research basis and maintenance
+
+Microsoft's [2026 Work Trend Index](https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization), published 5 May 2026 and accessed 10 October 2026, informs the emphasis on managers and organizational readiness. Its survey associations are not causal proof of business impact. NIST's [AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework), released January 2023 and accessed 10 October 2026, informs ongoing evaluation and risk ownership. It is voluntary guidance, not certification. The schedule, calculations, and gates above are proposed design judgments.
+
+Maintain one charter, one measurement record, and one decision log. Review weekly during the pilot and at material changes. The stopping point is an evidence-backed expand, pause, or stop decision, not a larger collection of templates.
