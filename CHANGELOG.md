@@ -4,6 +4,8 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+- **Portfolio review, 10 October 2026.** Clarified the practitioner entry point, moved setup and dated inventories to a technical evidence page, and kept automated count checks active.
+
 Added
 
 - **First prompt smoke test run.** Ten HR operations and performance templates on Claude Opus 5.5, graded by an LLM judge (Sonnet): 49 of 53 criteria met. One miss is model behavior (the calibration briefing suggested reconsidering a rating because of health context); two came from the test design. Recorded in `09-evals/prompt-test-results.json`; a human review checklist is in `09-evals/prompt-review-2026-10-01.md`. No prompt is marked tested.
