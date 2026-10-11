@@ -4,6 +4,8 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+- Clarified the four-step practitioner journey and focused the introduction on project contributions.
+
 - **Portfolio review, 10 October 2026.** Clarified the practitioner entry point, moved setup and dated inventories to a technical evidence page, and kept automated count checks active.
 
 Added

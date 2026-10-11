@@ -6,7 +6,7 @@ A practical reference toolkit for HR leaders choosing where AI belongs, redesign
 
 An AI experiment becomes an HR transformation effort when someone owns the process, employees can get help, and the team knows what would justify continuing or stopping. This playbook connects those decisions. It is for People leaders, HR operations and systems teams, and the technical partners supporting them. No installation is needed to read or adapt the practitioner materials.
 
-I bring enterprise HR, talent, systems, and change experience to the problem framing and workflow design. I develop the independent examples and tools with AI assistance. They make the decisions inspectable: what ordinary rules can do, where AI may help, what a person must own, and what evidence is still missing. These are independent portfolio projects, not deployments at my employers.
+I frame the HR problems, design the reference tools and examples, and develop the demonstrations with AI assistance. The work makes decisions inspectable: what ordinary rules can do, where AI may help, what a person must own, and what evidence is still missing.
 
 **Scope:** adaptable reference materials and synthetic demonstrations. The People Partner redesign is a proposal informed by prototype failures. It has no measured business outcome or completed employee pilot. Templates require local HR, Legal, Privacy, and Security review as appropriate. A review flag in an output is not an enforced approval system.
 
@@ -14,7 +14,8 @@ I bring enterprise HR, talent, systems, and change experience to the problem fra
 
 1. **Select a useful opportunity.** Use the [decision tool](01-use-cases/prioritization-matrix.md). Resolve hard constraints before comparing business value.
 2. **Redesign the work.** Read the [People Partner case](01-use-cases/work-redesign-people-partner.md). Follow a fictional request through rules, assistance, and accountable human judgment.
-3. **Decide whether to continue.** Use the [pilot and adoption plan](04-enablement/adoption-playbook.md). Measure quality, employee access, review effort, and sustained use before expansion.
+3. **Enable adoption.** Use the [pilot and adoption plan](04-enablement/adoption-playbook.md) to prepare managers, protect practice time, and build a feedback loop.
+4. **Evaluate whether to proceed.** Assess quality, value, employee access, and review effort using the [measurement guidance](08-roi-measurement/README.md). Decide whether to expand, pause, or stop.
 
 ## Explore by question
 
