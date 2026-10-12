@@ -39,24 +39,20 @@ Each stage answers one question before the next begins. Work moves forward when 
   <img alt="The journey, stage by stage. 1. Opportunity: what is worth doing first, and what should wait? See 01 Use cases. 2. Work redesign: which tasks change, and where do people stay accountable? See the 01 case study and 07 Patterns. 3. Governance: can we deploy this responsibly, and who needs to review it? See 03 Governance. 4. Pilot: what must a pilot prove before anything scales? See 06 Roadmap and phase gates. 5. Evaluation: did it work, and is it safe to expand? See 09 Evals and 08 ROI. 6. Adoption: will people trust it and use it well? See 04 Enablement." src="assets/journey-light.svg" width="100%">
 </picture>
 
-| Stage | Start with | Then |
-|:--|:--|:--|
-| **Opportunity** | [Prioritization matrix](01-use-cases/prioritization-matrix.md) | [Use case library](01-use-cases/README.md) and [intake template](01-use-cases/intake-template.md) |
-| **Work redesign** | [The People Partner role](01-use-cases/work-redesign-people-partner.md) | [Workflow patterns](07-agentic-patterns/README.md) |
-| **Governance** | [AI use policy](03-governance/ai-use-policy.md) | [Governance references and key dates](03-governance/README.md) |
-| **Pilot** | [Transformation roadmap](06-roadmap/transformation-roadmap-template.md) | [Phase gates and KPIs](06-roadmap/README.md) |
-| **Evaluation** | [Eval framework](09-evals/README.md) | [ROI measurement](08-roi-measurement/README.md) |
-| **Adoption** | [Adoption playbook](04-enablement/adoption-playbook.md) | [Literacy curriculum](04-enablement/hr-ai-literacy-curriculum.md) |
+- **Opportunity.** Start with the [prioritization matrix](01-use-cases/prioritization-matrix.md), then the [use case library](01-use-cases/README.md) and [intake template](01-use-cases/intake-template.md).
+- **Work redesign.** Start with [the People Partner role](01-use-cases/work-redesign-people-partner.md), then the [workflow patterns](07-agentic-patterns/README.md).
+- **Governance.** Start with the [AI use policy](03-governance/ai-use-policy.md), then the [governance references and key dates](03-governance/README.md).
+- **Pilot.** Start with the [transformation roadmap](06-roadmap/transformation-roadmap-template.md), then the [phase gates and KPIs](06-roadmap/README.md).
+- **Evaluation.** Start with the [eval framework](09-evals/README.md), then [ROI measurement](08-roi-measurement/README.md).
+- **Adoption.** Start with the [adoption playbook](04-enablement/adoption-playbook.md), then the [literacy curriculum](04-enablement/hr-ai-literacy-curriculum.md).
 
 <br>
 
 ## Where to start
 
-| Time | Look at | What it shows |
-|:--|:--|:--|
-| 5 minutes | [Work redesign: the People Partner role](01-use-cases/work-redesign-people-partner.md) | One HR role broken into tasks: where rules, AI, and people each belong, what evidence supports each choice, and why no task yet earns end-to-end model autonomy |
-| 2 minutes | [Prioritization matrix](01-use-cases/prioritization-matrix.md) | How to pick the first three use cases, with a worked example |
-| 2 minutes | [Resume screening tool](10-mcp-agents/resume_screen/ENABLEMENT.md) | A deterministic tool an AI assistant can call. It shows the evidence for each job requirement, returns no fitness score, never compares candidates, and lists what its design cannot prevent |
+- **5 minutes. [Work redesign: the People Partner role](01-use-cases/work-redesign-people-partner.md).** One HR role broken into tasks: where rules, AI, and people each belong, what evidence supports each choice, and why no task yet earns end-to-end model autonomy.
+- **2 minutes. [Prioritization matrix](01-use-cases/prioritization-matrix.md).** How to pick the first three use cases, with a worked example.
+- **2 minutes. [Resume screening tool](10-mcp-agents/resume_screen/ENABLEMENT.md).** A deterministic tool an AI assistant can call. It shows the evidence for each job requirement, returns no fitness score, never compares candidates, and lists what its design cannot prevent.
 
 **New here?** HR leaders start with the [use cases](01-use-cases/README.md). Legal and Privacy partners start with the [AI use policy](03-governance/ai-use-policy.md). Engineers start with the [MCP tools](10-mcp-agents/README.md).
 
