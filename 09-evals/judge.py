@@ -206,13 +206,40 @@ def anthropic_judge(question: str, response: str, criteria: list[str]) -> tuple[
 CLI_SYSTEM_PROMPT = "You are a careful assistant. Follow the user's instructions exactly."
 
 
-def run_claude_cli(prompt: str, model: str, system_prompt: str = CLI_SYSTEM_PROMPT, run=None) -> str:
-    """Run one prompt through the Claude Code CLI on the signed-in Claude plan.
+_AUTH = re.compile(r"authenticat|oauth|log ?in|credential|api key|unauthori[sz]ed|forbidden|\b40[13]\b", re.I)
+_RATE = re.compile(r"rate.?limit|usage limit|quota|\b429\b", re.I)
+_TRANSPORT = re.compile(r"timeout|timed out|connection|network|dns|overloaded|unavailable|\b50[234]\b|\b529\b", re.I)
+_SECRETISH = re.compile(r"sk-ant-\S+|bearer\s+\S+|[A-Za-z0-9_\-]{32,}", re.I)
+
+
+def classify_failure(message: str) -> str:
+    """Name the infrastructure failure behind an error message. Never a judgment of model quality."""
+    if _AUTH.search(message):
+        return "authentication"
+    if _RATE.search(message):
+        return "rate_limit"
+    if _TRANSPORT.search(message):
+        return "transport"
+    return "cli_error"
+
+
+def safe_message(message: str) -> str:
+    """Shorten an error and strip anything shaped like a credential before it is written to evidence."""
+    return _SECRETISH.sub("[redacted]", " ".join(str(message).split()))[:200]
+
+
+def run_claude_cli_detailed(prompt: str, model: str, system_prompt: str = CLI_SYSTEM_PROMPT, run=None) -> dict:
+    """Run one prompt through the Claude Code CLI on the signed-in Claude plan, and describe what happened.
 
     `claude -p` with Claude Code's system prompt replaced and every tool
     disabled, so the model only answers. ANTHROPIC_API_KEY is removed from the
-    child environment so a key in the shell cannot bill the API. Raises
-    RuntimeError on any failure.
+    child environment so a key in the shell cannot bill the API.
+
+    Returns {"ok", "text", "exit_code", "failure_kind", "failure_message",
+    "serving_models"}. A failure is classified as authentication, rate limit,
+    transport, CLI error, or unparseable output, so an infrastructure problem
+    is never mistaken for a model answer. stderr is not kept, and the error
+    message is shortened and redacted.
     """
     import shutil
     import subprocess
@@ -221,19 +248,42 @@ def run_claude_cli(prompt: str, model: str, system_prompt: str = CLI_SYSTEM_PROM
     command = [shutil.which("claude") or "claude", "-p", "--model", model, "--system-prompt", system_prompt,
                "--tools", "", "--output-format", "json", "--no-session-persistence", "--strict-mcp-config"]
     env = {k: v for k, v in os.environ.items() if k not in {"ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN"}}
+    record = {"ok": False, "text": None, "exit_code": None, "failure_kind": None, "failure_message": None,
+              "serving_models": []}
     try:
         done = run(command, input=prompt, capture_output=True, text=True, timeout=600, env=env)
     except (OSError, subprocess.SubprocessError) as exc:
-        raise RuntimeError(f"claude CLI failed: {type(exc).__name__}") from exc
-    if done.returncode != 0:
-        raise RuntimeError(f"claude CLI exited {done.returncode}")
+        kind = "transport" if isinstance(exc, subprocess.TimeoutExpired) else "cli_error"
+        return {**record, "failure_kind": kind, "failure_message": f"claude CLI failed: {type(exc).__name__}"}
+    record["exit_code"] = done.returncode
     try:
         envelope = json.loads(done.stdout)
-    except json.JSONDecodeError as exc:
-        raise RuntimeError("claude CLI returned unparseable output") from exc
-    if envelope.get("is_error") or not isinstance(envelope.get("result"), str):
-        raise RuntimeError("claude CLI reported an error")
-    return envelope["result"]
+    except (json.JSONDecodeError, TypeError):
+        envelope = None
+    if not isinstance(envelope, dict):
+        if done.returncode != 0:
+            return {**record, "failure_kind": "cli_error", "failure_message": f"claude CLI exited {done.returncode}"}
+        return {**record, "failure_kind": "unparseable_output",
+                "failure_message": "claude CLI returned unparseable output"}
+    usage = envelope.get("modelUsage")
+    record["serving_models"] = sorted(usage) if isinstance(usage, dict) else []
+    result = envelope.get("result")
+    if done.returncode != 0 or envelope.get("is_error") or not isinstance(result, str):
+        message = safe_message(result if isinstance(result, str) and result else f"claude CLI exited {done.returncode}")
+        return {**record, "failure_kind": classify_failure(message), "failure_message": message}
+    return {**record, "ok": True, "text": result}
+
+
+def run_claude_cli(prompt: str, model: str, system_prompt: str = CLI_SYSTEM_PROMPT, run=None) -> str:
+    """Run one prompt through the Claude Code CLI and return the text.
+
+    Raises RuntimeError on any failure, with the failure kind first so a caller
+    can tell an authentication problem from a transport one.
+    """
+    outcome = run_claude_cli_detailed(prompt, model, system_prompt, run)
+    if not outcome["ok"]:
+        raise RuntimeError(f"{outcome['failure_kind']}: {outcome['failure_message']}")
+    return outcome["text"]
 
 
 def claude_code_judge(question: str, response: str, criteria: list[str]) -> tuple[str, str]:

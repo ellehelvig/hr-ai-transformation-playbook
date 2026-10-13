@@ -104,6 +104,64 @@ def run_model(prompt: str, model: str) -> str:
     return "".join(block.text for block in response.content if block.type == "text")
 
 
+API_FAILURES = {"AuthenticationError": "authentication", "PermissionDeniedError": "authentication",
+                "RateLimitError": "rate_limit", "APIConnectionError": "transport", "APITimeoutError": "transport",
+                "InternalServerError": "transport", "OverloadedError": "transport"}
+
+
+def api_call_record(output: str, model: str) -> dict:
+    """Describe an API model call the way the CLI path does, from run_model's return value."""
+    import judge
+
+    if not output.startswith("ERROR:"):
+        return {"status": "success", "failure_kind": None, "failure_message": None, "requested_model": model}
+    detail = output[len("ERROR:"):].strip()
+    if detail.startswith("stop reason"):
+        kind = "incomplete_output"
+    else:
+        kind = API_FAILURES.get(detail.split(":", 1)[0].strip(), "provider_error")
+    return {"status": "failed", "failure_kind": kind, "failure_message": judge.safe_message(detail),
+            "requested_model": model}
+
+
+def judge_call_record(graded) -> dict:
+    """Separate a judge infrastructure failure from a model failure and from a judge verdict."""
+    import judge
+
+    if graded.judge_name == "not-run":
+        return {"status": "skipped", "failure_kind": None, "failure_message": "no model output to grade"}
+    if graded.error:
+        detail = graded.error.split(": ", 1)[-1]
+        prefix = detail.split(":", 1)[0]
+        kind = prefix if prefix in judge.FAILURE_KINDS else judge.classify_failure(detail)
+        return {"status": "failed", "failure_kind": kind, "failure_message": judge.safe_message(detail)}
+    return {"status": "success", "failure_kind": None, "failure_message": None}
+
+
+def execution_summary(results: list[dict]) -> dict:
+    """Count successful executions and infrastructure failures. Says nothing about output quality."""
+    summary = {"model_calls": len(results), "model_calls_succeeded": 0, "model_call_failures": {},
+               "judge_calls_succeeded": 0, "judge_call_failures": {}}
+    for result in results:
+        model_call, judge_call = result["execution"]["model_call"], result["execution"]["judge_call"]
+        if model_call["status"] == "success":
+            summary["model_calls_succeeded"] += 1
+        else:
+            kinds = summary["model_call_failures"]
+            kinds[model_call["failure_kind"]] = kinds.get(model_call["failure_kind"], 0) + 1
+        if judge_call["status"] == "success":
+            summary["judge_calls_succeeded"] += 1
+        elif judge_call["status"] == "failed":
+            kinds = summary["judge_call_failures"]
+            kinds[judge_call["failure_kind"]] = kinds.get(judge_call["failure_kind"], 0) + 1
+    return summary
+
+
+EVALUATION_STATUS = ("Pending human review. Only results whose model_call status is success contain a model "
+                     "output; failed calls are infrastructure evidence, not evidence about model quality, and "
+                     "do not count as completed evaluations. No result here passes or closes a review gate.")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--list", action="store_true", help="validate fixtures and list coverage, offline")
@@ -142,18 +200,27 @@ def main() -> int:
     results = []
     for case in cases:
         if args.backend == "claude-code":
-            try:
-                output = judge.run_claude_cli(case["input"], model)
-            except RuntimeError as exc:
-                output = f"ERROR: {exc}"
+            outcome = judge.run_claude_cli_detailed(case["input"], model)
+            failure = f"ERROR: {outcome['failure_kind']}: {outcome['failure_message']}"
+            output = outcome["text"] if outcome["ok"] else failure
+            model_call = {"status": "success" if outcome["ok"] else "failed", "failure_kind": outcome["failure_kind"],
+                          "failure_message": outcome["failure_message"], "requested_model": model,
+                          "serving_models": outcome["serving_models"], "exit_code": outcome["exit_code"]}
             graded = judge.grade_response(case, output, judge.claude_code_judge)
         else:
             output = run_model(case["input"], model)
+            model_call = api_call_record(output, model)
             graded = judge.grade_response(case, output, judge.anthropic_judge)
+        execution = {"model_call": model_call, "judge_call": judge_call_record(graded)}
+        ran = model_call["status"] == "success"
         results.append({"id": case["id"], "title": case["title"], "trap": case["trap"],
-                        "prompt_sha256": case["sha256"], "output": output, "grading": graded.to_dict()})
-        print(f"{case['id']:28} met={graded.criteria_met} not_met={graded.criteria_failed} "
-              f"unclear={graded.criteria_unknown}  {'(error)' if graded.error else ''}")
+                        "prompt_sha256": case["sha256"], "output": output if ran else None,
+                        "execution": execution, "grading": graded.to_dict()})
+        if not ran:
+            print(f"{case['id']:28} NOT EVALUATED: model call failed ({model_call['failure_kind']})")
+        else:
+            print(f"{case['id']:28} met={graded.criteria_met} not_met={graded.criteria_failed} "
+                  f"unclear={graded.criteria_unknown}  {'(judge failed)' if graded.error else ''}")
 
     with output_path.open("x", encoding="utf-8") as output_file:
         output_file.write(json.dumps({
@@ -162,6 +229,8 @@ def main() -> int:
             "run_at": datetime.now(timezone.utc).isoformat(),
             "note": ("One synthetic input per prompt, one run, graded by an unvalidated LLM judge. "
                      "Smoke test, not a benchmark."),
+            "evaluation_status": EVALUATION_STATUS,
+            "execution_summary": execution_summary(results),
             "results": results,
         }, indent=2) + "\n")
     return 1 if any(result["grading"].get("error") for result in results) else 0

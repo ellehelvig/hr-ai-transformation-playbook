@@ -4,6 +4,7 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+- **Execution status recorded per call, 13 October 2026.** The prompt runner classifies each failed model or judge call (authentication, rate limit, transport, CLI error, incomplete output), records the serving model, leaves `output` empty when no model answer exists, and summarizes successful calls separately from infrastructure failures. Error text is shortened and credential-shaped strings are redacted.
 - **Evaluation evidence protected, 13 October 2026.** Targeted fixture reruns write new timestamped results; historical files cannot be overwritten. The review packet separates ten historical outputs from five required reruns and keeps all human review gates pending.
 
 Added

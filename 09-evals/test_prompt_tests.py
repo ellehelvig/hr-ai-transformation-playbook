@@ -143,7 +143,7 @@ def test_targeted_rerun_excludes_unselected_cases(monkeypatch, tmp_path):
     out = tmp_path / "rerun.json"
     monkeypatch.setattr(prompt_tests, "run_model", lambda prompt, _: calls.append(prompt) or "draft")
     monkeypatch.setattr(judge, "grade_response", lambda *args: types.SimpleNamespace(
-        criteria_met=0, criteria_failed=0, criteria_unknown=1, error=None,
+        criteria_met=0, criteria_failed=0, criteria_unknown=1, error=None, judge_name="fake",
         to_dict=lambda: {"criteria_unknown": 1}))
     monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--case", selected, "--output", str(out)])
     assert prompt_tests.main() == 0
@@ -165,5 +165,78 @@ def test_model_failure_records_evidence_and_fails_the_run(monkeypatch, tmp_path)
     monkeypatch.setattr(judge, "anthropic_judge", lambda *_: pytest.fail("must not grade a failed model call"))
     monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--case", "performance-2", "--output", str(out)])
     assert prompt_tests.main() == 1
+    data = json.loads(out.read_text())
+    record = data["results"][0]
+    assert record["grading"]["error"] and record["output"] is None
+    assert record["execution"]["model_call"]["status"] == "failed"
+    assert record["execution"]["judge_call"]["status"] == "skipped"
+    assert data["execution_summary"]["model_calls_succeeded"] == 0
+    assert "not evidence about model quality" in data["evaluation_status"]
+
+
+AUTH_ENVELOPE = json.dumps({"type": "result", "is_error": True, "stop_reason": "stop_sequence",
+                            "result": "Failed to authenticate: OAuth session expired and could not be refreshed"})
+
+
+def fake_cli(stdout, returncode):
+    """Run the real envelope parsing against a canned CLI reply, with no subprocess."""
+    real = judge.run_claude_cli_detailed
+    reply = types.SimpleNamespace(returncode=returncode, stdout=stdout)
+    return lambda prompt, model: real(prompt, model, run=lambda *a, **k: reply)
+
+
+def test_cli_authentication_failure_is_classified_not_graded(monkeypatch, tmp_path):
+    """An expired sign-in produces infrastructure evidence, never a model output or a criterion verdict."""
+    out = tmp_path / "auth-blocked.json"
+    monkeypatch.setattr(judge, "run_claude_cli_detailed", fake_cli(AUTH_ENVELOPE, 1))
+    monkeypatch.setattr(judge, "claude_code_judge", lambda *_: pytest.fail("must not grade a failed model call"))
+    monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--backend", "claude-code",
+                                      "--case", "performance-2", "--case", "hr-operations-4", "--output", str(out)])
+    assert prompt_tests.main() == 1
+    data = json.loads(out.read_text())
+    assert data["execution_summary"]["model_call_failures"] == {"authentication": 2}
+    for record in data["results"]:
+        call = record["execution"]["model_call"]
+        assert (call["status"], call["failure_kind"], call["exit_code"]) == ("failed", "authentication", 1)
+        assert record["output"] is None
+        assert record["grading"]["criteria_met"] == record["grading"]["criteria_failed"] == 0
+
+
+def test_cli_success_records_serving_model(monkeypatch, tmp_path):
+    envelope = json.dumps({"is_error": False, "result": "DRAFT", "modelUsage": {"claude-opus-5-5": {}}})
+    out = tmp_path / "ok.json"
+    monkeypatch.setattr(judge, "run_claude_cli_detailed", fake_cli(envelope, 0))
+    monkeypatch.setattr(judge, "claude_code_judge", lambda *_: ("1|MET|ok", "claude-code:test"))
+    monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--backend", "claude-code",
+                                      "--case", "performance-2", "--output", str(out)])
+    prompt_tests.main()
     record = json.loads(out.read_text())["results"][0]
-    assert record["grading"]["error"] and record["output"].startswith("ERROR:")
+    assert record["output"] == "DRAFT"
+    assert record["execution"]["model_call"]["serving_models"] == ["claude-opus-5-5"]
+    assert record["execution"]["judge_call"]["status"] == "success"
+
+
+@pytest.mark.parametrize("message,kind", [
+    ("Failed to authenticate: OAuth session expired", "authentication"),
+    ("Invalid API key", "authentication"),
+    ("Usage limit reached", "rate_limit"),
+    ("Connection reset by peer", "transport"),
+    ("Request timed out", "transport"),
+    ("Something unexpected", "cli_error"),
+])
+def test_failure_classification(message, kind):
+    assert judge.classify_failure(message) == kind
+
+
+def test_error_messages_are_redacted_before_they_become_evidence():
+    cleaned = judge.safe_message("bad key sk-ant-api03-abcdefghijklmnop and Bearer abc.def " + "x" * 40)
+    assert "sk-ant" not in cleaned and "abc.def" not in cleaned and "x" * 40 not in cleaned
+    assert len(judge.safe_message("y " * 500)) <= 200
+
+
+def test_api_failures_are_classified():
+    record = prompt_tests.api_call_record("ERROR: AuthenticationError: invalid x-api-key", "m")
+    assert record["failure_kind"] == "authentication"
+    assert prompt_tests.api_call_record("ERROR: APIConnectionError: reset", "m")["failure_kind"] == "transport"
+    assert prompt_tests.api_call_record("ERROR: stop reason max_tokens", "m")["failure_kind"] == "incomplete_output"
+    assert prompt_tests.api_call_record("draft", "m")["status"] == "success"

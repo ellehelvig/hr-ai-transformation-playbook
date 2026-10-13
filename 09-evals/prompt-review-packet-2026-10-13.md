@@ -40,14 +40,16 @@ Priority flags: performance-2 rating reconsideration linked to health; performan
 From the repository root after installing the locked environment:
 
 ```bash
+# First open `claude`, run /status, and confirm you are signed in. An expired session produces no model output.
 python 09-evals/prompt_tests.py --list
+PROMPT_TEST_MODEL=claude-opus-5-5 EVAL_JUDGE_MODEL=claude-sonnet-5-5 \
 python 09-evals/prompt_tests.py --run --backend claude-code \
   --case performance-1 --case performance-2 --case performance-3 \
   --case performance-4 --case hr-operations-4 \
   --output 09-evals/prompt-test-results-rerun-NEW.json
 ```
 
-Choose a new output name for every attempt. This invokes a model and judge using the signed-in plan. The API backend needs its own key and incurs API usage. A five-case attempt on 13 October reached CLI authentication but produced no model outputs: the OAuth session could not be refreshed. The [failed attempt](prompt-test-results-rerun-20261013T225446Z.json) and [CLI provenance](prompt-test-provenance-rerun-20261013T225446Z.json) are retained separately. Successful reruns and human assessment are still pending. Pin and record the serving model where possible; session labels are not proof of the actual serving version. Human assessment is still required after reruns.
+Choose a new output name for every attempt. This invokes a model and judge using the signed-in plan. The API backend needs its own key and incurs API usage. A five-case attempt on 13 October reached CLI authentication but produced no model outputs: the OAuth session could not be refreshed. The [failed attempt](prompt-test-results-rerun-20261013T225446Z.json) and [CLI provenance](prompt-test-provenance-rerun-20261013T225446Z.json) are retained separately. Successful reruns and human assessment are still pending. That attempt requested the `opus` and `sonnet` aliases; the command above pins the full model IDs the 1 October run used. The runner now records each call's execution status, failure kind (authentication, rate limit, transport, CLI error) and serving model, and leaves `output` empty when the model call failed, so a failed call cannot be read as a model answer or counted as a completed evaluation. Pin and record the serving model where possible; session labels are not proof of the actual serving version. Human assessment is still required after reruns.
 
 ## Current rerun: hr-operations-4
 
