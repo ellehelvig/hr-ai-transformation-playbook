@@ -1,0 +1,64 @@
+{
+  "scope": "California 2025-2026 session: four workplace laws only",
+  "reviewed_on": "2026-10-09",
+  "review_method": "Agent read the selected 09/30/26 Chaptered version in the browser on California Legislative Information. Legal applicability requires counsel review; this is not human legal sign-off.",
+  "effective_date_basis": {
+    "source": "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=&article=IV",
+    "anchor": "California Constitution Article IV, section 8(c)(1)",
+    "reasoning": "All four are regular-session statutes enacted on 2026-09-30. None has an urgency clause. January 1 following the 90-day period is 2027-01-01. AB 1883, AB 1331, and SB 951 contain no later operative-date provision. SB 947 expressly delays operation of its new Labor Code part."
+  },
+  "signing_announcement": "https://www.gov.ca.gov/2026/09/30/californias-nation-leading-ai-framework-just-got-stronger-governor-newsom-signs-more-first-in-the-nation-worker-protections-and-more/",
+  "claims": [
+    {
+      "bill": "AB 1331",
+      "chapter": "851, Statutes of 2026",
+      "status": "approved and chaptered",
+      "approved_on": "2026-09-30",
+      "filed_on": "2026-09-30",
+      "effective_on": "2027-01-01",
+      "obligations_begin_on": "2027-01-01",
+      "source": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1331",
+      "anchors": ["Chapter heading and approval/filed block", "Labor Code sections 1560-1565", "Section 1561: bathroom monitoring and possession exceptions"],
+      "summary": "Limits workplace bathroom surveillance and allows leaving surveillance tools behind, subject to exceptions. Covers non-AI tools too."
+    },
+    {
+      "bill": "AB 1883",
+      "chapter": "853, Statutes of 2026",
+      "status": "approved and chaptered",
+      "approved_on": "2026-09-30",
+      "filed_on": "2026-09-30",
+      "effective_on": "2027-01-01",
+      "obligations_begin_on": "2027-01-01",
+      "source": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1883",
+      "anchors": ["Chapter heading and approval/filed block", "Labor Code sections 1580-1583", "Section 1581: emotion inference, neural data, and safety language", "Version menu: 09/03/26 - Enrolled"],
+      "summary": "Restricts AI surveillance of employee emotions and neural data. September 3 was the enrolled-version date, not the signing date."
+    },
+    {
+      "bill": "SB 947",
+      "chapter": "859, Statutes of 2026",
+      "status": "approved and chaptered",
+      "approved_on": "2026-09-30",
+      "filed_on": "2026-09-30",
+      "effective_on": "2027-01-01",
+      "obligations_begin_on": "2027-07-01",
+      "source": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260SB947",
+      "anchors": ["Chapter heading and approval/filed block", "Labor Code sections 1522 and 1524", "Labor Code sections 1526.5-1526.7"],
+      "operative_date_quote": "This part shall become operative on July 1, 2027.",
+      "summary": "Bars sole ADS reliance for discipline or termination. Primary reliance requires human corroboration and post-use notice. The new Labor Code part has an express later operative date."
+    },
+    {
+      "bill": "SB 951",
+      "chapter": "860, Statutes of 2026",
+      "status": "approved and chaptered",
+      "approved_on": "2026-09-30",
+      "filed_on": "2026-09-30",
+      "effective_on": "2027-01-01",
+      "obligations_begin_on": "2027-01-01",
+      "source": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260SB951",
+      "anchors": ["Chapter heading and approval/filed block", "Labor Code sections 1400.5 and 1401(a), (d)", "Labor Code section 1402.7(b), (e)"],
+      "summary": "Adds technology-displacement details to otherwise required Cal/WARN notices. Retains 60-day notice. Hiring-cessation notices are a topic for an EDD study, not a new employer notice duty in this text.",
+      "edd_report_due_on": "2028-01-01",
+      "edd_study_section_repeals_on": "2029-01-01"
+    }
+  ]
+}
