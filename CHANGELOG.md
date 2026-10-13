@@ -4,7 +4,6 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
-
 Added
 
 - **Run the smoke tests on a Claude plan.** `prompt_tests.py --run --backend claude-code` runs prompts and grading through the Claude Code CLI with its tools disabled, so no API key is needed. Any `ANTHROPIC_API_KEY` in the shell is withheld from the CLI so it cannot bill the API.
