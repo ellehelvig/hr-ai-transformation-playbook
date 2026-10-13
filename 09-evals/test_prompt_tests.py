@@ -157,3 +157,13 @@ def test_unknown_rerun_case_fails_before_model_use(monkeypatch):
     with pytest.raises(SystemExit) as exc:
         prompt_tests.main()
     assert exc.value.code == 2
+
+
+def test_model_failure_records_evidence_and_fails_the_run(monkeypatch, tmp_path):
+    out = tmp_path / "failed-run.json"
+    monkeypatch.setattr(prompt_tests, "run_model", lambda *_: "ERROR: synthetic provider failure")
+    monkeypatch.setattr(judge, "anthropic_judge", lambda *_: pytest.fail("must not grade a failed model call"))
+    monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--case", "performance-2", "--output", str(out)])
+    assert prompt_tests.main() == 1
+    record = json.loads(out.read_text())["results"][0]
+    assert record["grading"]["error"] and record["output"].startswith("ERROR:")

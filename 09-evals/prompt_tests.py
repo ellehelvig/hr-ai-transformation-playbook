@@ -164,7 +164,7 @@ def main() -> int:
                      "Smoke test, not a benchmark."),
             "results": results,
         }, indent=2) + "\n")
-    return 0
+    return 1 if any(result["grading"].get("error") for result in results) else 0
 
 
 if __name__ == "__main__":
