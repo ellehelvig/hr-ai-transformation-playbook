@@ -47,7 +47,7 @@ python 09-evals/prompt_tests.py --run --backend claude-code \
   --output 09-evals/prompt-test-results-rerun-NEW.json
 ```
 
-Choose a new output name for every attempt. This invokes a model and judge using the signed-in plan. The API backend needs its own key and incurs API usage. No live model calls were made for this remediation. Pin and record the serving model where possible; session labels are not proof of the actual serving version. Human assessment is still required after reruns.
+Choose a new output name for every attempt. This invokes a model and judge using the signed-in plan. The API backend needs its own key and incurs API usage. A five-case attempt on 13 October reached CLI authentication but produced no model outputs: the OAuth session could not be refreshed. The [failed attempt](prompt-test-results-rerun-20261013T225446Z.json) and [CLI provenance](prompt-test-provenance-rerun-20261013T225446Z.json) are retained separately. Successful reruns and human assessment are still pending. Pin and record the serving model where possible; session labels are not proof of the actual serving version. Human assessment is still required after reruns.
 
 ## Current rerun: hr-operations-4
 

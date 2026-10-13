@@ -205,7 +205,7 @@ Do not fill these from an old output or a judge score. Record the serving model,
 
 Current input SHA-256: `bd7a5ec8c9b23c7f5cf844f1b71dd354f9026fa05bd0fc2abbacb9d7711f78e7`.
 
-Result/output link: [not run]. Serving model/provenance and run date: [pending].
+Result/output link: [no successful output; authentication blocked]. Serving model/provenance and run date: [pending].
 
 Reviewer/date/disposition: [pending].
 
@@ -223,7 +223,7 @@ Six dimensions and critical-failure check: [pending].
 
 Current input SHA-256: `046117c024a9ab7f8207f7d8b07fccbcf52dbbe450f14f608f3e65c383b2bbab`.
 
-Result/output link: [not run]. Serving model/provenance and run date: [pending].
+Result/output link: [no successful output; authentication blocked]. Serving model/provenance and run date: [pending].
 
 Reviewer/date/disposition: [pending].
 
@@ -242,7 +242,7 @@ Six dimensions and critical-failure check: [pending].
 
 Current input SHA-256: `628df07824b65d6c7343b70701e185eed4dcdbe96e2db755758ab41a25e72f18`.
 
-Result/output link: [not run]. Serving model/provenance and run date: [pending].
+Result/output link: [no successful output; authentication blocked]. Serving model/provenance and run date: [pending].
 
 Reviewer/date/disposition: [pending].
 
@@ -260,7 +260,7 @@ Six dimensions and critical-failure check: [pending].
 
 Current input SHA-256: `ecc1a5bf42d5446e43ce95d8fb5f0c8c51fc1dcd098b27a5dedf6880ece57cd9`.
 
-Result/output link: [not run]. Serving model/provenance and run date: [pending].
+Result/output link: [no successful output; authentication blocked]. Serving model/provenance and run date: [pending].
 
 Reviewer/date/disposition: [pending].
 
@@ -279,7 +279,7 @@ Six dimensions and critical-failure check: [pending].
 
 Current input SHA-256: `7191697b7e10ff90053455fec75a39de2bc48635563e13d44800e3fe1d8f45ed`.
 
-Result/output link: [not run]. Serving model/provenance and run date: [pending].
+Result/output link: [no successful output; authentication blocked]. Serving model/provenance and run date: [pending].
 
 Reviewer/date/disposition: [pending].
 
