@@ -4,9 +4,6 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
-- **Curriculum downloads synchronized, 13 October 2026.** The editable 23-slide deck and PDF now reflect synthetic labs, seven session hours plus async practice, the current approach taxonomy, proposed recognition and accountable pilot gates. Full source notes and a manifest identify the reviewed snapshot. No learning outcome or legal approval is claimed.
-
-- **Portfolio review, 10 October 2026.** Reworked the adoption page into a proposed synthetic-first pilot with owners, review effort, transparent value assumptions, and expand/pause/stop criteria.
 
 Added
 
@@ -14,6 +11,10 @@ Added
 - **Prompt library smoke tests.** `09-evals/prompt_tests.py` runs library templates on a real model and grades them with the LLM judge. Ten fixtures cover the HR operations and performance prompts, each with a planted trap. A manual workflow runs them with an `ANTHROPIC_API_KEY` secret and opens a pull request with the results. No results are recorded yet, and no prompt is described as tested.
 
 Fixed
+
+- **Curriculum downloads synchronized, 13 October 2026.** The editable 23-slide deck and PDF now reflect synthetic labs, seven session hours plus async practice, the current approach taxonomy, proposed recognition and accountable pilot gates. Full source notes and a manifest identify the reviewed snapshot. No learning outcome or legal approval is claimed.
+
+- **Portfolio review, 10 October 2026.** Reworked the adoption page into a proposed synthetic-first pilot with owners, review effort, transparent value assumptions, and expand/pause/stop criteria.
 
 - **Colorado enforcement status deferred.** The statutory applicability date is supported by the legislature, but the current court orders and rulemaking were not verified. The dates table and risk template no longer state a continuing stay as settled fact. Counsel must confirm the operative orders and rules.
 
