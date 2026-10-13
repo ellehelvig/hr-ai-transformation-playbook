@@ -7,6 +7,7 @@
     "04-enablement/workshop-facilitator-guide.md": "b5e2baed243b949b36acb596239255f6112164f9d911e01bc99bea4bb8df640a",
     "04-enablement/adoption-playbook.md": "939cbe0ea890ceba00990e6e1808db183295eb2d01793340e02555e30013397e",
     "04-enablement/HR-AI-Literacy-Curriculum.pptx": "a601ebf37ed21ec9f482ce609dceef8893be1a6cb640e21ee519d783220bf1d3",
-    "04-enablement/HR-AI-Literacy-Curriculum.pdf": "e4ac5d478b15e25c088b4f8508ce5ed943445df28f3aedc3345283bb8c26c928"
-  }
+    "04-enablement/HR-AI-Literacy-Curriculum.pdf": "1ebd15cca4da71f9c88dab0805d6b5f2d753ebedd803c2412b85d90af06f0f27"
+  },
+  "pdf_conversion_note": "Restored white link text/underlines on navy closing slide after LibreOffice applied its default hyperlink blue; link destinations retained."
 }
