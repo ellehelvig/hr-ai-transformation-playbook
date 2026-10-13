@@ -99,10 +99,10 @@ Evidence labels apply to a specific claim, not the whole project. **Observed:** 
 | 3 | Select the policy in force | Rules or verify | Policy owner | High | Before sending | Tested on governed data |
 | 4 | Draft the reply | Augment | People Partner | Medium | Until sent | Proposed; templates today |
 | 5 | Organize options across policies | Assist, constrained | People Partner or specialist | High | Often no | Proposed |
-| 6 | Prepare a consequential decision | Assist | Set by decision type | High | Hard once acted on | Approval gate tested |
+| 6 | Prepare a consequential decision | Assist | Set by decision type | High | Hard once acted on | Simulated approval transition tested; reviewer self-reported |
 | 7 | Handle a workplace concern | Human-led | Employee Relations | Critical | No | Routing of known phrasing tested |
 | 8 | Handle a health or accommodation need | Human-led | Accommodations specialist | Critical | Disclosure: no | Proposed. Failure observed |
-| 9 | Keep case records and logs | Rules | HR operations | High | Exposure: no | Tested, in-memory prototype |
+| 9 | Keep case records and logs | Rules | HR operations | High | Exposure: no | Mutable in-memory activity tested; protected audit proposed |
 | 10 | Report on cases | 10a rules; 10b assist | Policy owner or People Analytics | Medium | Re-identification: no | Proposed |
 
 Tasks 1, 7, and 8 carry the most risk and have the least evidence. Task-by-task reasoning is in [task detail](#task-detail).
@@ -438,8 +438,8 @@ These were written to find weaknesses.
 
 **If the HR context disappeared, would the AI decisions still hold?** Mostly. Rules are used where they are exact and the data supports them; models only for unstructured language, as one layer among several, with outputs checked by code; oversight scales with consequence and reversibility; accountability is assigned by role for every task and decision type. The gaps:
 
-- Evaluation is designed for every task but exists only for rules and approvals.
-- Data minimization, including routing without diagnosing and separating record types, is entirely proposed.
+- Evaluation is designed for every task. Rules, simulated approval transitions, and a limited keyword screen have tests; the screen has observed harmful misses and is not a broad held-out evaluation.
+- Bounded eligibility fields are implemented and tested. Routing without diagnosing, separating record types, and limiting sensitive manager-facing context remain proposed.
 - Drift in how employees phrase requests over time is not yet addressed.
 
 ## Open items

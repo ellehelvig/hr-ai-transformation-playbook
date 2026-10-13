@@ -4,6 +4,8 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+- **Work-redesign evidence clarified, 13 October 2026.** The task map now distinguishes simulated approval transitions and mutable activity records from deployed authorization and protected audit. Bounded eligibility data has tests; sensitive routing and record separation remain proposed.
+
 - **Portfolio review, 10 October 2026.** Added a concise fictional People Partner narrative, a complete hold decision in the use-case tool, and dated primary-source interpretations. Preserved detailed design and failure evidence.
 
 Added
