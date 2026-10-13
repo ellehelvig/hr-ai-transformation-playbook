@@ -22,7 +22,7 @@ Training and adoption resources to build AI fluency across the People Team. With
 
 ## Download status
 
-The Markdown curriculum is the current facilitation reference. The PDF and PowerPoint need synchronization before delivery: their cover says 8 hours without distinguishing 7 hours of sessions from async practice, the lab calls for real work without stating data safeguards, and their delivery-experience language is not supported by evidence in this repository. Their regulatory reference date is May 2026. Review current primary sources before adapting legal material.
+The PDF and editable PowerPoint were synchronized to the 13 October 2026 curriculum snapshot. All 23 slides and PDF pages were rendered and reviewed. Session hours, synthetic lab boundaries, approach taxonomy, proposed recognition, pilot ownership and review gates are aligned. The slides summarize the material; PowerPoint notes retain the complete curriculum source and its hash. Legal delivery still requires current primary-source and counsel review.
 
 Use synthetic examples in approved tools. Do not upload real employee, candidate, compensation, or employer-confidential content for a training exercise. Removing names alone does not establish anonymity.
 
@@ -56,3 +56,5 @@ Track these against a baseline measured before launch:
 - **Escalation appropriateness**: for any AI agent the team uses, are HR professionals correctly identifying when to override or escalate?
 
 If completion is high but adoption is low, the gap is usually trust or workflow integration, not skill. Don't add more training, investigate the friction.
+
+For maintenance, run `python scripts/verify_curriculum_exports.py` from the repository root. A source change requires updating and visually reviewing both downloads before recording a new manifest. The hash check detects drift; it does not establish semantic accuracy or native PowerPoint rendering.

@@ -7,6 +7,11 @@ A 4-module learning program for HR professionals at all experience levels. Desig
 **Audience:** All People Team members
 **Prerequisite:** None
 
+**Lab prerequisite:** The facilitator confirms an organization-approved tool,
+provider handling, and a synthetic-only data boundary before any exercise.
+Modules 1-3 and the required governance approvals precede any real-work pilot.
+This curriculum does not authorize employee-data processing.
+
 ---
 
 ## Program overview
@@ -78,18 +83,18 @@ Clear prompts help define a task and its boundaries. Output quality also depends
 
 **The four elements of an effective HR prompt:**
 
-1. **Role**: Tell the AI who it is. "You are an experienced HRBP..." produces better output than just asking a question.
+1. **Role**: Define the task perspective, such as drafting support for an HRBP. A role instruction does not give the model professional authority.
 
 2. **Context**: Provide the specific details the AI needs. Role, tenure, team size, situation. Don't make the AI guess.
 
 3. **Task**: State clearly what you want it to produce. One output per prompt. "Draft a..." is clearer than "Help me with..."
 
-4. **Constraints**: Define length, tone, format, and what to avoid. "300 words, no bullet points, avoid generic phrases" significantly improves output quality.
+4. **Constraints**: Define length, tone, format, exclusions, and the verification needed. Check whether the output follows them.
 
 **Lab instructions:**
 
 Participants choose 2 prompts from the library that are relevant to their current work:
-1. Run the prompt with a real (or realistic) example from their work
+1. Run the prompt with a fictional HR scenario in an organization-approved tool. Do not upload real employee, candidate, compensation, or confidential employer information.
 2. Evaluate the output: What's useful? What's wrong or missing? What would you change before using it?
 3. Iterate: Modify the prompt once based on what you learned and run it again
 4. Note: What changed between run 1 and run 2?
@@ -121,7 +126,7 @@ Introduce and reinforce this heuristic:
 | 1:00–1:20 | Walk-through: The risk assessment template |
 | 1:20–1:30 | Q&A + open discussion |
 
-> **Note on regulatory currency:** Regulatory references in this module are current as of September 2026. The HR AI regulatory landscape is evolving rapidly, verify current law before relying on specific references in any compliance discussion or training material.
+> **Note on regulatory currency:** Use the [Key dates for HR](../03-governance/README.md#key-dates-for-hr) and its linked primary sources as the dated reference. The slides summarize risk questions; they are not a complete legal reference. Have Legal verify jurisdiction, scope, obligations, and effective dates before delivery or adoption.
 
 **Key legal risk areas to cover:**
 
@@ -259,7 +264,10 @@ First step to move forward:
 
 ## Assessment and certification
 
-Participants who complete all four modules and the hands-on components receive a **HR AI Practitioner** acknowledgment from the People Team.
+An organization may choose to give participants who complete all four modules
+and the hands-on components an **HR AI Practitioner** acknowledgment. This is a
+proposed internal recognition, not an accredited certification or evidence of
+professional competence. No delivery or learning outcome is claimed here.
 
 Optional extension: Participants who complete a full use case spec and present it to the HR Technology team are recognized as **HR AI Champions**, an informal internal designation that supports peer enablement.
 

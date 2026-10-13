@@ -4,6 +4,8 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+- **Curriculum downloads synchronized, 13 October 2026.** The editable 23-slide deck and PDF now reflect synthetic labs, seven session hours plus async practice, the current approach taxonomy, proposed recognition and accountable pilot gates. Full source notes and a manifest identify the reviewed snapshot. No learning outcome or legal approval is claimed.
+
 - **Portfolio review, 10 October 2026.** Reworked the adoption page into a proposed synthetic-first pilot with owners, review effort, transparent value assumptions, and expand/pause/stop criteria.
 
 Added

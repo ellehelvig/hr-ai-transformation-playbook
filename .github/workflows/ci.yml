@@ -73,6 +73,9 @@ jobs:
         # otherwise be a scheduled agent opening pull requests about stale numbers.
         run: python scripts/verify_claims.py
 
+      - name: Verify curriculum download snapshots
+        run: python scripts/verify_curriculum_exports.py
+
       - name: Validate skill packages
         run: |
           python - <<'PY'
