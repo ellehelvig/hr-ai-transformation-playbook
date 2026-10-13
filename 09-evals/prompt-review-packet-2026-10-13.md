@@ -10,6 +10,8 @@
 - Current fixtures are synthetic. A fresh smoke test is one model run per fixture, not a held-out benchmark, pilot outcome or production evidence.
 - The reference labels in human-labels-example.json are illustrative and cannot calibrate the historical judge.
 
+Use the [fillable human assessment worksheet](human-assessment-worksheet-2026-10-13.md) to record criterion decisions, excerpts, reviewer/date and disposition. It has 53 historical criterion rows and the current criteria for all five reruns; no judge scores are prefilled.
+
 ## Human review rubric and release hold
 
 Review each full output against its own expected_behavior criteria. Record MET, NOT_MET or UNCLEAR with an exact excerpt and reason. Do not turn an uncertainty into MET or average a critical failure away. Compare automated verdicts with independent human labels only after recording the human decision.
