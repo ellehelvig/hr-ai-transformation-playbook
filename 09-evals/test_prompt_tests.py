@@ -124,3 +124,36 @@ def test_claude_cli_failures_raise(stdout, code):
 
     with pytest.raises(RuntimeError):
         judge.run_claude_cli("hello", "m", run=run)
+
+
+def test_existing_evidence_is_rejected_before_model_use(monkeypatch, tmp_path):
+    out = tmp_path / "historical.json"
+    out.write_text("historical evidence\n")
+    monkeypatch.setattr(prompt_tests, "run_model", lambda *_: pytest.fail("must not call model"))
+    monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--output", str(out)])
+    with pytest.raises(SystemExit) as exc:
+        prompt_tests.main()
+    assert exc.value.code == 2
+    assert out.read_text() == "historical evidence\n"
+
+
+def test_targeted_rerun_excludes_unselected_cases(monkeypatch, tmp_path):
+    calls = []
+    selected = "performance-2"
+    out = tmp_path / "rerun.json"
+    monkeypatch.setattr(prompt_tests, "run_model", lambda prompt, _: calls.append(prompt) or "draft")
+    monkeypatch.setattr(judge, "grade_response", lambda *args: types.SimpleNamespace(
+        criteria_met=0, criteria_failed=0, criteria_unknown=1, error=None,
+        to_dict=lambda: {"criteria_unknown": 1}))
+    monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--case", selected, "--output", str(out)])
+    assert prompt_tests.main() == 0
+    assert len(calls) == 1
+    assert [r["id"] for r in json.loads(out.read_text())["results"]] == [selected]
+
+
+def test_unknown_rerun_case_fails_before_model_use(monkeypatch):
+    monkeypatch.setattr(prompt_tests, "run_model", lambda *_: pytest.fail("must not call model"))
+    monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--case", "missing-fixture"])
+    with pytest.raises(SystemExit) as exc:
+        prompt_tests.main()
+    assert exc.value.code == 2

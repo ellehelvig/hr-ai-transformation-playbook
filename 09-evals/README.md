@@ -129,7 +129,7 @@ python prompt_tests.py --run --backend claude-code     # on a Claude plan, no AP
 python prompt_tests.py --run                           # on API credits; needs ANTHROPIC_API_KEY
 ```
 
-The `claude-code` backend runs each prompt and each grading call through `claude -p`, the [Claude Code](https://code.claude.com) CLI, with its tools disabled and its own system prompt replaced by a one-line neutral one. It needs Claude Code installed and signed in, counts toward the plan's usage limits, and makes about 20 calls. Both backends write `prompt-test-results.json`. The manual **Prompt library smoke tests** workflow in GitHub Actions runs the API backend and opens a pull request with the results.
+The `claude-code` backend runs each prompt and each grading call through `claude -p`, the [Claude Code](https://code.claude.com) CLI, with its tools disabled and its own system prompt replaced by a one-line neutral one. It needs Claude Code installed and signed in, counts toward the plan's usage limits, and makes about 20 calls. Both backends write a new timestamped result file. Use `--output` for a chosen new file and repeat `--case` to select fixtures. Existing files are rejected before model calls; the historical `prompt-test-results.json` remains unchanged. The manual **Prompt library smoke tests** workflow in GitHub Actions runs the API backend and opens a pull request with the results.
 
 **Coverage:** 10 of 41 templates, the HR operations and performance prompts.
 
@@ -187,3 +187,5 @@ Add cases to the YAML file following the existing format. Guidelines:
 | Model version change | Yes, full set |
 | Weekly production monitoring | Yes, random sample of 10 cases |
 | After any escalation incident | Yes, add case covering the incident scenario |
+
+See the [13 October review packet](prompt-review-packet-2026-10-13.md) for the five current rerun inputs, hashes and criterion-level human review instructions.

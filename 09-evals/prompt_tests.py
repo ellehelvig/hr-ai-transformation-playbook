@@ -37,7 +37,6 @@ HERE = Path(__file__).parent
 ROOT = HERE.parent
 LIBRARY = ROOT / "02-prompt-library"
 FIXTURES = HERE / "prompt-fixtures.yaml"
-RESULTS = HERE / "prompt-test-results.json"
 MODEL_ENV = "PROMPT_TEST_MODEL"
 DEFAULT_MODEL = "claude-opus-5-5"
 
@@ -109,11 +108,18 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--list", action="store_true", help="validate fixtures and list coverage, offline")
     parser.add_argument("--run", action="store_true", help="run every fixture on the model and grade it")
+    parser.add_argument("--case", action="append", help="run only this fixture id; repeat for a targeted rerun")
+    parser.add_argument("--output", type=Path, help="new results file; existing evidence is never overwritten")
     parser.add_argument("--backend", choices=("anthropic", "claude-code"), default="anthropic",
                         help="anthropic: API credits. claude-code: the signed-in Claude Code CLI on your plan")
     args = parser.parse_args()
 
     library, cases = load_library(), load_cases()
+    if args.case:
+        unknown = set(args.case) - {case["id"] for case in cases}
+        if unknown:
+            parser.error(f"unknown fixture ids: {', '.join(sorted(unknown))}")
+        cases = [case for case in cases if case["id"] in args.case]
     if not args.run:
         covered = {c["id"] for c in cases}
         print(f"{len(cases)} fixtures cover {len(covered)} of {len(library)} library prompts.")
@@ -121,6 +127,13 @@ def main() -> int:
             status = "fixture   " if prompt_id in covered else "no fixture"
             print(f"  {status}  {prompt_id}  {library[prompt_id]['title']}")
         return 0
+
+    output_path = args.output or Path(os.environ.get(
+        "PROMPT_TEST_RESULTS", HERE / f"prompt-test-results-{datetime.now(timezone.utc):%Y%m%dT%H%M%S%fZ}.json"))
+    if output_path.exists():
+        parser.error(f"results file already exists; choose a new path: {output_path}")
+    if not output_path.parent.is_dir():
+        parser.error(f"results directory does not exist: {output_path.parent}")
 
     sys.path.insert(0, str(HERE))
     import judge
@@ -142,15 +155,15 @@ def main() -> int:
         print(f"{case['id']:28} met={graded.criteria_met} not_met={graded.criteria_failed} "
               f"unclear={graded.criteria_unknown}  {'(error)' if graded.error else ''}")
 
-    output_path = Path(os.environ.get("PROMPT_TEST_RESULTS", RESULTS))
-    output_path.write_text(json.dumps({
-        "backend": args.backend, "model": model,
-        "judge_model": os.environ.get(judge.JUDGE_MODEL_ENV, judge.DEFAULT_JUDGE_MODEL),
-        "run_at": datetime.now(timezone.utc).isoformat(),
-        "note": ("One synthetic input per prompt, one run, graded by an unvalidated LLM judge. "
-                 "Smoke test, not a benchmark."),
-        "results": results,
-    }, indent=2) + "\n", encoding="utf-8")
+    with output_path.open("x", encoding="utf-8") as output_file:
+        output_file.write(json.dumps({
+            "backend": args.backend, "model": model,
+            "judge_model": os.environ.get(judge.JUDGE_MODEL_ENV, judge.DEFAULT_JUDGE_MODEL),
+            "run_at": datetime.now(timezone.utc).isoformat(),
+            "note": ("One synthetic input per prompt, one run, graded by an unvalidated LLM judge. "
+                     "Smoke test, not a benchmark."),
+            "results": results,
+        }, indent=2) + "\n")
     return 0
 
 
