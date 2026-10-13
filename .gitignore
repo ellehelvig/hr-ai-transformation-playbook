@@ -35,3 +35,8 @@ Claude outputs/
 # Test and lint caches
 .pytest_cache/
 .ruff_cache/
+
+# Local credentials and virtual-environment configuration
+.env
+.env.*
+!.env.example

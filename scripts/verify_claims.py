@@ -206,43 +206,43 @@ def build_report() -> Report:
 
     add(Check(
         "Use cases in the library",
-        claim("README.md", r"(\d+) vetted HR AI use cases"),
+        claim("docs/evidence-index.md", r"(\d+) vetted HR AI use cases"),
         count_table_rows("01-use-cases/use-case-library.md"),
         "01-use-cases/use-case-library.md table rows",
     ))
     add(Check(
         "Installable agent skills",
-        claim("README.md", r"(\w+) installable agent skills"),
+        claim("docs/evidence-index.md", r"(\w+) installable agent skills"),
         count_dirs("11-skills"),
         "11-skills/ package directories",
     ))
     add(Check(
         "Notebooks executed in CI",
-        claim("README.md", r"(\w+) notebooks execute in CI"),
+        claim("docs/evidence-index.md", r"(\w+) notebooks execute in CI"),
         count_files("05-notebooks", "*.ipynb"),
         "05-notebooks/*.ipynb",
     ))
     add(Check(
         "MCP tools on the server",
-        claim("README.md", r"(\w+) MCP tools"),
+        claim("docs/evidence-index.md", r"(\w+) MCP tools"),
         len(re.findall(r"^@mcp\.tool\(\)", read("10-mcp-agents/server.py"), flags=re.MULTILINE)),
         "10-mcp-agents/server.py registered tools",
     ))
     add(Check(
         "Eval cases in the suite",
-        claim("README.md", r"The (\d+)-case eval runner"),
+        claim("docs/evidence-index.md", r"The (\d+)-case eval runner"),
         len(re.findall(r"^\s*- id:", read("09-evals/hr-qa-agent-evals.yaml"), flags=re.MULTILINE)),
         "09-evals/hr-qa-agent-evals.yaml case ids",
     ))
     add(Check(
         "Architecture patterns",
-        claim("README.md", r"(\w+) architecture patterns"),
+        claim("docs/evidence-index.md", r"(\w+) architecture patterns"),
         count_headings("07-agentic-patterns/README.md", r"^## Pattern \d+:"),
         "07-agentic-patterns/README.md pattern headings",
     ))
     add(Check(
         "Literacy curriculum modules",
-        claim("README.md", r"(\d+)-module literacy curriculum"),
+        claim("docs/evidence-index.md", r"(\d+)-module literacy curriculum"),
         count_headings("04-enablement/hr-ai-literacy-curriculum.md", r"^## Module \d+:"),
         "04-enablement/hr-ai-literacy-curriculum.md module headings",
     ))
@@ -250,14 +250,14 @@ def build_report() -> Report:
     mcp_tests, mcp_skip = collect_tests("10-mcp-agents")
     add(Check(
         "MCP test suite size",
-        claim("README.md", r"a (\d+)-test suite"),
+        claim("docs/evidence-index.md", r"a (\d+)-test suite"),
         mcp_tests, "pytest 10-mcp-agents", mcp_skip,
     ))
 
     eval_tests, eval_skip = collect_tests("09-evals")
     add(Check(
         "Scorer and judge tests",
-        claim("README.md", r"have (\d+) tests of their own"),
+        claim("docs/evidence-index.md", r"have (\d+) tests of their own"),
         eval_tests, "pytest 09-evals", eval_skip,
     ))
 
@@ -275,12 +275,12 @@ def render(report: Report) -> bool:
             status, detail = "SKIP", check.skipped
         elif check.claimed is None:
             status = "FAIL"
-            detail = f"no claim found in README, actual is {check.actual}"
+            detail = f"no claim found in evidence index, actual is {check.actual}"
         elif check.ok:
             status, detail = "ok", f"{check.actual}"
         else:
             status = "FAIL"
-            detail = f"README says {check.claimed}, tree has {check.actual}"
+            detail = f"Evidence index says {check.claimed}, tree has {check.actual}"
         print(f"  [{status:4}] {check.name.ljust(width)}  {detail}")
         if status == "FAIL":
             print(f"{'':10}{''.ljust(width)}  source: {check.source}")

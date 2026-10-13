@@ -1,0 +1,270 @@
+annotated-types==0.8.0
+    # via pydantic
+anyio==4.15.1
+    # via
+    #   httpx
+    #   mcp
+    #   sse-starlette
+    #   starlette
+appnope==1.0.0 ; sys_platform == 'darwin'
+    # via ipykernel
+asttokens==3.0.2
+    # via stack-data
+attrs==26.1.0
+    # via
+    #   jsonschema
+    #   referencing
+certifi==2026.7.22
+    # via
+    #   httpcore
+    #   httpx
+    #   requests
+cffi==2.1.1 ; implementation_name == 'pypy' or platform_python_implementation != 'PyPy'
+    # via
+    #   cryptography
+    #   pyzmq
+charset-normalizer==3.5.2
+    # via requests
+click==8.5.0 ; sys_platform != 'emscripten'
+    # via uvicorn
+cloudpickle==3.1.2
+    # via joblib
+colorama==0.4.6 ; sys_platform == 'win32'
+    # via
+    #   ipython
+    #   pytest
+comm==0.2.3
+    # via ipykernel
+contourpy==1.3.3 ; python_full_version < '3.12'
+    # via matplotlib
+contourpy==1.4.0 ; python_full_version >= '3.12'
+    # via matplotlib
+cryptography==50.0.2
+    # via pyjwt
+cycler==0.12.1
+    # via matplotlib
+debugpy==1.8.22
+    # via ipykernel
+executing==2.2.1
+    # via stack-data
+fastjsonschema==2.22.2
+    # via nbformat
+fonttools==4.66.1
+    # via matplotlib
+h11==0.16.0
+    # via
+    #   httpcore
+    #   uvicorn
+httpcore==1.0.9
+    # via httpx
+httpx==0.28.1
+    # via mcp
+httpx-sse==0.4.3
+    # via mcp
+idna==3.20
+    # via
+    #   anyio
+    #   httpx
+    #   requests
+iniconfig==2.3.0
+    # via pytest
+ipykernel==7.4.0
+    # via -r requirements.txt
+ipython==9.17.1
+    # via ipykernel
+ipython-pygments-lexers==1.1.1
+    # via ipython
+jedi==0.20.0
+    # via ipython
+joblib==1.6.0
+    # via scikit-learn
+jsonschema==4.26.0
+    # via
+    #   mcp
+    #   nbformat
+jsonschema-specifications==2025.9.1
+    # via jsonschema
+jupyter-client==8.10.0
+    # via
+    #   ipykernel
+    #   nbclient
+jupyter-core==5.9.1
+    # via
+    #   ipykernel
+    #   jupyter-client
+    #   nbclient
+    #   nbformat
+kiwisolver==1.5.1
+    # via matplotlib
+matplotlib==3.11.2
+    # via
+    #   -r requirements.txt
+    #   seaborn
+matplotlib-inline==0.2.2
+    # via
+    #   ipykernel
+    #   ipython
+mcp==1.30.0
+    # via -r 10-mcp-agents/requirements.txt
+narwhals==2.26.0
+    # via scikit-learn
+nbclient==0.11.0
+    # via -r requirements.txt
+nbformat==5.11.1
+    # via
+    #   -r requirements.txt
+    #   nbclient
+nest-asyncio2==1.7.3
+    # via ipykernel
+numpy==2.4.6 ; python_full_version < '3.12'
+    # via
+    #   -r requirements.txt
+    #   contourpy
+    #   matplotlib
+    #   pandas
+    #   scikit-learn
+    #   scipy
+    #   seaborn
+numpy==2.5.3 ; python_full_version >= '3.12'
+    # via
+    #   -r requirements.txt
+    #   contourpy
+    #   matplotlib
+    #   pandas
+    #   scikit-learn
+    #   scipy
+    #   seaborn
+packaging==26.3
+    # via
+    #   ipykernel
+    #   matplotlib
+    #   pytest
+pandas==3.0.6
+    # via
+    #   -r requirements.txt
+    #   seaborn
+parso==0.8.7
+    # via jedi
+pexpect==4.9.0 ; sys_platform != 'emscripten' and sys_platform != 'win32'
+    # via ipython
+pillow==12.3.0
+    # via matplotlib
+platformdirs==4.12.2
+    # via jupyter-core
+pluggy==1.6.0
+    # via pytest
+prompt-toolkit==3.0.53
+    # via ipython
+psutil==7.2.2 ; sys_platform != 'cygwin' and sys_platform != 'emscripten'
+    # via ipython
+ptyprocess==0.7.0 ; sys_platform != 'emscripten' and sys_platform != 'win32'
+    # via pexpect
+pure-eval==0.2.4
+    # via stack-data
+pycparser==3.0 ; (implementation_name != 'PyPy' and platform_python_implementation != 'PyPy') or (implementation_name == 'pypy' and platform_python_implementation == 'PyPy')
+    # via cffi
+pydantic==2.13.5
+    # via
+    #   mcp
+    #   pydantic-settings
+pydantic-core==2.46.5
+    # via pydantic
+pydantic-settings==2.15.0
+    # via mcp
+pygments==2.21.0
+    # via
+    #   ipython
+    #   ipython-pygments-lexers
+    #   pytest
+pyjwt==2.15.1
+    # via mcp
+pyparsing==3.3.3
+    # via matplotlib
+pytest==9.1.1
+    # via -r 10-mcp-agents/requirements.txt
+python-dateutil==2.9.0.post0
+    # via
+    #   jupyter-client
+    #   matplotlib
+    #   pandas
+python-dotenv==1.2.4
+    # via pydantic-settings
+python-multipart==0.0.32
+    # via mcp
+pywin32==312 ; sys_platform == 'win32'
+    # via mcp
+pyyaml==6.0.3
+    # via -r requirements.txt
+pyzmq==27.2.0
+    # via
+    #   ipykernel
+    #   jupyter-client
+referencing==0.37.0
+    # via
+    #   jsonschema
+    #   jsonschema-specifications
+requests==2.34.2
+    # via -r requirements.txt
+rpds-py==2026.6.3
+    # via
+    #   jsonschema
+    #   referencing
+ruff==0.16.10
+    # via -r requirements-dev.in
+scikit-learn==1.9.1
+    # via -r requirements.txt
+scipy==1.17.1 ; python_full_version < '3.12'
+    # via scikit-learn
+scipy==1.18.1 ; python_full_version >= '3.12'
+    # via scikit-learn
+seaborn==0.13.2
+    # via -r requirements.txt
+six==1.17.0
+    # via python-dateutil
+sse-starlette==3.5.0
+    # via mcp
+stack-data==0.6.3
+    # via ipython
+starlette==1.7.0
+    # via
+    #   mcp
+    #   sse-starlette
+threadpoolctl==3.7.0
+    # via scikit-learn
+tornado==6.5.10
+    # via
+    #   ipykernel
+    #   jupyter-client
+traitlets==5.16.1
+    # via
+    #   ipykernel
+    #   ipython
+    #   jupyter-client
+    #   jupyter-core
+    #   matplotlib-inline
+    #   nbclient
+    #   nbformat
+typing-extensions==4.16.0
+    # via
+    #   anyio
+    #   ipython
+    #   jupyter-client
+    #   mcp
+    #   pydantic
+    #   pydantic-core
+    #   referencing
+    #   starlette
+    #   typing-inspection
+typing-inspection==0.4.4
+    # via
+    #   mcp
+    #   pydantic
+    #   pydantic-settings
+tzdata==2026.4 ; sys_platform == 'emscripten' or sys_platform == 'win32'
+    # via pandas
+urllib3==2.8.0
+    # via requests
+uvicorn==0.54.0 ; sys_platform != 'emscripten'
+    # via mcp
+wcwidth==0.9.1
+    # via prompt-toolkit
