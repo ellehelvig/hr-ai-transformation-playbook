@@ -4,9 +4,6 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
-- **Work-redesign evidence clarified, 13 October 2026.** The task map now distinguishes simulated approval transitions and mutable activity records from deployed authorization and protected audit. Bounded eligibility data has tests; sensitive routing and record separation remain proposed.
-
-- **Portfolio review, 10 October 2026.** Added a concise fictional People Partner narrative, a complete hold decision in the use-case tool, and dated primary-source interpretations. Preserved detailed design and failure evidence.
 
 Added
 
@@ -22,6 +19,10 @@ Fixed
 - **The LLM judge would fail on its first real run.** It sent `temperature=0` to `claude-sonnet-5`, and current Claude models reject non-default sampling parameters. The judge now sends none, uses `claude-sonnet-5-5`, and allows enough output for its reasoning. A new test checks the live request shape.
 
 Changed
+
+- **Work-redesign evidence clarified, 13 October 2026.** The task map now distinguishes simulated approval transitions and mutable activity records from deployed authorization and protected audit. Bounded eligibility data has tests; sensitive routing and record separation remain proposed.
+
+- **Portfolio review, 10 October 2026.** Added a concise fictional People Partner narrative, a complete hold decision in the use-case tool, and dated primary-source interpretations. Preserved detailed design and failure evidence.
 
 - **README redesigned as a case-study page.** A banner and a stage-by-stage journey figure (light, dark, and narrow-screen versions in `assets/`) open the page, followed by the point of view and a list linking each stage to its material. Technical inventory, test counts, setup, and the first example move to [technical evidence and setup](docs/evidence-index.md), which `scripts/verify_claims.py` now checks instead of the README. The evidence page adds labels for reading results: observed, estimated, and illustrative. The scope note now states that the People Partner redesign has no measured outcome or completed pilot, and that a review flag is not an enforced approval system. The Resolve sentence now says it holds recommendations for a person to approve or reject, matching Resolve's own description of simulated review.
 - **Four California workplace laws verified against chaptered text on 9 October 2026.** AB 1331, AB 1883, SB 947, and SB 951 were approved and chaptered on 30 September 2026 (Chapters 851, 853, 859, and 860). AB 1331, AB 1883, and SB 951 take effect on 1 January 2027 under Constitution Article IV, section 8(c)(1). SB 947 takes effect that day but its new Labor Code part is expressly operative on 1 July 2027 under section 1526.7. Adds the two omitted laws, distinguishes effective from operative dates, and records sources in [the California source register](03-governance/claims/california-workplace-laws.json). SB 951 retains 60-day Cal/WARN notice, not the earlier 90-day proposal. AB 1883's 3 September enrollment date remains distinguished from signing.
