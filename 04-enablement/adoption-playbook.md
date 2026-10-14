@@ -29,7 +29,7 @@ These are role assignments to make, not people who have already participated. Re
 
 ### Days 1-30: understand and rehearse
 
-Map the manual process with practitioners, including exceptions and invisible review work. Confirm an approved tool and synthetic data scope. Deliver literacy Modules 1-3, including governance and data handling, before practice. See the [curriculum](hr-ai-literacy-curriculum.md) and [facilitator guide](workshop-facilitator-guide.md).
+Map the manual process with practitioners, including exceptions and invisible review work. Confirm an approved tool and synthetic data scope. Complete literacy Modules 1-3, including governance and data handling, before the pilot comparison. Module 2 training labs remain synthetic and require the curriculum's tool/data approvals. See the [curriculum](hr-ai-literacy-curriculum.md) and [facilitator guide](workshop-facilitator-guide.md).
 
 Measure a human-only synthetic baseline on the same scope and rubric planned for comparison. Treat it as rehearsal evidence, not an operational employee baseline. Before any later real-work pilot, establish a separately authorized operational baseline in the approved environment. Never put employer data in this repository.
 

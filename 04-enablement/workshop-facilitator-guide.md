@@ -13,7 +13,7 @@ Operational guidance for anyone facilitating the [HR AI literacy curriculum](hr-
 
 **One week out:**
 - Test every prompt in the library you plan to demo, on the actual model/tool your org uses. A prompt that worked when written can drift as models update. Verify, don't assume.
-- Prepare 2-3 real (or realistically adapted) examples from your own organization. Generic examples land flatter than ones that feel real to the room.
+- Prepare 2-3 synthetic examples modeled on familiar HR workflows. Do not bring identifiable employee cases or confidential employer documents into the exercise.
 - Identify one AI skeptic to invite deliberately. The best sessions have range in the room, not a room of people who already agree.
 
 **Day of:**

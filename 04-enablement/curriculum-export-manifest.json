@@ -4,10 +4,11 @@
   "scope": "Deck summaries; full curriculum source in PowerPoint notes. Source/structure and rendered slide/page review, not legal or human evaluation approval.",
   "files": {
     "04-enablement/hr-ai-literacy-curriculum.md": "5ee769258ac9b95a3c514b64dcd5b22215e40bac8621054ffb452bffc244827a",
-    "04-enablement/workshop-facilitator-guide.md": "b5e2baed243b949b36acb596239255f6112164f9d911e01bc99bea4bb8df640a",
-    "04-enablement/adoption-playbook.md": "939cbe0ea890ceba00990e6e1808db183295eb2d01793340e02555e30013397e",
+    "04-enablement/workshop-facilitator-guide.md": "0142b09c998b373d5ffd43270a045c59a8016d3138d4ff056fbaae1e01117c79",
+    "04-enablement/adoption-playbook.md": "c15566d1277b4551a8a3a2f6c9b59f1e3ffa54142fa25086eec7e27d636a6e09",
     "04-enablement/HR-AI-Literacy-Curriculum.pptx": "a601ebf37ed21ec9f482ce609dceef8893be1a6cb640e21ee519d783220bf1d3",
     "04-enablement/HR-AI-Literacy-Curriculum.pdf": "1ebd15cca4da71f9c88dab0805d6b5f2d753ebedd803c2412b85d90af06f0f27"
   },
-  "pdf_conversion_note": "Restored white link text/underlines on navy closing slide after LibreOffice applied its default hyperlink blue; link destinations retained."
+  "pdf_conversion_note": "Restored white link text/underlines on navy closing slide after LibreOffice applied its default hyperlink blue; link destinations retained.",
+  "final_content_review": "2026-10-14: clarified synthetic examples and training/pilot sequence in guide/adoption text. Curriculum Markdown and both 23-slide/page downloads remain byte-identical to the reviewed 2026-10-13 snapshot."
 }
