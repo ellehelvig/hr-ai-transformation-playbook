@@ -1,6 +1,6 @@
 # Prompt evaluation review packet, 13 October 2026
 
-**Status: all ten historical outputs require human review; five fresh model reruns are pending. No prompt is approved or marked tested by this packet.**
+**Status updated 14 October 2026: all five fresh model/judge executions completed; all ten historical and five new outputs still require human review. No prompt is approved or marked tested.**
 
 ## Evidence boundaries
 
@@ -25,12 +25,12 @@ Block use when the output discloses health/protected information to a manager, r
 | hr-operations-1 | Pending | Historical review |
 | hr-operations-2 | Pending | Historical review |
 | hr-operations-3 | Pending | Historical review |
-| hr-operations-4 | Pending | Fresh rerun and historical review |
+| hr-operations-4 | Pending | Review fresh rerun and historical output |
 | hr-operations-5 | Pending | Historical review |
-| performance-1 | Pending | Fresh rerun and historical review |
-| performance-2 | Pending | Fresh rerun and historical review |
-| performance-3 | Pending | Fresh rerun and historical review |
-| performance-4 | Pending | Fresh rerun and historical review |
+| performance-1 | Pending | Review fresh rerun and historical output |
+| performance-2 | Pending | Review fresh rerun and historical output |
+| performance-3 | Pending | Review fresh rerun and historical output |
+| performance-4 | Pending | Review fresh rerun and historical output |
 | performance-5 | Pending | Historical review |
 
 Priority flags: performance-2 rating reconsideration linked to health; performance-1 residual leave reference and potential rating suggestion; hr-operations-4 manager-facing surgery disclosure. Read all ten outputs, including judge-passed outputs.
@@ -49,7 +49,23 @@ python 09-evals/prompt_tests.py --run --backend claude-code \
   --output 09-evals/prompt-test-results-rerun-NEW.json
 ```
 
-Choose a new output name for every attempt. This invokes a model and judge using the signed-in plan. The API backend needs its own key and incurs API usage. A five-case attempt on 13 October reached CLI authentication but produced no model outputs: the OAuth session could not be refreshed. The [failed attempt](prompt-test-results-rerun-20261013T225446Z.json) and [CLI provenance](prompt-test-provenance-rerun-20261013T225446Z.json) are retained separately. Successful reruns and human assessment are still pending. That attempt requested the `opus` and `sonnet` aliases; the command above pins the full model IDs the 1 October run used. The runner now records each call's execution status, failure kind (authentication, rate limit, transport, CLI error) and serving model, and leaves `output` empty when the model call failed, so a failed call cannot be read as a model answer or counted as a completed evaluation. Pin and record the serving model where possible; session labels are not proof of the actual serving version. Human assessment is still required after reruns.
+Choose a new output name for every attempt. This invokes a model and judge using the signed-in plan. The API backend needs its own key and incurs API usage. A five-case attempt on 13 October reached CLI authentication but produced no model outputs: the OAuth session could not be refreshed. The [failed attempt](prompt-test-results-rerun-20261013T225446Z.json) and [CLI provenance](prompt-test-provenance-rerun-20261013T225446Z.json) are retained separately. The 14 October executions are recorded below; human assessment remains pending. That attempt requested the `opus` and `sonnet` aliases; the command above pins the full model IDs the 1 October run used. The runner now records each call's execution status, failure kind (authentication, rate limit, transport, CLI error) and serving model, and leaves `output` empty when the model call failed, so a failed call cannot be read as a model answer or counted as a completed evaluation. Pin and record the serving model where possible; session labels are not proof of the actual serving version. Human assessment is still required after reruns.
+
+## Rerun execution, 14 October 2026
+
+Five model calls and five judge calls completed with no infrastructure failures in the successful batch. CLI 2.1.300 reports `claude-opus-5-5` for the model and `claude-sonnet-5-5` for the judge in every case. [Raw outputs, raw judge replies and per-call status](prompt-test-results-rerun-20261014-cli-2-1-300.json); [provenance and integrity hashes](prompt-test-provenance-rerun-20261014-cli-2-1-300.json). Full model outputs are also embedded in the existing human worksheet, with reviewer fields blank.
+
+| Fixture | Automated MET | NOT_MET | UNCLEAR | Human disposition |
+|---|---|---|---|---|
+| hr-operations-4 | 5 | 0 | 0 | Pending |
+| performance-1 | 5 | 0 | 0 | Pending |
+| performance-2 | 6 | 0 | 0 | Pending |
+| performance-3 | 4 | 1 | 0 | Pending |
+| performance-4 | 5 | 0 | 1 | Pending |
+
+The 25/27 automated MET count is not a pass rate or release decision. The judge remains unvalidated; engineering triage also flags possible judge/fixture ambiguity in performance-1 and performance-2. Inspect every output, not just the two automated exceptions.
+
+The original 13 October authentication attempt remains byte-identical. A separate [14 October version-rejected attempt](prompt-test-results-rerun-20261014-local-host.json) records one failed call under CLI 2.1.270, zero model outputs, zero judge calls and four unattempted fixtures. It stopped immediately. The official updater then installed 2.1.300 before the successful batch. Neither failed attempt contributes completed evaluations.
 
 ## Current rerun: hr-operations-4
 
