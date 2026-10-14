@@ -2,6 +2,17 @@
 
 **Status updated 14 October 2026: all five fresh model/judge executions completed; all ten historical and five new outputs still require human review. No prompt is approved or marked tested.**
 
+## Decision for the HR reviewer
+
+**Review only. Keep the merge and prompt-use gates closed.**
+
+- **Available:** all five 14 October model outputs, raw judge replies, actual CLI-reported models and execution status. Authentication is no longer blocking this batch.
+- **Unavailable from failed attempts:** the 13 October authentication attempt produced none of its five model outputs; the 14 October old-CLI attempt produced no output. Neither contributes completed evaluations. Their records remain unchanged.
+- **Not yet available:** a clean template-only run outside repository instructions. Both model and judge calls in the completed batch ran from the repository root; repository memory reached at least the performance-2 output. Treat the five captures as context-contaminated execution evidence, not clean validation. The updated runner excludes the repository working directory; user-level instructions still need checking before any prospective rerun.
+- **Your decision:** assess the full outputs and the engineering attention points, resolve the intended rating-column order and document any prospective fixture correction. Record dispositions and critical holds. Do not change old outputs or scores, and do not authorize use by averaging failures away.
+
+The worksheet links each full output and leaves all 53 historical and 27 current criterion decisions, reviewer identities and dispositions blank. Read the output before opening its automated judge record. No further live batch is required just to finish this review; agree the corrected scope first.
+
 ## Evidence boundaries
 
 - Historical output: [1 October checklist](prompt-review-2026-10-01.md) and [original results](prompt-test-results.json), run through helper sessions rather than the current runner.

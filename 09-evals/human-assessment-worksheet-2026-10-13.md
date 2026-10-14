@@ -2,6 +2,8 @@
 
 **All decisions are pending. No human approval is recorded.**
 
+The five 14 October outputs are available, but the completed batch ran with repository instructions in context. They are execution evidence, not clean template-only validation. See the review packet's decision summary before assessing them. The earlier authentication failure produced no outputs; it does not mean the new outputs are missing.
+
 Use this with the [review packet](prompt-review-packet-2026-10-13.md). Read each full output before consulting the automated verdicts. Score independently first to reduce anchoring; this does not establish a blinded or independent study.
 
 ## Three steps
