@@ -11,6 +11,10 @@ Added
 
 Fixed
 
+- **Curriculum downloads synchronized, 13 October 2026.** The editable 23-slide deck and PDF now reflect synthetic labs, seven session hours plus async practice, the current approach taxonomy, proposed recognition and accountable pilot gates. Full source notes and a manifest identify the reviewed snapshot. No learning outcome or legal approval is claimed.
+
+- **Portfolio review, 10 October 2026.** Reworked the adoption page into a proposed synthetic-first pilot with owners, review effort, transparent value assumptions, and expand/pause/stop criteria.
+
 - **Colorado enforcement status deferred.** The statutory applicability date is supported by the legislature, but the current court orders and rulemaking were not verified. The dates table and risk template no longer state a continuing stay as settled fact. Counsel must confirm the operative orders and rules.
 
 - **Risk evidence no longer stated as certainty.** Historical hiring and pay distributions can create model bias but do not guarantee it. Connecticut's bias-testing evidence rule does not establish that an old audit is categorically worse than no audit. Pay-transparency guidance removes an unsupported state count and distinguishes national implementation and conditional vertical direct effect from blanket private-employer applicability across the EU. Sources are linked beside each correction.
