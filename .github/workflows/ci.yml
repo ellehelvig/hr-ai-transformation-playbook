@@ -7,6 +7,20 @@ on:
     branches: [main]
 
 jobs:
+  windows-dependencies:
+    name: Windows locked dependencies
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements-lock.txt
+      - run: python -m pip check
+      - name: Verify conditional timezone data and MCP import
+        run: |
+          python -c "import tzdata, runpy; from zoneinfo import ZoneInfo; assert tzdata.__version__ == '2026.5'; ZoneInfo('America/Chicago'); runpy.run_path('10-mcp-agents/server.py', run_name='portfolio_import_check')"
+
   validate:
     name: Validate
     runs-on: ubuntu-latest
@@ -29,6 +43,9 @@ jobs:
 
       - name: Install Python deps
         run: pip install -r requirements-lock.txt
+
+      - name: Verify installed dependency consistency
+        run: python -m pip check
 
       - name: Verify MCP server imports with installed SDK
         run: |

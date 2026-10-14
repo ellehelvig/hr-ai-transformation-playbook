@@ -38,6 +38,11 @@ Results reported without measurement context stay unverified. Controls are descr
 
 ## Setup and a first example
 
+Use the [locked local and CI setup](reproducible-setup.md) for dependency
+consistency and validation details. The lock supports tested deterministic tools
+and synthetic notebooks. It does not validate prompts, model judges, or
+governance templates for real HR use.
+
 The templates can be read and adapted without installing anything. For the Python tools and local checks, use Python 3.11 or later:
 
 ```bash
