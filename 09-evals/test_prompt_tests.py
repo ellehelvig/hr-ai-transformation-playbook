@@ -194,7 +194,7 @@ def test_cli_authentication_failure_is_classified_not_graded(monkeypatch, tmp_pa
                                       "--case", "performance-2", "--case", "hr-operations-4", "--output", str(out)])
     assert prompt_tests.main() == 1
     data = json.loads(out.read_text())
-    assert data["execution_summary"]["model_call_failures"] == {"authentication": 2}
+    assert data["execution_summary"]["model_call_failures"] == {"authentication": 1}
     for record in data["results"]:
         call = record["execution"]["model_call"]
         assert (call["status"], call["failure_kind"], call["exit_code"]) == ("failed", "authentication", 1)
@@ -206,7 +206,7 @@ def test_cli_success_records_serving_model(monkeypatch, tmp_path):
     envelope = json.dumps({"is_error": False, "result": "DRAFT", "modelUsage": {"claude-opus-5-5": {}}})
     out = tmp_path / "ok.json"
     monkeypatch.setattr(judge, "run_claude_cli_detailed", fake_cli(envelope, 0))
-    monkeypatch.setattr(judge, "claude_code_judge", lambda *_: ("1|MET|ok", "claude-code:test"))
+    monkeypatch.setattr(judge, "claude_code_judge", lambda *_, **kwargs: ("1|MET|ok", "claude-code:test"))
     monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--backend", "claude-code",
                                       "--case", "performance-2", "--output", str(out)])
     prompt_tests.main()
@@ -240,3 +240,78 @@ def test_api_failures_are_classified():
     assert prompt_tests.api_call_record("ERROR: APIConnectionError: reset", "m")["failure_kind"] == "transport"
     assert prompt_tests.api_call_record("ERROR: stop reason max_tokens", "m")["failure_kind"] == "incomplete_output"
     assert prompt_tests.api_call_record("draft", "m")["status"] == "success"
+
+
+def test_failed_judge_retains_evidence_and_stops_before_next_fixture(monkeypatch, tmp_path):
+    calls = []
+
+    def cli(prompt, model):
+        calls.append(model)
+        return {"ok": len(calls) == 1, "text": "DRAFT" if len(calls) == 1 else None,
+                "exit_code": 0 if len(calls) == 1 else 1,
+                "failure_kind": None if len(calls) == 1 else "authentication",
+                "failure_message": None if len(calls) == 1 else "OAuth expired",
+                "serving_models": [model] if len(calls) == 1 else []}
+
+    out = tmp_path / "judge-failed.json"
+    monkeypatch.setattr(judge, "run_claude_cli_detailed", cli)
+    monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--backend", "claude-code",
+                                      "--case", "performance-2", "--case", "performance-3", "--output", str(out)])
+    assert prompt_tests.main() == 1
+    data = json.loads(out.read_text())
+    assert len(calls) == 2
+    assert data["results"][0]["output"] == "DRAFT"
+    assert data["results"][0]["execution"]["judge_call"]["failure_kind"] == "authentication"
+    assert data["execution_summary"]["completed_evaluations"] == 0
+    assert data["unattempted_cases"] == ["performance-3"]
+
+
+def test_raw_judge_reply_and_both_serving_models_are_preserved(monkeypatch, tmp_path):
+    case = next(c for c in prompt_tests.load_cases() if c["id"] == "performance-2")
+    reply = "\n".join(f"{i+1}|UNCLEAR|synthetic parser test" for i in range(len(case["expected_behavior"])))
+    calls = []
+
+    def cli(prompt, model):
+        calls.append(model)
+        return {"ok": True, "text": "DRAFT" if len(calls) == 1 else reply, "exit_code": 0,
+                "failure_kind": None, "failure_message": None, "serving_models": ["served-" + model]}
+
+    out = tmp_path / "provenance.json"
+    monkeypatch.setattr(judge, "run_claude_cli_detailed", cli)
+    monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--backend", "claude-code",
+                                      "--case", "performance-2", "--output", str(out)])
+    assert prompt_tests.main() == 0
+    data = json.loads(out.read_text())
+    record = data["results"][0]
+    assert record["judge_output"] == reply
+    for kind in ("model_call", "judge_call"):
+        execution = record["execution"][kind]
+        assert execution["serving_models"] == ["served-" + execution["requested_model"]]
+    assert data["execution_summary"]["completed_evaluations"] == 1
+
+
+def test_unreadable_judge_is_not_a_completed_evaluation(monkeypatch, tmp_path):
+    calls = []
+
+    def cli(prompt, model):
+        calls.append(model)
+        return {"ok": True, "text": "DRAFT" if len(calls) == 1 else "no verdict lines", "exit_code": 0,
+                "failure_kind": None, "failure_message": None, "serving_models": [model]}
+
+    out = tmp_path / "unreadable.json"
+    monkeypatch.setattr(judge, "run_claude_cli_detailed", cli)
+    monkeypatch.setattr(sys, "argv", ["prompt_tests.py", "--run", "--backend", "claude-code",
+                                      "--case", "performance-2", "--output", str(out)])
+    assert prompt_tests.main() == 1
+    data = json.loads(out.read_text())
+    assert data["results"][0]["judge_output"] == "no verdict lines"
+    assert data["execution_summary"]["completed_evaluations"] == 0
+    assert data["execution_summary"]["judge_call_failures"] == {"unparseable_output": 1}
+
+
+@pytest.mark.parametrize("text,stop", [("", "end_turn"), ("partial", "max_tokens")])
+def test_empty_or_truncated_cli_output_is_not_success(text, stop):
+    outcome = judge.run_claude_cli_detailed("p", "m", run=lambda *a, **k: types.SimpleNamespace(
+        returncode=0, stdout=json.dumps({"is_error": False, "result": text, "stop_reason": stop})))
+    assert outcome["ok"] is False
+    assert outcome["failure_kind"] == "incomplete_output"

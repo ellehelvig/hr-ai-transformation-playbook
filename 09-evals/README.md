@@ -189,3 +189,5 @@ Add cases to the YAML file following the existing format. Guidelines:
 | After any escalation incident | Yes, add case covering the incident scenario |
 
 See the [13 October review packet](prompt-review-packet-2026-10-13.md) for the five current rerun inputs, hashes and criterion-level human review instructions.
+
+Execution evidence also retains the raw CLI judge reply and its requested/reported serving models. The batch stops after its first infrastructure failure, lists unattempted fixtures, and counts a completed evaluation only when both model and judge succeeded. Successful execution does not satisfy human review.

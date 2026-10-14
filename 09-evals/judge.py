@@ -210,6 +210,8 @@ _AUTH = re.compile(r"authenticat|oauth|log ?in|credential|api key|unauthori[sz]e
 _RATE = re.compile(r"rate.?limit|usage limit|quota|\b429\b", re.I)
 _TRANSPORT = re.compile(r"timeout|timed out|connection|network|dns|overloaded|unavailable|\b50[234]\b|\b529\b", re.I)
 _SECRETISH = re.compile(r"sk-ant-\S+|bearer\s+\S+|[A-Za-z0-9_\-]{32,}", re.I)
+FAILURE_KINDS = {"authentication", "rate_limit", "transport", "cli_error", "provider_error",
+                 "unparseable_output", "incomplete_output"}
 
 
 def classify_failure(message: str) -> str:
@@ -271,6 +273,8 @@ def run_claude_cli_detailed(prompt: str, model: str, system_prompt: str = CLI_SY
     if done.returncode != 0 or envelope.get("is_error") or not isinstance(result, str):
         message = safe_message(result if isinstance(result, str) and result else f"claude CLI exited {done.returncode}")
         return {**record, "failure_kind": classify_failure(message), "failure_message": message}
+    if not result.strip() or envelope.get("stop_reason") in {"max_tokens", "max_output_tokens"}:
+        return {**record, "failure_kind": "incomplete_output", "failure_message": "CLI output empty or truncated"}
     return {**record, "ok": True, "text": result}
 
 
@@ -286,12 +290,19 @@ def run_claude_cli(prompt: str, model: str, system_prompt: str = CLI_SYSTEM_PROM
     return outcome["text"]
 
 
-def claude_code_judge(question: str, response: str, criteria: list[str]) -> tuple[str, str]:
+def claude_code_judge(
+    question: str, response: str, criteria: list[str], execution: dict | None = None,
+) -> tuple[str, str]:
     """Grade through the Claude Code CLI instead of the API. Same prompt as anthropic_judge."""
     model = os.environ.get(JUDGE_MODEL_ENV, DEFAULT_JUDGE_MODEL)
     numbered = "\n".join(f"{i + 1}. {c}" for i, c in enumerate(criteria))
-    text = run_claude_cli(JUDGE_PROMPT.format(question=question, response=response, criteria=numbered), model)
-    return text, f"claude-code:{model}"
+    prompt = JUDGE_PROMPT.format(question=question, response=response, criteria=numbered)
+    outcome = run_claude_cli_detailed(prompt, model)
+    if execution is not None:
+        execution.update(outcome, requested_model=model)
+    if not outcome["ok"]:
+        raise RuntimeError(f"{outcome['failure_kind']}: {outcome['failure_message']}")
+    return outcome["text"], f"claude-code:{model}"
 
 
 def make_canned_judge(path: Path) -> Callable[[str, str, list[str]], tuple[str, str]]:

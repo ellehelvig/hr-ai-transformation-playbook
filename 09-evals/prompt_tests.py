@@ -141,7 +141,7 @@ def judge_call_record(graded) -> dict:
 def execution_summary(results: list[dict]) -> dict:
     """Count successful executions and infrastructure failures. Says nothing about output quality."""
     summary = {"model_calls": len(results), "model_calls_succeeded": 0, "model_call_failures": {},
-               "judge_calls_succeeded": 0, "judge_call_failures": {}}
+               "judge_calls_succeeded": 0, "judge_call_failures": {}, "completed_evaluations": 0}
     for result in results:
         model_call, judge_call = result["execution"]["model_call"], result["execution"]["judge_call"]
         if model_call["status"] == "success":
@@ -151,6 +151,8 @@ def execution_summary(results: list[dict]) -> dict:
             kinds[model_call["failure_kind"]] = kinds.get(model_call["failure_kind"], 0) + 1
         if judge_call["status"] == "success":
             summary["judge_calls_succeeded"] += 1
+            if model_call["status"] == "success":
+                summary["completed_evaluations"] += 1
         elif judge_call["status"] == "failed":
             kinds = summary["judge_call_failures"]
             kinds[judge_call["failure_kind"]] = kinds.get(judge_call["failure_kind"], 0) + 1
@@ -199,6 +201,7 @@ def main() -> int:
     model = os.environ.get(MODEL_ENV, DEFAULT_MODEL)
     results = []
     for case in cases:
+        judge_execution = {}
         if args.backend == "claude-code":
             outcome = judge.run_claude_cli_detailed(case["input"], model)
             failure = f"ERROR: {outcome['failure_kind']}: {outcome['failure_message']}"
@@ -206,21 +209,34 @@ def main() -> int:
             model_call = {"status": "success" if outcome["ok"] else "failed", "failure_kind": outcome["failure_kind"],
                           "failure_message": outcome["failure_message"], "requested_model": model,
                           "serving_models": outcome["serving_models"], "exit_code": outcome["exit_code"]}
-            graded = judge.grade_response(case, output, judge.claude_code_judge)
+            from functools import partial
+
+            graded = judge.grade_response(case, output, partial(judge.claude_code_judge, execution=judge_execution))
         else:
             output = run_model(case["input"], model)
             model_call = api_call_record(output, model)
             graded = judge.grade_response(case, output, judge.anthropic_judge)
         execution = {"model_call": model_call, "judge_call": judge_call_record(graded)}
+        if judge_execution:
+            execution["judge_call"].update({key: judge_execution[key]
+                                            for key in ("requested_model", "serving_models", "exit_code")})
+        judge_output = judge_execution.get("text")
+        if judge_output is not None and any(v.rationale == "judge did not return a verdict for this criterion"
+                                            for v in graded.verdicts):
+            execution["judge_call"].update(status="failed", failure_kind="unparseable_output",
+                                          failure_message="Judge omitted one or more criterion verdicts")
         ran = model_call["status"] == "success"
         results.append({"id": case["id"], "title": case["title"], "trap": case["trap"],
                         "prompt_sha256": case["sha256"], "output": output if ran else None,
-                        "execution": execution, "grading": graded.to_dict()})
+                        "judge_output": judge_output, "execution": execution, "grading": graded.to_dict()})
         if not ran:
             print(f"{case['id']:28} NOT EVALUATED: model call failed ({model_call['failure_kind']})")
         else:
             print(f"{case['id']:28} met={graded.criteria_met} not_met={graded.criteria_failed} "
                   f"unclear={graded.criteria_unknown}  {'(judge failed)' if graded.error else ''}")
+        if execution["model_call"]["status"] == "failed" or execution["judge_call"]["status"] == "failed":
+            print("Stopped after an infrastructure failure; remaining fixtures were not attempted.")
+            break
 
     with output_path.open("x", encoding="utf-8") as output_file:
         output_file.write(json.dumps({
@@ -231,9 +247,11 @@ def main() -> int:
                      "Smoke test, not a benchmark."),
             "evaluation_status": EVALUATION_STATUS,
             "execution_summary": execution_summary(results),
+            "unattempted_cases": [case["id"] for case in cases[len(results):]],
             "results": results,
         }, indent=2) + "\n")
-    return 1 if any(result["grading"].get("error") for result in results) else 0
+    return 1 if any(result["execution"][kind]["status"] == "failed"
+                    for result in results for kind in ("model_call", "judge_call")) else 0
 
 
 if __name__ == "__main__":
