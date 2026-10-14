@@ -61,7 +61,7 @@ Each stage answers one question before the next begins. Work moves forward when 
 
 | Stage | The question it answers | Sections |
 |:--|:--|:--|
-| **Decide** | What should we build first, and in what order? | [01 · Use cases](01-use-cases/README.md): vetted HR AI use cases, a prioritization matrix, and a [work redesign case study](01-use-cases/work-redesign-people-partner.md)<br>[06 · Roadmap](06-roadmap/README.md): an 18-month plan with phase gates |
+| **Decide** | What should we build first, and in what order? | [01 · Use cases](01-use-cases/README.md): HR AI use-case examples, a prioritization matrix, and a [work redesign case study](01-use-cases/work-redesign-people-partner.md)<br>[06 · Roadmap](06-roadmap/README.md): an 18-month plan with phase gates |
 | **Govern** | Can we deploy this responsibly? | [03 · Governance](03-governance/README.md): AI use policy, risk assessment, EU AI Act intake, vendor review, incident response, and [key legal dates](03-governance/README.md#key-dates-for-hr) |
 | **Build** | How do we make it work, safely? | [02 · Prompts](02-prompt-library/README.md) for eight HR functions<br>[11 · Skills](11-skills/README.md): installable agent skills<br>[07 · Workflow patterns](07-agentic-patterns/README.md)<br>[10 · MCP tools](10-mcp-agents/README.md), [09 · Evals](09-evals/README.md), [05 · Notebooks](05-notebooks/README.md) |
 | **Adopt and prove** | Will people use it, and is it worth it? | [04 · Enablement](04-enablement/README.md): a literacy curriculum and a 90-day adoption plan<br>[08 · ROI](08-roi-measurement/README.md): business case, metrics, and reporting |
