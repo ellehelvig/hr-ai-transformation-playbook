@@ -1,6 +1,10 @@
 # Use case prioritization matrix
 
-Use this framework to score and rank AI use cases for your People Team. It prevents the common mistake of starting with the most exciting use case rather than the most strategic one.
+Use this framework to score and rank AI use cases for your People Team. Use it to make assumptions and disagreements visible before committing resources.
+
+**Reference decision tool, not a validated risk model.** All weights, scoring anchors, and priority thresholds are illustrative judgment aids. They do not establish legal eligibility or permission to deploy.
+
+[Redesign the selected work](work-redesign-people-partner.md) → [Plan its pilot](../04-enablement/adoption-playbook.md)
 
 ---
 
@@ -14,6 +18,19 @@ Record **eligible**, **hold**, or **stop**, the evidence, and the accountable re
 - **Risk and evidence:** review the risk assessment and relevant evaluation failures. Unacceptable risks or failed stop-ship conditions block progression, including when a high business score is possible.
 
 Missing evidence or unresolved safeguards means **hold**. An unacceptable design means **stop** until redesigned and reviewed. Neither receives a priority tier. Record the reason and owner; business value cannot override it. Eligibility allows comparison, not release: pilot and production gates still apply.
+
+## Decision record to complete before scoring
+
+| Question | Evidence to record | Decision owner |
+|---|---|---|
+| Value and alternatives | Problem, affected users, baseline, and why ordinary automation or process repair is insufficient | Business sponsor |
+| Readiness and feasibility | Approved source versions, minimum data, access, dependencies, operating capacity | HR systems / IT |
+| Employee impact | Who may benefit or be harmed, human-channel access, accessibility, employee feedback method | HR owner with employee input |
+| Ownership and permissions | Sponsor, operator, reviewer authority, allowed actions, incident owner, review date, retirement owner | HR operations |
+| Evaluation | Rubric, independent-case provenance where required, failures that stop work, reviewer capacity | HR specialists and technical partner |
+| Adoption | Manager routine, practice time, support route, change in responsibilities, reasons for non-use | Enablement owner |
+
+A blank or unknown gate remains **hold**. Copy this record with the [intake](intake-template.md), retain the supporting evidence, and record who accepted each gate.
 
 ## Scoring dimensions
 
@@ -98,6 +115,22 @@ Even if autonomous offer decisions scored 5 on every business dimension, the fai
 
 ---
 
+## Completed fictional example: People Partner policy-drafting support
+
+**Illustrative decision record. No pilot has been run.** Fictional owner: HR service delivery lead. Sponsor: Head of People. Review date: 10 October 2026. Next review: before any scope change.
+
+- **Problem/value:** routine policy lookup competes with sensitive case handling. Baseline handling and review time are unknown; time saving is a hypothesis.
+- **Smallest scope:** synthetic rehearsal of policy retrieval and draft review. Ordinary rules retrieve approved fictional policy; a person owns the final reply. Compare against improving search without AI.
+- **Data/readiness:** fictional request and fictional eligibility fields only. No real records or employer documents. Policy owner verifies the source version. Technical partner must confirm an approved offline or sandbox path before rehearsal.
+- **Employee impact:** no employee-facing answer during rehearsal. Invite practitioners and accessibility feedback before designing an employee pilot. Offer a human route in the target design.
+- **Ownership/actions:** operator owns routing and incident handling; policy owner owns content; specialist owns sensitive matters. No approval, denial, HRIS write, diagnosis, or investigation is delegated.
+- **Evaluation:** measure policy correctness, hidden-risk misses, false refusal, specialist load, and total reviewer time. New assistant-authored cases are development cases. Resolve's known failures do not satisfy the independent-evaluation gate.
+- **Adoption:** proposed weekly practice on fictional cases, a manager briefing, and a route for reviewers to challenge drafts without penalty.
+- **Decision:** **HOLD for employee-facing use**, because identity-bound access, independent evaluation, baseline, and operating approvals are missing. **Not scored; no priority tier.** A synthetic rehearsal may be planned separately after its narrower data/tool gates are documented. A hypothetical high value score cannot change the hold.
+- **Next action:** HR owner takes this record into the [work redesign](work-redesign-people-partner.md), then the [pilot plan](../04-enablement/adoption-playbook.md). Record evidence and re-review before changing the decision.
+
+This is a completed example of a useful decision to pause, not a simulated claim of approval.
+
 ## How to run this as a team exercise
 
 1. **Gather stakeholders**: HR leadership, HRBPs, HR Ops, and at least one People Systems rep
@@ -115,7 +148,7 @@ Even if autonomous offer decisions scored 5 on every business dimension, the fai
 The most impressive demo is rarely the highest-value use case.
 
 **Underestimating data readiness.**
-Most HR AI projects are blocked by data quality, not model capability. Score this dimension conservatively.
+Data quality can block an otherwise plausible use case. Record the evidence behind this score.
 
 **Averaging away a failed gate.**
 A high business score cannot authorize an unacceptable design. Relevant legal review remains part of the governance process; this matrix does not determine legal eligibility.
