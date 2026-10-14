@@ -4,6 +4,7 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+- **Prompt runner isolated from repository instructions, 14 October 2026.** The Claude Code CLI now runs in an empty temporary directory, because a 14 October output showed the repository's `CLAUDE.md` had reached the model under test. The review packet records that finding, a rating-column misread in performance-2, and two judge verdicts that do not match that output. No result file or verdict changed.
 - **Five prompt reruns executed, 14 October 2026.** CLI-reported Opus 5.5 model and Sonnet 5.5 judge each completed five calls. Raw outputs, judge replies, status and provenance are retained. Automated verdicts: 25 MET, 1 NOT_MET, 1 UNCLEAR; no human approval or independent validation. Prior authentication and separate CLI-version failures remain evidence, excluded from completed evaluations.
 
 - **Rerun evidence hardened, 14 October 2026.** Fix judge-failure recording, retain raw CLI judge replies and serving-model metadata, reject empty/truncated CLI output, stop the batch after an infrastructure failure, and count completion only when both calls succeed. Historical evidence and human approval gates remain unchanged.

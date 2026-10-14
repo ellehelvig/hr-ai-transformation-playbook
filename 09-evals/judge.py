@@ -245,6 +245,7 @@ def run_claude_cli_detailed(prompt: str, model: str, system_prompt: str = CLI_SY
     """
     import shutil
     import subprocess
+    import tempfile
 
     run = run or subprocess.run
     command = [shutil.which("claude") or "claude", "-p", "--model", model, "--system-prompt", system_prompt,
@@ -253,7 +254,10 @@ def run_claude_cli_detailed(prompt: str, model: str, system_prompt: str = CLI_SY
     record = {"ok": False, "text": None, "exit_code": None, "failure_kind": None, "failure_message": None,
               "serving_models": []}
     try:
-        done = run(command, input=prompt, capture_output=True, text=True, timeout=600, env=env)
+        # An empty working directory keeps the repository's CLAUDE.md out of the model's context. Run from the
+        # repo root, Claude Code loads it as project memory even with --system-prompt replaced.
+        with tempfile.TemporaryDirectory(prefix="prompt-test-") as isolated:
+            done = run(command, input=prompt, capture_output=True, text=True, timeout=600, env=env, cwd=isolated)
     except (OSError, subprocess.SubprocessError) as exc:
         kind = "transport" if isinstance(exc, subprocess.TimeoutExpired) else "cli_error"
         return {**record, "failure_kind": kind, "failure_message": f"claude CLI failed: {type(exc).__name__}"}

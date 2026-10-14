@@ -117,6 +117,21 @@ def test_claude_cli_strips_api_key_and_disables_tools(monkeypatch):
     assert kwargs["input"] == "hello"
 
 
+def test_claude_cli_runs_outside_the_repository(monkeypatch):
+    """From the repo root, Claude Code loads CLAUDE.md as project memory, which leaked into a 14 October output."""
+    seen = []
+
+    def run(cmd, **kwargs):
+        cwd = Path(kwargs["cwd"])
+        seen.append((cwd, list(cwd.iterdir())))
+        return types.SimpleNamespace(returncode=0, stdout=json.dumps({"is_error": False, "result": "ok"}))
+
+    assert judge.run_claude_cli("hello", "m", run=run) == "ok"
+    cwd, contents = seen[0]
+    repo = Path(__file__).resolve().parent.parent
+    assert contents == [] and repo not in cwd.resolve().parents and cwd.resolve() != repo
+
+
 @pytest.mark.parametrize("stdout,code", [("not json", 0), (json.dumps({"is_error": True}), 0), ("", 1)])
 def test_claude_cli_failures_raise(stdout, code):
     def run(cmd, **kwargs):
