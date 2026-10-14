@@ -4,6 +4,19 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+- **Prompt runner isolated from repository instructions, 14 October 2026.** The Claude Code CLI now runs in an empty temporary directory, because a 14 October output showed the repository's `CLAUDE.md` had reached the model under test. The review packet records that finding, a rating-column misread in performance-2, and two judge verdicts that do not match that output. No result file or verdict changed.
+- **Five prompt reruns executed, 14 October 2026.** CLI-reported Opus 5.5 model and Sonnet 5.5 judge each completed five calls. Raw outputs, judge replies, status and provenance are retained. Automated verdicts: 25 MET, 1 NOT_MET, 1 UNCLEAR; no human approval or independent validation. Prior authentication and separate CLI-version failures remain evidence, excluded from completed evaluations.
+
+- **Rerun evidence hardened, 14 October 2026.** Fix judge-failure recording, retain raw CLI judge replies and serving-model metadata, reject empty/truncated CLI output, stop the batch after an infrastructure failure, and count completion only when both calls succeed. Historical evidence and human approval gates remain unchanged.
+
+- **Execution status recorded per call, 13 October 2026.** The prompt runner classifies each failed model or judge call (authentication, rate limit, transport, CLI error, incomplete output), records the serving model, leaves `output` empty when no model answer exists, and summarizes successful calls separately from infrastructure failures. Error text is shortened and credential-shaped strings are redacted.
+- **Evaluation evidence protected, 13 October 2026.** Targeted fixture reruns write new timestamped results; historical files cannot be overwritten. The review packet separates ten historical outputs from five required reruns and keeps all human review gates pending.
+
+Added
+
+- **First prompt smoke test run.** Ten HR operations and performance templates on Claude Opus 5.5, graded by an LLM judge (Sonnet): 49 of 53 criteria met. One miss is model behavior (the calibration briefing suggested reconsidering a rating because of health context); two came from the test design. Recorded in `09-evals/prompt-test-results.json`; a human review checklist is in `09-evals/prompt-review-2026-10-01.md`. No prompt is marked tested.
+- **Calibration prep handles health information explicitly.** The template now keeps health, disability, treatment, pregnancy, protected leave, and accommodation information out of rating reasoning, rules out rating changes because of it in either direction, and sends process questions to HR.
+
 Added
 
 - **Run the smoke tests on a Claude plan.** `prompt_tests.py --run --backend claude-code` runs prompts and grading through the Claude Code CLI with its tools disabled, so no API key is needed. Any `ANTHROPIC_API_KEY` in the shell is withheld from the CLI so it cannot bill the API.

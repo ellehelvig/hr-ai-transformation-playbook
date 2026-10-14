@@ -37,7 +37,6 @@ HERE = Path(__file__).parent
 ROOT = HERE.parent
 LIBRARY = ROOT / "02-prompt-library"
 FIXTURES = HERE / "prompt-fixtures.yaml"
-RESULTS = HERE / "prompt-test-results.json"
 MODEL_ENV = "PROMPT_TEST_MODEL"
 DEFAULT_MODEL = "claude-opus-5-5"
 
@@ -105,15 +104,82 @@ def run_model(prompt: str, model: str) -> str:
     return "".join(block.text for block in response.content if block.type == "text")
 
 
+API_FAILURES = {"AuthenticationError": "authentication", "PermissionDeniedError": "authentication",
+                "RateLimitError": "rate_limit", "APIConnectionError": "transport", "APITimeoutError": "transport",
+                "InternalServerError": "transport", "OverloadedError": "transport"}
+
+
+def api_call_record(output: str, model: str) -> dict:
+    """Describe an API model call the way the CLI path does, from run_model's return value."""
+    import judge
+
+    if not output.startswith("ERROR:"):
+        return {"status": "success", "failure_kind": None, "failure_message": None, "requested_model": model}
+    detail = output[len("ERROR:"):].strip()
+    if detail.startswith("stop reason"):
+        kind = "incomplete_output"
+    else:
+        kind = API_FAILURES.get(detail.split(":", 1)[0].strip(), "provider_error")
+    return {"status": "failed", "failure_kind": kind, "failure_message": judge.safe_message(detail),
+            "requested_model": model}
+
+
+def judge_call_record(graded) -> dict:
+    """Separate a judge infrastructure failure from a model failure and from a judge verdict."""
+    import judge
+
+    if graded.judge_name == "not-run":
+        return {"status": "skipped", "failure_kind": None, "failure_message": "no model output to grade"}
+    if graded.error:
+        detail = graded.error.split(": ", 1)[-1]
+        prefix = detail.split(":", 1)[0]
+        kind = prefix if prefix in judge.FAILURE_KINDS else judge.classify_failure(detail)
+        return {"status": "failed", "failure_kind": kind, "failure_message": judge.safe_message(detail)}
+    return {"status": "success", "failure_kind": None, "failure_message": None}
+
+
+def execution_summary(results: list[dict]) -> dict:
+    """Count successful executions and infrastructure failures. Says nothing about output quality."""
+    summary = {"model_calls": len(results), "model_calls_succeeded": 0, "model_call_failures": {},
+               "judge_calls_succeeded": 0, "judge_call_failures": {}, "completed_evaluations": 0}
+    for result in results:
+        model_call, judge_call = result["execution"]["model_call"], result["execution"]["judge_call"]
+        if model_call["status"] == "success":
+            summary["model_calls_succeeded"] += 1
+        else:
+            kinds = summary["model_call_failures"]
+            kinds[model_call["failure_kind"]] = kinds.get(model_call["failure_kind"], 0) + 1
+        if judge_call["status"] == "success":
+            summary["judge_calls_succeeded"] += 1
+            if model_call["status"] == "success":
+                summary["completed_evaluations"] += 1
+        elif judge_call["status"] == "failed":
+            kinds = summary["judge_call_failures"]
+            kinds[judge_call["failure_kind"]] = kinds.get(judge_call["failure_kind"], 0) + 1
+    return summary
+
+
+EVALUATION_STATUS = ("Pending human review. Only results whose model_call status is success contain a model "
+                     "output; failed calls are infrastructure evidence, not evidence about model quality, and "
+                     "do not count as completed evaluations. No result here passes or closes a review gate.")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--list", action="store_true", help="validate fixtures and list coverage, offline")
     parser.add_argument("--run", action="store_true", help="run every fixture on the model and grade it")
+    parser.add_argument("--case", action="append", help="run only this fixture id; repeat for a targeted rerun")
+    parser.add_argument("--output", type=Path, help="new results file; existing evidence is never overwritten")
     parser.add_argument("--backend", choices=("anthropic", "claude-code"), default="anthropic",
                         help="anthropic: API credits. claude-code: the signed-in Claude Code CLI on your plan")
     args = parser.parse_args()
 
     library, cases = load_library(), load_cases()
+    if args.case:
+        unknown = set(args.case) - {case["id"] for case in cases}
+        if unknown:
+            parser.error(f"unknown fixture ids: {', '.join(sorted(unknown))}")
+        cases = [case for case in cases if case["id"] in args.case]
     if not args.run:
         covered = {c["id"] for c in cases}
         print(f"{len(cases)} fixtures cover {len(covered)} of {len(library)} library prompts.")
@@ -122,36 +188,70 @@ def main() -> int:
             print(f"  {status}  {prompt_id}  {library[prompt_id]['title']}")
         return 0
 
+    output_path = args.output or Path(os.environ.get(
+        "PROMPT_TEST_RESULTS", HERE / f"prompt-test-results-{datetime.now(timezone.utc):%Y%m%dT%H%M%S%fZ}.json"))
+    if output_path.exists():
+        parser.error(f"results file already exists; choose a new path: {output_path}")
+    if not output_path.parent.is_dir():
+        parser.error(f"results directory does not exist: {output_path.parent}")
+
     sys.path.insert(0, str(HERE))
     import judge
 
     model = os.environ.get(MODEL_ENV, DEFAULT_MODEL)
     results = []
     for case in cases:
+        judge_execution = {}
         if args.backend == "claude-code":
-            try:
-                output = judge.run_claude_cli(case["input"], model)
-            except RuntimeError as exc:
-                output = f"ERROR: {exc}"
-            graded = judge.grade_response(case, output, judge.claude_code_judge)
+            outcome = judge.run_claude_cli_detailed(case["input"], model)
+            failure = f"ERROR: {outcome['failure_kind']}: {outcome['failure_message']}"
+            output = outcome["text"] if outcome["ok"] else failure
+            model_call = {"status": "success" if outcome["ok"] else "failed", "failure_kind": outcome["failure_kind"],
+                          "failure_message": outcome["failure_message"], "requested_model": model,
+                          "serving_models": outcome["serving_models"], "exit_code": outcome["exit_code"]}
+            from functools import partial
+
+            graded = judge.grade_response(case, output, partial(judge.claude_code_judge, execution=judge_execution))
         else:
             output = run_model(case["input"], model)
+            model_call = api_call_record(output, model)
             graded = judge.grade_response(case, output, judge.anthropic_judge)
+        execution = {"model_call": model_call, "judge_call": judge_call_record(graded)}
+        if judge_execution:
+            execution["judge_call"].update({key: judge_execution[key]
+                                            for key in ("requested_model", "serving_models", "exit_code")})
+        judge_output = judge_execution.get("text")
+        if judge_output is not None and any(v.rationale == "judge did not return a verdict for this criterion"
+                                            for v in graded.verdicts):
+            execution["judge_call"].update(status="failed", failure_kind="unparseable_output",
+                                          failure_message="Judge omitted one or more criterion verdicts")
+        ran = model_call["status"] == "success"
         results.append({"id": case["id"], "title": case["title"], "trap": case["trap"],
-                        "prompt_sha256": case["sha256"], "output": output, "grading": graded.to_dict()})
-        print(f"{case['id']:28} met={graded.criteria_met} not_met={graded.criteria_failed} "
-              f"unclear={graded.criteria_unknown}  {'(error)' if graded.error else ''}")
+                        "prompt_sha256": case["sha256"], "output": output if ran else None,
+                        "judge_output": judge_output, "execution": execution, "grading": graded.to_dict()})
+        if not ran:
+            print(f"{case['id']:28} NOT EVALUATED: model call failed ({model_call['failure_kind']})")
+        else:
+            print(f"{case['id']:28} met={graded.criteria_met} not_met={graded.criteria_failed} "
+                  f"unclear={graded.criteria_unknown}  {'(judge failed)' if graded.error else ''}")
+        if execution["model_call"]["status"] == "failed" or execution["judge_call"]["status"] == "failed":
+            print("Stopped after an infrastructure failure; remaining fixtures were not attempted.")
+            break
 
-    output_path = Path(os.environ.get("PROMPT_TEST_RESULTS", RESULTS))
-    output_path.write_text(json.dumps({
-        "backend": args.backend, "model": model,
-        "judge_model": os.environ.get(judge.JUDGE_MODEL_ENV, judge.DEFAULT_JUDGE_MODEL),
-        "run_at": datetime.now(timezone.utc).isoformat(),
-        "note": ("One synthetic input per prompt, one run, graded by an unvalidated LLM judge. "
-                 "Smoke test, not a benchmark."),
-        "results": results,
-    }, indent=2) + "\n", encoding="utf-8")
-    return 0
+    with output_path.open("x", encoding="utf-8") as output_file:
+        output_file.write(json.dumps({
+            "backend": args.backend, "model": model,
+            "judge_model": os.environ.get(judge.JUDGE_MODEL_ENV, judge.DEFAULT_JUDGE_MODEL),
+            "run_at": datetime.now(timezone.utc).isoformat(),
+            "note": ("One synthetic input per prompt, one run, graded by an unvalidated LLM judge. "
+                     "Smoke test, not a benchmark."),
+            "evaluation_status": EVALUATION_STATUS,
+            "execution_summary": execution_summary(results),
+            "unattempted_cases": [case["id"] for case in cases[len(results):]],
+            "results": results,
+        }, indent=2) + "\n")
+    return 1 if any(result["execution"][kind]["status"] == "failed"
+                    for result in results for kind in ("model_call", "judge_call")) else 0
 
 
 if __name__ == "__main__":

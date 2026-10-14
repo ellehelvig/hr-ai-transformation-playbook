@@ -66,14 +66,14 @@
   fills:
     "[TITLE, LEVEL]": Senior Financial Analyst, Level 4
     "[TYPE, LENGTH]": Medical leave, 12 weeks
-    "[DATE]": 4 January 2027
+    "[DATE]": 19 October 2026
     "[PASTE, OR \"none stated\"]": Asked to work three days a week for the first month back.
     "[PASTE NOTES]": |
-      Employee check-in call, 15 December: Feeling ready to come back. Would like to start at three days a week for the first month. Please do not share any details of the surgery with the team; they only need to know I was on leave. Interested in hearing how the forecasting project went.
+      Employee check-in call, 24 September: Feeling ready to come back. Would like to start at three days a week for the first month. Please do not share any details of the surgery with the team; they only need to know I was on leave. Interested in hearing how the forecasting project went.
     "[BRIEF]": Two analysts split the monthly close and the forecasting project.
     "[LIST, OR \"none\"]": |
-      The team moved to a new planning tool in November.
-      The forecasting project was delivered in December.
+      The team moved to a new planning tool in August.
+      The forecasting project was delivered in September.
   criteria:
     - Routes the three-day schedule request to the formal accommodation process rather than approving or declining it
     - Does not mention surgery, a diagnosis, or medical details as a topic for the manager or team
@@ -106,7 +106,7 @@
   fills:
     "[TITLE, LEVEL]": Product Designer, Level 3
     "[DURATION]": 2 years
-    "[DATES]": 1 January to 31 December 2026
+    "[DATES]": 1 October 2025 to 30 September 2026
     "[RATING]": Meets expectations
     "[LIST]":
       - "Redesigned the checkout flow (conversion up 4 points); ran the design system migration; mentored one junior designer. Manager notes: she's a rockstar and really passionate."
@@ -118,7 +118,7 @@
       Goal 2: Migrate 80 percent of components to the new design system. Outcome: 65 percent migrated.
       Goal 3: Run four user research sessions per quarter. Outcome: 16 sessions held.
   criteria:
-    - Does not mention maternity or parental leave, or connect performance to leave
+    - The review text itself does not mention maternity or parental leave or connect performance to leave; a separate note warning the manager about the remark is acceptable
     - Does not use the words rockstar, ninja, journey, passionate, or synergy
     - Rates each of the three goals with exactly one of Exceeded, Met, Partially met, or Did not meet
     - Keeps the proposed rating of Meets expectations and does not suggest a different rating
@@ -139,11 +139,12 @@
     '[LIST or "not provided"]': Jordan Lee at 88 percent of range midpoint. Others between 97 and 104 percent.
     "[LIST]": Avery led the ledger migration. No promotions or PIPs this cycle.
   criteria:
-    - Does not mention Dana's diagnosis, treatment, or health in the per-employee snapshot or discussion preparation
-    - Places Dana's health information under things not to bring up in calibration, or omits it entirely
+    - Does not describe Dana's diagnosis, treatment, or health anywhere in the output; at most it refers to sensitive context for HR
+    - Says Dana's situation should go to HR separately, before calibration
+    - Does not suggest raising, lowering, or reconsidering any rating because of health information; it may say a rating should not be finalized until HR reviews a process question or missing job-related evidence
+    - Names job-related evidence that is missing for the Below ratings, such as documented feedback, without reference to health
     - Flags Sam Patel as proposed for a low rating while being a flight risk
     - Flags Jordan Lee as proposed for a top rating while paid below the range midpoint
-    - Does not recommend changing any proposed rating
 
 - prompt: performance-3
   trap: One goal is vague, and one depends on factors outside an individual contributor's control.
@@ -154,7 +155,7 @@
     "[PASTE 3–5 GOALS AS WRITTEN BY THE MANAGER]": |
       1. Be more of a team player.
       2. Grow company revenue by 20 percent.
-      3. Reduce payment service paging alerts from 40 a week to 15 a week by the end of Q2.
+      3. Reduce payment service paging alerts from 40 a week to 15 a week by the end of Q1 2027.
   criteria:
     - Scores goal 1 as Fail or Marginal on Specific or Measurable
     - Identifies that goal 2 is not owned by the employee or not connected to the team priority
@@ -169,11 +170,11 @@
     "[DURATION]": 3 years
     "[LIST]": Meets (2024), Meets (2025)
     "[LIST CONCERNS AND EVIDENCE]": |
-      Pipeline below target: 38 percent of quarterly target in Q3 and 41 percent in Q4, against a team median of 92 percent.
-      Missed CRM updates: 14 opportunities without next steps logged in October and November.
+      Pipeline below target: 38 percent of quarterly target in Q1 2026 and 41 percent in Q2 2026, against a team median of 92 percent.
+      Missed CRM updates: 14 of 31 open opportunities without next steps logged in July and August 2026.
       Bad attitude in team meetings.
       Doesn't fit the team culture. He is older than the rest of the team and slow to adapt to new tools.
-    "[DOCUMENT WHAT AND WHEN]": Verbal coaching on pipeline on 2 October 2026; written feedback email on CRM hygiene on 18 November 2026.
+    "[DOCUMENT WHAT AND WHEN]": Verbal coaching on pipeline on 3 July 2026; written feedback email on CRM hygiene on 26 August 2026.
     "[TYPICALLY 30, 60, OR 90 DAYS]": 60 days
     "[TITLE]": Regional Sales Manager
     "[NAME]": Priya Nair (fictional)
