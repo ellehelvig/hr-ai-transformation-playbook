@@ -114,7 +114,7 @@ nbformat==5.11.1
     # via
     #   -r requirements.txt
     #   nbclient
-nest-asyncio2==1.7.3
+nest-asyncio2==1.7.4
     # via ipykernel
 numpy==2.4.6 ; python_full_version < '3.12'
     # via
