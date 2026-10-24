@@ -1,0 +1,102 @@
+{
+  "purpose": "Execution provenance, not human assessment or independent evaluation",
+  "review_gate": "Pending qualified human review; no merge approval",
+  "base_pr_commit": "d6523602959554e77b70e735d8702be02d966aa3",
+  "execution_source_commit": "cb2948790fcb60a604d47364903e91e7df2fb70e",
+  "remote_equivalent_source_commit": "14552a4c9e6323d2b515e517d4687fbc8dfe4d10",
+  "configuration": {
+    "backend": "claude-code",
+    "model": "claude-opus-5-5",
+    "judge_model": "claude-sonnet-5-5",
+    "neutral_system_prompt": true,
+    "tools_disabled": true,
+    "api_key_and_auth_token_removed": true
+  },
+  "authentication": {
+    "host_status": "signed in",
+    "method": "claude.ai",
+    "subscription": "pro",
+    "sandbox_status": "not visible; host status checked without copying credentials"
+  },
+  "cli_update": {
+    "from": "2.1.270",
+    "to": "2.1.300",
+    "method": "claude update",
+    "reason": "first request rejected: minimum CLI 2.1.280 required"
+  },
+  "version_failed_attempt": {
+    "file": "prompt-test-results-rerun-20261014-local-host.json",
+    "completed_evaluations": 0,
+    "model_calls_attempted": 1,
+    "judge_calls_attempted": 0,
+    "remaining_fixtures_unattempted": 4,
+    "sha256": "9cbfc94b9845c2eafcfb7eea4732d363e610a1437b3d158e5076074729d6f50b"
+  },
+  "preserved_sha256": {
+    "09-evals/prompt-test-results.json": "fd5920db80e07307d58ba2694ac1e584a7252e072ddfcd67ccbe074685306d93",
+    "09-evals/prompt-test-results-rerun-20261013T225446Z.json": "8287f397ce2650cac587384b9438aeab28cd64df9a94208bd0389ca20bf3ba7b",
+    "09-evals/prompt-test-provenance-rerun-20261013T225446Z.json": "8373af4c316fd88d49b0019b011ae3e2ce853b065aa42431e6eca11b56c1acd8",
+    "09-evals/prompt-fixtures.yaml": "41d07b6f4052f74aff60b751c845e652abc9d974685d3893cc468be3bf5fc292"
+  },
+  "limitations": [
+    "one synthetic input per fixture and one retry batch",
+    "unvalidated automated judge",
+    "existing developer-authored fixtures, not independent held-out evidence",
+    "no human verdict or reviewer/date supplied"
+  ],
+  "run_at": "2026-10-14T20:55:42.678677+00:00",
+  "result_file": "prompt-test-results-rerun-20261014-cli-2-1-300.json",
+  "result_sha256": "a3b4cf79948c02014920c0c9279dec674d8c77ec4ee2ec2f07f8ec127c08cac6",
+  "execution_source_tree": "0c044822277a4f5868dd30d4639b3f1b899c0ab2",
+  "successful_model_calls": 5,
+  "successful_judge_calls": 5,
+  "completed_evaluations": 5,
+  "criteria_summary": {
+    "automated_met": 25,
+    "automated_not_met": 1,
+    "automated_unclear": 1,
+    "human_review": "pending"
+  },
+  "served_models_by_case": {
+    "hr-operations-4": {
+      "model_call": [
+        "claude-opus-5-5"
+      ],
+      "judge_call": [
+        "claude-sonnet-5-5"
+      ]
+    },
+    "performance-1": {
+      "model_call": [
+        "claude-opus-5-5"
+      ],
+      "judge_call": [
+        "claude-sonnet-5-5"
+      ]
+    },
+    "performance-2": {
+      "model_call": [
+        "claude-opus-5-5"
+      ],
+      "judge_call": [
+        "claude-sonnet-5-5"
+      ]
+    },
+    "performance-3": {
+      "model_call": [
+        "claude-opus-5-5"
+      ],
+      "judge_call": [
+        "claude-sonnet-5-5"
+      ]
+    },
+    "performance-4": {
+      "model_call": [
+        "claude-opus-5-5"
+      ],
+      "judge_call": [
+        "claude-sonnet-5-5"
+      ]
+    }
+  }
+}
