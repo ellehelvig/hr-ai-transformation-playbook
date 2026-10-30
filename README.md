@@ -12,8 +12,21 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml"><img alt="Tests" src="https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&style=flat-square&label=tests"></a>
+  <a href="https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml"><img alt="Tests: current main CI status" src="https://img.shields.io/github/actions/workflow/status/ellehelvig/hr-ai-transformation-playbook/ci.yml?branch=main&amp;style=flat-square&amp;label=tests"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-5140b5?style=flat-square"></a>
+  <a href="docs/evidence-index.md"><img alt="Runtime requirement: Python 3.11 or later" src="https://img.shields.io/badge/Python-3.11%2B-086779?style=flat-square"></a>
 </p>
+
+<br>
+
+## At a glance
+
+| Aspect | Summary |
+|:--|:--|
+| **Purpose** | An operating model for responsible HR AI adoption. |
+| **Explore** | [Opportunity, work redesign, governance, pilot, evaluation, adoption](#the-journey). |
+| **Evidence** | [Technical evidence and setup](docs/evidence-index.md). |
+| **Scope** | Reference materials and synthetic demonstrations; [evidence and limits](#evidence-and-limits). |
 
 <br>
 
