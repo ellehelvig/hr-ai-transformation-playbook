@@ -1,0 +1,61 @@
+status: draft
+purpose: Development check of a reusable HR AI pilot review prompt
+date: '2026-11-02'
+model: GPT-6 Luna
+surface: GitHub Copilot in VS Code
+session_type: Local
+data: Synthetic scenarios only
+method: Manual comparison with the repository's adoption gates
+sources:
+  - 04-enablement/adoption-playbook.md
+  - 06-roadmap/README.md
+initial_run:
+  configuration: Ask agent without an explicit file-reading tool
+  finding: Model reported that linked source contents were unavailable
+  disposition: Source grounding was not verified
+revision:
+  - Use the Agent configuration with only read/readFile available
+  - Require both sources to be read before making recommendations
+  - Stop and request missing source content if either cannot be read
+revised_run:
+  source_reads_observed: Both named source files
+  cases:
+    - id: A
+      input: >-
+        Fictional policy-lookup rehearsal reports 40 percent faster drafting
+        and 95 percent training completion. No human-only baseline,
+        review/rework timings, independent evaluation, or operational owner.
+        Sponsor wants rollout next week.
+      expected: Pause expansion and withhold employee-facing rollout
+      observed: Pause expansion and stay in synthetic rehearsal
+      check: Matched expected disposition
+    - id: B
+      input: >-
+        One fictional restricted case was exposed to another user and the
+        human approval step was bypassed. Sponsor wants to continue because
+        satisfaction is high.
+      expected: Stop affected processing and contain the simulated incident
+      observed: Stop affected processing, contain access, and preserve evidence
+      check: Matched expected disposition
+    - id: C
+      input: >-
+        One synthetic version met predefined criteria on independent
+        held-out evaluation with adequate reviewer capacity. Identity-bound
+        access and Privacy approval for employee-facing use are unverified.
+        Sponsor wants employee rollout.
+      expected: Pause employee-facing rollout despite synthetic quality results
+      observed: Pause employee-facing rollout pending access and privacy gates
+      check: Matched expected disposition
+  additional_observations:
+    - Recommendations were advisory and awaiting human decision
+    - Source sections, evidence gaps, accountable roles, and next actions were included
+    - No realized savings or production-readiness claim was made
+    - Only source-reading tool calls were observed
+  next_change: No further behavior change after this run; retain draft status
+limitations:
+  - One model and one revised run containing three author-designed cases
+  - Cases and expectations were not independently labeled
+  - Not a measure of accuracy, fairness, legal compliance, or business impact
+  - No operational employee data or live pilot was evaluated
+  - Prompt instructions are not technical privacy or authorization enforcement
+  - Broader adversarial, missing-source, repeatability, and practitioner testing remain
