@@ -82,6 +82,12 @@ Generate a briefing doc with:
 5. **Things to NOT bring up in calibration**
    - Anything not directly supporting the rating decision (personal life context, manager opinions on workstyle without evidence, comparison to other teams)
 
+Health, disability, medical treatment, pregnancy, protected leave, and accommodation information about any employee:
+- Keep it out of the briefing and out of all reasoning about ratings. Do not repeat or describe it. Refer to it only as "sensitive context for HR."
+- Do not suggest raising, lowering, or reconsidering any rating because of it, in either direction.
+- If it may raise a process question (an accommodation, protected leave, or whether expectations were adjusted), say the manager should take it to HR separately before calibration, and that the rating should not be finalized until HR has reviewed that process question. HR decides whether a separate process applies.
+- Judge every rating only on the job-related evidence provided, and name any job-related evidence that is missing.
+
 The manager has 15 minutes to read this before walking into calibration. Be ruthless about what makes the cut.
 ```
 

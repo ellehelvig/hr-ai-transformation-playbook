@@ -51,7 +51,8 @@ jobs:
             echo "::error::Add a repository secret named ANTHROPIC_API_KEY first."
             exit 1
           fi
-          python 09-evals/prompt_tests.py --run | tee "$RUNNER_TEMP/summary.txt"
+          set -o pipefail
+          python 09-evals/prompt_tests.py --run --output "09-evals/prompt-test-results-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.json" | tee "$RUNNER_TEMP/summary.txt"
 
       - name: Open a pull request with the results
         env:
@@ -62,7 +63,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
-          git add 09-evals/prompt-test-results.json
+          git add "09-evals/prompt-test-results-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.json"
           git commit -m "Record prompt library smoke test results (${MODEL})"
           git push origin "$branch"
           {
@@ -72,6 +73,6 @@ jobs:
             cat "$RUNNER_TEMP/summary.txt"
             echo '```'
             echo
-            echo "Read every output in 09-evals/prompt-test-results.json before merging. The judge has not been validated against human labels, so a met criterion is a lead, not a verdict. Per CLAUDE.md, record the model, date, and any prompt change next to each prompt a person has reviewed."
+            echo "Read every output in the new timestamped result file before merging. The judge has not been validated against human labels, so a met criterion is a lead, not a verdict. Per CLAUDE.md, record the model, date, and any prompt change next to each prompt a person has reviewed."
           } > "$RUNNER_TEMP/body.md"
           gh pr create --base main --head "$branch" --title "Record prompt library smoke test results (${MODEL})" --body-file "$RUNNER_TEMP/body.md"

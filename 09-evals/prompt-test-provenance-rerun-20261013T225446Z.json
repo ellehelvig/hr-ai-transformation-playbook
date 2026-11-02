@@ -1,0 +1,47 @@
+{
+  "run_at": "2026-10-13T22:54:51.178622+00:00",
+  "backend": "claude-code",
+  "harness": "Current prompt_tests.py with an external observer of CLI envelope provenance; prompts, criteria and tool-disabled command unchanged. Requested model aliases are recorded; exact serving models are taken from modelUsage when provided. No human review.",
+  "calls": [
+    {
+      "requested_model": "opus",
+      "exit_code": 1,
+      "serving_models": [],
+      "stop_reason": "stop_sequence",
+      "is_error": true,
+      "error_result": "Failed to authenticate: OAuth session expired and could not be refreshed"
+    },
+    {
+      "requested_model": "opus",
+      "exit_code": 1,
+      "serving_models": [],
+      "stop_reason": "stop_sequence",
+      "is_error": true,
+      "error_result": "Failed to authenticate: OAuth session expired and could not be refreshed"
+    },
+    {
+      "requested_model": "opus",
+      "exit_code": 1,
+      "serving_models": [],
+      "stop_reason": "stop_sequence",
+      "is_error": true,
+      "error_result": "Failed to authenticate: OAuth session expired and could not be refreshed"
+    },
+    {
+      "requested_model": "opus",
+      "exit_code": 1,
+      "serving_models": [],
+      "stop_reason": "stop_sequence",
+      "is_error": true,
+      "error_result": "Failed to authenticate: OAuth session expired and could not be refreshed"
+    },
+    {
+      "requested_model": "opus",
+      "exit_code": 1,
+      "serving_models": [],
+      "stop_reason": "stop_sequence",
+      "is_error": true,
+      "error_result": "Failed to authenticate: OAuth session expired and could not be refreshed"
+    }
+  ]
+}
