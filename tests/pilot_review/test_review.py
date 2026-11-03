@@ -325,6 +325,34 @@ class EvidenceReviewTests(unittest.TestCase):
         self.assertNotIn("<script src", html)
         self.assertIn("default-src 'none'", html)
 
+    def test_resolve_adapter_rejects_malformed_observations_even_with_matching_hash(self):
+        shutil.copytree(TOOL / "examples/resolve", self.packet.parent, dirs_exist_ok=True)
+        original_packet = self.document()
+        original_artifact = (self.packet.parent / "routing.json").read_bytes()
+        for field, value in (
+            ("request", None),
+            ("expected_status", None),
+            ("actual_status", {}),
+            ("actual_intent", []),
+            ("category", "invented-category"),
+            ("id", ""),
+        ):
+            with self.subTest(field=field):
+                self.write(original_packet)
+                (self.packet.parent / "routing.json").write_bytes(original_artifact)
+                self.mutate_artifact(
+                    "routing", lambda a, k=field, v=value: a["results"]["holdout"]["cases"][0].update({k: v})
+                )
+                self.assertEqual(self.assess()["artifacts"][0]["status"], "invalid")
+
+    def test_resolve_rate_uses_the_source_reports_one_decimal_rounding(self):
+        source = json.loads((TOOL / "examples/resolve/published-report.json").read_text(encoding="utf-8"))
+        source.update(passed=59, pass_rate=98.3, failures=[{"id": "fictional-baseline-failure"}])
+        source["metrics"]["status"] = 98.3
+        source["categories"][next(iter(source["categories"]))]["passed"] -= 1
+        result = review.resolve_results(source, "2026-09-24")
+        self.assertEqual(result["regression"], {"passed": 59, "total": 60})
+
     def test_cli_exit_codes_reports_and_simulated_record_cycle(self):
         def cli(*args):
             return subprocess.run(

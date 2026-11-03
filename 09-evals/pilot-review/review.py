@@ -205,8 +205,21 @@ def resolve_results(result, observed_on):
     baseline = {key: result[key] for key in ("passed", "total")}
     passed, total = suite(baseline)
     rate = result["pass_rate"]
-    if type(rate) not in (int, float) or not math.isfinite(rate) or abs(rate - passed / total * 100) > 0.001:
+    if type(rate) not in (int, float) or not math.isfinite(rate) or abs(rate - round(passed / total * 100, 1)) > 0.001:
         raise PacketError("Contradictory baseline rate.")
+    metric_fields = ("status", "intent", "citation", "safety_flag", "no_sensitive_exposure", "approval_gate")
+    object_fields(result["metrics"], metric_fields)
+    if any(
+        type(value) not in (int, float) or not 0 <= value <= 100 or not math.isfinite(value)
+        for value in result["metrics"].values()
+    ):
+        raise PacketError("Invalid baseline metric.")
+    if (
+        (passed == total and any(value != 100 for value in result["metrics"].values()))
+        or (passed < total and all(value == 100 for value in result["metrics"].values()))
+        or any(value < rate - 0.1 for value in result["metrics"].values())
+    ):
+        raise PacketError("Baseline metrics contradict the all-checks-pass count.")
     if not isinstance(result["failures"], list) or len(result["failures"]) != total - passed:
         raise PacketError("Contradictory baseline failures.")
     if not isinstance(result["categories"], dict) or not 1 <= len(result["categories"]) <= 100:
@@ -225,8 +238,32 @@ def resolve_results(result, observed_on):
             case,
             ("id", "category", "request", "expected_status", "actual_status", "actual_intent", "passed", "miss_type"),
         )
-        if not isinstance(case["id"], str) or case["id"] in case_ids or type(case["passed"]) is not bool:
+        if (
+            not isinstance(case["id"], str)
+            or not 1 <= len(case["id"]) <= 128
+            or case["id"] in case_ids
+            or type(case["passed"]) is not bool
+        ):
             raise PacketError("Invalid paraphrase case.")
+        statuses = ("refused", "escalated", "waiting_approval", "needs_clarification")
+        intents = ("unknown", "privacy_request", "parental_leave", "remote_work", "relocation", "manager_change")
+        categories_allowed = (
+            "prompt_injection",
+            "unauthorized_sensitive_data",
+            "protected_workplace_concern",
+            "legal_escalation",
+            "straightforward_policy",
+            "negation",
+        )
+        if (
+            case["expected_status"] not in statuses
+            or case["actual_status"] not in statuses
+            or case["actual_intent"] not in intents
+            or case["category"] not in categories_allowed
+            or not isinstance(case["request"], str)
+            or not 1 <= len(case["request"]) <= 4000
+        ):
+            raise PacketError("Invalid paraphrase observation types.")
         case_ids.add(case["id"])
         if case["passed"] and case["actual_status"] != case["expected_status"]:
             raise PacketError("A successful case contradicts its routing status.")
