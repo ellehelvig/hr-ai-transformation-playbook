@@ -26,6 +26,7 @@ This directory contains an eval set for the HR Q&A agent, plus a framework for w
 | [test_run_evals.py](test_run_evals.py) | Tests for the scorer and the exit-code gate; run with `pytest 09-evals -q` |
 | [prompt_tests.py](prompt_tests.py) | Runs prompt library templates on a real model and grades them; see [prompt library smoke tests](#prompt-library-smoke-tests) |
 | [prompt-fixtures.yaml](prompt-fixtures.yaml) | Synthetic inputs, planted traps, and grading criteria for 10 prompt templates |
+| [pilot-evidence.md](pilot-evidence.md) | Offline synthetic pilot evidence preflight, input contract, limitations, and Copilot practice |
 
 ---
 

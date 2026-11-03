@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "data_kind": "synthetic",
+  "stage": "rollout_review",
+  "evidence": {
+    "tool_data_scope": "present",
+    "operator_owner": "present",
+    "baseline": "present",
+    "independent_evaluation": "present",
+    "reviewer_capacity": "present",
+    "human_channel": "present",
+    "incident_owner": "present",
+    "identity_access_review": "unknown",
+    "privacy_review": "missing",
+    "technical_review": "present"
+  },
+  "incidents": {"cross_user_exposure": "clear", "approval_bypass": "clear"},
+  "effort": {
+    "case_count": 100,
+    "baseline_minutes": 20,
+    "preparation_minutes": 5,
+    "review_minutes": 10,
+    "rework_minutes": 4,
+    "escalation_minutes": 2
+  }
+}
