@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "data_kind": "synthetic",
+  "criterion_id": "privacy",
+  "workflow_id": "fictional-policy-lookup",
+  "source_revision": "1111111111111111111111111111111111111111",
+  "dataset_id": "fictional-privacy-v1",
+  "method_id": "fictional-rehearsal-v1",
+  "observed_on": "2026-11-02",
+  "format": "checks-v1",
+  "results": {
+    "tested_cases": 12,
+    "cross_user_exposures": 1
+  }
+}
