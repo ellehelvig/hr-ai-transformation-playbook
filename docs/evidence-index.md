@@ -2,7 +2,7 @@
 
 [Playbook home](../README.md)
 
-Inventory reviewed 12 October 2026. Counts describe repository contents, not effectiveness, independent validation, or HR outcomes. Run `python scripts/verify_claims.py` from the repository root to recompute every count on this page from the tree.
+Inventory counts reviewed 2 November 2026. Counts describe repository contents, not effectiveness, independent validation, or HR outcomes. Run `python scripts/verify_claims.py` from the repository root to recompute every count on this page from the tree.
 
 ## What the repository contains
 
@@ -16,7 +16,8 @@ This is an actively developed reference toolkit using synthetic data. It is not 
 
 - Four HR workflows expose six MCP tools, backed by a 52-test suite. No tool calls an LLM internally, so their behavior is reproducible and auditable.
 - The comp banding, resume screening, and recruiter intake tools always return `human_review_required: true`, with no code path that turns it off, and their tests check it. That flag is not an authenticated approval system. The policy Q&A tool instead always returns a not-legal-advice disclaimer, also tested.
-- The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a launch. Its scorer and LLM judge have 49 tests of their own, and the runner can measure the judge's agreement with human labels (Cohen's kappa). No labeled run has been done yet, so judge verdicts are not a launch gate.
+- The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a launch. The scorer, LLM judge, prompt test harness, and synthetic pilot preflight have 121 tests of their own. The runner can measure the judge's agreement with human labels (Cohen's kappa). No labeled run has been done yet, so judge verdicts are not a launch gate.
+- The [synthetic pilot preflight](../09-evals/pilot-evidence.md) flags missing caller assertions and reported incidents, and calculates illustrative total task effort. Its 72 boundary tests do not verify real evidence or authorize deployment.
 - The [prompt library smoke tests](../09-evals/README.md#prompt-library-smoke-tests) are set up. No results are recorded yet, so no prompt is described as tested.
 - The [People Partner case study](../01-use-cases/work-redesign-people-partner.md) explains the work-design decisions. It is a proposal informed by prototype failures, with no measured business outcome or completed employee pilot.
 - [Resolve](https://github.com/ellehelvig/peopleops-resolution-agent) is a separate executable prototype with its own evaluation evidence and production hold.

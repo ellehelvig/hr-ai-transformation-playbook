@@ -256,7 +256,7 @@ def build_report() -> Report:
 
     eval_tests, eval_skip = collect_tests("09-evals")
     add(Check(
-        "Scorer and judge tests",
+        "Eval and pilot preflight tests",
         claim("docs/evidence-index.md", r"have (\d+) tests of their own"),
         eval_tests, "pytest 09-evals", eval_skip,
     ))
