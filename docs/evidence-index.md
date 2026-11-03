@@ -50,6 +50,7 @@ git clone https://github.com/ellehelvig/hr-ai-transformation-playbook.git
 cd hr-ai-transformation-playbook
 python3 -m venv .venv
 source .venv/bin/activate
+python -m pip install --require-hashes --no-deps -r requirements-bootstrap.txt
 python -m pip install -r requirements-lock.txt
 python -m pip check
 python -m pytest 10-mcp-agents 09-evals -q

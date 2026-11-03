@@ -310,7 +310,11 @@ def render(report: Report) -> bool:
             f"{len(report.matrix_errors)} matrix error(s)."
         )
         return False
-    print("All repository claims verified against the tree.")
+    skipped = sum(bool(check.skipped) for check in report.checks)
+    if skipped:
+        print(f"Completed checks passed; {skipped} claim check(s) skipped. Full verification is incomplete.")
+    else:
+        print("All repository claims verified against the tree.")
     return True
 
 
