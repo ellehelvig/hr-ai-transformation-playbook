@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "data_kind": "synthetic",
+  "packet_id": "fictional-reported-incident",
+  "workflow_id": "fictional-policy-lookup",
+  "source_revision": "1111111111111111111111111111111111111111",
+  "artifacts": [],
+  "assertions": {
+    "privacy_review": "unknown",
+    "identity_access_review": "unknown",
+    "technical_review": "present"
+  },
+  "reported_incidents": [
+    "approval_bypass"
+  ]
+}

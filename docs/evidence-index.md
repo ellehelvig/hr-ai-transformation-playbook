@@ -14,6 +14,11 @@ This is an actively developed reference toolkit using synthetic data. It is not 
 
 ## What the tools do, and what that proves
 
+- The [synthetic pilot evidence review](../09-evals/pilot-review/README.md) inspects local artifact hashes,
+  version bindings, dates, and recorded observations. Its [boundary tests](../tests/pilot_review/test_review.py)
+  cover evidence blockers and simulated review-record consistency. It does not establish experimental truth,
+  independent validation, authenticated approval, or deployment authorization.
+
 - Four HR workflows expose six MCP tools, backed by a 52-test suite. No tool calls an LLM internally, so their behavior is reproducible and auditable.
 - The comp banding, resume screening, and recruiter intake tools always return `human_review_required: true`, with no code path that turns it off, and their tests check it. That flag is not an authenticated approval system. The policy Q&A tool instead always returns a not-legal-advice disclaimer, also tested.
 - The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a launch. Its scorer and LLM judge have 49 tests of their own, and the runner can measure the judge's agreement with human labels (Cohen's kappa). No labeled run has been done yet, so judge verdicts are not a launch gate.
