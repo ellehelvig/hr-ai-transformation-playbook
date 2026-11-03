@@ -5,10 +5,10 @@ repository. Read this before changing anything.
 
 ## What this repo is
 
-An open-source toolkit for HR and People teams putting AI into production
-responsibly. It is published, cited, and used by practitioners who make real
-employment decisions about real people. A wrong claim here is not a cosmetic bug,
-it is a liability for whoever acts on it. Accuracy outranks completeness, and
+An open-source reference toolkit for HR and People teams evaluating responsible
+AI adoption. Its examples use synthetic data. Publication does not establish
+external adoption, independent validation, or production readiness. A wrong claim
+can mislead a practitioner who adapts this work. Accuracy outranks completeness, and
 completeness outranks speed.
 
 One maintainer reviews everything. Keep proposals small enough for one person to
