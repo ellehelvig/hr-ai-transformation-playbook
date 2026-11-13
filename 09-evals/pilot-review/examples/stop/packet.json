@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "data_kind": "synthetic",
+  "packet_id": "fictional-stop",
+  "workflow_id": "fictional-policy-lookup",
+  "source_revision": "1111111111111111111111111111111111111111",
+  "artifacts": [
+    {
+      "criterion_id": "routing",
+      "dataset_id": "fictional-routing-v1",
+      "method_id": "fictional-rehearsal-v1",
+      "observed_on": "2026-11-02",
+      "format": "checks-v1",
+      "path": "routing.json",
+      "sha256": "03bf2635a6fe94dce0dd20b9b6ee0c90fe69679aa7e8f506be280f655ff8e7d2"
+    },
+    {
+      "criterion_id": "privacy",
+      "dataset_id": "fictional-privacy-v1",
+      "method_id": "fictional-rehearsal-v1",
+      "observed_on": "2026-11-02",
+      "format": "checks-v1",
+      "path": "privacy.json",
+      "sha256": "84a135c5064e8567a841fecd1e55fbdba98a0cbb967857ffa552276823bbd7c6"
+    },
+    {
+      "criterion_id": "review_controls",
+      "dataset_id": "fictional-review-controls-v1",
+      "method_id": "fictional-rehearsal-v1",
+      "observed_on": "2026-11-02",
+      "format": "checks-v1",
+      "path": "review_controls.json",
+      "sha256": "61da5af7c22be0f357191956301f77974fd0037e6fd3d27af0e88d65b0760dbb"
+    },
+    {
+      "criterion_id": "reviewer_capacity",
+      "dataset_id": "fictional-reviewer-capacity-v1",
+      "method_id": "fictional-rehearsal-v1",
+      "observed_on": "2026-11-02",
+      "format": "checks-v1",
+      "path": "reviewer_capacity.json",
+      "sha256": "3c859ebac808e26478213ad636ef6c1a7e1f5a015bc901c6aade9423aa871033"
+    }
+  ],
+  "assertions": {
+    "privacy_review": "unknown",
+    "identity_access_review": "unknown",
+    "technical_review": "present"
+  },
+  "reported_incidents": []
+}

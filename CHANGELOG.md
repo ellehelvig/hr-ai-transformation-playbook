@@ -4,7 +4,19 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+Changed
+
+- **13 November 2026:** integrated setup/presentation and synthetic evidence-review proposals. Added a worked pause decision, practitioner-study links, and a partial primary-source calendar review. Connecticut moved to already in force; source-access and enforcement uncertainties remain explicit. No employee pilot or independent model-validation result is claimed.
+
+
+Changed
+
+- Clarified the root-first locked setup and scripted Q&A reference responses, shortened the README, and made skipped claim checks explicit.
+
+
 Added
+
+- **Synthetic pilot evidence review.** Adds an offline artifact validator, readable reports, and simulated version-bound human review records. Fictional examples and a preserved Resolve report keep gaps and failed routing visible. No deployment authorization is granted.
 
 - **Run the smoke tests on a Claude plan.** `prompt_tests.py --run --backend claude-code` runs prompts and grading through the Claude Code CLI with its tools disabled, so no API key is needed. Any `ANTHROPIC_API_KEY` in the shell is withheld from the CLI so it cannot bill the API.
 - **Prompt library smoke tests.** `09-evals/prompt_tests.py` runs library templates on a real model and grades them with the LLM judge. Ten fixtures cover the HR operations and performance prompts, each with a planted trap. A manual workflow runs them with an `ANTHROPIC_API_KEY` secret and opens a pull request with the results. No results are recorded yet, and no prompt is described as tested.
