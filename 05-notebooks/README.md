@@ -20,16 +20,47 @@ Executable Jupyter notebooks for HR AI workflows: real code, run against synthet
 
 ## Running locally
 
+Use Python 3.11 or later. Start in the **repository root**, not `05-notebooks`.
+Follow the [locked environment setup](../docs/reproducible-setup.md#install),
+including the verified bootstrap, locked install, and dependency check.
+
+Then, in the same activated environment and repository root:
+
 ```bash
-pip install -r ../requirements.txt jupyter ipykernel
-jupyter notebook
+python -m ipykernel install --sys-prefix --name=python3
+python - <<'PY'
+from pathlib import Path
+import nbformat
+from nbclient import NotebookClient
+
+for path in sorted(Path("05-notebooks").glob("*.ipynb")):
+    notebook = nbformat.read(path, as_version=4)
+    nbformat.validate(notebook)
+    NotebookClient(
+        notebook, timeout=300, kernel_name="python3",
+        resources={"metadata": {"path": str(path.parent)}},
+    ).execute()
+    print(f"Executed: {path.name}")
+PY
 ```
 
-`hr-qa-agent-demo.ipynb` runs end to end with no API key: if `ANTHROPIC_API_KEY` is not set, `call_agent()` falls back to a hand-authored reference response for each scenario instead of a live model call, so the notebook always produces meaningful output. Set `ANTHROPIC_API_KEY` and install `anthropic` to compare live model output against the reference.
+Run with no `ANTHROPIC_API_KEY` configured for an offline Q&A demonstration.
+The kernel is installed inside this virtual environment. The execution command
+does not save notebook outputs, but the skills-gap example writes its ignored
+synthetic CSV in `05-notebooks`.
 
-Each notebook is self-contained and generates its own synthetic sample data in the first few cells. Replace the sample data generation with your own data source to adapt a notebook for real use, see each notebook's "Adapting this for your organization" section.
+The Q&A notebook's no-key path returns **hand-authored reference responses**.
+It illustrates intended tone and routing. It does not measure live model
+behavior, policy accuracy, or reliability. A separately configured provider run
+requires its own recorded model, date, inputs, outputs, and limitations, and may
+incur costs. No live provider run is required by this setup.
 
-CI executes all three notebooks on every push (see `.github/workflows/ci.yml`) to catch breakage before it merges.
+Each notebook generates fictional sample data. Review its limitations and the
+[risk assessment](../03-governance/risk-assessment-template.md) before considering
+any adaptation. Passing synthetic execution does not authorize real HR use.
+
+CI executes all three notebooks on pushes to `main` and pull requests targeting
+`main`, as configured in `.github/workflows/ci.yml`.
 
 ## Not covered yet
 

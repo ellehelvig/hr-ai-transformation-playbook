@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "data_kind": "synthetic",
+  "criterion_id": "reviewer_capacity",
+  "workflow_id": "fictional-policy-lookup",
+  "source_revision": "1111111111111111111111111111111111111111",
+  "dataset_id": "fictional-reviewer-capacity-v1",
+  "method_id": "fictional-rehearsal-v1",
+  "observed_on": "2026-11-02",
+  "format": "checks-v1",
+  "results": {
+    "case_count": 12,
+    "required_review_minutes": 120,
+    "available_review_minutes": 60
+  }
+}

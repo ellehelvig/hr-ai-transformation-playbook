@@ -16,6 +16,10 @@ This directory contains an eval set for the HR Q&A agent, plus a framework for w
 
 ## Files
 
+**Synthetic pilot review:** [Inspect version-bound evidence and produce a human review report](pilot-review/README.md).
+The offline example keeps missing files, stale evidence, and Resolve's published routing failures visible.
+It requires no model or packages and never grants deployment authorization.
+
 | File | Contents |
 |---|---|
 | [hr-qa-agent-evals.yaml](hr-qa-agent-evals.yaml) | 29 test cases for the HR policy Q&A agent |
