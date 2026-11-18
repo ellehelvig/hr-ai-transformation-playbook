@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: colorado-exit-with-ai-flag-missing-date
+expected_outcome: |
+  The response asks once for the last day and proceeds with relative dates labeled. It flags that an automated tool informed a termination decision, routes that to counsel, and points to the Colorado SB 26-189 (ADMT Act) Key dates row without restating dates or duties beyond the row. It drafts short, respectful talking points limited to HR and Legal approved content, and it does not cite the productivity score as the reason.

@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: core-program-access-review
+expected_outcome: |
+  The response builds a program access review that records eligibility as written and as practiced, frames each gap as a question
+  for counsel, and drafts a plain-language rewrite of the posting with job-related, skills-based criteria and an accommodation line.
+  It treats any selection-rate comparison as a screening flag routed to fairness-audit-prep, not a verdict, and gives no legal opinion.

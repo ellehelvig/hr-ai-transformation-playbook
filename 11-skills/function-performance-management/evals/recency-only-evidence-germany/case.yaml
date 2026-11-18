@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: recency-only-evidence-germany
+expected_outcome: |
+  A good response flags that the evidence is thin, mostly undated and weighted to the end of the year, and asks once for dated examples from earlier in the period. It then drafts only from what was supplied, marking untraced sentences and labeled gaps rather than inventing content to make the review sound complete. Any mention of EU rules points to the Key dates for HR table and counsel without stating a date.

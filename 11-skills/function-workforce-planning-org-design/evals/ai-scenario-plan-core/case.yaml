@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: ai-scenario-plan-core
+expected_outcome: |
+  A good result projects supply from the stated rates (about 180 minus 22 leavers minus 5 moves, roughly 153), shows three scenarios with assumptions beside each number, and maps CSM tasks with an accountable role and a checkpoint for each AI-assisted task.
+  It compares build, buy, borrow, and bot options without choosing, and treats the 6 saved hours as capacity rather than a headcount cut.
+  It ends with the audit trail and the metrics to track, and invents no benchmark.

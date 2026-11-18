@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: no-ideas-spreadsheets-germany
+expected_outcome: |
+  A good result draws candidate ideas from the playbook's use case library, notes the library's advice to add one level to effort without clean HRIS data, and favors drafting pilots that need no system integration. It asks whether the German entity has a works council and treats consultation as an open question for counsel before any pilot that touches staff data or could monitor staff. It recommends one first pilot with a success metric, phase gate, sign-off point, and hand-off to hr-ai-use-case-intake, and it does not present time savings or adoption figures as observed facts.

@@ -9,7 +9,7 @@ Inventory reviewed 12 October 2026. Counts describe repository contents, not eff
 This is an actively developed reference toolkit using synthetic data. It is not a production HR system. Templates need local adaptation and review by HR, Legal, Privacy, and Security, as appropriate, before use.
 
 - 37 vetted HR AI use cases. Here, vetted means included in this curated reference collection, not independently approved or validated for use.
-- Six installable agent skills, four architecture patterns, and a 4-module literacy curriculum. These are reference materials that require review before adoption.
+- 25 installable agent skills (two starter skills for teams new to AI, six for AI governance, and 17 for HR functions), four architecture patterns, and a 4-module literacy curriculum. These are reference materials that require review before adoption.
 - Three notebooks execute in CI on every push, using synthetic data only. The HR Q&A notebook can use reference responses without an API key; those outputs are not evidence of live model quality.
 
 ## What the tools do, and what that proves
@@ -21,7 +21,7 @@ This is an actively developed reference toolkit using synthetic data. It is not 
 
 - Four HR workflows expose six MCP tools, backed by a 52-test suite. No tool calls an LLM internally, so their behavior is reproducible and auditable.
 - The comp banding, resume screening, and recruiter intake tools always return `human_review_required: true`, with no code path that turns it off, and their tests check it. That flag is not an authenticated approval system. The policy Q&A tool instead always returns a not-legal-advice disclaimer, also tested.
-- The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a launch. Its scorer and LLM judge have 49 tests of their own, and the runner can measure the judge's agreement with human labels (Cohen's kappa). No labeled run has been done yet, so judge verdicts are not a launch gate.
+- The 29-case eval runner exits non-zero when a refusal, escalation, or empty-response gate fails, so it can block a launch. Its scorer and LLM judge, together with the HR skill structure checks and the adverse impact calculator, have 57 tests of their own, and the runner can measure the judge's agreement with human labels (Cohen's kappa). No labeled run has been done yet, so judge verdicts are not a launch gate.
 - The [prompt library smoke tests](../09-evals/README.md#prompt-library-smoke-tests) are set up. No results are recorded yet, so no prompt is described as tested.
 - The [People Partner case study](../01-use-cases/work-redesign-people-partner.md) explains the work-design decisions. It is a proposal informed by prototype failures, with no measured business outcome or completed employee pilot.
 - [Resolve](https://github.com/ellehelvig/peopleops-resolution-agent) is a separate executable prototype with its own evaluation evidence and production hold.

@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: wrong-plan-year-and-germany-staff
+expected_outcome: |
+  A good response notices the documents are for 2026 while the question is about 2027, does not present the 2026 deductible as the 2027 figure, and asks once for the 2027 SBC, proceeding with the gap labeled. It points out that the US plan reminder should not go to Germany staff on these plans and routes their questions to the Germany benefits owner, without stating German legal rules. It drafts the reminder for the benefits lead to approve and does not send anything.
