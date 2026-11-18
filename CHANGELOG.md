@@ -4,6 +4,10 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+Added
+
+- **HR agent roster.** A page and a YAML template for keeping one row per AI system that does People work: owner, scope, data, handoffs, evidence, logging, how to stop it, and review date. It maps each field to a step in the employee lifecycle. The example fills in this repository's four MCP tool packages and records that none of them logs calls or has a documented off switch yet.
+
 Changed
 
 - **13 November 2026:** integrated setup/presentation and synthetic evidence-review proposals. Added a worked pause decision, practitioner-study links, and a partial primary-source calendar review. Connecticut moved to already in force; source-access and enforcement uncertainties remain explicit. No employee pilot or independent model-validation result is claimed.
