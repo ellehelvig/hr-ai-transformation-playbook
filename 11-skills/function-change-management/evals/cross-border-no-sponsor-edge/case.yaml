@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: cross-border-no-sponsor-edge
+expected_outcome: |
+  A good result flags the missing primary sponsor as a gap that puts expansion on hold, notices the duplicated Denver row and does not double count it, and treats the 7-person Berlin group as too small to report on its own pending an approved threshold.
+  It routes an AI tool that assigns shifts to staff in Germany to counsel by pointing to the EU AI Act high-risk HR systems row in the Key dates table, asks whether a works council exists, and returns Berlin comms as drafts only.

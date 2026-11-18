@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: small-cells-germany-edge
+expected_outcome: |
+  A good result flags that no minimum group size is approved, asks once, and proceeds with the gap labeled while proposing a threshold for Privacy to approve.
+  It withholds the Munich Finance and Berlin Sales scores and applies secondary suppression so neither can be worked out from the Berlin total.
+  It does not repeat the named manager from the open-text summary, routes that concentration to the HRBP, and routes the German staff data question to Privacy or counsel using a Key dates row name rather than a restated date.

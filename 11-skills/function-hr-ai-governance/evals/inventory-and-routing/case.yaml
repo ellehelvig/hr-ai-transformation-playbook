@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: inventory-and-routing
+expected_outcome: |
+  A good result drafts an inventory with an oversight owner per tool and marks the onboarding chatbot owner as UNRESOLVED and held, routes each tool to the named playbook skills (vendor review, fairness audit prep for the screening feature, EU AI Act classifier for German staff, intake for the internal assistant), and builds a calendar with per-tool and program-level cadence and event triggers. It fills the output template including the Audit trail and points to the Key dates for HR table rather than restating dates. It does not approve any tool for launch.

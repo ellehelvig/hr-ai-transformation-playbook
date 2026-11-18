@@ -14,6 +14,7 @@ From the repository root, with Python 3.11 or later:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
+python -m pip install --require-hashes --no-deps -r requirements-bootstrap.txt
 python -m pip install -r requirements-lock.txt
 python -m pip check
 python -m pytest 10-mcp-agents 09-evals -q
@@ -28,7 +29,7 @@ setup and can incur costs. Never put API credentials in committed files.
 
 ## Refresh dependencies
 
-Install [uv](https://docs.astral.sh/uv/) and run from the repository root:
+Install [uv](https://docs.astral.sh/uv/) 0.13.4 or later and run from the repository root:
 
 ```bash
 uv pip compile requirements-dev.in --python-version 3.11 --universal --no-header \
@@ -85,3 +86,16 @@ No branch update deploys the Pages site through the checked workflow; its push
 trigger is `main`. A maintainer merge still requires explicit publication
 approval. The dependency PRs can be closed as superseded only after the
 consolidated branch and its new CI have been verified remotely.
+
+## Certificate security update, 21 October 2026
+
+The [Python security announcement](https://discuss.python.org/t/109576) requires
+pip 26.2.2 or later and certifi 2026.10.19 or later after the eMudhra incident.
+The bootstrap file pins the official pip wheel and its SHA-256 so an older pip
+can install the fix without relying only on its affected certificate bundle.
+Run the bootstrap and locked installation in each existing virtual environment.
+Rebuild any containers and restart processes using the old bundle.
+
+CI selects Node 24.22.1 or a later 24.x patch for Markdown tooling, following the
+[Node security release](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases).
+These source changes do not establish that external hosting has been updated.

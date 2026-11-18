@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: core-pulse-comment-synthesis
+expected_outcome: |
+  The response groups the comments into themes with approximate shares that match the counts given, uses de-identified quotes,
+  and drafts a manager discussion guide and an action tracker with owner, measure, and report-back date. It does not attribute any comment
+  to a person or score individual sentiment, and it leaves the decision on which actions to take with leaders and managers.

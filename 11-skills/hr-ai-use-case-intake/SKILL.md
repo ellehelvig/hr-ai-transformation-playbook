@@ -53,6 +53,17 @@ Weighted total: N / tier only if eligible; otherwise not scored
 [who signs, by when, and the single biggest open question]
 ```
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights are the same at every stage: the governance reviewer decides eligibility and whether to build; the skill drafts.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste the idea, the four step 2 facts and the library list. A reviewer checks every gate and risk tier. | The reviewer agrees with recent gate and tier calls, or fixed the differences. |
+| Pilot (Level 2) | One read-only export of the intake register: use case, function, owner, status, risk tier, for the duplicate check. Log every run; review a weekly sample. | Every card names an oversight owner or flags the gap. |
+| Scale (Level 3) | Connected agent, read-only on intake form submissions and the register. Track time from intake to sign-off decision. | Test cases written in `evals/` (none yet). |
+| Embed (Levels 4 to 5) | Triggered by an intake form submission. Sign-off still follows `ai-use-policy.md`. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## What this skill will not do
 
 - Recommend building or not building. That's the governance reviewer's call.

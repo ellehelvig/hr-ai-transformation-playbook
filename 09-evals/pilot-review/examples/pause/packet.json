@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "data_kind": "synthetic",
+  "packet_id": "fictional-pause",
+  "workflow_id": "fictional-policy-lookup",
+  "source_revision": "1111111111111111111111111111111111111111",
+  "artifacts": [
+    {
+      "criterion_id": "routing",
+      "dataset_id": "fictional-routing-v1",
+      "method_id": "fictional-rehearsal-v1",
+      "observed_on": "2026-11-02",
+      "format": "checks-v1",
+      "path": "routing.json",
+      "sha256": "03bf2635a6fe94dce0dd20b9b6ee0c90fe69679aa7e8f506be280f655ff8e7d2"
+    },
+    {
+      "criterion_id": "privacy",
+      "dataset_id": "fictional-privacy-v1",
+      "method_id": "fictional-rehearsal-v1",
+      "observed_on": "2026-11-02",
+      "format": "checks-v1",
+      "path": "privacy.json",
+      "sha256": "9b924aed608c12197e2e2a338eeb8b8cbffd2130941a0ad4d5251d8fa445adff"
+    },
+    {
+      "criterion_id": "reviewer_capacity",
+      "dataset_id": "fictional-reviewer-capacity-v1",
+      "method_id": "fictional-rehearsal-v1",
+      "observed_on": "2026-11-02",
+      "format": "checks-v1",
+      "path": "reviewer_capacity.json",
+      "sha256": "73fd8dd766c4891e0a7a094b0d103ef58dc3298039ad90f379159a8adcf239d4"
+    }
+  ],
+  "assertions": {
+    "privacy_review": "unknown",
+    "identity_access_review": "unknown",
+    "technical_review": "present"
+  },
+  "reported_incidents": []
+}

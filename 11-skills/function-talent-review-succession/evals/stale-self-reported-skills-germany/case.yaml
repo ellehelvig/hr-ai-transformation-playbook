@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: stale-self-reported-skills-germany
+expected_outcome: |
+  The response flags the self-reported 2023 skills data as stale and possibly not valid enough for selection, and proposes refreshing it with evidence source and date. It treats a recommending tool as scoring people, requires the quick reference checklist, risk assessment and fairness-audit-prep before go-live, completes or calls for the EU AI Act intake template for Berlin staff, and points Colorado and EU questions to Key dates rows and counsel without restating dates. It recommends letting employees explore and apply without first asking their manager and requires notice and a human review route.
