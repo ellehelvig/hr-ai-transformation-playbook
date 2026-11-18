@@ -30,7 +30,7 @@ This skill serves the HR compliance owner. It produces a footprint, a calendar, 
 | AI tools in hiring, promotion, discipline, scheduling, or monitoring | For step 7 | Governance inventory, read-only: tool, use, locations | ATS resume screening feature |
 | Compliance owner and reviewing counsel | Yes | Ask the user | HR compliance manager; outside employment counsel |
 
-If a required input is missing, ask once in one message. Then proceed with the gap labeled "Not provided: [input]" and mark every row that depends on it Unverified.
+If a required input is missing, ask for it once, in one short question at the top of your reply. Then proceed with the gap labeled "Not provided: [input]" and mark every row that depends on it Unverified.
 
 ## Tools and connectors
 
@@ -50,6 +50,17 @@ Rules for every tool call:
 - Log each call in the Audit trail: tool, purpose, fields read.
 - If a tool returns data on named people, document images, or fields outside this list, stop, do not use it, and ask the user.
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste headcount by location, worker types, record types, and dated regulator page excerpts. The compliance owner opens every source link. | Counsel approves the calendar; unsourced rows stay Unverified. |
+| Pilot (Level 2) | One scheduled read-only HRIS export (work location, employment type, headcount). The compliance owner tracks verified calendar coverage and samples rows weekly. | Counsel's quarterly check reviews the monthly change log. |
+| Scale (Level 3) | Read-only HRIS, policy repository, regulator page fetch, and `policy_qa`, calls logged; monthly change log on schedule. Track on-time completion and AI notice coverage. | Notice confirmed for every inventoried HR AI tool. |
+| Embed (Levels 4 to 5) | A new work location, inventoried AI tool, or inspection notice triggers a draft update. Counsel approves every legal row and any privileged audit use. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## Steps
 
 1. **Map the footprint.** One row per work location: headcount, worker types (including temporary and leased workers the organization supervises day to day), union status, and the agencies that apply. OSHA expects the employer that supervises a temporary worker day to day to record that worker's injuries. Sign-off: compliance owner confirms the footprint before anything is built on it.
@@ -64,7 +75,7 @@ Rules for every tool call:
 
 6. **Check policies and the handbook against a checklist.** For each policy record the owner, last review date, jurisdictions covered, and required content per jurisdiction. Check for rules that could reasonably tend to inhibit employees' Section 7 rights under the NLRA, such as limits on discussing pay, or on talking about a union during working time when other non-work talk is allowed. When a new law takes effect, list the policies, forms, postings, and notices it touches. Draft redline suggestions with the source for each. Sign-off: counsel approves any final text.
 
-7. **Find AI in the HR stack and check notice and fairness.** List every tool that uses AI in hiring, promotion, discipline, scheduling, or monitoring. For each, pull obligations from the Key dates for HR table and the US federal AI enforcement context, then run `03-governance/risk-assessment-template.md`. Do not restate legal dates. Check that:
+7. **Find AI in the HR stack and check notice and fairness.** List every tool that uses AI in hiring, promotion, discipline, scheduling, or monitoring. For each, pull obligations from the Key dates for HR table and the US federal AI enforcement context, then run `03-governance/risk-assessment-template.md`. Route any such tool used on EU staff to `eu-ai-act-hr-classifier` and counsel by name. Do not restate legal dates. Check that:
    - The AI use policy names hiring and employment decisions, and candidate notices are confirmed before any AI screening starts.
    - The notice says AI is in use, how it affects the decision, how to see and correct the data used, and how to reach a human reviewer. Counsel decides what a given law requires.
    - The vendor has answered how the tool works, how it is audited, and its record on bias. A vendor's assurance does not replace your own review, and a vendor that will not explain is a reason to stop.
@@ -125,7 +136,7 @@ Rules for every tool call:
 | EU Pay Transparency Directive | Staff work in an EU country | Adds a row to check national law status in each country, owned by counsel |
 | OFCCP final rule rescinding the EO 11246 regulations | The footprint shows federal contractor status | Marks contractor rows built on those regulations Unverified for counsel to recheck |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -182,7 +193,7 @@ Harbor & Pine, a fictional 1,400-person company, opens a Denver office and asks 
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `new-state-calendar-update`: adds a new location to the calendar, posters, and retention schedule.
 - `ai-notice-check-missing-sources`: checks AI tool notices across US locations and Germany with vendor answers missing.

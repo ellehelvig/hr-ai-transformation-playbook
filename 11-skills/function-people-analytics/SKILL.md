@@ -31,7 +31,7 @@ This skill serves a People Analytics team and the leaders who ask it questions. 
 | Model, AI-assisted analysis, or both | Yes | Ask the user | AI-assisted summary of exit comments, no model |
 | Approved minimum group size | No | Ask the user (Privacy owns it) | 10 for reports, stricter for free text |
 
-If a required input is missing, ask once in one message. Then proceed, write `GAP:` and the missing input in the affected section, and list it in the audit trail.
+If a required input is missing, ask for it once, in one short question at the top of your reply. Then proceed, write `GAP:` and the missing input in the affected section, and list it in the audit trail.
 
 ## Tools and connectors
 
@@ -52,6 +52,17 @@ Rules for every tool call:
 - If a pull across several systems skips or fails a source, list the source and mark the result partial.
 - Row-level data stays in the environment Privacy approved. Outputs carry aggregates only.
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste the question and a de-identified aggregate export: job family, level, org unit, separations by type. An analyst recomputes every figure. | People Analytics lead approves the dictionary; Privacy approves thresholds. |
+| Pilot (Level 2) | One scheduled read-only HRIS export with the listed fields only. Metric: verified figure rate. | Every released cell meets suppression rules for a full cycle. |
+| Scale (Level 3) | Read-only HRIS, ATS and survey connectors, four checkpoints, call logging; tracks suppression compliance. Predictive models: not before the risk assessment, a `fairness-audit-prep` plan and Legal, Privacy and HR Leadership sign-off. | Employee notice published. |
+| Embed (Levels 4 to 5) | Limited. A scheduled reporting cycle triggers the draft story for lead sign-off. Never writes scores to the HRIS or dashboards. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## Steps
 
 1. **Frame the question before touching data.** Restate the request as a strategic question tied to a business outcome, such as "where is regretted attrition highest in roles we cannot easily refill." Write the decision the answer feeds and what result would change it. Sign-off: the requesting leader confirms the framing.
@@ -66,7 +77,7 @@ Rules for every tool call:
 
 3. **Set data governance and access.** List each source system, its steward, the fields the question needs, and the fields it does not. Drop everything not needed, per principle 4 of `03-governance/ai-use-policy.md`. For each field kept, record where it came from, how it was collected, and whether the organization may use it for this purpose. Data scraped from outside sources or reused for a new purpose goes to Privacy for an impact assessment first. Confirm who may see row-level data and where analysis runs. Run the pre-screen in `03-governance/quick-reference-checklist.md`. Sign-off: Privacy approves the field list and the environment.
 
-4. **Set suppression rules before anyone sees results.** Choose a minimum group size for every reported cell and write it into the plan. Add a secondary rule: when one cell is hidden, hide further cells, or report only the parent total, so the hidden cell cannot be worked out by subtraction. Removing names is not enough: the test is whether a motivated person with ordinary resources could single someone out. Apply stricter thresholds to free text and to anything shared beyond the analytics team. Apply suppression in drafts too. Sign-off: Privacy approves the thresholds.
+4. **Set suppression rules before anyone sees results.** Choose a minimum group size for every reported cell and write it into the plan. Add a secondary rule: when one cell is hidden, hide further cells, or report only the parent total, so the hidden cell cannot be worked out by subtraction. Removing names is not enough: the test is whether a motivated person with ordinary resources could single someone out. Apply stricter thresholds to free text and to anything shared beyond the analytics team. Apply suppression in drafts too, and in your own explanations and verification log: never show the arithmetic, or the inputs to it, that would let a reader recover a hidden cell. Say which cells are hidden and why, not what they would be. Sign-off: Privacy approves the thresholds.
 
 5. **Plan any predictive model as a validation exercise, not a decision tool.** Follow the pattern in `05-notebooks/attrition-risk-modeling.ipynb`: an interpretable baseline first, calibration overall and by group, error rates by group, and segment-level outputs only. Individual scores stay inside model validation and never reach managers. Hand the fairness plan to `11-skills/fairness-audit-prep/SKILL.md`. The four-fifths ratio is a screening flag under the Uniform Guidelines, 29 CFR 1607.4(D), not a safe harbor or a verdict: smaller differences can still count as adverse impact, and differences based on small numbers may not. Small groups need a statistical test, and People Analytics or counsel interprets it. Do not use proxies for protected characteristics the organization does not collect. Run `03-governance/risk-assessment-template.md` before any build. Write a one-page model fact sheet: purpose, data and lineage, build and test method, known limits, and a drift and data-quality monitoring schedule, with a named owner who can switch it off. Test for bias and interpretability, not only accuracy. Sign-off: HR Leadership, Legal, and Privacy, before any build.
 
@@ -74,7 +85,7 @@ Rules for every tool call:
 
 7. **Verify any AI-assisted analysis.** Recompute every AI-produced number from the source query. Check that every cited source exists and says what is claimed. Record the tool, model, date, prompt, and data extract used. Label the output "DRAFT, not verified" until an analyst signs that every figure ties back to source. Never paste row-level data into an unapproved tool. Sign-off: the analyst who signs the figures.
 
-8. **Separate observed facts from estimates and associations.** Keep observed counts and rates apart from modeled estimates. State denominators, periods, and comparison groups. Describe associations as hypotheses, not causes. Say what the analysis cannot establish, including whether any particular person will leave. For a composite index, such as an AI adoption or fluency score, state that its weights and bands are judgment calls unless they were statistically derived, report it at group level only, keep it out of individual reviews, and track sentiment beside it, since a high adoption score can hide worry about jobs. Sign-off: People Analytics lead.
+8. **Separate observed facts from estimates and associations.** Keep observed counts and rates apart from modeled estimates. State denominators, periods, and comparison groups. Describe associations as hypotheses, not causes. Report only figures you can compute from the data supplied; do not add confidence intervals, ranges or significance claims unless you state the method and they follow from the data. When a group is small, say so and route the test to People Analytics. Say what the analysis cannot establish, including whether any particular person will leave. For a composite index, such as an AI adoption or fluency score, state that its weights and bands are judgment calls unless they were statistically derived, report it at group level only, keep it out of individual reviews, and track sentiment beside it, since a high adoption score can hide worry about jobs. Sign-off: People Analytics lead.
 
 9. **Build the story for leaders.** Use prompt 4 or prompt 1 in `02-prompt-library/people-analytics.md`. Lead with one headline sentence, then what changed, where to look closer, and what the trend implies if nothing changes. Tie it to a business measure the leader already tracks. Suppression holds in every chart, footnote, and appendix. Sign-off: the People Analytics lead reviews end to end before it goes to the requesting leader.
 
@@ -113,7 +124,7 @@ Rules for every tool call:
 
 - **Fairness and adverse impact.** Check every model and every segment comparison by group, using calibration and error rates as well as selection-rate ratios. A passing four-fifths ratio is a screening floor, not a verdict. Title VII disparate-impact liability applies to selection procedures regardless of federal enforcement emphasis; see the US federal AI enforcement context in `03-governance/README.md`.
 - **Explainability and notice.** Employees know what is analyzed, why, at what level, and how to ask or correct a record. No result is presented as a prediction about a person.
-- **Privacy and minimization.** Pull only needed fields. Suppress before anyone sees results. Treat free text as identifiable until shown otherwise.
+- **Privacy and minimization.** Pull only needed fields. Suppress before anyone sees results. Treat free text as identifiable until shown otherwise. When free text or an AI summary names a person or gives a detail that could identify one, do not repeat the name or detail anywhere in your reply, including where you flag it: write "[named individual]" and say why it was withheld.
 - **Legal review triggers.** Any predictive model about people, any use of protected characteristic data, any report with representation data, any compensation analysis, any data transfer across borders, and any analysis of data on staff in Germany. Check the rows in the Regulation map and involve counsel.
 
 ## Regulation map
@@ -127,7 +138,7 @@ Rules for every tool call:
 | Illinois HB 3773 (Public Act 103-0804) | Analytics output used in promotion, discipline, or discharge for Illinois staff | Keeps output out of individual decisions; flags the notice duty to counsel |
 | California CPPA regulations | A model or automated decision tool processing California employee personal information | Routes to Privacy for risk-assessment scoping before build |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -190,7 +201,7 @@ Harbor & Pine's People Analytics director asks for a regretted attrition briefin
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `retention-briefing-core`: a regretted attrition briefing from synthetic aggregates, end to end.
 - `small-cells-germany-edge`: no approved threshold, cells too small to report, and German staff in scope.

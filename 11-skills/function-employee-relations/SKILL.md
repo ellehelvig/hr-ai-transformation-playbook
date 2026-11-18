@@ -31,7 +31,7 @@ This skill serves the ER lead, HRBP, or investigator who must move a concern fro
 | Recent actions touching the people involved | No | HRIS, read-only: job, manager, and project changes in the last 90 days for the named people only | Project reassignment one week after a pay question |
 | Time pressure | No | Ask the user | Key witness leaves in 10 days |
 
-If a required input is missing, ask once in one message. Then proceed and label each gap "Not provided" in the output and the audit trail.
+If a required input is missing, ask for it once, in one short question at the top of your reply. Then proceed and label each gap "Not provided" in the output and the audit trail.
 
 ## Tools and connectors
 
@@ -40,6 +40,17 @@ If a required input is missing, ask once in one message. Then proceed and label 
 - **Never write.** Do not call any write, send, update, close, or notify tool, even if the connector offers one. The investigator records outcomes and a human sends every letter.
 - **Log every call.** Record tool, purpose, and fields read in the audit trail.
 - **Stop on spillover.** If a tool returns data about people outside the case, stop, do not use it, and ask the user how to proceed.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste the concern as raised, role labels, locations, union flag, and de-identified notes. The investigator checks every matrix line. | Risk assessment done for the ER tool; counsel agrees if counsel directs. |
+| Pilot (Level 2) | One read-only case system export (case ID, category, intake date, role labels). The ER lead owns it, tracks AI draft correction rate, and samples weekly. | ER lead signs off the correction rate review. |
+| Scale (Level 3) | Read-only case system and HRIS tools (location, bargaining unit flag, named people's job changes), calls logged. Track median days to close and retaliation concern rate. | Closing letters carry the AI notice. |
+| Embed (Levels 4 to 5) | Limited: a new case triggers only triage and protected-activity flags. Findings and discipline stay human. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -93,7 +104,7 @@ Run as a checkpointed workflow: the agent completes one step, shows the output, 
 
 ## Guardrails
 
-- **Confidentiality and minimization.** Use only a tool approved for ER data. Replace names with role labels (Complainant A, Witness 2) before drafting. Keep health details, immigration status, and other sensitive data out of any tool not approved for it (`ai-use-policy.md` principle 4).
+- **Confidentiality and minimization.** Use only a tool approved for ER data. Replace names with role labels (Complainant A, Witness 2) before drafting, including inside quotes in the evidence matrix and chronology: write "[Respondent] said [Complainant] should..." rather than the names. If the decision owner is not given, ask for it once at the top of the reply and leave the field marked missing; do not fill it in. Keep health details, immigration status, and other sensitive data out of any tool not approved for it (`ai-use-policy.md` principle 4).
 - **Confidentiality instructions.** Under the NLRA, an employer may not keep work rules that reasonably tend to inhibit employees from exercising their Section 7 rights. Counsel reviews any instruction not to discuss an investigation.
 - **No monitoring of protected activity.** Do not use AI to flag pay discussions, union references, or group complaints; that monitoring can interfere with NLRA rights.
 - **Fairness in language and outcomes.** Describe conduct, not character. Remove "aggressive," "emotional," or "difficult" unless quoted. Compare with similar matters before close; see step 6 for any group comparison.
@@ -114,7 +125,7 @@ Run as a checkpointed workflow: the agent completes one step, shows the output, 
 | California AB 1883 (Ch. 853, Stats. 2026) | Emotion inference is proposed for California workers | Refuses and routes to counsel |
 | GDPR, Article 22 (EU) | A decision about a German employee would rest on automated processing | Flags meaningful human involvement as a question for counsel |
 
-See each Key dates row in `03-governance/README.md` for status and dates. Counsel confirms scope and current status before you rely on any row.
+See each Key dates row in `03-governance/README.md` for status and dates. Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -174,7 +185,7 @@ A Harbor & Pine HRBP brings an age-related complaint from an Illinois engineer w
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `core-age-complaint-investigation-plan`: triage, protected activity flags, plan, guides, and retaliation check for a standard complaint.
 - `edge-cross-border-missing-decision-owner`: a respondent in Germany and no named decision owner; tests gap labeling and routing.

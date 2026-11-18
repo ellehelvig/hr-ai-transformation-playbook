@@ -1,4 +1,4 @@
-"""Structure checks for the HR function skills: sections, worked example, and test cases.
+"""Structure checks for the HR function and starter skills: sections, worked example, and test cases.
 
 These checks do not run any skill against a model. They confirm that every
 function skill carries the parts an agent and a reviewer rely on, and that its
@@ -15,10 +15,14 @@ import yaml
 
 SKILLS_DIR = Path(__file__).resolve().parent.parent / "11-skills"
 FUNCTION_SKILLS = sorted(p for p in SKILLS_DIR.glob("function-*") if p.is_dir())
+STARTER_SKILLS = [SKILLS_DIR / "hr-ai-readiness-assessment", SKILLS_DIR / "hr-ai-first-use-case-picker"]
+STRUCTURED_SKILLS = FUNCTION_SKILLS + STARTER_SKILLS
+ALL_SKILLS = sorted(p for p in SKILLS_DIR.iterdir() if (p / "SKILL.md").is_file())
 
 REQUIRED_SECTIONS = [
     "## Inputs",
     "## Tools and connectors",
+    "## By maturity stage",
     "## Steps",
     "## Decision rights",
     "## Guardrails",
@@ -46,12 +50,23 @@ def _section(text: str, heading: str) -> str:
     return text[start: min(ends)] if ends else text[start:]
 
 
-def test_there_are_seventeen_function_skills():
+def test_there_are_seventeen_function_skills_and_two_starter_skills():
     assert len(FUNCTION_SKILLS) == 17
+    assert all((skill / "SKILL.md").is_file() for skill in STARTER_SKILLS)
+
+
+def test_every_skill_has_a_maturity_stage_section():
+    stages = ("Start (Levels 0 to 1)", "Pilot (Level 2)", "Scale (Level 3)", "Embed (Levels 4 to 5)")
+    for skill in ALL_SKILLS:
+        text = (skill / "SKILL.md").read_text(encoding="utf-8")
+        assert "## By maturity stage" in text, f"{skill.name}: no maturity section"
+        section = text.split("## By maturity stage", 1)[1].split("\n## ", 1)[0]
+        assert all(stage in section for stage in stages), f"{skill.name}: missing a stage row"
+        assert "transformation-roadmap-template.md" in section, f"{skill.name}: maturity scale not linked"
 
 
 def test_every_function_skill_has_the_required_sections_in_order():
-    for skill in FUNCTION_SKILLS:
+    for skill in STRUCTURED_SKILLS:
         text = (skill / "SKILL.md").read_text(encoding="utf-8")
         front = yaml.safe_load(text.split("---")[1])
         assert front["name"] == skill.name, f"{skill.name}: name does not match folder"
@@ -77,7 +92,7 @@ def test_every_function_skill_has_the_required_sections_in_order():
 
 
 def test_every_function_skill_has_a_synthetic_worked_example():
-    for skill in FUNCTION_SKILLS:
+    for skill in STRUCTURED_SKILLS:
         example = skill / "EXAMPLE.md"
         assert example.is_file(), f"{skill.name}: no EXAMPLE.md"
         text = example.read_text(encoding="utf-8")
@@ -86,7 +101,7 @@ def test_every_function_skill_has_a_synthetic_worked_example():
 
 
 def test_every_function_skill_has_three_loadable_test_cases():
-    for skill in FUNCTION_SKILLS:
+    for skill in STRUCTURED_SKILLS:
         cases = sorted(p for p in (skill / "evals").iterdir() if p.is_dir())
         assert len(cases) == 3, f"{skill.name}: expected three test cases"
         for case in cases:

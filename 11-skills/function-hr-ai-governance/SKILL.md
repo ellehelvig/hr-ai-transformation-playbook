@@ -32,7 +32,7 @@ This skill serves the HR leader who owns AI risk and the program owner who runs 
 | HR AI touching pay, hiring, performance, or termination | Yes | Ask the user | ATS screening feature |
 | Accountable executive, program owner, oversight owner per tool | Yes | Ask the user | CHRO; HR technology lead; recruiting operations lead |
 
-If a required input is missing, ask once in one message. Then proceed with the gap labeled "Not provided: [input]", and write "UNRESOLVED" where an owner cannot be named.
+If a required input is missing, ask for it once, in one short question at the top of your reply. Then proceed with the gap labeled "Not provided: [input]", and write "UNRESOLVED" where an owner cannot be named.
 
 ## Tools and connectors
 
@@ -50,6 +50,17 @@ Rules for every tool call:
 - Never call a write, send, update, configure, enable, or approve tool, even if the connector offers one.
 - Log each call in the Audit trail: tool, purpose, fields read.
 - If a tool returns data on named people, or fields outside this list, stop, do not use it, and ask the user.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste an app catalog export (app name, user counts by department), console AI feature lists, and team answers. The program owner confirms each entry. | Charter signed; each tool has an oversight owner or UNRESOLVED hold. |
+| Pilot (Level 2) | One scheduled read-only single sign-on catalog export. The program owner tracks inventory review currency and samples new entries weekly. | Accountable executive signs the first quarterly report. |
+| Scale (Level 3) | Read-only admin console, procurement, LMS, and incident log tools, calls logged. Track fairness monitoring coverage and time to pause. | Every live tool has worker notice and a tested pause path. |
+| Embed (Levels 4 to 5) | A vendor release note, new catalog app, or incident triggers a draft entry and route. Approval, pause, and enablement stay with named owners. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -131,7 +142,7 @@ Rules for every tool call:
 | Colorado SB 26-189 (ADMT Act) | Automated technology is used in an employment decision for Colorado staff | Adds notice and adverse-decision explanation fields; counsel checks status |
 | California FEHA automated-decision system regulations | An automated tool is used in hiring or employment for California staff | Treats vendor-built tools as the employer's risk; keeps automated-decision data per the Key dates row |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -181,7 +192,7 @@ Harbor & Pine, a fictional 1,400-person company, builds its first HR AI inventor
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `inventory-and-routing`: builds an inventory, routes each tool, and sets the calendar end to end.
 - `vendor-feature-on-by-default`: a vendor AI feature switched on for US and German staff with no oversight owner.

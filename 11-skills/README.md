@@ -6,13 +6,61 @@
 
 ---
 
-**For:** HR teams using an AI assistant such as Claude. **Start with:** [hr-ai-use-case-intake](hr-ai-use-case-intake/SKILL.md).
+**For:** HR teams using an AI assistant such as Claude, at any stage of AI maturity. **Start with:** [hr-ai-readiness-assessment](hr-ai-readiness-assessment/SKILL.md) if you are new to AI in HR, or [hr-ai-use-case-intake](hr-ai-use-case-intake/SKILL.md) if you have an idea in hand.
 
-Two sets of installable agent skills. Six governance skills help you decide whether and how to use AI, in the order to adopt them. Seventeen HR function skills, listed further down, help you do the work in each part of HR with AI kept in its lane.
+Twenty-five installable agent skills in three sets. Two starter skills help a team new to AI find its stage and pick a safe first pilot. Six governance skills help you decide whether and how to use AI, in the order to adopt them. Seventeen HR function skills, listed further down, help you do the work in each part of HR with AI kept in its lane.
 
 A skill is a folder with a `SKILL.md` file: instructions an AI agent loads when a task matches the skill's description. Install one and your assistant stops improvising and starts following this playbook's actual templates, checklists, and gates. The skills here don't call external services and don't make decisions. They structure the work so a human can make the decision faster, with the right evidence in front of them.
 
 They run in Claude Code, Claude Cowork, and Claude.ai projects, and the format is plain markdown, so any agent framework that reads a system prompt can use them.
+
+## Find your stage first
+
+The library is useful at every stage of AI maturity, from a team that has never used AI to one running agents inside its HR systems. Stages follow the Level 0 to 5 scale in the [roadmap template](../06-roadmap/transformation-roadmap-template.md):
+
+| Stage | Levels | How a skill runs |
+|---|---|---|
+| Start | 0 to 1 | No integrations. Paste de-identified inputs or a spreadsheet export into a chat with the skill loaded. A person checks every output. |
+| Pilot | 2 | One read-only connector or scheduled export, a named owner, one success metric, and the audit trail filled on every run. |
+| Scale | 3 | A connected agent with read-only tools, call logging, the skill's metrics tracked, and scheduled adverse impact checks where people are selected, scored or ranked. |
+| Embed | 4 to 5 | The skill runs inside the workflow, triggered by a system event, still drafting for sign-off. Its test cases are rerun whenever the skill or the model changes. |
+
+Decision rights never loosen as maturity rises. A higher stage changes how inputs arrive and how often a skill runs, never who decides. Every skill has a "By maturity stage" section that says how to run it at each stage and what must be true before moving up.
+
+**New to AI in HR?** Two starter skills are built for Levels 0 to 2:
+
+- [hr-ai-readiness-assessment](hr-ai-readiness-assessment/SKILL.md): scores the HR function, never a person, on seven readiness dimensions with evidence, places it on the scale at the lowest level the evidence supports, and drafts a 90-day plan that names which skills to start with.
+- [hr-ai-first-use-case-picker](hr-ai-first-use-case-picker/SKILL.md): screens out first pilots that select, score or rank people, scores the rest with the [prioritization matrix](../01-use-cases/prioritization-matrix.md), and recommends one or two first pilots with a success metric and phase gate.
+
+Where each skill fits. "Limited" means only part of the skill runs at that stage; its "By maturity stage" section says which part and what gate comes first.
+
+| Skill | Start | Pilot | Scale | Embed |
+|---|---|---|---|---|
+| [hr-ai-readiness-assessment](hr-ai-readiness-assessment/SKILL.md) | Yes | Yes | Limited | Limited |
+| [hr-ai-first-use-case-picker](hr-ai-first-use-case-picker/SKILL.md) | Yes | Yes | Limited | Limited |
+| [hr-ai-use-case-intake](hr-ai-use-case-intake/SKILL.md) | Yes | Yes | Yes | Yes |
+| [hr-prompt-picker](hr-prompt-picker/SKILL.md) | Yes | Yes | Yes | Limited |
+| [hr-ai-vendor-review](hr-ai-vendor-review/SKILL.md) | Yes | Yes | Yes | Yes |
+| [fairness-audit-prep](fairness-audit-prep/SKILL.md) | Yes | Yes | Limited | Limited |
+| [eu-ai-act-hr-classifier](eu-ai-act-hr-classifier/SKILL.md) | Yes | Yes | Yes | Yes |
+| [hr-ai-incident-triage](hr-ai-incident-triage/SKILL.md) | Yes | Yes | Yes | Yes |
+| [function-hr-ai-governance](function-hr-ai-governance/SKILL.md) | Yes | Yes | Yes | Yes |
+| [function-talent-acquisition](function-talent-acquisition/SKILL.md) | Yes | Yes | Limited | Limited |
+| [function-onboarding](function-onboarding/SKILL.md) | Yes | Yes | Yes | Yes |
+| [function-performance-management](function-performance-management/SKILL.md) | Yes | Yes | Yes | Limited |
+| [function-learning-development](function-learning-development/SKILL.md) | Yes | Yes | Limited | Limited |
+| [function-talent-review-succession](function-talent-review-succession/SKILL.md) | Yes | Yes | Limited | Limited |
+| [function-total-rewards-compensation](function-total-rewards-compensation/SKILL.md) | Yes | Yes | Yes | Limited |
+| [function-benefits](function-benefits/SKILL.md) | Yes | Yes | Yes | Yes |
+| [function-hr-operations-hris](function-hr-operations-hris/SKILL.md) | Yes | Yes | Yes | Yes |
+| [function-hr-compliance](function-hr-compliance/SKILL.md) | Yes | Yes | Yes | Yes |
+| [function-employee-relations](function-employee-relations/SKILL.md) | Yes | Yes | Yes | Limited |
+| [function-inclusion-belonging](function-inclusion-belonging/SKILL.md) | Yes | Yes | Yes | Limited |
+| [function-employee-experience-engagement](function-employee-experience-engagement/SKILL.md) | Yes | Yes | Yes | Yes |
+| [function-people-analytics](function-people-analytics/SKILL.md) | Yes | Yes | Yes | Limited |
+| [function-workforce-planning-org-design](function-workforce-planning-org-design/SKILL.md) | Yes | Yes | Limited | Limited |
+| [function-change-management](function-change-management/SKILL.md) | Yes | Yes | Yes | Yes |
+| [function-offboarding](function-offboarding/SKILL.md) | Yes | Yes | Limited | Limited |
 
 ## Install these first
 
@@ -37,9 +85,9 @@ One skill for each part of HR. Each one is built to be run by an agent, not just
 - **Metrics.** Two or three measures a CHRO would track, defined precisely enough to compute.
 - **Output template with an audit trail.** Inputs used, tools called and fields read, items awaiting sign-off, open legal questions.
 - **A worked example** (`EXAMPLE.md`) on a fictional company with synthetic data.
-- **Three test cases** (`evals/`): a core request, an edge case, and a red-flag request the skill must refuse. They use the folder layout that `claude plugin eval` reads, so they can be run with and without the skill. They are written, not yet run against a model.
+- **Three test cases** (`evals/`): a core request, an edge case, and a red-flag request the skill must refuse. They use the folder layout that `claude plugin eval` reads. All 57 cases, including the two starter skills', were run on 18 November 2026 with `claude-sonnet-5-5` and graded in a separate pass, and the skills were fixed where they failed. A trigger test checked that each skill loads for the right requests and not for near misses. See [the results](../09-evals/skill-eval-results-2026-11-18.md), including what one model and self-grading can and cannot show.
 
-Where a skill selects, scores, or ranks people, it sends the adverse impact check to [fairness-audit-prep](fairness-audit-prep/SKILL.md), which now includes a tested calculator for selection rates, impact ratios, and a Fisher exact test from aggregate counts. `09-evals/test_skill_packages.py` checks in CI that every function skill keeps these parts.
+Where a skill selects, scores, or ranks people, it sends the adverse impact check to [fairness-audit-prep](fairness-audit-prep/SKILL.md), which now includes a tested calculator for selection rates, impact ratios, and a Fisher exact test from aggregate counts. `09-evals/test_skill_packages.py` checks in CI that every function and starter skill keeps these parts, and that every skill has a maturity stage section.
 
 | Area | Skill | Use it for |
 |---|---|---|

@@ -20,7 +20,7 @@ This skill serves compensation and total rewards professionals. It drafts struct
 
 ## Inputs
 
-If a required input is missing, ask once, then proceed with the gap labeled `[GAP: what is missing]` in the output.
+If a required input is missing, ask for it once, in one short question at the top of your reply, then proceed with the gap labeled `[GAP: what is missing]` in the output.
 
 | Input | Required | Where it comes from | Example |
 |---|---|---|---|
@@ -45,6 +45,17 @@ Work through MCP connectors or exports, read-only, with the minimum fields:
 - Repo MCP tools in `10-mcp-agents/`: `comp_band_position` and `comp_list_known_bands` (in `comp_banding/`) place a proposed number against benchmark bands. `used_historical_pay_as_input` is required; answer it truthfully. If a role is missing, the tool raises an error by design: report the gap, do not guess the nearest band. `lint_jd_language` (in `resume_screen/`) checks posting text; `ask_governance_policy` (in `policy_qa/`) cites the governance section behind a stop point.
 
 Never call a write, send or update tool, even if the connector offers one: no band publish, pay change or employee message. Log each tool call (tool, purpose, fields read) in the output's audit trail. If a tool returns data on people outside the request, or individual pay, stop, do not use it, and ask.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste job content and a licensed survey extract: benchmark job, match quality, effective date, percentiles, sample size. Comp analyst checks each match. The pay equity stop always applies. | Comp lead approves one band set. |
+| Pilot (Level 2) | Read-only comp planning export: band min, mid, max, merit matrix, budget, checked with `comp_band_position`. Comp lead owns it and tracks documented rationale coverage. | Counsel signs the posting jurisdiction map. |
+| Scale (Level 3) | Logged reads of comp planning, survey, aggregate HRIS and ATS requisition fields. Tracks band conformance rate. Never reads individual pay. | Comp lead and counsel review the call log. |
+| Embed (Levels 4 to 5) | Limited: a new requisition triggers posting range drafts; pay explanations start only when a comp professional asks. Comp professionals own every final number. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -114,7 +125,7 @@ Hard checkpoints the agent never passes alone: pay equity screen answered (user,
 | California FEHA automated-decision system regulations | An automated tool informs pay or offers for California staff | Flags the row's discrimination and record-keeping points for counsel |
 | Colorado SB 26-189 (ADMT Act) | Automated technology is used in a pay or offer decision for Colorado staff | Drafts notice and explanation text for counsel to check |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -169,7 +180,7 @@ A comp lead at a fictional software company asks for Recruiter IC3 posting range
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `posting-ranges-from-market-data`: core request; draft bands and posting ranges from aggregate data, with a tool check.
 - `germany-role-thin-survey-sample`: edge case; a Germany role with a thin sample, no band row and a worker pay information request.

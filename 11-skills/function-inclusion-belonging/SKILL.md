@@ -29,7 +29,7 @@ This skill serves the inclusion lead, program owner, or HRBP who must show that 
 | Aggregate selection or enrollment counts by stage | No | ATS or LMS, read-only: counts by stage and group, no individual records | 47 of 600 eligible nominated |
 | Owners: program, accommodation decisions, counsel | Yes | Ask the user | Program owner L&D lead; accommodation owner Benefits |
 
-If a required input is missing, ask once in one message. Then proceed and label each gap "Not provided" in the output and the audit trail.
+If a required input is missing, ask for it once, in one short question at the top of your reply. Then proceed and label each gap "Not provided" in the output and the audit trail.
 
 ## Tools and connectors
 
@@ -39,15 +39,26 @@ If a required input is missing, ask once in one message. Then proceed and label 
 - **Log every call.** Record tool, purpose, and fields read in the audit trail.
 - **Stop on spillover.** If a tool returns individual demographic, health, or accommodation records, stop, do not use them, and ask the user how to proceed.
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste charters, written eligibility, posting text, and aggregate counts by stage, never individual records. The program owner checks every row. | Counsel decides whether and how demographic data is analyzed. |
+| Pilot (Level 2) | One read-only ATS or LMS export of aggregate counts by stage and group, plus accommodation request and first-response dates. The inclusion lead tracks first-response time. | Last cycle's nomination screen reviewed by People Analytics and counsel. |
+| Scale (Level 3) | Read-only ATS criteria, LMS eligibility rules, and `lint_jd_language`, calls logged. People Analytics runs scheduled `fairness-audit-prep` screens. Track flagged selection steps. | AI use notices in place. |
+| Embed (Levels 4 to 5) | Limited: a new program, eligibility change, or posting draft triggers the access check and lint. Adverse impact screens stay scheduled. Owners decide every program. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## Steps
 
 Run as a checkpointed workflow: complete a step, show it, and wait for the named sign-off before any step that depends on it.
 
-1. **Start from the current primary sources, stated neutrally.** Summarize what each source says, with its link, and nothing more. Executive Order 14173 revoked Executive Order 11246 and directs agencies to put two terms in federal contracts and grants: that compliance with federal anti-discrimination law is material to payment decisions under the False Claims Act, and a certification that the recipient does not operate DEI programs that violate those laws. OFCCP's final rule rescinds the regulations that implemented Executive Order 11246; read it in the Federal Register for its full scope. For both, see the Key dates rows "US Executive Order 14173" and "OFCCP final rule rescinding the EO 11246 regulations". The EEOC's technical assistance says DEI is not defined in Title VII and that an employment action motivated in whole or in part by a protected characteristic can be unlawful. In February 2026 the EEOC Chair sent a letter to large employers pointing them to that guidance. A July 2025 Attorney General memo for recipients of federal funding lists practices it treats as unlawful and gives non-binding best practices. Sign-off: counsel confirms which apply and whether any has changed since it was read.
+1. **Start from the current primary sources, stated neutrally.** Summarize what each source says in a sentence, and nothing more. In your reply, name the Key dates row or the source by title, without links; do not write signing, publication or effective dates or document numbers. Links stay in this skill's Sources list. Executive Order 14173 revoked Executive Order 11246 and directs agencies to put two terms in federal contracts and grants: that compliance with federal anti-discrimination law is material to payment decisions under the False Claims Act, and a certification that the recipient does not operate DEI programs that violate those laws. OFCCP's final rule rescinds the regulations that implemented Executive Order 11246; read it in the Federal Register for its full scope. For both, see the Key dates rows "US Executive Order 14173" and "OFCCP final rule rescinding the EO 11246 regulations". The EEOC's technical assistance says DEI is not defined in Title VII and that an employment action motivated in whole or in part by a protected characteristic can be unlawful. The EEOC Chair later sent a letter to large employers pointing them to that guidance. An Attorney General memo for recipients of federal funding lists practices it treats as unlawful and gives non-binding best practices. Sign-off: counsel confirms which apply and whether any has changed since it was read.
 
 2. **Inventory every program and practice.** Include programs under other names; the EEOC Chair's letter names "Inclusion & Diversity" and "Belonging" as examples. For each, record eligibility as written and as practiced: hiring and promotion steps, candidate slates, internships and fellowships, mentoring and sponsorship, leadership development, training, ERGs, and scholarships or awards. Sign-off: each program owner confirms their row.
 
-3. **Check access to each program.** Is it open to all eligible employees regardless of protected characteristic? Does it limit membership or separate people by a protected characteristic, even with the same content or resources? The EEOC lists both as possible discrimination. Does any facially neutral criterion work as a stand-in for a protected characteristic? The Attorney General memo gives examples, such as diversity statements and geographic targeting chosen for demographic reasons. Is it announced where everyone can see it? Record each answer as a question for counsel, not a verdict. Sign-off: counsel.
+3. **Check access to each program.** Is it open to all eligible employees regardless of protected characteristic? Does it limit membership or separate people by a protected characteristic, even with the same content or resources? The EEOC lists both as possible discrimination. Does any facially neutral criterion work as a stand-in for a protected characteristic? The Attorney General memo gives examples, such as diversity statements and geographic targeting chosen for demographic reasons. Is it announced where everyone can see it? Record each answer as a description of the eligibility rule and a question for counsel, not a verdict: write "membership limited by race as written; counsel to advise", not "No" or "highest risk". Do not rank programs by legal risk. Sign-off: counsel.
 
 4. **Make selection criteria job-related, skills-based, and consistent.** Tie each selection step to specific, measurable skills for the role, and accept evidence of the skill (work samples, portfolio, assessed tasks) in place of a credential unless the credential is a documented job requirement. Use structured interviews: the same questions in the same order, scored on one rating scale with shared standards. Tell candidates what each stage is, how it relates to the job, and how decisions are made. Document the job-related reason for every criterion. If AI skill or AI use is proposed as a criterion, first check that every group had equal access to approved tools, training, practice time, and accommodations. If any step uses a tool that scores, ranks, or filters people, run `fairness-audit-prep` before use, and ask the vendor how the tool works, how it is audited, and its record on bias; do not rely on the vendor for compliance. Sign-off: program owner and counsel approve the criteria.
 
@@ -109,7 +120,7 @@ Run as a checkpointed workflow: complete a step, show it, and wait for the named
 | California FEHA automated-decision system regulations | An automated tool is used in hiring or employment for California roles | Requires the adverse impact check in step 5 before use |
 | EU AI Act, high-risk HR systems | A tool sets requirements or scores applicants for German roles | Routes to `eu-ai-act-hr-classifier` and counsel |
 
-See each Key dates row in `03-governance/README.md` for status and dates. Counsel confirms scope and current status before you rely on any row.
+See each Key dates row in `03-governance/README.md` for status and dates. Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -129,7 +140,7 @@ See each Key dates row in `03-governance/README.md` for status and dates. Counse
 | Source | What it says (neutral summary) | Link | Applies here? (counsel) |
 
 ## Program access review
-| Program | Eligibility as written | As practiced | Open to all eligible Y/N | Possible proxy criteria | Question for counsel |
+| Program | Eligibility as written | As practiced | Limits by protected characteristic (as written or practiced) | Possible proxy criteria | Question for counsel |
 
 ## Selection criteria
 | Process step | Criterion | Skills evidence accepted | Job-related reason | Applied consistently? | Tool that scores or ranks Y/N |
@@ -162,7 +173,7 @@ Harbor & Pine's inclusion lead asks for a review of three development programs, 
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `core-program-access-review`: access review of three programs plus a posting rewrite.
 - `edge-germany-and-unknown-contractor-status`: programs spanning the US and Germany with federal contractor status unknown.

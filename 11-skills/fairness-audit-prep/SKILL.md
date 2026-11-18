@@ -49,6 +49,17 @@ The playbook's third non-negotiable is that anything scoring or ranking employee
 ## Open questions for Legal
 ```
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights are the same at every stage: the skill drafts the plan, People Analytics runs it on real counts, Legal reviews results.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste the use case card and which group fields each jurisdiction collects. Run `scripts/adverse_impact.py` on synthetic counts only. | People Analytics and Legal approved a plan and its pause owner. |
+| Pilot (Level 2) | One read-only export: the intake register card and HRIS data dictionary (field names, no values). Log every run; review a weekly sample. | Every test and threshold row names an owner. |
+| Scale (Level 3) | Limited to plan drafting: the agent reads the register and dictionary, never individual records. Track monitoring rows with no owner. | Test cases written in `evals/` (none yet). |
+| Embed (Levels 4 to 5) | Limited to plan drafting, triggered when a scoring or ranking use case enters pilot. Pause authority stays with named people. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## What this skill will not do
 
 - Run statistics on real employee or candidate data. It produces the plan; the org runs it with proper access controls.

@@ -33,7 +33,7 @@ This skill serves an HR operations or People Systems lead. It produces service m
 | Decision rights, budget model, IT support capacity | For vendor choice | Ask the user | HR, IT, Finance; per-employee pricing; 1 integration engineer |
 | Human decision owner | Yes | Ask the user | People Systems owner |
 
-If a required input is missing, ask once in one message. Then proceed with the gap labeled "Not provided: [input]" in the output and in the audit trail.
+If a required input is missing, ask for it once, in one short question at the top of your reply. Then proceed with the gap labeled "Not provided: [input]" in the output and in the audit trail.
 
 ## Tools and connectors
 
@@ -50,6 +50,17 @@ Rules for every tool call:
 - Never call a write, send, update, approve, or workflow-trigger tool, even if the connector offers one.
 - Log each call in the Audit trail: tool, purpose, fields read.
 - If a tool returns data on people outside the request, or fields outside the list above, stop, do not use it, and ask the user.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste a synthetic or sampled ticket set, the data dictionary, and knowledge base articles. Tier 1 confirms each route. | Q and A passes the pay, eligibility, and leave tests in `09-evals`. |
+| Pilot (Level 2) | One read-only case system export (category, channel, dates, tier closed at, reopen flag). The HR operations lead owns it and tracks sensitive misroute rate. | Every misroute reviewed; routing rules signed off. |
+| Scale (Level 3) | Read-only HRIS, case system, and knowledge base tools, calls logged; AI assistant notice live; weekly 50-ticket sample. Track cited answer accuracy and the self-service gap. | Eligibility or scoring automations pass `fairness-audit-prep`. |
+| Embed (Levels 4 to 5) | A new ticket triggers routing; sensitive tickets go straight to Employee Relations. Data stewards make every HRIS change. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -94,7 +105,7 @@ Rules for every tool call:
 
 ### Refuse and route
 
-- "Have the agent fix the duplicates in the HRIS" or any write to an HR system: refuse; route the exceptions list to the data steward for the change process.
+- "Have the agent fix the duplicates in the HRIS" or any write to an HR system: refuse; route the exceptions list to the data steward for the change process. Do not design that change process, suggest merge values or batch approvals: the steward owns it.
 - "Reply to this accommodation ticket": refuse to draft or resolve; route to Employee Relations or the HRBP with the ticket ID only.
 - "Answer with what the policy probably says": refuse; return no answer and route to the content owner.
 - "Give the agent standing approval to change job codes": refuse; route to the People Systems owner with the per-action confirmation gate in `03-governance/ai-use-policy.md`.
@@ -120,7 +131,7 @@ Rules for every tool call:
 | California CPPA regulations | HR data of California staff feeds automated processing | Flags risk-assessment and ADMT notice questions for Privacy and counsel |
 | EU AI Act, high-risk HR systems | An automation allocates tasks to or monitors the performance of workers | Routes to `11-skills/eu-ai-act-hr-classifier/SKILL.md` before build |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -175,7 +186,7 @@ Harbor & Pine, a fictional 1,400-person company, wants ticket triage rules and a
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `triage-and-qa-launch`: designs routing rules and a cited Q and A launch end to end.
 - `skills-data-cleanup-germany`: messy skills data and an assistant for German staff, with a field owner missing.

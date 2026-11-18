@@ -23,7 +23,7 @@ For an HRBP, HR operations lead or manager. It produces the exit plan, the draft
 |---|---|---|---|
 | Exit type | Yes | Ask the user | Resignation, retirement, contract end, involuntary for cause, not for cause, or group reduction |
 | Work location (state or country) | Yes | HRIS, read-only: work location | Colorado |
-| Last day and notice date | Yes | Ask the user | Notice 2 December, last day 16 December |
+| Last day and notice date | Yes | Ask the user; if missing, draft with relative dates (Day 0 = last day) labeled unconfirmed | Notice 2 December, last day 16 December |
 | Named owners: manager, HRBP, payroll, benefits administrator, IT and Security, Legal | Yes | HRIS, read-only: manager; ask the user for the rest | Owners by role |
 | Systems that hold the person's data and access | Yes | Ask the user | HRIS, payroll, benefits administrator, identity tool, device management, exit survey |
 | Confirmation that a named leader made the decision with HR and Legal | For involuntary exits and reductions | Ask the user | Decision record dated 25 November |
@@ -32,7 +32,7 @@ For an HRBP, HR operations lead or manager. It produces the exit plan, the draft
 | Ages of affected people | Only if Legal asks, for waiver disclosures | HRIS, read-only, released to Legal only | Not read by default |
 | Exit interview comments | For step 8 only | Survey platform export, read-only: comment text, quarter, department, no names or IDs | 64 comments, Q3 |
 
-If a required input is missing, ask once, then proceed with the gap labeled, for example "Location not confirmed: final pay rule not mapped."
+If a required input is missing, ask for it once, in one short question at the top of your reply, then proceed with the gap labeled, for example "Location not confirmed: final pay rule not mapped."
 
 ## Tools and connectors
 
@@ -45,6 +45,17 @@ If a required input is missing, ask once, then proceed with the gap labeled, for
 - Log each tool call (tool, purpose, fields read) in the Audit trail.
 - If a tool returns data on people outside the request, stop, do not use it, and ask.
 - If an agent coordinates the exit as one workflow, it starts from one intake record and stops at the confirmation gates in `agent-design.md`. Any automated workflow that opens access removal tickets gets only the access that task needs, a named owner who can halt it, and a log of what it did and who approved each step.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste the intake record: exit type, work location, dates, owner roles. The HRBP checks every line; payroll confirms the final pay rule. | Counsel has reviewed the legal flag list. |
+| Pilot (Level 2) | One read-only HRIS export: job, department, manager, work location, hire date, exit type. Metric: offboarding on time. | IT and Security confirm access plans against the identity tool. |
+| Scale (Level 3) | Limited. Read-only HRIS, payroll, benefits flag, identity and device lists; tracks access removed by the set time. Reductions: plan and adverse impact request only, never selection. | Confirmation gates from `agent-design.md` in place. |
+| Embed (Levels 4 to 5) | Limited. An HRIS exit record triggers a draft plan for HRBP sign-off. Involuntary exits start only after the decision record is confirmed. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -115,7 +126,7 @@ If a required input is missing, ask once, then proceed with the gap labeled, for
 | Illinois HB 3773 (Public Act 103-0804) | AI was used in a discharge decision for an Illinois worker | Flags the notice duty and the discrimination risk to counsel |
 | EU AI Act, high-risk HR systems | A tool informs termination or contract non-renewal for a worker in Germany or another EU country | Routes to `eu-ai-act-hr-classifier` and counsel |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -171,7 +182,7 @@ A Harbor & Pine HRBP plans a 38-person reduction at a California site after a su
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `voluntary-resignation-checklist`: core request, a resignation plan from intake to alumni note.
 - `colorado-exit-with-ai-flag-missing-date`: an involuntary exit in Colorado where a productivity tool fed the decision and the last day is missing.

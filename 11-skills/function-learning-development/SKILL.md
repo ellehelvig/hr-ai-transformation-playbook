@@ -21,7 +21,7 @@ This skill serves L&D leads, program owners and HR partners. It ties learning to
 
 ## Inputs
 
-If a required input is missing, ask once, then proceed with the gap labeled `[GAP: what is missing]` in the output.
+If a required input is missing, ask for it once, in one short question at the top of your reply, then proceed with the gap labeled `[GAP: what is missing]` in the output.
 
 | Input | Required | Where it comes from | Example |
 |---|---|---|---|
@@ -45,6 +45,17 @@ Work through MCP connectors or exports, read-only, with the minimum fields:
 - Repo MCP tools in `10-mcp-agents/`: `lint_jd_language` (in `resume_screen/`) flags gender-coded and protected-class-proxy wording in course text, scenarios and program descriptions; `ask_governance_policy` (in `policy_qa/`) cites the governance section behind a stop point.
 
 Never call a write, send or update tool, even if the connector offers one: no enrollment, assignment, completion mark or learner message. Log each tool call (tool, purpose, fields read) in the output's audit trail. If a tool returns data on people outside the request, or named learner records, stop, do not use it, and ask.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste the gap, role headcounts and LMS completion counts by cohort. An expert checks every drafted content item. | Program owner signs a needs analysis tied to a named gap. |
+| Pilot (Level 2) | One read-only LMS export: course, cohort, completion dates, cohort assessment results. Metric: behavior transfer rate. | Baselines recorded; one program's content passes expert review. |
+| Scale (Level 3) | Limited. Read-only LMS, HRIS counts, skills platform and `lint_jd_language`; tracks literacy record coverage. Recommending learning by person: not before a `fairness-audit-prep` review and learner notice. | HR and People Analytics review the access check. |
+| Embed (Levels 4 to 5) | Limited. A submitted AI-drafted course triggers the content check for expert sign-off. Never enrolls, selects or certifies. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -110,7 +121,7 @@ Run the work as a workflow with hard checkpoints the agent never passes alone: p
 | EU AI Act, high-risk HR systems | Training results feed promotion, pay or continued employment for Germany staff | Keeps learner-only feedback apart; routes the link to `eu-ai-act-intake-template.md` and counsel |
 | Illinois HB 3773 (Public Act 103-0804) | A learning recommender's output feeds promotion for Illinois staff | Flags notice and routes to counsel |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -165,7 +176,7 @@ An L&D lead at a fictional software company asks for an AI literacy plan for eve
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `ai-literacy-plan-support-rollout`: core request; a tiered literacy and evaluation plan for an AI tool rollout.
 - `needs-analysis-messy-self-ratings`: edge case; self-ratings only, blanks, and no stated performance gap.

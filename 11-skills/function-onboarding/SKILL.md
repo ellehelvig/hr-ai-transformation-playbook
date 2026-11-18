@@ -1,6 +1,6 @@
 ---
 name: function-onboarding
-description: Plans a new hire's preboarding, first week and first 90 days, and scopes any AI onboarding assistant. Produces a preboarding checklist with owners, a compliance paperwork table, a manager-led first week, a buddy setup, a skills-linked 30/60/90 plan, an assistant scope with eval and notice, cohort check-in themes and an audit trail. Use whenever someone says build an onboarding plan, draft a 30/60/90, prep the manager for Monday, set up a buddy, what paperwork does a new hire need, can we add an AI onboarding assistant, summarize our 30-day check-ins, or tell me which new hires are struggling, and whenever an onboarding tool would track or evaluate new hires.
+description: Plans a new hire's preboarding, first week and first 90 days, and scopes any AI onboarding assistant. Produces a preboarding checklist with owners, a compliance paperwork table, a manager-led first week, a buddy setup, a skills-linked 30/60/90 plan, an assistant scope with eval and notice, cohort check-in themes and an audit trail. Use whenever someone says build an onboarding plan, draft a 30/60/90, prep the manager for Monday, set up a buddy, what paperwork does a new hire need, can we add an AI onboarding assistant, can an agent handle I-9 reminders or laptop orders for new starters, summarize our 30-day check-ins, or tell me which new hires are struggling, and whenever an onboarding tool would track or evaluate new hires.
 ---
 
 # Onboarding
@@ -29,7 +29,7 @@ For an HRBP, HR operations lead or hiring manager. It produces a new hire's firs
 | Proposed AI assistant and its source documents | If an assistant is in scope | Ask the user | Handbook v4.2, IT guide v1.9 |
 | Check-in survey comments | For step 8 only | Survey platform export, read-only: cohort, question, comment text with no names or IDs | 30-day survey, 9 responses |
 
-If a required input is missing, ask once, then proceed with the gap labeled in the output, for example "Buddy not named: intro drafted with a placeholder."
+If a required input is missing, ask for it once, in one short question at the top of your reply, then proceed with the gap labeled in the output, for example "Buddy not named: intro drafted with a placeholder."
 
 ## Tools and connectors
 
@@ -42,6 +42,17 @@ If a required input is missing, ask once, then proceed with the gap labeled in t
 - Log each tool call (tool, purpose, fields read) in the Audit trail.
 - If a tool returns data on people outside the request, stop, do not use it, and ask.
 - If an agent coordinates preboarding across HRIS, IT and learning systems, follow Pattern 4: it reads status and drafts the next action, and the named owner acts in their own system. It does not continue past an unconfirmed checkpoint.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste role, level, start date, location and handbook excerpts, with no names. Agent drafts the checklist and 30/60/90; HR operations checks every date and form. | Counsel confirms state and country forms. |
+| Pilot (Level 2) | Read-only HRIS export per cohort: job, level, manager, location, start date, work arrangement. HR operations lead owns it and tracks day-one readiness. | Any assistant has a pass bar on `hr-qa-agent-evals.yaml`. |
+| Scale (Level 3) | Logged reads of HRIS, IT ticket status and module lists, plus `ask_governance_policy`. Tracks assistant answer accuracy. AI notice reaches new hires before launch. | Policy owner confirms the monthly accuracy sample; Legal approves launch. |
+| Embed (Levels 4 to 5) | A new hire record triggers the preboarding draft and manager prep guide. Managers still own plans and buddies; HR operations reviews I-9 documents. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -113,7 +124,7 @@ If a required input is missing, ask once, then proceed with the gap labeled in t
 | EU AI Act, high-risk HR systems | An onboarding tool begins to monitor or evaluate new hire performance, including in probation | Stops and routes to a new risk assessment and counsel |
 | EU AI Act, emotion recognition at work (Article 5(1)(f)) | A proposed tool would infer new hires' emotions from check-ins, chat or video | Refuses and routes to Legal |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -167,7 +178,7 @@ A Harbor & Pine HR operations lead asks for a plan for a December cohort split a
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `new-hire-plan-with-assistant`: core request, a full first-90-days plan with an assistant scope and sign-offs.
 - `berlin-hire-missing-start-date`: a Germany-based hire with no start date and a policy corpus kept in an editable wiki.

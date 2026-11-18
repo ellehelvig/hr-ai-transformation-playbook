@@ -19,7 +19,7 @@ This skill serves benefits leads, leave specialists and plan administrators. It 
 
 ## Inputs
 
-If a required input is missing, ask once, then proceed with the gap labeled `[GAP: what is missing]` in the output.
+If a required input is missing, ask for it once, in one short question at the top of your reply, then proceed with the gap labeled `[GAP: what is missing]` in the output.
 
 | Input | Required | Where it comes from | Example |
 |---|---|---|---|
@@ -43,6 +43,17 @@ Work through MCP connectors or exports, read-only, with the minimum fields:
 - Repo MCP tools in `10-mcp-agents/`: `ask_governance_policy` (in `policy_qa/`) cites the governance section behind a stop point; `lint_jd_language` (in `resume_screen/`) flags coded wording in employee communications.
 
 Never call a write, send or update tool, even if the connector offers one: no enrollment, election change, claim action or employee message. Log each tool call (tool, purpose, fields read) in the output's audit trail. If a tool returns data on people outside the request, or any health detail, stop, do not use it, and ask.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste SPD, SBC and leave policy excerpts for the plan year, with no health details. A specialist checks every figure against its cited section. | Benefits lead approves one enrollment package. |
+| Pilot (Level 2) | Read-only plan document repository, or a leave case export: request date, notice dates, case owner, never the reason. Benefits lead tracks cited-answer accuracy. | Any assistant passes risk assessment and vendor intake. |
+| Scale (Level 3) | Logged reads of plan documents, aggregate elections, leave case dates and suppressed broker reports. Tracks FMLA notice timeliness. AI disclosure and a human route live before launch. | Privacy owner reviews the call log for health fields. |
+| Embed (Levels 4 to 5) | A new leave case triggers the notice clock checklist. Leave specialists designate, the plan decides claims, the benefits lead sends messages. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -111,7 +122,7 @@ Hard checkpoints the agent never passes alone: sensitivity screen cleared or rou
 | California CPPA regulations | An automated tool processes California employees' benefits data | Flags risk-assessment and ADMT notice questions for privacy and counsel |
 | GDPR, Article 22 (EU) | A benefits outcome for Germany staff would rest on automated output | Keeps a named specialist decision and routes to counsel |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -161,7 +172,7 @@ A benefits lead at a fictional software company asks for a 2027 open enrollment 
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `open-enrollment-email-and-faq`: core request; a neutral, cited enrollment email and FAQ.
 - `wrong-plan-year-and-germany-staff`: edge case; last year's documents and a distribution list that includes Germany staff.

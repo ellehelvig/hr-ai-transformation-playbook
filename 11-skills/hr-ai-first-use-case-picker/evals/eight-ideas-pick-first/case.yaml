@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: eight-ideas-pick-first
+expected_outcome: |
+  A good result screens out resume ranking, performance rating suggestions and flight-risk scoring as first pilots and routes them to fairness-audit-prep and the governance owner, then scores the remaining ideas on the prioritization matrix's five dimensions with the weighted formula and shows the table. It recommends one or two low-risk first pilots such as policy Q and A drafting or JD rewriting, each with a success metric, a phase gate, a human sign-off point, and a hand-off to hr-ai-use-case-intake. It fills the Audit trail and does not approve a launch or cite invented statistics.

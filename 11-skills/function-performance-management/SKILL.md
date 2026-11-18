@@ -19,7 +19,7 @@ This skill serves HR business partners, calibration leads and people managers. I
 
 ## Inputs
 
-If a required input is missing, ask once, then proceed with the gap labeled `[GAP: what is missing]` in the output.
+If a required input is missing, ask for it once, in one short question at the top of your reply, then proceed with the gap labeled `[GAP: what is missing]` in the output.
 
 | Input | Required | Where it comes from | Example |
 |---|---|---|---|
@@ -44,6 +44,17 @@ Work through MCP connectors or exports, read-only, with the minimum fields:
 
 Never call a write, send or update tool, even if the connector offers one: no rating entry, no status change, no message to an employee. Log each tool call (tool, purpose, fields read) in the output's audit trail. If a tool returns data on people outside the request, stop, do not use it, and ask.
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Manager pastes dated evidence, goal text and cycle design, with no leave or health details. Agent drafts from the ledger; the manager checks each `[UNTRACED]` mark. | HRBP reviews sample drafts for recency skew. |
+| Pilot (Level 2) | Read-only performance system export: goal text, dates, check-in dates, the manager's notes. HRBP lead owns it and tracks evidence traceability rate. | Employee notice on AI assistance is live. |
+| Scale (Level 3) | Logged reads of performance system and HRIS job fields, plus `lint_jd_language`. People Analytics tracks top-rating selection ratio by group. Scoring tools need `fairness-audit-prep` first. | Last cycle's ratio reviewed by People Analytics with counsel. |
+| Embed (Levels 4 to 5) | Limited: cycle events trigger goal checks, drafts and calibration briefings. PIP drafts start only when the HRBP asks. Managers sign reviews; calibration groups decide. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## Steps
 
 Run the work as a workflow with hard checkpoints. The agent never passes a checkpoint on its own: evidence ledger confirmed (manager), draft signed (manager), rating flags interpreted (People Analytics), PIP cleared (HRBP and Legal).
@@ -54,7 +65,7 @@ Run the work as a workflow with hard checkpoints. The agent never passes a check
 
 3. **Build the evidence ledger before drafting.** Ask the manager for dated examples for each accomplishment and development area across the whole period. Record each item's date, source (observed work, delivered output, stakeholder feedback the manager supplied) and goal. Invite the employee's own evidence through the manager so the record is not one-sided. If most items come from the last quarter of the period, flag a possible recency skew and ask the manager for earlier examples: a draft cannot fix thin evidence. Sign-off: the manager confirms the ledger is complete.
 
-4. **Draft the review from the ledger only.** Use prompt 1. The manager states the proposed rating; you do not suggest one. Every claim in the draft must trace to a ledger item; mark any sentence you could not trace `[UNTRACED]`. Remove generic praise and hedging. Keep to this pattern: in the European Commission's non-binding draft guidance on high-risk classification, a writing assistant that polishes a manager's finished write-up and flags biased wording, with the manager re-checking, may fall outside high risk, while a tool that monitors or evaluates performance is high risk even when the manager formally decides but relies heavily on its output. Sign-off: the manager reads, edits and signs the final text, and decides whether to disclose AI assistance under local policy.
+4. **Draft the review from the ledger only.** Use prompt 1. The manager states the proposed rating; you do not suggest one. Every claim in the draft must trace to a ledger item; mark any sentence you could not trace `[UNTRACED]`. Remove generic praise and hedging. Keep to this pattern: in the European Commission's non-binding draft guidance on high-risk classification, a writing assistant that polishes a manager's finished write-up and flags biased wording, with the manager re-checking, may fall outside high risk, while a tool that monitors or evaluates performance is high risk even when the manager formally decides but relies heavily on its output. Every sentence traces to a dated ledger item: do not compute new figures (such as a percentage change from two numbers), and do not add weight words the manager did not use, such as "high-impact" or "costly". A summary that leans toward a rating is a suggested rating. Sign-off: the manager reads, edits and signs the final text, and decides whether to disclose AI assistance under local policy.
 
 5. **Run a language and bias check.** Check for invented facts, personality statements instead of behavior, and words that apply different standards to different people; run `lint_jd_language` on the text. Where the manager has several drafts at the same proposed rating, flag any draft that rests on fewer or vaguer ledger items, without comparing or ordering the people. Check that AI use itself is not rated unless the organization has defined it as a job requirement for that role; rewarding tool use alone can reward speed over quality. Sign-off: the manager, then the HRBP for flagged items.
 
@@ -111,7 +122,7 @@ Run the work as a workflow with hard checkpoints. The agent never passes a check
 | EU AI Act, emotion recognition at work (Article 5(1)(f)) | Anyone proposes reading emotion or sentiment from messages, calls or video | Refuses and routes to the governance group |
 | GDPR, Article 22 (EU) | A rating or PIP for Germany staff would rest on automated output | Holds the manager checkpoint and routes the meaningful-involvement question to counsel |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -163,7 +174,7 @@ An HRBP at a fictional software company asks for a mid-year calibration briefing
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `review-draft-from-manager-notes`: core request; a traced review draft with no suggested rating.
 - `recency-only-evidence-germany`: edge case; thin, undated evidence for a Germany employee.

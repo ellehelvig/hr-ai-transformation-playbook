@@ -34,7 +34,7 @@ For a talent lead or HR business partner. It produces critical role lists, talen
 | Aggregate potential and performance ratings by group | For bias checks | Performance tool export, read-only, aggregate counts only, through People Analytics | Counts by rating and group |
 | Company size, scope (senior roles only or pools across levels) | No | Ask the user | 1,400 staff; director and above |
 
-If a required input is missing, ask once, then proceed with the gap labeled, for example "Potential definition not given: no anchors drafted."
+If a required input is missing, ask for it once, in one short question at the top of your reply, then proceed with the gap labeled, for example "Potential definition not given: no anchors drafted."
 
 ## Tools and connectors
 
@@ -48,6 +48,17 @@ If a required input is missing, ask once, then proceed with the gap labeled, for
 - If a tool returns data on people outside the request, stop, do not use it, and ask.
 - If an agent prepares a talent review end to end, it pauses after the pre-read and after the bias checks for the talent review lead to confirm, and it never carries a placement or ranking into a later step.
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste critical roles, role data, the potential definition and dated skills evidence. Agent drafts role risk, anchors and career paths; the talent lead checks each. | People Analytics checks potential against performance by group. |
+| Pilot (Level 2) | Read-only skills platform export: skill, proficiency, evidence source, last updated. Talent review lead owns it and tracks development action follow-through. | Skills taxonomy owner accepts the data quality check. |
+| Scale (Level 3) | Limited: logged HRIS, skills and succession tool reads for pre-reads and skills checks; tracks top-potential rate ratio. No matching before `fairness-audit-prep`, notice, and Legal and Privacy sign-off. | Last cycle's ratio reviewed by People Analytics with Legal. |
+| Embed (Levels 4 to 5) | Limited: a review cycle date or critical role vacancy triggers pre-read and narrative drafts. The committee still ranks and selects. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## Steps
 
 1. **Name critical roles first.** Use succession prompt 3. A role is critical because of its business impact and replacement risk, not the current holder's rank. Decide whether each role needs named successors or a broader talent pool that builds skills for a family of roles. Sign-off: the leadership team confirms the list.
@@ -56,17 +67,17 @@ If a required input is missing, ask once, then proceed with the gap labeled, for
 
 3. **Separate performance from potential, and test potential for bias.** Ask how potential is defined and evidenced. Research on one large retailer found women received lower potential ratings than men despite higher performance ratings, and that potential ratings explained a large share of the gender promotion gap. Draft behavioral anchors per level, require an example others observed for the top level, and use self-assessments only to open a development conversation. Ask People Analytics to compare potential ratings by group within each performance level, using `fairness-audit-prep`. The four-fifths ratio is a screening flag under [29 CFR 1607.4(D)](https://www.govinfo.gov/content/pkg/CFR-2024-title29-vol4/pdf/CFR-2024-title29-vol4-sec1607-4.pdf), not a safe harbor or a verdict; review groups are small, so People Analytics or counsel interprets any test. Calibration can add its own bias: watch for narrower standards applied to some groups and for outcomes that reward the strongest advocate. Sign-off: the talent review group owns each placement.
 
-4. **Draft narratives, never rankings.** Use succession prompt 1 for readiness narratives and mobility prompt 2 for fit narratives. Each uses only the evidence supplied, cites the skill evidence behind each claim, states readiness no more confidently than the evidence supports, and flags when the person's career interest is unknown. Do not compare candidates; comparison happens in the committee. Sign-off: succession committee or hiring manager.
+4. **Draft narratives, never rankings.** Use succession prompt 1 for readiness narratives and mobility prompt 2 for fit narratives. Each uses only the evidence supplied, cites the skill evidence behind each claim, states readiness no more confidently than the evidence supports, and flags when the person's career interest is unknown. When evidence is missing, still draft the narrative shell for that person with each slot marked "evidence needed" and the questions that would fill it, so the committee sees what is known and what is not. Do not compare candidates; comparison happens in the committee. Sign-off: succession committee or hiring manager.
 
 5. **Check skills data before relying on it.** Self-reported skills may not be valid enough for promotion or pay decisions. Show each skill estimate's evidence source, strength and date, and prefer observed work over credentials. If performance ratings feed skill estimates, run the fairness check in `talent-operating-system-architecture.md` first, so rating bias does not pass into the skills data. Keep skills data current; Gartner expects internal recruiting to grow and says stale skills data blocks it. Consider interests and motivation, not skills alone. Skills data rarely shows judgment: Microsoft's Role redesign guide suggests asking where a team depends on a person's judgment; use that question in development conversations with the employee, not as a hidden rating. Sign-off: skills taxonomy owner.
 
 6. **Design mobility to remove friction.** Use mobility prompts 1, 3, 4 and 5. Practice research found that only a small share of employees feel their team supports an internal move, and that companies with high mobility let employees explore and apply without first asking their manager, offer short projects and job shadowing, and pair skills-match thresholds with upskilling. State the manager notification rule plainly in every posting. Track which units gain and lose people. Sign-off: TA lead.
 
-7. **Govern any matching or marketplace tool.** A tool that recommends people for roles, gigs or successor slates scores people. Run `quick-reference-checklist.md`, `risk-assessment-template.md` and `fairness-audit-prep` before go-live, and monitor recommendation rates by group after. Tell employees what data the tool uses, why a role was recommended, and how to correct their data or ask for human review. The European Commission's draft, non-binding guidance says a tool is part of the decision when the committee leans heavily on its output, that people it fails to surface are affected too, and that a human sign-off does not lower the risk class. If EU staff are in scope, complete `eu-ai-act-intake-template.md`. Sign-off: Legal and Privacy approve before launch.
+7. **Govern any matching or marketplace tool.** A tool that recommends people for roles, gigs or successor slates scores people. Before go-live, run `quick-reference-checklist.md`, `risk-assessment-template.md` and a pre-launch test plan from `fairness-audit-prep`; launch waits for all three. After launch, monitor recommendation rates by group. Tell employees what data the tool uses, why a role was recommended, and how to correct their data or ask for human review. The European Commission's draft, non-binding guidance says a tool is part of the decision when the committee leans heavily on its output, that people it fails to surface are affected too, and that a human sign-off does not lower the risk class. If EU staff are in scope, complete `eu-ai-act-intake-template.md`. Sign-off: Legal and Privacy approve before launch.
 
 8. **Write career paths from roles, not people.** Draft paths for job families from role requirements and the skills framework. Show lateral moves as well as upward ones, with the skills each move builds. Sign-off: the job family owner validates.
 
-9. **Close with owners and dates.** Send the pre-read a day ahead. List each agreed development action with an owner and a review date, and send a short written summary within a day of the meeting. Name who decides next. Sign-off: talent review lead.
+9. **Close with owners and dates.** Send the pre-read a day ahead. List each agreed development action with an owner and a review date, and send a short written summary within a day of the meeting. Name who decides next. When names or dates are not given, name the deciding role (for example "succession committee chair, name to confirm") and propose a review date relative to the meeting (for example "90 days after the review"), rather than leaving the field blank. Sign-off: talent review lead.
 
 ## Decision rights
 
@@ -115,7 +126,7 @@ If a required input is missing, ask once, then proceed with the gap labeled, for
 | Colorado SB 26-189 (ADMT Act) | Automated technology is used in a promotion decision for a Colorado employee | Drafts notice, explanation and human review steps for counsel; the row says status is unverified |
 | EU AI Act, high-risk HR systems | A tool informs promotion or task allocation for staff in Germany | Completes `eu-ai-act-intake-template.md` and routes to counsel |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -174,7 +185,7 @@ A Harbor & Pine talent lead preps a succession review for an engineering directo
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `succession-prep-critical-roles`: core request, critical roles, review design, narratives and aggregate bias checks.
 - `stale-self-reported-skills-germany`: a marketplace pilot for Berlin and Denver staff built on old self-reported skills, with no potential definition.

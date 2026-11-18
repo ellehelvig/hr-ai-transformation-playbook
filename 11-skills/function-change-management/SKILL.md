@@ -34,7 +34,7 @@ This skill serves the sponsor, change lead, and HR lead running a change. It pro
 | Training completion | No | LMS, read-only: completion counts by group | 26 of 30 completed |
 | Pulse results | No | Survey platform, read-only: scores and themes for groups at or above threshold | Trust item 3.4 of 5 |
 
-If a required input is missing, ask once in one message. Then proceed, write `GAP:` and the missing input in the affected section, and list it in the audit trail.
+If a required input is missing, ask for it once, in one short question at the top of your reply. Then proceed, write `GAP:` and the missing input in the affected section, and list it in the audit trail.
 
 ## Tools and connectors
 
@@ -50,11 +50,22 @@ Rules for every tool call:
 - If a tool returns per-person usage, message content, or people outside the affected groups, stop, discard it, and ask the user.
 - Report survey and usage data at group level with small groups suppressed.
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste the change, affected group counts by site and work arrangement, and other changes in the period. The change lead checks each draft; a person sends. | Sponsor confirms the before and after description. |
+| Pilot (Level 2) | One weekly read-only usage export: active users and task counts by group, pilot unit only. Metric: sustained use rate at day 90. | Sponsor records the expand, pause or stop decision. |
+| Scale (Level 3) | Read-only HRIS, usage, LMS and survey connectors; tracks support access ratio, small groups suppressed. Messaging connectors never send. AI notice reaches every group before go-live. | Remote, part-time and frontline access reviewed. |
+| Embed (Levels 4 to 5) | A new rollout entering the portfolio triggers the load view and drafts. The sponsor still decides; the change lead sends. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## Steps
 
 1. **Describe yesterday and tomorrow.** Write how the work is done today and how it will be done after the change, in plain terms. For AI, use the before and after table in `01-use-cases/work-redesign-people-partner.md`. Follow one real request end to end and ask the people closest to the work where it is harder than it should be. Redesign before you automate: combine handoffs, cut steps that do not change the outcome, and agree standard inputs and a definition of done. Then mark each step human-led, human with AI support, or run by AI within set limits, and name the checkpoint where a person reviews the output before it takes effect. Sign-off: the primary sponsor confirms the description.
 
-2. **Assess impact by group.** For each affected group, check processes, systems, tools, job roles, critical behaviors, mindsets, reporting structure, performance reviews, compensation, and location. Rate the degree of impact per group. Check whether the change moves work onto managers (coaching, approvals, questions) and what time and guidance come with it. List the skills the new way of working needs per group. Any impact on compensation, reporting lines, or location goes to the HR lead and counsel before plans go further. Sign-off: the change lead.
+2. **Assess impact by group.** For each affected group, check processes, systems, tools, job roles, critical behaviors, mindsets, reporting structure, performance reviews, compensation, and location. Rate the degree of impact per group. Check whether the change moves work onto managers (coaching, approvals, questions) and what time and guidance come with it. List the skills the new way of working needs per group. Any impact on compensation, reporting lines, or location goes to the HR lead and counsel before plans go further. Give every affected group a degree of impact, external groups such as customers included; where evidence is thin, give a provisional degree and say what would confirm it. Sign-off: the change lead.
 
 3. **Map stakeholders and set sponsor roles.** List the primary sponsor, other sponsors whose areas are affected, people managers, HR, IT, Privacy, employee representatives, and the affected groups. The primary sponsor authorizes the change and is accountable for its results. Prosci's research describes the sponsor's job as active and visible participation, building a coalition of other leaders, and communicating directly. Name any role no one holds. Before launch, check that senior leaders tell the same story: in Microsoft's 2026 Work Trend Index survey of 20,000 knowledge workers who use AI, only 26% said their leadership was clearly and consistently aligned on AI. A change with no active sponsor goes on hold, as `04-enablement/adoption-playbook.md` says of any missing owner. Sign-off: the primary sponsor.
 
@@ -118,7 +129,7 @@ Rules for every tool call:
 | Illinois HB 3773 (Public Act 103-0804) | The rolled-out AI is used in hiring, promotion, discipline, or discharge affecting Illinois staff | Adds the notice to the communication plan for counsel review |
 | EU AI Act, AI literacy (Article 4) | Staff in Germany will operate or use the new AI system | Routes the training plan to L&D and counsel to check the current text |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -176,7 +187,7 @@ Harbor & Pine's HR transformation lead plans the rollout of an AI case-drafting 
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `ai-assistant-rollout-core`: a full change plan for an AI assistant rollout to one function.
 - `cross-border-no-sponsor-edge`: a US and Germany rollout with no named sponsor and a messy usage export.

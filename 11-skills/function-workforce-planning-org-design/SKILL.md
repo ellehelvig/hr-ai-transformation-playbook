@@ -39,7 +39,7 @@ This skill serves the HR, Finance, and business leaders who own a workforce plan
 | Skills data | No | Skills or learning system, read-only: skill, evidence type, segment counts | 40% assessed on tier-2 troubleshooting |
 | Spans and layers | No | HRIS, read-only: manager position ID, direct report count, layer | 14 team leads, spans 6 to 19 |
 
-If a required input is missing, ask once in one message. Then proceed, write `GAP:` and the missing input in the affected section, and list it in the audit trail.
+If a required input is missing, ask for it once, in one short question at the top of your reply. Then proceed, write `GAP:` and the missing input in the affected section, and list it in the audit trail.
 
 ## Tools and connectors
 
@@ -53,6 +53,17 @@ Rules for every tool call:
 - Log each call in the audit trail: tool, purpose, fields read.
 - If a tool returns names, individual pay, or people outside the roles in scope, stop, discard it, and ask the user.
 - Suppress small groups in any shared output, using the thresholds in `11-skills/function-people-analytics/SKILL.md`.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste aggregate headcount by job family, level and site, movement counts, and funded positions. Finance checks every number. | Finance reconciles one scenario to the financial plan. |
+| Pilot (Level 2) | One read-only HRIS export: job family, level, org unit, site, hire, separation and move dates. Metric: internal fill rate for gap roles. | Rates match the analytics dictionary; small groups suppressed. |
+| Scale (Level 3) | Limited. Read-only HRIS, ATS, Finance and skills connectors; tracks redeployment rate. Reduction scenarios: routing table only, impact ratio computed by People Analytics under counsel. | Skills data passes the talent operating system fairness check. |
+| Embed (Levels 4 to 5) | Limited. A budget change triggers a scenario refresh for Finance sign-off. Reductions and terms changes still go to counsel first. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -122,7 +133,7 @@ Rules for every tool call:
 | Colorado SB 26-189 (ADMT Act) | Automated technology used in an employment decision about Colorado staff | Drafts the explanation and human review route for counsel |
 | California FEHA automated-decision system regulations | An automated tool used in selection affecting California staff | Routes to the fairness plan and flags record retention to counsel |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -180,7 +191,7 @@ Harbor & Pine's VP of Support asks for a three-scenario plan for 160 support age
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `ai-scenario-plan-core`: a three-scenario plan with task-level AI redesign for one job family, end to end.
 - `germany-works-council-edge`: German staff with a works council, no skills data, and a messy span export.

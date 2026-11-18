@@ -32,7 +32,7 @@ For a recruiter, TA lead or hiring manager. It produces a structured, skills-bas
 | Company size, federal contractor status, union or works council | No | Ask the user | 1,400 staff, works council in Germany |
 | Stage counts for a past req, for monitoring | No | ATS export, read-only: stage, counts, self-identified group fields in aggregate only | 412 applied, 60 screened in |
 
-If a required input is missing, ask once, then proceed with the gap labeled in the output, for example "Jurisdiction not confirmed: notice duties not mapped."
+If a required input is missing, ask for it once, in one short question at the top of your reply, then proceed with the gap labeled in the output, for example "Jurisdiction not confirmed: notice duties not mapped."
 
 ## Tools and connectors
 
@@ -43,6 +43,17 @@ If a required input is missing, ask once, then proceed with the gap labeled in t
 - Log each tool call (tool, purpose, fields read) in the Audit trail.
 - If a tool returns data on candidates or reqs outside the request, stop, do not use it, and ask.
 - If an agent runs intake, job description and outreach as one workflow, it pauses at each sign-off below and does not continue past an unsigned checkpoint.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste intake notes, the job description and past stage counts, never resumes. Agent drafts the job analysis, posting and interview plan; the recruiter checks each. | Hiring manager signs one plan; counsel reviews the candidate notice. |
+| Pilot (Level 2) | Read-only ATS export: req ID, level, approval status, req owner, stage counts. TA lead owns it and tracks human review request resolution. | Notice live; People Analytics computes selection rate ratios. |
+| Scale (Level 3) | Limited: logged ATS reads, `calibrate_recruiter_intake`, `lint_jd_language`. `screen_resume_against_jd` not before an adverse impact check on last cycle's screen-outs passes People Analytics review. | Quarterly ratios reviewed by People Analytics and Legal. |
+| Embed (Levels 4 to 5) | Limited: an approved req triggers intake and posting drafts; evidence maps run only when a recruiter asks. Recruiters and hiring managers decide every candidate. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -115,7 +126,7 @@ If a required input is missing, ask once, then proceed with the gap labeled in t
 | EU AI Act, high-risk HR systems | A tool is used in recruiting for a role in Germany or another EU country | Routes to `eu-ai-act-hr-classifier` and the EU AI Act intake template |
 | GDPR, Article 22 (EU) | A rejection of an EU candidate would be solely automated | Refuses auto-reject and routes the design to counsel |
 
-Counsel confirms scope and current status before you rely on any row.
+Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -173,7 +184,7 @@ A Harbor & Pine recruiter asks for a plan for a data engineer role open to Chica
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `structured-plan-for-new-req`: core request, intake through offer checklist with sign-offs.
 - `cross-border-req-missing-audit`: Illinois, Colorado and Germany candidates, a ranking add-on with no audit, and missing hiring manager input.

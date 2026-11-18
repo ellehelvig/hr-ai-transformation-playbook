@@ -31,7 +31,7 @@ This skill serves the listening program owner, people analyst, or HRBP who must 
 | Results and comments for groups at or above threshold | No | Survey platform export, read-only: aggregate scores, response counts, de-identified comments | 471 of 620 responded |
 | What was promised after the last survey, and what was delivered | No | Ask the user | Promised meeting-free Fridays; piloted in two teams |
 
-If a required input is missing, ask once in one message. Then proceed and label each gap "Not provided" in the output and the audit trail.
+If a required input is missing, ask for it once, in one short question at the top of your reply. Then proceed and label each gap "Not provided" in the output and the audit trail.
 
 ## Tools and connectors
 
@@ -40,6 +40,17 @@ If a required input is missing, ask once in one message. Then proceed and label 
 - **Never write.** Do not call any write, send, update, publish, or settings tool, even if the connector offers one. Do not turn on a platform AI feature. Humans publish results and send communications.
 - **Log every call.** Record tool, purpose, and fields read in the audit trail.
 - **Stop on spillover.** If a tool returns respondent-level data, names, employee IDs, or a group below threshold, stop, do not use it, and ask the user how to proceed.
+
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights in this skill are the same at every stage.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste agreed thresholds, org unit headcounts and de-identified comments from groups above threshold. The analyst checks themes against raw comments. | Privacy lead approves thresholds and the notice. |
+| Pilot (Level 2) | One read-only survey export: threshold settings, response counts, group scores, de-identified comments. Metric: action close-out rate. | One cycle with no below-threshold report. |
+| Scale (Level 3) | Read-only survey platform and HRIS headcounts; checks settings against thresholds each cycle; tracks belief in action. Platform AI comment features: not before the risk assessment and counsel approval. | Data use has not drifted from its stated purpose. |
+| Embed (Levels 4 to 5) | A pulse closing triggers draft themes and manager packs for sign-off. A human sends results. Never joins responses to HR records. | Rerun the test cases in `evals/` when the skill or model changes. |
 
 ## Steps
 
@@ -59,7 +70,7 @@ Run as a checkpointed workflow: complete a step, show it, and wait for the named
 
 7. **Equip managers to act.** Gallup reports that global employee engagement fell to 20% in 2025 and that manager engagement fell from 27% to 22%, which accounts for much of the decline. Give managers a short, targeted report rather than raw data, and peer forums to share what works. The agent drafts a team discussion guide and specific recognition messages for the manager to edit. The team chooses what to work on. Sign-off: each manager owns the team's plan.
 
-8. **Act and close the loop.** Share results with employees on a set schedule, including the unflattering ones, and publish what changed because of their feedback. Before committing to an action, check its cost, owner, adoption support, and how impact will be measured. Track actions taken, not action plans written. Sign-off: listening owner approves each communication; a human sends it.
+8. **Act and close the loop.** Share results with employees on a set schedule, including the unflattering ones, and publish what changed because of their feedback. Before committing to an action, check its cost, owner, adoption support, and how impact will be measured. Track actions taken, not action plans written. Give every action a proposed report-back date, relative to results release if no calendar is given (for example "30 days after results, to confirm"), rather than leaving it blank. Sign-off: listening owner approves each communication; a human sends it.
 
 9. **Review the program each cycle.** Check response rates, threshold suppressions, whether AI theme summaries still match the raw comments, and whether data use has drifted beyond its stated purpose. Retire questions and analyses that no longer lead to action. Sign-off: listening owner and privacy lead.
 
@@ -111,7 +122,7 @@ Run as a checkpointed workflow: complete a step, show it, and wait for the named
 | California CPPA regulations | New AI processing of California employees' comment data at a covered business | Flags the risk-assessment question for the privacy lead and counsel |
 | GDPR, Article 22 (EU) | Anyone proposes an automated decision about a German employee based on survey or comment data | Refuses and routes to counsel |
 
-See each Key dates row in `03-governance/README.md` for status and dates. Counsel confirms scope and current status before you rely on any row.
+See each Key dates row in `03-governance/README.md` for status and dates. Counsel confirms scope and current status before you rely on any row. In your reply, name each rule as: see the Key dates row "exact row name" in `03-governance/README.md`. Stop there: do not write the row's dates, status or regulation numbers, even ones you read in the table or in Sources, because the table is the one place they are kept current.
 
 ## Metrics a CHRO tracks
 
@@ -169,7 +180,7 @@ Harbor & Pine's listening lead asks for a synthesis of an Engineering pulse on t
 
 ## Tests
 
-Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+Test cases are in `evals/` in the format `claude plugin eval` reads. They were run on 18 November 2026 with `claude-sonnet-5-5`, one fresh session per case, and graded in a separate pass; see [the results](../../09-evals/skill-eval-results-2026-11-18.md) for the method and its limits.
 
 - `core-pulse-comment-synthesis`: group-level themes, manager pack, and action tracker from synthetic comments.
 - `edge-small-group-and-identifying-comments`: a below-threshold filter and comments that contain names and a health detail.
