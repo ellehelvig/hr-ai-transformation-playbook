@@ -10,7 +10,7 @@
 
 Once a use case is chosen, this section covers how the workflow is put together: where rules do the work, where a model takes part, and where people decide. Each pattern states what this repository demonstrates and what it does not.
 
-Related pages: [scoping an HR AI system](agent-design.md), [testing and evaluation](testing-and-evaluation.md), and [performance data in talent systems](talent-operating-system-architecture.md).
+Related pages: [scoping an HR AI system](agent-design.md), [the HR agent roster](agent-roster.md), [testing and evaluation](testing-and-evaluation.md), and [performance data in talent systems](talent-operating-system-architecture.md).
 
 ## Before choosing a pattern
 
