@@ -8,7 +8,7 @@
 
 **For:** HR teams using an AI assistant such as Claude. **Start with:** [hr-ai-use-case-intake](hr-ai-use-case-intake/SKILL.md).
 
-Six installable agent skills for HR teams, in the order to adopt them.
+Two sets of installable agent skills. Six governance skills help you decide whether and how to use AI, in the order to adopt them. Seventeen HR function skills, listed further down, help you do the work in each part of HR with AI kept in its lane.
 
 A skill is a folder with a `SKILL.md` file: instructions an AI agent loads when a task matches the skill's description. Install one and your assistant stops improvising and starts following this playbook's actual templates, checklists, and gates. The skills here don't call external services and don't make decisions. They structure the work so a human can make the decision faster, with the right evidence in front of them.
 
@@ -27,6 +27,32 @@ Ranked by how much risk each one removes per hour of setup. Start at the top.
 | 5 | [eu-ai-act-hr-classifier](eu-ai-act-hr-classifier/SKILL.md) | Produces the 11-field EU AI Act card with Annex III hook, Article 6(3) analysis, and GDPR Article 22 touchpoint | Only matters if you touch EU workers or candidates, but if you do, December 2027 is closer than it sounds. |
 | 6 | [hr-ai-incident-triage](hr-ai-incident-triage/SKILL.md) | Fills the incident report, assigns severity, and routes to the right owner | You hope to never use it. Install it before you need it so the first incident is handled well. |
 
+## HR function skills
+
+One skill for each part of HR. Each one says what to ask for, the steps that reflect current practice, where AI helps and where it stops, the guardrails for that function, and the sources read when it was written. They are drafts: none has been run against a model yet.
+
+| Area | Skill | Use it for |
+|---|---|---|
+| Hiring and entry | [function-talent-acquisition](function-talent-acquisition/SKILL.md) | Intake, job descriptions, sourcing, structured interviews, screening risks, offers |
+| Hiring and entry | [function-onboarding](function-onboarding/SKILL.md) | Preboarding, first week, 30/60/90 plans, I-9 and new hire paperwork |
+| Growth | [function-performance-management](function-performance-management/SKILL.md) | Goals, check-ins, review drafts, calibration prep, improvement plans |
+| Growth | [function-learning-development](function-learning-development/SKILL.md) | Needs analysis, skills-based programs, AI literacy, evaluation |
+| Growth | [function-talent-review-succession](function-talent-review-succession/SKILL.md) | Talent reviews, succession, internal mobility, career paths |
+| Rewards | [function-total-rewards-compensation](function-total-rewards-compensation/SKILL.md) | Job architecture, bands, market pricing, merit guides, posting ranges |
+| Rewards | [function-benefits](function-benefits/SKILL.md) | Plan review, open enrollment, leave, COBRA and ERISA calendars, vendors |
+| Operations | [function-hr-operations-hris](function-hr-operations-hris/SKILL.md) | Tiered service, case triage, knowledge base, data quality, HR tech |
+| Operations | [function-hr-compliance](function-hr-compliance/SKILL.md) | Compliance calendar, postings, recordkeeping, handbook checks, audits |
+| Workplace | [function-employee-relations](function-employee-relations/SKILL.md) | Intake, investigation plans, neutral evidence summaries, retaliation checks |
+| Workplace | [function-inclusion-belonging](function-inclusion-belonging/SKILL.md) | Programs open to all, job-related criteria, accommodation path, process audits |
+| Workplace | [function-employee-experience-engagement](function-employee-experience-engagement/SKILL.md) | Listening strategy, surveys, comment analysis within privacy limits, action plans |
+| Strategy | [function-people-analytics](function-people-analytics/SKILL.md) | Question framing, metric definitions, suppression, model fairness checks |
+| Strategy | [function-workforce-planning-org-design](function-workforce-planning-org-design/SKILL.md) | Demand and supply, scenarios, build, buy, borrow or bot, spans and layers |
+| Strategy | [function-change-management](function-change-management/SKILL.md) | Impact assessment, sponsors, communication plans, adoption measures |
+| Exit | [function-offboarding](function-offboarding/SKILL.md) | Exits and layoffs: final pay, notices, access removal, knowledge transfer |
+| Governance | [function-hr-ai-governance](function-hr-ai-governance/SKILL.md) | Charter, roles, AI inventory, review cadence, routing to the six skills above |
+
+Every function skill follows the same guardrails as the governance skills, listed below. Where a legal duty depends on jurisdiction, the skill points to the Key dates for HR table in [governance](../03-governance/README.md) and to counsel rather than restating dates.
+
 ## Install
 
 Copy a skill folder into wherever your agent loads skills from.
@@ -37,6 +63,9 @@ cp -r 11-skills/hr-ai-use-case-intake .claude/skills/
 
 # Claude Code (user scope, every project)
 cp -r 11-skills/hr-ai-use-case-intake ~/.claude/skills/
+
+# Several at once, for example every HR function skill
+cp -r 11-skills/function-* .claude/skills/
 
 # Cowork or Claude.ai: upload the folder in Settings > Skills, or paste SKILL.md into a project's instructions
 ```

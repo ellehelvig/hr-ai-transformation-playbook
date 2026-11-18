@@ -9,7 +9,7 @@ Inventory reviewed 12 October 2026. Counts describe repository contents, not eff
 This is an actively developed reference toolkit using synthetic data. It is not a production HR system. Templates need local adaptation and review by HR, Legal, Privacy, and Security, as appropriate, before use.
 
 - 37 vetted HR AI use cases. Here, vetted means included in this curated reference collection, not independently approved or validated for use.
-- Six installable agent skills, four architecture patterns, and a 4-module literacy curriculum. These are reference materials that require review before adoption.
+- 23 installable agent skills (six for AI governance and 17 for HR functions), four architecture patterns, and a 4-module literacy curriculum. These are reference materials that require review before adoption.
 - Three notebooks execute in CI on every push, using synthetic data only. The HR Q&A notebook can use reference responses without an API key; those outputs are not evidence of live model quality.
 
 ## What the tools do, and what that proves

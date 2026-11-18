@@ -4,6 +4,10 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+Added
+
+- **HR function skills, 18 November 2026.** 17 draft agent skills in `11-skills/function-*`, one per HR function, from talent acquisition to offboarding, plus an HR AI governance router that points to the six existing governance skills. Each skill lists its inputs, steps, where AI stops, guardrails, and the sources read on 18 November 2026. Legal points cite primary sources and defer dates to the Key dates for HR table. No skill has been run against a model.
+
 Changed
 
 - **13 November 2026:** integrated setup/presentation and synthetic evidence-review proposals. Added a worked pause decision, practitioner-study links, and a partial primary-source calendar review. Connecticut moved to already in force; source-access and enforcement uncertainties remain explicit. No employee pilot or independent model-validation result is claimed.
