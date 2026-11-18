@@ -6,6 +6,28 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 Added
 
+- **HR agent roster.** A page and a YAML template for keeping one row per AI system that does People work: owner, scope, data, handoffs, evidence, logging, how to stop it, and review date. It maps each field to a step in the employee lifecycle. The example fills in this repository's four MCP tool packages and records that none of them logs calls or has a documented off switch yet.
+- **Skills guard in the People Partner work redesign.** For each skill the redesign moves to rules or AI, the owner decides keep, watch, or let go, and the guard says how the team practices or checks the skills it keeps. It adds signs that review has become a formality, a path for new People Partners, a fallback drill with the system off, two measures, and a hold trigger. Proposed and not validated with People Partners.
+- **HR function skills, 18 November 2026.** 17 draft agent skills in `11-skills/function-*`, one per HR function, from talent acquisition to offboarding, plus an HR AI governance router that points to the six existing governance skills. Each skill lists its inputs, steps, where AI stops, guardrails, and the sources read on 18 November 2026. Legal points cite primary sources and defer dates to the Key dates for HR table. Practice guidance also draws on public publications such as SHRM's AI in the Workplace Playbook, Microsoft's 2026 Work Trend Index, McKinsey's State of Organizations 2026, and the European Commission's draft high-risk classification guidelines, each labeled by type. No skill has been run against a model.
+- **HR function skills made agent-runnable.** Each of the 17 function skills now has an inputs table, read-only tool and connector guidance, a three-tier decision rights table with a refuse-and-route list, a regulation map pointing to Key dates rows, two or three CHRO metrics, an output template with an audit trail, a worked example on synthetic data, and three test cases in the `claude plugin eval` layout (written, not run). `fairness-audit-prep` gains `scripts/adverse_impact.py`. `09-evals/test_skill_packages.py` adds seven tests that check this structure and the calculator.
+- **Skills tested on a model, 18 November 2026.** All 57 skill test cases were run with `claude-sonnet-5-5` through the `claude -p` command line, one fresh read-only session per case, and graded by a separate session against each case's statements. First run: 32 of 51 function skill cases passed every statement; the main failure was responses restating legal dates instead of pointing to the Key dates table. After fixes, a confirmation run of all 57 passed 52, and the five failures passed after a second round of fixes. A trigger test of 57 requests across all 25 skill descriptions passed 57 of 57 after one description fix. Three grader statements were corrected where they asked for something the prompt could not supply. Results, method and limits (one model, self-graded, one run per case per round) are in `09-evals/skill-eval-results-2026-11-18.md`.
+- **Skills for every stage of AI maturity, 18 November 2026.** Every skill now has a "By maturity stage" section on how to run it at Start (no integrations, paste and spreadsheet), Pilot (one read-only export), Scale (connected read-only agent) and Embed (inside the workflow), using the Level 0 to 5 scale in the roadmap template. Decision rights stay the same at every stage. Two starter skills for teams new to AI: `hr-ai-readiness-assessment` and `hr-ai-first-use-case-picker`, each with a worked example and three test cases. The skills index maps all 25 skills to the stages.
+- **Key dates for HR, 18 November 2026.** Added rows for EU AI Act Article 4 (AI literacy, in application since 2 February 2025), EU AI Act Article 5(1)(f) (ban on emotion recognition at work, since 2 February 2025), Executive Order 14173 (signed 21 January 2025), and the OFCCP final rule rescinding the Executive Order 11246 regulations (effective 26 October 2026), each checked against the official page.
+
+Changed
+
+- **13 November 2026:** integrated setup/presentation and synthetic evidence-review proposals. Added a worked pause decision, practitioner-study links, and a partial primary-source calendar review. Connecticut moved to already in force; source-access and enforcement uncertainties remain explicit. No employee pilot or independent model-validation result is claimed.
+
+
+Changed
+
+- Clarified the root-first locked setup and scripted Q&A reference responses, shortened the README, and made skipped claim checks explicit.
+
+
+Added
+
+- **Synthetic pilot evidence review.** Adds an offline artifact validator, readable reports, and simulated version-bound human review records. Fictional examples and a preserved Resolve report keep gaps and failed routing visible. No deployment authorization is granted.
+
 - **Run the smoke tests on a Claude plan.** `prompt_tests.py --run --backend claude-code` runs prompts and grading through the Claude Code CLI with its tools disabled, so no API key is needed. Any `ANTHROPIC_API_KEY` in the shell is withheld from the CLI so it cannot bill the API.
 - **Prompt library smoke tests.** `09-evals/prompt_tests.py` runs library templates on a real model and grades them with the LLM judge. Ten fixtures cover the HR operations and performance prompts, each with a planted trap. A manual workflow runs them with an `ANTHROPIC_API_KEY` secret and opens a pull request with the results. No results are recorded yet, and no prompt is described as tested.
 

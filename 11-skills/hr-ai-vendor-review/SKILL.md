@@ -52,6 +52,17 @@ You read what the vendor sent and tell the buyer what's there, what's missing, a
 [gap → owner]
 ```
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights are the same at every stage: the buyer, Legal and Privacy decide; the skill lists evidence and drafts the follow-up.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste the security packet, DPA, model card or bias audit. The buyer checks each "Confirmed" quote against the source. | One full gap list checked with no unsupported marks. |
+| Pilot (Level 2) | One read-only procurement folder for packets, plus tool, decision stage, EU in scope, pay in scope. Log every run; review a weekly sample. | Every gap routes to a named owner. |
+| Scale (Level 3) | Connected agent, read-only on procurement intake records and packets. Track open required artifacts per vendor. | Test cases written in `evals/` (none yet). |
+| Embed (Levels 4 to 5) | Triggered by a new HR AI vendor or renewal. The buyer sends the follow-up; pay stays attorney-directed. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## What this skill will not do
 
 - Declare a vendor compliant. It can only say what evidence is present.

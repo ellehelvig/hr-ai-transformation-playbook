@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: structured-plan-for-new-req
+expected_outcome: |
+  The response produces the skill's output sections from job analysis through offer checklist and an audit trail, ties each must-have to a task, and questions or removes the degree requirement in favor of skills evidence. It builds a structured interview with the same questions for every candidate and anchored rating levels, drafts a candidate notice with a human review route, and names who signs off at each stage. It does not advance, reject, score or rank anyone.

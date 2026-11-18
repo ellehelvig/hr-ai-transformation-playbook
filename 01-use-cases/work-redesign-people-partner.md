@@ -40,7 +40,7 @@ That result changed the design direction: preserve the failure record, retain hu
 
 ## What would justify a pilot
 
-Start with practitioner walkthroughs and synthetic shadow cases. Compare the manual process, rules-only route, and proposed assisted route using a common reviewer rubric. Measure time to the correct owner, policy accuracy, missed specialist concerns, unnecessary escalation, reviewer minutes, repeat contacts, and access to a human. Record implementation and maintenance effort too.
+Start with practitioner walkthroughs and synthetic shadow cases. Compare the manual process, rules-only route, and proposed assisted route using a common reviewer rubric. Measure time to the correct owner, policy accuracy, missed specialist concerns, unnecessary escalation, reviewer minutes, repeat contacts, and access to a human. Record implementation and maintenance effort too. Check that the skills the team still needs are still there, using the [skills guard](#skills-guard).
 
 There is no measured baseline or ROI here. The [pilot plan](../04-enablement/adoption-playbook.md) specifies owners, learning activities, measurement cadence, and expand/pause/stop decisions. New private cases need actual independent practitioner authorship and separation from development. Assistant-written examples remain development material.
 
@@ -171,6 +171,41 @@ A task earns more autonomy only when question 8 has an answer backed by evidence
 | Understanding what the system can and cannot catch | Accountability for outcomes |
 | Recognizing when information quality is too poor for automation | Explaining decisions to employees and managers |
 
+## Skills guard
+
+*Proposed. Practitioner judgment, not yet validated with People Partners.*
+
+The table above shows which skills become less central. Some are fine to lose. Others the team still needs when the system is wrong, unavailable, or out of scope, and those fade if nobody uses them. Review also depends on them: a People Partner who no longer looks up policy cannot tell whether a cited policy is the right one. The guard decides, skill by skill, which is which, and checks that the ones worth keeping are still there.
+
+For each skill the redesign moves to rules or AI, the owner records one of three decisions:
+
+- **Keep:** the team must still do it unaided, because the system will sometimes fail or stop, or because reviewing the output depends on it. Practice it on purpose.
+- **Watch:** probably fine to lose. Check whether reviews or routing get worse.
+- **Let go:** the work itself is gone, not moved, so losing the skill costs nothing.
+
+| Skill that becomes less central | Decision | Why | How the team keeps or checks it |
+|---|---|---|---|
+| Spotting a sensitive signal in a routine-looking request | Keep | Routing will miss some signals (task 1). The person reading the case is the last layer | Practice cases with hidden signals, including ones the screen missed. The team reviews every confirmed miss together |
+| Finding and reading the policy in force | Keep | Checking a cited policy depends on it, and it is the fallback when sources conflict or the tool is down | Some cases each month worked without the tool. Sampled reviews check that the reviewer opened the cited source |
+| Writing a reply from scratch | Keep, for exceptions | Sensitive and exception replies stay human-written (tasks 7 and 8) | Those replies stay hand-written. New People Partners write their first cases before they review drafts |
+| Categorizing requests by hand | Watch | Cases the screen sends to a person still need it | Track how often routed cases are reassigned |
+| Reading every case to find trends | Watch | Spotting a new pattern may weaken if people read only reports | A periodic read of a permitted sample of cases, with Privacy's approval |
+| Looking up eligibility thresholds | Let go | Rules are exact and tested (task 2). Judging people who fall outside a rule stays with a person | None beyond documented rule versions |
+| Re-keying case details | Let go | The work is gone | None |
+
+**Signs the guard is failing:**
+
+- Reviewers almost never edit a draft or reject a route. That can mean the drafts are good, or that review has become a formality. Only a sample of approved items, checked against the source, tells which.
+- Sampled reviews find errors that a reviewer approved.
+- When the system is off, handling time or errors rise more than the team agreed it could absorb.
+- A People Partner cannot explain why a route or policy applies to a case they approved.
+
+**New People Partners.** Today people learn the role by doing the routine work this redesign removes. Without a plan, a new hire reviews drafts before they could write one. A proposed path: work a set of cases unassisted, then review drafts alongside an experienced People Partner, then review alone. The pilot owner sets how long each stage lasts.
+
+**Fallback drill.** During a pilot, handle a sample of cases with the system switched off at a regular interval. Record time and errors against the tolerance agreed before the pilot.
+
+**Ownership.** The HR service delivery owner owns the guard and its decisions. People Partner managers run practice and the fallback drill. Learning and development builds practice cases, using the [literacy curriculum](../04-enablement/hr-ai-literacy-curriculum.md) as a starting point. Specialists supply hidden-signal cases, written by people who do not tune the screen.
+
 ## Data and authorization
 
 **Observed source boundary:** Resolve uses synthetic employees, policies, and in-memory case records. Its optional screen sees request text, not the employee record. The demo's employee IDs and reviewer identities are self-reported. Workflow roles and an approval state are not authenticated access controls. No HR action or specialist notification is executed.
@@ -200,6 +235,8 @@ Measure changed work, not launched tools.
 | Reasons drafts are edited and recommendations rejected | 4, 6 |
 | Employees contacting HR again about the same issue | 4, 5 |
 | Health details found in manager-visible fields | 8 |
+| Errors found in a sample of approved drafts and routes, checked against the source | 1, 4, 6 |
+| Handling time and errors in the fallback drill, with the system off | 1 to 4 |
 
 Before scaling, the business case would start from baselines rather than estimates: request volume by type, current handling time, escalation volume, rework and reassignment, reviewer workload, build effort, and the ongoing cost of evaluation and monitoring. None has been measured here.
 
@@ -241,6 +278,7 @@ Expansion requires evidence for the particular task and version. A time saving i
 | Confirmed critical routing miss or missed specialist concern | Pause the affected path; human handling and specialist review before restart |
 | Wrong policy/entitlement, unreliable source, unavailable control, or model/tool failure | Hold the recommendation and route to a person; no silent fallback to broader permissions |
 | Excessive false refusals, specialist load above agreed capacity, or deteriorating employee access | Hold expansion; review workload and scope rather than raise autonomy to clear a queue |
+| Sampled reviews show approval without real review, or the fallback drill misses its tolerance | Hold expansion; reduce volume per reviewer and restore practice before adding scope. See the [skills guard](#skills-guard) |
 | Missing independent evaluation, baseline, or named approval | No real-data pilot or autonomy expansion; record what evidence is missing |
 
 Restart requires the owner to record cause, corrective action, test evidence, version, and approval. This is a proposed lifecycle discipline, not an incident process already operating here.
@@ -445,7 +483,7 @@ These were written to find weaknesses.
 ## Open items
 
 - Ground the task list against O\*NET task statements for 13-1071 from the primary source.
-- Validate classifications and the skills view with People Partners.
+- Validate classifications, the skills view, and the skills guard decisions with People Partners.
 - Build Resolve's broad held-out set across all signal categories, measuring harmful misses and unnecessary escalations.
 
 </details>

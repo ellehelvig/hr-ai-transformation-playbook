@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: us-300-person-starting-point
+expected_outcome: |
+  A good result scores each readiness dimension with the user's own evidence and places the HR function at Level 1, naming the lowest-scoring dimension (governance and legal are both near zero on this evidence) as what sets it rather than an average, even though the helpdesk pilot alone would suggest Level 2. It drafts a 90-day plan where each item has an owner role and names a library skill such as function-hr-ai-governance, and it routes the ATS match score to hr-ai-vendor-review and fairness-audit-prep instead of treating it as a first use case. It presents the placement and plan as drafts for HR leader sign-off and includes an audit trail.

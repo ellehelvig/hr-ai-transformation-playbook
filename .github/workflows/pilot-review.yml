@@ -1,0 +1,38 @@
+name: Pilot evidence review
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  offline-review:
+    name: Offline review (${{ matrix.os }}, Python ${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: '3.11'
+          - os: ubuntu-latest
+            python: '3.12'
+          - os: windows-latest
+            python: '3.11'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Run offline evidence and record boundary tests
+        run: python -m unittest discover -s tests/pilot_review -v
+      - name: Exercise a fictional eligible packet
+        run: >-
+          python 09-evals/pilot-review/review.py review
+          09-evals/pilot-review/examples/ready/packet.json
+          --as-of 2026-11-03 --format json

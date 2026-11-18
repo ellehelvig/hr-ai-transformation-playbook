@@ -47,6 +47,17 @@ Why this one: [one line]
 - [only the applicable verify-before-use lines]
 ```
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights are the same at every stage: the person using the output decides; anything feeding an employment decision stays a draft input.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste the task and context, synthetic or redacted. The person reads every "DRAFT, not verified" output end to end. | The team agrees who verifies each output type. |
+| Pilot (Level 2) | One read-only connector to the `02-prompt-library/` folder. Log prompt, date and verifier per run; review a weekly sample. | Samples show verify-before-use lines were followed. |
+| Scale (Level 3) | Connected agent, read-only on the library and the org's policy source. Track how often outputs are edited before use. | Test cases written in `evals/` (none yet). |
+| Embed (Levels 4 to 5) | Limited to outputs with no facts about named people (job descriptions, onboarding plans, learning paths), triggered by events like a new requisition. Performance and succession write-ups stay person-typed. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## What this skill will not do
 
 - Draft anything that scores, ranks, or compares named employees or candidates against each other. Route to `hr-ai-use-case-intake` instead.

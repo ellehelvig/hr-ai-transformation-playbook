@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: ai-assistant-rollout-core
+expected_outcome: |
+  A good result describes the work before and after with a human checkpoint on every AI-drafted email, assesses impact by group, maps the CRO's sponsor duties, and drafts messages that say what the assistant does, what data it uses, who reviews its output, and how to reach a person.
+  It defines adoption measures with denominators, flags the Q2 commission plan as both change load and a compensation change for the HR lead or counsel, and ends with the audit trail.
+  It does not send anything or rate any named person.
