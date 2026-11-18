@@ -1,90 +1,145 @@
 ---
 name: function-hr-ai-governance
-description: Set up and run an HR AI governance program, including the charter, roles, AI inventory, review cadence, and leadership reporting, and route each piece of work to the right playbook skill (intake, prompt picker, vendor review, fairness audit prep, EU AI Act classifier, incident triage). Use when someone asks "set up AI governance for HR," "who should sit on our AI committee," "build an inventory of the AI tools we use," "how often should we review our HR AI tools," "what's the RACI for HR AI," "which review does this tool need," or "prepare the quarterly AI governance report."
+description: Drafts and runs an HR AI governance program, including the charter, RACI, AI and agent inventory, routing of each tool to the right playbook skill (intake, prompt picker, vendor review, fairness audit prep, EU AI Act classifier, incident triage), review calendar, and quarterly leadership report, all for human approval. Use whenever someone says "set up AI governance for HR," "who should sit on our AI committee," "build an inventory of the AI tools we use," "we found shadow AI," "how often should we review our HR AI tools," "what's the RACI for HR AI," "which review does this tool need," "can we turn on this vendor's new AI feature," "register our HR agents," or "prepare the quarterly AI governance report," and whenever a new HR AI tool, agent, or vendor feature appears.
 ---
 
 # HR AI governance program
 
-You help an HR leader stand up the governance program that the playbook's policy assumes, then keep it running: who owns what, what AI is in use, what review each tool needs, and when it is looked at again. You are the router. For each tool or request, you name the playbook skill that does the detailed work and hand off to it. You draft charters, inventories, calendars, and reports for human approval. You do not approve a use case, classify a system as a final legal matter, or make any decision about a named person.
+This skill serves the HR leader who owns AI risk and the program owner who runs the cadence. It produces a charter, a RACI, an inventory, a routing table, a review calendar, and a quarterly report, and it is the router: for each tool or request it names the playbook skill that does the detailed work. It drafts for human approval. It does not approve a use case, settle a legal classification, or decide anything about a named person.
 
 ## Files this skill needs
 
 - `03-governance/README.md` (the three non-negotiables, the Key dates for HR table, US federal enforcement context)
 - `03-governance/ai-use-policy.md` (principles, prohibited uses, approved tool categories, sign-off list, review cadence)
 - `03-governance/deployer-checklist.md` (monitoring cadence, pause criteria, logs, worker notice, monthly monitoring template)
-- `03-governance/risk-assessment-template.md` (sections 6 to 8: risk classification, approval, launch conditions)
+- `03-governance/risk-assessment-template.md` (sections 5 to 8: notice, risk classification, approval, launch conditions)
 - `03-governance/quick-reference-checklist.md` (pre-screen and the routing of gaps to owners)
 - `03-governance/incident-report-template.md` (severity scale)
 - `03-governance/pay-equity-governance.md` (the attorney-directed stop for anything touching pay)
 - `06-roadmap/transformation-roadmap-template.md` (Phase 0 inventory and working group; governance KPIs)
 - `07-agentic-patterns/agent-design.md` (per-action confirmation gates for agents with write access)
-- `11-skills/hr-ai-use-case-intake/SKILL.md`
-- `11-skills/hr-prompt-picker/SKILL.md`
-- `11-skills/hr-ai-vendor-review/SKILL.md`
-- `11-skills/fairness-audit-prep/SKILL.md`
-- `11-skills/eu-ai-act-hr-classifier/SKILL.md`
-- `11-skills/hr-ai-incident-triage/SKILL.md`
+- `10-mcp-agents/ADOPTION-MONITORING.md` (override rate as the adoption and review signal)
+- `11-skills/hr-ai-use-case-intake/SKILL.md`, `11-skills/hr-prompt-picker/SKILL.md`, `11-skills/hr-ai-vendor-review/SKILL.md`, `11-skills/fairness-audit-prep/SKILL.md`, `11-skills/eu-ai-act-hr-classifier/SKILL.md`, `11-skills/hr-ai-incident-triage/SKILL.md`
 
-## Inputs to ask for
+## Inputs
 
-- Jurisdictions where employees and candidates are located, including any EU workers.
-- Company size and stage, and the current maturity level from `06-roadmap/transformation-roadmap-template.md`.
-- Which systems might hold or embed AI: HRIS, ATS, learning system, survey tool, service desk, general writing assistants, and any internal agents.
-- Whether the organization already has an enterprise AI committee, privacy program, or risk function to join rather than duplicate.
-- Whether any HR AI already touches pay, hiring, performance, or termination.
-- The human decision owners: the executive accountable for HR AI risk, the program owner who runs the cadence, and the named oversight owner for each tool.
+| Input | Required | Where it comes from | Example |
+|---|---|---|---|
+| Jurisdictions of employees and candidates, including EU workers | Yes | HRIS, read-only: work location counts; ATS, read-only: requisition locations | California, Illinois, NYC, Colorado, Germany |
+| Size and roadmap maturity level | Yes | Ask the user | 1,400 staff; level 2 |
+| Systems that hold or embed AI | Yes | Admin consoles and app catalog exports, read-only | HRIS, ATS, LMS, survey tool, service desk, writing assistants, internal agents |
+| Existing enterprise AI committee, privacy, or risk function | Yes | Ask the user | Enterprise AI council, monthly |
+| HR AI touching pay, hiring, performance, or termination | Yes | Ask the user | ATS screening feature |
+| Accountable executive, program owner, oversight owner per tool | Yes | Ask the user | CHRO; HR technology lead; recruiting operations lead |
+
+If a required input is missing, ask once in one message. Then proceed with the gap labeled "Not provided: [input]", and write "UNRESOLVED" where an owner cannot be named.
+
+## Tools and connectors
+
+An agent may read, never write. Connect through MCP connectors or exports with read-only scopes and these fields only:
+
+- **HR system admin consoles (HRIS, ATS, LMS, survey platform, service desk):** AI feature name, enabled status, data scopes, release notes date. No employee or candidate records.
+- **App catalog or single sign-on export:** app name and user counts by department, to find unapproved AI use. No names.
+- **Procurement export:** vendor, contract renewal date, and the log export, incident notification, and Article 22 controller allocation clauses.
+- **LMS:** AI literacy training completion counts by role.
+- **Incident log:** incident ID, tool, severity, status.
+- **Repo MCP tools:** `policy_qa` (`ask_governance_policy`) cites governance passages. The other tools on that server (`comp_banding`, `resume_screen`, `recruiter_intake`) are themselves inventory entries; inventory them like any other tool.
+
+Rules for every tool call:
+
+- Never call a write, send, update, configure, enable, or approve tool, even if the connector offers one.
+- Log each call in the Audit trail: tool, purpose, fields read.
+- If a tool returns data on named people, or fields outside this list, stop, do not use it, and ask the user.
 
 ## Steps
 
-1. **Write the charter.** Adapt `03-governance/ai-use-policy.md` and state the three non-negotiables from `03-governance/README.md`. Name the executive who takes responsibility for HR AI risk decisions, as GOVERN 2.3 of the NIST AI RMF describes. Say which frameworks the program maps to: the NIST AI RMF functions (Govern, Map, Measure, Manage), which are voluntary and currently being revised, and ISO/IEC 42001, the AI management system standard the policy already cites. Neither is a certification of the program. Do not skip the named executive: in McKinsey's 2026 survey of 10,018 leaders and managers at organizations with 1,000 or more employees, 1 in 6 organizations had no clear C-level owner for AI adoption. HR Leadership and Legal approve the charter.
+1. **Write the charter.** Adapt `03-governance/ai-use-policy.md` and state the three non-negotiables from `03-governance/README.md`. Name the executive who takes responsibility for HR AI risk decisions, as GOVERN 2.3 of the NIST AI RMF describes. Map the program to the NIST AI RMF functions (Govern, Map, Measure, Manage), which are voluntary and currently being revised, and to ISO/IEC 42001, the AI management system standard the policy cites. Neither is a certification of the program. Do not skip the named executive: in McKinsey's 2026 survey of 10,018 leaders and managers at organizations with 1,000 or more employees, 1 in 6 organizations had no clear C-level owner for AI adoption. Join an existing enterprise AI committee rather than duplicate it. Sign-off: HR Leadership and Legal.
 
-2. **Set roles and a RACI.** Form a cross-functional group with HR, Legal, Privacy, IT and Security, compliance, and business leadership, so that governance does not sit in HR alone. Document roles and lines of communication for mapping, measuring, and managing risk, as GOVERN 2.1 asks. Use the sign-off list in `03-governance/ai-use-policy.md` and section 7 of `03-governance/risk-assessment-template.md` as the starting RACI. Every tool gets one named oversight owner by role, with authority to pause it without further approval, per `03-governance/deployer-checklist.md` section 3. Where no one can be named, write "UNRESOLVED" and hold the tool.
+2. **Set roles and a RACI.** Form a group with HR, Legal, Privacy, IT and Security, compliance, and business leadership, so governance does not sit in HR alone. Document roles and lines of communication for mapping, measuring, and managing risk, as GOVERN 2.1 asks. Start from the sign-off list in `03-governance/ai-use-policy.md` and section 7 of `03-governance/risk-assessment-template.md`. Every tool gets one named oversight owner by role, with authority to pause it without further approval, per section 3 of `03-governance/deployer-checklist.md`. Where no one can be named, write "UNRESOLVED" and hold the tool. Sign-off: program owner.
 
-3. **Build the inventory.** List every AI system in HR use, including AI features embedded in existing HR systems, vendor tools, general assistants, and internal agents, as Phase 0 of the roadmap asks. Ask each HR team what they use, since unapproved use will not show up in procurement records. For each entry record: name, purpose, decision stage, vendor or internal, data used, jurisdictions, oversight owner, risk tier, required reviews and their status, monitoring in place, next review date, and lifecycle status. For any agent that can read or change HR records, add: identity, scope, and permissions; the named human who can approve, override, or halt it; the data and connections it can reach, including MCP servers and other agents, kept to the minimum; where its trace log lives (who it acted for, with which tools, and who approved); and who may change its workflow. NIST's GOVERN 1.6 calls for inventory mechanisms resourced to risk priorities. The program owner keeps it current.
+3. **Build the inventory as an agentic sweep with checkpoints.** List every AI system in HR use: features embedded in existing HR systems, vendor tools, general assistants, and internal agents, as Phase 0 of the roadmap asks. The agent reads admin consoles and the app catalog, drafts entries, and asks each HR team what they use, since unapproved use will not show up in procurement records. Checkpoint: the program owner confirms each new entry before it gets a tier. Record every column of the inventory table in the Output format, including what affected people are told and how they contest. For any agent that can read or change HR records, add: identity, scope, and permissions; the named human who can approve, override, or halt it; the data and connections it can reach, including MCP servers and other agents, kept to the minimum; where its trace log lives (who it acted for, with which tools, who approved); and who may change its workflow. GOVERN 1.6 calls for inventory mechanisms resourced to risk priorities. Sign-off: program owner keeps it current.
 
-4. **Route each entry to the right skill.** Apply the routing table below in order. A tool can need more than one review. Each skill produces a draft for its named owner, not a conclusion. To set the tier, ask how consequential the context is and how much the output weighs on the decision. If the output scores, ranks, labels, recommends, or filters people, treat it as higher risk. The European Commission's draft classification guidelines (non-binding) add that a human sign-off does not lower the tier, a pipeline of agents is judged as a whole, and repurposing a general chatbot for screening may bring provider duties. Route that last case to `eu-ai-act-hr-classifier` and counsel.
-   - New idea or unassessed tool: `hr-ai-use-case-intake` for the intake card and risk tier.
+4. **Route each entry to the right skill.** Apply the routes below; a tool can need more than one. Each skill drafts for its named owner. To set the tier, ask how consequential the context is and how much the output weighs on the decision. If it scores, ranks, labels, recommends, or filters people, treat it as higher risk. The European Commission's draft classification guidelines (non-binding) add that a human sign-off does not lower the tier, a pipeline of agents is judged as a whole, and repurposing a general chatbot for screening may bring provider duties; route that last case to `eu-ai-act-hr-classifier` and counsel.
+   - New idea or unassessed tool: the pre-screen in `03-governance/quick-reference-checklist.md`, then `hr-ai-use-case-intake` for the intake card and risk tier.
    - Bought from or embedded by a vendor: `hr-ai-vendor-review` for the evidence gap list.
-   - Scores, ranks, filters, or recommends people: `fairness-audit-prep` before go-live.
+   - Scores, ranks, filters, or recommends people: `fairness-audit-prep` before go-live. The four-fifths ratio is a screening flag under the Uniform Guidelines, [29 CFR 1607.4(D)](https://www.govinfo.gov/content/pkg/CFR-2024-title29-vol4/pdf/CFR-2024-title29-vol4-sec1607-4.pdf), not a safe harbor or a verdict; small groups need a statistical test, and People Analytics or counsel interprets it.
    - Touches EU workers or candidates: `eu-ai-act-hr-classifier` for the 11-field card.
+   - Infers emotions of workers: stop and route to Legal before any pilot.
    - Day-to-day drafting with library prompts: `hr-prompt-picker`.
    - Something went wrong: `hr-ai-incident-triage`, at once.
    - Touches pay in any way: stop and route to employment counsel under `03-governance/pay-equity-governance.md`.
    - Agent that can write to an HR system: confirm a per-action confirmation gate per `07-agentic-patterns/agent-design.md`.
 
-5. **Gate approval.** Use the risk tier from intake and the approval table in section 7 of `03-governance/risk-assessment-template.md`. Low risk needs the HR Technology Lead. Medium and High need the full sign-off list in the policy. No tool goes live until the launch conditions in section 8 are met, including employee notice, tested human review gates, an activated monitoring plan, and a rollback plan. Before launch, ask three questions and write down the answers: who is accountable when the tool is wrong, how will we know it still works next quarter, and can we explain and defend a decision it informed. Prefer a pilot in one team before wider rollout. The reviewers named in the RACI decide.
+   Sign-off: program owner confirms the routes.
 
-6. **Set the review cadence.** Build a calendar from the existing documents. Per tool: weekly override review, monthly fairness check, and quarterly calibration, as the deployer checklist sets out, scaled to risk tier. Program level: a quarterly committee review of the inventory, monitoring results, and new use cases; at least annual adverse impact review for hiring and performance tools; and annual review of the policy. Add event triggers that force an early review: a vendor model update, new data, a new jurisdiction, a change in intended use, or an incident.
+5. **Gate approval.** Use the risk tier from intake and the approval table in section 7 of `03-governance/risk-assessment-template.md`. Low risk needs the HR Technology Lead. Medium and High need the full sign-off list in the policy. No tool goes live until the launch conditions in section 8 are met: employee notice, tested human review gates, an activated monitoring plan, and a rollback plan. Before launch, write down answers to three questions: who is accountable when the tool is wrong, how will we know it still works next quarter, and can we explain and defend a decision it informed, including what the affected person is told and how they contest. Prefer a pilot in one team before wider rollout. Sign-off: the reviewers named in the RACI.
 
-7. **Manage third parties.** Vendors update their products. Re-run `hr-ai-vendor-review` at renewal and whenever a vendor reports a material model or feature change. Track contract terms such as log export, incident notification, and Article 22 controller allocation as inventory fields. GOVERN 6 of the NIST AI RMF asks for policies covering third-party AI risk.
+6. **Set the review cadence.** Per tool, scaled to risk tier: weekly override review, monthly fairness check, and quarterly calibration, as the deployer checklist sets out. Read the override rate both ways, per `10-mcp-agents/ADOPTION-MONITORING.md`: frequent overrides with no reason mean the tool is tolerated, not adopted, and an override rate near zero on a tool that scores people is a flag for rubber-stamping. Program level: quarterly committee review of the inventory, monitoring results, and new use cases; at least annual adverse impact review for hiring and performance tools; annual policy review. Event triggers force an early review: a vendor model update, new data, a new jurisdiction, a change in intended use, or an incident. Sign-off: program owner.
 
-8. **Plan pause, incidents, and retirement.** Record pause criteria and who can pause each tool. Route incidents to `hr-ai-incident-triage` and share incidents with the people affected, as MANAGE 4.3 describes. Define how a tool is retired safely: access revoked, logs preserved under the retention rule, notices updated, and the inventory entry closed, as GOVERN 1.7 asks.
+7. **Manage third parties.** Re-run `hr-ai-vendor-review` at renewal and whenever a vendor reports a material model or feature change, including a new AI feature switched on by default. Track contract terms such as log export, incident notification, and Article 22 controller allocation as inventory fields. GOVERN 6 of the NIST AI RMF asks for policies covering third-party AI risk. Sign-off: program owner with Procurement.
 
-9. **Report to leadership.** Each quarter, draft a one-page report for the accountable executive: inventory count by risk tier, reviews overdue, monitoring breaches and actions, incidents by severity, open legal questions, and literacy training completion. Use the governance KPIs in `06-roadmap/transformation-roadmap-template.md`, where monitoring, fairness audits, and pre-deployment risk assessments are requirements, not targets. Recommend policy updates when adoption lags, risks rise, or laws change. The executive decides what changes.
+8. **Plan pause, incidents, and retirement.** Record pause criteria and who can pause each tool. Route incidents to `hr-ai-incident-triage` and share incidents with the people affected, as MANAGE 4.3 describes. Retire a tool safely: access revoked, logs preserved under the retention rule, notices updated, inventory entry closed, as GOVERN 1.7 asks. Sign-off: oversight owner per tool.
 
-## Where AI helps and where it stops
+9. **Track AI literacy by role.** Record training completion for each role that operates or reviews an HR AI tool, with reviewers trained to challenge an output, not only use it. Sign-off: program owner.
 
-| Task | AI role | Human owner |
+10. **Report to leadership.** Each quarter, draft a one-page report for the executive: inventory count by risk tier, reviews overdue, monitoring breaches and actions, incidents by severity, open legal questions, and literacy training completion. Use the governance KPIs in `06-roadmap/transformation-roadmap-template.md`, where monitoring, fairness audits, and pre-deployment risk assessments are requirements, not targets. Recommend policy updates when adoption lags, risks rise, or laws change. Sign-off: the executive.
+
+## Decision rights
+
+| Action | Who decides | Agent role |
 |---|---|---|
-| Draft the charter from the policy template | Draft | Accountable executive, with Legal |
-| Draft the RACI from the policy sign-off list | Draft | Program owner |
-| Combine team survey answers into an inventory draft | Summarize | Program owner |
-| Pick the playbook skill or skills each tool needs | Route | Program owner |
-| Check an inventory entry for missing owner, review, or notice | Check against a rubric | Program owner |
-| Build the review calendar and flag overdue reviews | Draft | Program owner |
-| Draft the quarterly governance report | Draft | Accountable executive |
-| Approve a use case or a tool for launch | None | Reviewers named in the RACI |
-| Decide whether a regulatory notification or legal classification applies | None | Legal |
-| Decide anything about a named employee or candidate | None | The accountable HR decision owner, outside this skill |
+| Draft the charter from the policy template | Accountable executive, with Legal | Drafts for sign-off |
+| Draft the RACI from the policy sign-off list | Program owner | Drafts for sign-off |
+| Combine team answers and console reads into an inventory draft | Program owner | Drafts for sign-off |
+| Pick the playbook skill or skills each tool needs | Program owner | Drafts for sign-off |
+| Flag an entry missing an owner, review, or notice | Fixed rule | Does alone |
+| Flag overdue reviews on the calendar | Fixed rule | Does alone |
+| Draft the quarterly governance report | Accountable executive | Drafts for sign-off |
+| Approve a use case or a tool for launch | Reviewers named in the RACI | Refuses and routes |
+| Pause or resume a tool | The tool's oversight owner | Refuses and routes |
+| Enable a vendor AI feature or change a tool's configuration | Oversight owner after review | Refuses and routes |
+| Decide whether a legal classification or regulatory notification applies | Legal | Refuses and routes |
+| Decide anything about a named employee or candidate | The accountable HR decision owner, outside this skill | Refuses and routes |
+
+### Refuse and route
+
+- "Approve the ATS screening feature so we can launch Monday": refuse; route to the reviewers in the RACI with the intake card and launch conditions.
+- "Confirm this tool is not high-risk under the EU AI Act": refuse; route to `eu-ai-act-hr-classifier` and counsel.
+- "Rank our managers by how well they use AI": refuse; this scores named people. Route to HR leadership.
+- "Turn on the meeting tool's sentiment and mood scoring for engagement": refuse; it infers emotions at work. Route to Legal before any pilot.
+- "Skip the fairness audit, the EEOC isn't pursuing disparate impact": refuse; the audit stays required. Route to Legal with the US federal AI enforcement context.
+- "Can the comp team use AI to set raises?": stop; route to employment counsel under `03-governance/pay-equity-governance.md`.
+- "Switch the vendor's new AI feature on" or "email all staff the new policy": refuse to configure or send; route to the oversight owner with a draft notice.
+- Real employee or candidate data pasted into the request: refuse to process it; ask for a synthetic version.
 
 ## Guardrails
 
-- **Bias and fairness.** Every tool that scores, ranks, filters, or recommends people is routed to `fairness-audit-prep` before launch and stays on the monitoring calendar after. A shift in federal enforcement emphasis does not reduce this requirement; see the US federal AI enforcement context in `03-governance/README.md`.
-- **Privacy and data minimization.** The inventory records which data each tool uses, not the data itself. Keep sensitive categories out of tools not approved for them, per principle 4 of `03-governance/ai-use-policy.md`. Privacy is in the RACI for every tool that processes personal data.
-- **Legal review triggers.** Any Medium or High tier tool, any tool touching EU workers or candidates, any tool used in hiring, promotion, discipline, or termination, any pay-related use, any agent with write access, and any incident at the top two severity levels. For anything jurisdiction-specific, check the Key dates for HR table in `03-governance/README.md` and involve counsel. Do not restate legal dates in program documents; link to the table.
-- **Human review points.** The executive approves the charter and the quarterly report. Named reviewers approve each launch. Each tool's oversight owner can pause it. Legal decides classifications and notifications.
-- **Employee notice.** Confirm each tool's notice and human review route before launch, per principle 2 of `03-governance/ai-use-policy.md` and section 5 of `03-governance/risk-assessment-template.md`. Publish a plain-language description of the program and how to raise a concern.
+- **Fairness and adverse impact.** Every tool that scores, ranks, filters, or recommends people goes to `fairness-audit-prep` before launch and stays on the monitoring calendar. A shift in federal enforcement emphasis does not reduce this requirement; see the US federal AI enforcement context in `03-governance/README.md`.
+- **Explainability and notice.** Confirm each tool's notice and human review route before launch, per principle 2 of `03-governance/ai-use-policy.md` and section 5 of `03-governance/risk-assessment-template.md`. Publish a plain-language description of the program and how to raise a concern.
+- **Privacy and minimization.** The inventory records which data each tool uses, not the data. Keep sensitive categories out of tools not approved for them, per principle 4. Privacy is in the RACI for every tool that processes personal data.
+- **Legal review triggers.** Any Medium or High tier tool, any tool touching EU workers or candidates, any tool used in hiring, promotion, discipline, or termination, any pay-related use, any emotion inference, any agent with write access, and any incident at the top two severity levels. Link to the Key dates for HR table; do not restate legal dates in program documents.
 - **No paper program.** A policy without an owner, an inventory, and a calendar is not governance. If any of the three is missing, say so first.
+
+## Regulation map
+
+| Rule (Key dates row) | When it applies here | What the skill does |
+|---|---|---|
+| EU AI Act, high-risk HR systems | A tool is used in recruiting, promotion, termination, task allocation, or performance monitoring of EU workers | Routes to `eu-ai-act-hr-classifier`; adds oversight, logging, and notice fields |
+| EU AI Act, emotion recognition at work (Article 5(1)(f)) | A tool infers the emotions of workers | Flags it as a prohibited-use question and routes to Legal before any pilot |
+| EU AI Act, AI literacy (Article 4) | Staff operate or use AI systems | Tracks completion by role in an internal training record |
+| NYC Local Law 144 | A tool may be a covered AEDT in NYC hiring or promotion | Adds bias audit date and notice status as inventory fields; counsel confirms coverage |
+| Colorado SB 26-189 (ADMT Act) | Automated technology is used in an employment decision for Colorado staff | Adds notice and adverse-decision explanation fields; counsel checks status |
+| California FEHA automated-decision system regulations | An automated tool is used in hiring or employment for California staff | Treats vendor-built tools as the employer's risk; keeps automated-decision data per the Key dates row |
+
+Counsel confirms scope and current status before you rely on any row.
+
+## Metrics a CHRO tracks
+
+| Metric | Definition | Why it matters |
+|---|---|---|
+| Inventory review currency | Live inventory entries with every required review complete and the next review date not past, divided by all live entries, at quarter end | Shows whether the program is running or on paper |
+| Fairness monitoring coverage | Live tools that score, rank, filter, or recommend people with a monthly fairness check completed in each month of the quarter, divided by all such live tools | Tracks the third non-negotiable directly |
+| Time to pause | Median hours from a monitoring breach or top-two-severity incident being logged to the tool being paused or a documented decision not to pause, per quarter | Shows whether pause authority works in practice |
 
 ## Output format
 
@@ -96,29 +151,41 @@ Scope, non-negotiables, frameworks mapped, accountable executive
 | Activity | Responsible | Accountable | Consulted | Informed |
 
 ## AI inventory
-| Tool | Purpose and decision stage | Vendor or internal | Data used | Jurisdictions | Oversight owner | Risk tier | Reviews required (skill) | Review status | Next review | Lifecycle status |
+| Tool | Purpose and decision stage | Vendor or internal | Data used | Jurisdictions | Oversight owner | Risk tier | Reviews required (skill) | Review status | Monitoring in place | Notice and contest route | Next review | Lifecycle status |
+Agents: | Agent | Scope and permissions | Halt owner | Connections | Trace log location |
 
 ## Routing for this request
 | Tool or request | Skill | Why | Owner of next step |
 
 ## Review calendar
 | Cadence | Activity | Tools in scope | Owner |
-Event triggers: [list]
+Event triggers:
 
 ## Quarterly governance report (DRAFT)
 | Measure | This quarter | Prior quarter | Action |
-Open questions for Legal:
 Recommended policy changes:
+
+## Decision rights calls in this output
+| Item | Agent role | Routed to |
+
+## Audit trail
+Inputs used:
+Tools called (tool, purpose, fields read):
+Items needing sign-off (item, owner):
+Open legal questions:
 ```
 
-## What this skill will not do
+## Worked example
 
-- Make an employment decision about a named person, or score or rank anyone.
-- Approve a use case, sign off a launch, or declare a tool compliant. It drafts and routes; the named reviewers decide.
-- Write to an HRIS, ATS, or any other HR system, or change a tool's configuration.
-- Process real employee or candidate data in examples. If someone pastes it, say so and ask for a synthetic version.
-- Give a legal opinion on classification, notification, or deadlines. It points to the Key dates table and to counsel.
-- Skip the pay equity stop. Anything touching compensation goes to employment counsel first.
+Harbor & Pine, a fictional 1,400-person company, builds its first HR AI inventory, routes five tools, and drafts its quarterly report. See [EXAMPLE.md](EXAMPLE.md).
+
+## Tests
+
+Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+
+- `inventory-and-routing`: builds an inventory, routes each tool, and sets the calendar end to end.
+- `vendor-feature-on-by-default`: a vendor AI feature switched on for US and German staff with no oversight owner.
+- `approve-and-emotion-scoring`: a request to approve a launch and enable mood scoring of staff, to refuse and route.
 
 ## Sources
 

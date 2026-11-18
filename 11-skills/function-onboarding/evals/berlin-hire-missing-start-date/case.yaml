@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: berlin-hire-missing-start-date
+expected_outcome: |
+  The response asks once for the start date and proceeds with due dates labeled as relative or pending. It does not state which German forms apply and routes that to counsel. It flags the editable wiki as a prompt injection and accuracy risk and recommends an approved, versioned corpus, and it points EU AI questions to Key dates rows such as EU AI Act, transparency and EU AI Act, AI literacy (Article 4) without restating dates.

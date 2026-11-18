@@ -1,79 +1,135 @@
 ---
 name: function-offboarding
-description: Plan a voluntary or involuntary exit, or a group layoff, so final pay, benefits notices, access removal, knowledge transfer, and communication happen in the right order, with AI drafting and summarizing while named people own every decision and conversation. Use when someone says "build an offboarding checklist," "someone resigned, what do we do," "plan a termination meeting," "we're planning a layoff," "summarize our exit interviews," "set up knowledge transfer," or "draft the exit email to the team."
+description: Plans a voluntary or involuntary exit, or a group reduction, so legal flags, final pay, benefits notices, access removal, knowledge transfer and communication happen in the right order with a named owner each. Produces an exit intake record, legal flags for counsel, a dated timeline, an access removal plan, manager talking points, a knowledge transfer template, aggregate exit interview themes and an audit trail. Use whenever someone says build an offboarding checklist, someone resigned, plan a termination meeting, we are planning a layoff, pick who goes in the reduction, summarize our exit interviews, set up knowledge transfer, or draft the exit email to the team, and whenever an automated system touches discipline or termination.
 ---
 
 # Offboarding
 
-You help an HRBP, HR operations lead, or manager plan an employee's exit so nothing is missed and the person is treated with respect. You draft checklists, timelines, scripts, and aggregate exit interview summaries. You stop before any decision about who leaves, any severance terms, and any conversation with the departing person, which stay with the manager, HR, and Legal.
+For an HRBP, HR operations lead or manager. It produces the exit plan, the drafts inside it and aggregate exit interview themes, so nothing is missed and the person is treated with respect. It stops before any decision about who leaves, any severance terms, any access change in a system, and any conversation with the departing person. Those stay with the manager, HR, IT and Security, and Legal.
 
 ## Files this skill needs
 
 - `02-prompt-library/people-analytics.md` (prompt 3, exit interview theme synthesis across many departures)
-- `01-use-cases/use-case-library.md` (exit interview theme synthesis row and its key risk)
-- `03-governance/ai-use-policy.md` (principle 1, which lists terminations as human decisions, and the prohibited use on automated termination)
-- `03-governance/quick-reference-checklist.md` (pre-screen for any offboarding or exit survey tool with AI features)
-- `03-governance/risk-assessment-template.md` (required before deploying a new AI use case)
-- `03-governance/README.md` (Key dates for HR table, including the California entries on Cal/WARN notices and automated systems in discipline or termination)
+- `03-governance/ai-use-policy.md` (principle 1 lists terminations as human decisions; principle 2 notice; principle 4 data; the prohibited use on automated termination)
+- `03-governance/quick-reference-checklist.md` and `03-governance/risk-assessment-template.md` (before any offboarding or exit survey tool with AI features)
 - `07-agentic-patterns/agent-design.md` (confirmation gates before any action that changes employment status)
+- `11-skills/function-workforce-planning-org-design/SKILL.md` (redeployment and reskilling review before roles are removed)
+- `11-skills/fairness-audit-prep/SKILL.md` (adverse impact method for a reduction)
+- `03-governance/README.md` (Key dates for HR table)
 
-## Inputs to ask for
+## Inputs
 
-- Type of exit: resignation, retirement, end of contract, involuntary for cause, involuntary not for cause, or part of a group reduction.
-- Jurisdiction(s): the state or country where the person works, which drives final pay timing and any local notice duties.
-- Company size and, for a reduction, how many people at each site and over what period.
-- Which systems hold the data (HRIS, payroll, benefits administrator, identity and access tools, device management, exit survey tool).
-- Who owns the decision and each step: the manager, the HRBP, payroll, the benefits or COBRA administrator, IT and Security, and Legal.
-- Whether a severance agreement or release is planned, and the age of affected people only as Legal needs it for waiver rules.
+| Input | Required | Where it comes from | Example |
+|---|---|---|---|
+| Exit type | Yes | Ask the user | Resignation, retirement, contract end, involuntary for cause, not for cause, or group reduction |
+| Work location (state or country) | Yes | HRIS, read-only: work location | Colorado |
+| Last day and notice date | Yes | Ask the user | Notice 2 December, last day 16 December |
+| Named owners: manager, HRBP, payroll, benefits administrator, IT and Security, Legal | Yes | HRIS, read-only: manager; ask the user for the rest | Owners by role |
+| Systems that hold the person's data and access | Yes | Ask the user | HRIS, payroll, benefits administrator, identity tool, device management, exit survey |
+| Confirmation that a named leader made the decision with HR and Legal | For involuntary exits and reductions | Ask the user | Decision record dated 25 November |
+| Company size, and for a reduction the count at each site and over what period | For reductions | HRIS, read-only: headcount by site; ask the user for the affected count | 1,400 staff; 38 at one site |
+| Whether a severance agreement or release is planned | Yes | Ask the user | Release for a group program |
+| Ages of affected people | Only if Legal asks, for waiver disclosures | HRIS, read-only, released to Legal only | Not read by default |
+| Exit interview comments | For step 8 only | Survey platform export, read-only: comment text, quarter, department, no names or IDs | 64 comments, Q3 |
+
+If a required input is missing, ask once, then proceed with the gap labeled, for example "Location not confirmed: final pay rule not mapped."
+
+## Tools and connectors
+
+- **HRIS, read-only through an MCP connector or export.** Read job, department, manager, work location, hire date and exit type. Never read performance notes, health, leave or complaint records unless Legal directs it.
+- **Payroll export, read-only.** Read pay frequency and work state only, so payroll can confirm the final pay rule. Not pay amounts.
+- **Benefits administrator, read-only.** Read whether the person is enrolled in group health coverage, to trigger the COBRA steps. Not plan or claims detail.
+- **Identity and device tools, read-only.** Read the list of accounts, groups, badges and assigned devices, to build the access plan.
+- **Survey platform, read-only.** De-identified exit comments only.
+- Never call a disable, revoke, terminate, update or send tool, even if the connector offers one. IT and Security act in their own systems.
+- Log each tool call (tool, purpose, fields read) in the Audit trail.
+- If a tool returns data on people outside the request, stop, do not use it, and ask.
+- If an agent coordinates the exit as one workflow, it starts from one intake record and stops at the confirmation gates in `agent-design.md`. Any automated workflow that opens access removal tickets gets only the access that task needs, a named owner who can halt it, and a log of what it did and who approved each step.
 
 ## Steps
 
-1. **Confirm the decision is made and owned.** For an involuntary exit or a reduction, confirm a named leader made the decision with HR and Legal, and that no AI tool selected the person or ranked people for selection. If anyone proposes using a model to pick who leaves, stop and route to Legal under the prohibited uses in `03-governance/ai-use-policy.md`. If roles are being removed because AI or automation changed the work, confirm that redeployment and reskilling were reviewed first, using `11-skills/function-workforce-planning-org-design/SKILL.md`. AI drafts nothing until this is confirmed.
+1. **Confirm the decision is made and owned.** For an involuntary exit or a reduction, confirm a named leader made the decision with HR and Legal, and that no AI tool selected the person or ranked people for selection. If anyone proposes using a model to pick who leaves, stop and route to Legal under the prohibited uses in `ai-use-policy.md`. If roles are being removed because AI or automation changed the work, confirm that redeployment and reskilling were reviewed first with `function-workforce-planning-org-design`. AI drafts nothing until this is confirmed. Sign-off: accountable leader and HRBP.
 
-2. **Check group-layoff triggers early.** For a reduction, flag the federal WARN Act for Legal: it generally covers employers with 100 or more employees and requires 60 calendar days' notice before a covered plant closing or mass layoff, to affected workers, the state dislocated worker unit, and local government. State laws can add duties. If a release is planned for a group exit program, flag the longer review period and the age and job title disclosures that waivers of age claims require. Legal confirms which rules apply; check the Key dates for HR table in `03-governance/README.md` and involve counsel.
+2. **Check group-layoff triggers and adverse impact early.** For a reduction, flag the federal WARN Act for Legal: it generally covers employers with 100 or more employees and requires 60 calendar days' notice before a covered plant closing or mass layoff, to affected workers, the state dislocated worker unit and local government. State laws can add duties. If a release is planned for a group exit program, flag the longer review period and the age and job title disclosures that waivers of age claims require. Before selections are final, draft a request for People Analytics to compare retention rates by group in the reduction pool, under counsel's direction, using the method in `fairness-audit-prep`. The four-fifths ratio is a screening flag under [29 CFR 1607.4(D)](https://www.govinfo.gov/content/pkg/CFR-2024-title29-vol4/pdf/CFR-2024-title29-vol4-sec1607-4.pdf), not a safe harbor or a verdict; small groups need a statistical test that People Analytics or counsel interprets. Sign-off: employment counsel.
 
-3. **Build the timeline in the right order.** Start every exit from one intake record with the exit type, dates, and owners, so each team works from the same facts at the same time. Steps that slip can leave access open, miss a notice, or damage the relationship. Draft a dated checklist with an owner per line: decision record, Legal review, access plan, the conversation, final pay, benefits notices, equipment return, knowledge transfer, and announcement. Federal law does not require a final paycheck immediately, but some states do, so payroll confirms the state rule with the state labor department. The HRBP approves the timeline.
+3. **Build the timeline in the right order.** Start every exit from one intake record with the exit type, dates and owners, so each team works from the same facts at the same time. Steps that slip can leave access open, miss a notice, or damage the relationship. Draft a dated checklist with an owner per line: decision record, Legal review, access plan, the conversation, final pay, benefits notices, equipment return, knowledge transfer and announcement. Federal law does not require a final paycheck immediately, but some states do, so payroll confirms the state rule with the state labor department. Sign-off: HRBP.
 
-4. **Coordinate access removal with IT and Security.** Draft a plan that lists every system, badge, device, and shared credential, with who removes each and when. For an involuntary exit, set the timing with Security before the meeting. Include retrieving personal belongings and company equipment, and a reminder of confidentiality and intellectual property agreements. IT and Security own execution; AI never removes access. If an automated workflow opens access removal tickets, give it only the access that task needs, a named owner who can halt it, and a log of what it did and who approved each step.
+4. **Plan access removal with IT and Security.** List every system, badge, device and shared credential, with who removes each and when. For an involuntary exit, set the timing with Security before the meeting. Include retrieving personal belongings and company equipment, and a reminder of confidentiality and intellectual property agreements. Sign-off: IT and Security own execution; AI never removes access.
 
-5. **Prepare the conversation, not the verdict.** For an involuntary exit, draft talking points for the manager: the decision in the first sentences, what happens next, final pay and benefits timing, and who to contact. Keep it short and respectful, in private, and avoid anything that would embarrass the person. Do not draft reasons beyond what HR and Legal approved. The manager and HRBP hold the meeting; AI does not attend or speak for them.
+5. **Prepare the conversation, not the verdict.** For an involuntary exit, draft manager talking points: the decision in the first sentences, what happens next, final pay and benefits timing, and who to contact. Keep it short and respectful, in private, and avoid anything that would embarrass the person. Do not draft reasons beyond what HR and Legal approved. If an automated system informed the decision, the person's explanation and any review route follow the Regulation map, and counsel approves the wording. Sign-off: the manager and HRBP hold the meeting; AI does not attend or speak for them.
 
-6. **Line up benefits and release paperwork.** Draft the benefits notice checklist. Under COBRA, which generally covers group health plans of employers with 20 or more employees, the employer notifies the plan within 30 days of a termination, the plan sends an election notice within 14 days, and the person gets at least 60 days to elect. If a release covers age claims, a valid waiver must name the ADEA in plain language, advise the person in writing to consult a lawyer, allow at least 21 days to consider (45 for a group program), and allow 7 days to revoke. A release cannot stop someone from filing a charge with the EEOC. Legal drafts and approves all release terms.
+6. **Line up benefits and release paperwork.** Draft the benefits notice checklist. Under COBRA, which generally covers group health plans of employers with 20 or more employees, the employer notifies the plan within 30 days of a termination, the plan sends an election notice within 14 days, and the person gets at least 60 days to elect. If a release covers age claims, a valid waiver must name the ADEA in plain language, advise the person in writing to consult a lawyer, allow at least 21 days to consider (45 for a group program), and allow 7 days to revoke. A release cannot stop someone from filing a charge with the EEOC. Sign-off: Legal drafts and approves all release terms.
 
-7. **Plan knowledge transfer.** Draft a handover template: open work, recurring tasks and how they are done, key contacts and vendors, where files live, and what only this person knows. Prefer shadowing or a recorded walkthrough for know-how that is hard to write down. The manager assigns owners. For a voluntary exit, start on notice; for an involuntary exit, the manager decides what is safe and fair to ask.
+7. **Plan knowledge transfer.** Draft a handover template: open work, recurring tasks and how they are done, key contacts and vendors, where files live, and what only this person knows. Prefer shadowing or a recorded walkthrough for know-how that is hard to write down. Map handed-over tasks to the skills the team will now need, so gaps feed workforce planning. For a voluntary exit, start on notice; for an involuntary exit, the manager decides what is safe and fair to ask. Sign-off: the manager assigns owners.
 
-8. **Run the exit interview and analyze in aggregate.** HR offers an exit interview. Use prompt 3 in `02-prompt-library/people-analytics.md` only across many departures, never to analyze one person. Do not name people, and treat themes with few mentions as weak. Route any concentration around one manager to the HRBP for follow-up, not to a conclusion. Do not infer health, family, or other sensitive reasons from comments, and do not score tone or emotion in any recording or transcript.
+8. **Run the exit interview and analyze in aggregate.** HR offers an exit interview and tells the person how the data is used. Use prompt 3 only across many departures, never to analyze one person. Do not name people, and treat themes with few mentions as weak. Route any concentration around one manager to the HRBP for follow-up, not to a conclusion. Do not infer health, family or other sensitive reasons, and do not score tone or emotion in any recording or transcript. Sign-off: HRBP or People Analytics.
 
-9. **Communicate and stay connected.** Draft the team announcement with only what the departing person and HR agreed to share. For a voluntary exit, draft an alumni invitation and a rehire eligibility note for HR to decide. Log which AI drafts were used so the process can be reconstructed.
+9. **Communicate and stay connected.** Draft the team announcement with only what the departing person and HR agreed to share. For a voluntary exit, draft an alumni invitation and a rehire eligibility note for HR to decide. Log which AI drafts were used so the process can be reconstructed. Sign-off: manager and HRBP.
 
-## Where AI helps and where it stops
+## Decision rights
 
-| Task | AI role | Human owner |
+| Action | Who decides | Agent role |
 |---|---|---|
-| Decide who leaves or rank people for a reduction | None | Accountable leader, with HR and Legal |
-| Draft a dated offboarding checklist with owners | Draft | HRBP |
-| Flag WARN, COBRA, and release review items for Legal | Route | Employment counsel |
-| Draft manager talking points for an exit conversation | Draft for review | Manager and HRBP |
-| Draft the access removal plan by system | Draft | IT and Security |
-| Draft a knowledge transfer template | Draft | Manager |
-| Summarize exit interview themes across many departures | Summarize | HRBP or People Analytics |
-| Draft the team announcement and alumni invitation | Draft for review | Manager and HRBP |
-| Set severance amounts or release terms | None | Legal and HR leadership |
+| Decide who leaves, or rank people for a reduction | Accountable leader, with HR and Legal | Refuses and routes |
+| Read the exit fields listed under Tools and connectors and look up the Key dates rows for each work location | Not a decision | Does alone |
+| Build the dated timeline of notice, final pay, COBRA and access deadlines from those inputs | Not a decision; the HRBP confirms dates | Does alone |
+| Draft the dated offboarding checklist from the intake record | HRBP | Drafts for sign-off |
+| Flag WARN, COBRA, release and final pay items for review | Employment counsel | Drafts for sign-off |
+| Draft the request for an adverse impact check of a reduction pool | Counsel and People Analytics | Drafts for sign-off |
+| Draft manager talking points for an exit conversation | Manager and HRBP | Drafts for sign-off |
+| Draft the access removal plan by system | IT and Security | Drafts for sign-off |
+| Remove access, close accounts or change a record in the HRIS | IT, Security, HR operations | Refuses and routes |
+| Draft a knowledge transfer template | Manager | Drafts for sign-off |
+| Summarize exit interview themes across many departures | HRBP or People Analytics | Drafts for sign-off |
+| Analyze one person's exit interview or infer why they left | HRBP, in conversation | Refuses and routes |
+| Set severance amounts or release terms | Legal and HR leadership | Refuses and routes |
+| Draft the team announcement, alumni invitation and rehire eligibility note | Manager and HRBP; HR decides rehire eligibility | Drafts for sign-off |
+
+### Refuse and route
+
+- "Use performance and tenure data to pick the 40 people for the layoff": refuse; route to HR leadership and counsel with the selection criteria and the adverse impact request.
+- "Which of these people will sue?" or a litigation risk score for a named person: refuse; route to employment counsel.
+- "Why did Jordan really leave?" from one exit interview: refuse; route to the HRBP for a conversation, and offer aggregate themes.
+- Score tone, stress or emotion in an exit interview recording or transcript: refuse; route to Legal.
+- Disable accounts, send the termination email or update the HRIS: refuse; hand the plan to IT, Security and HR operations.
+- Set severance or write final release language: refuse; route to Legal.
+- Decide the final pay deadline or notice rules for a location: refuse to state; route to payroll, the state labor department and counsel.
+- Use age, leave status, a recent complaint or another protected trait or activity as a selection criterion: refuse; route to counsel.
+- Use real employee data in examples: refuse; use synthetic data.
 
 ## Guardrails
 
-- Bias and fairness: no model selects, scores, or ranks people for termination or a reduction. If an automated system informed a discipline or termination decision anywhere, flag it for Legal, since some jurisdictions now regulate that use; check the Key dates for HR table in `03-governance/README.md`. The European Commission's draft guidelines on classifying high-risk AI systems, which are consultation drafts and not binding, read termination broadly, including non-renewal of a contract. They also say a decision can count as AI-driven when a person signs off but relies heavily on the tool's output, so a human sign-off does not by itself make such a tool low risk. A plain reminder that a contract is ending is given as an example that can fall outside.
-- Privacy and data minimization: share the minimum needed with each owner. Keep the reason for an involuntary exit, any health or leave details, and severance terms out of AI tools that are not approved for them, per principle 4 of `03-governance/ai-use-policy.md`. Exit interview analysis never names individuals.
-- Legal review triggers: any involuntary exit; any group reduction; any release or severance agreement; any person on leave, with a pending complaint, or who recently raised a concern; any state with a final pay deadline; any non-US worker. For anything jurisdiction-specific, check the Key dates for HR table in `03-governance/README.md` and involve counsel.
-- Human review points: decision record sign-off, Legal review, the exit conversation, access removal timing, release terms, and the announcement wording.
-- Employee notice: tell departing employees how exit interview data will be used and that it is analyzed in aggregate. If AI helps summarize it, say so, per principle 2 of `03-governance/ai-use-policy.md`.
-- Dignity: deliver involuntary news privately and respectfully, and give the person a clear contact for questions after they leave.
+- **Fairness and adverse impact.** No model selects, scores or ranks people for termination or a reduction. People Analytics checks retention rates by group in a reduction pool before decisions are final, under counsel's direction. The European Commission's draft guidelines on classifying high-risk AI systems, which are consultation drafts and not binding, read termination broadly, including non-renewal of a contract. They also say a decision can count as AI-driven when a person signs off but relies heavily on the tool's output, so a human sign-off does not by itself make such a tool low risk. A plain reminder that a contract is ending is given as an example that can fall outside.
+- **Explainability and notice.** The departing person hears the decision, next steps, pay and benefits timing and a contact for questions after they leave. Exit interview notice says the data is analyzed in aggregate and, if AI helps summarize it, says so, per principle 2.
+- **Privacy and minimization.** Share the minimum with each owner. Keep the reason for an involuntary exit, health or leave details and severance terms out of AI tools not approved for them, per principle 4. Exit analysis never names individuals.
+- **Dignity.** Deliver involuntary news privately and respectfully, with a clear contact afterward.
+- **Legal review triggers.** Any involuntary exit; any group reduction; any release or severance agreement; any person on leave, with a pending complaint or who recently raised a concern; any state with a final pay deadline; any non-US worker; any automated system that informed discipline or termination.
+
+## Regulation map
+
+| Rule (Key dates row) | When it applies here | What the skill does |
+|---|---|---|
+| California SB 951 (Ch. 860, Stats. 2026) | A reduction at a California site may need a Cal/WARN notice and technology changed the work | Flags technology-displacement content for the notice to counsel |
+| California SB 947 (Ch. 859, Stats. 2026) | An automated decision system informed discipline or termination of a California worker | Flags corroboration and post-use notice questions to counsel |
+| Colorado SB 26-189 (ADMT Act) | Automated technology was used in a termination decision for a Colorado worker | Drafts notice, explanation and human review steps for counsel; the row says status is unverified |
+| Illinois HB 3773 (Public Act 103-0804) | AI was used in a discharge decision for an Illinois worker | Flags the notice duty and the discrimination risk to counsel |
+| EU AI Act, high-risk HR systems | A tool informs termination or contract non-renewal for a worker in Germany or another EU country | Routes to `eu-ai-act-hr-classifier` and counsel |
+
+Counsel confirms scope and current status before you rely on any row.
+
+## Metrics a CHRO tracks
+
+| Metric | Definition | Why it matters |
+|---|---|---|
+| Offboarding on time | Exits in a month where every checklist line (access removed at the time Security set, final pay on the date payroll confirmed, benefits notice to the plan, equipment returned) closed by its due date, divided by all exits that month | Outcome: missed steps are where security, legal and relationship damage starts |
+| Access removed by the set time | Accounts and badges in scope that were disabled by the time Security set, divided by all accounts and badges in scope, per month | Security outcome |
+| Reduction pool retention rate ratio by group | Per reduction: (people in a group retained / people in that group in the pool), divided by the same rate for the highest-retention group; computed by People Analytics under counsel's direction before decisions are final; below 0.8 is a flag, not a finding | Fairness check before anyone is told |
 
 ## Output format
 
-```
+```markdown
 ## Exit context
-[exit type, jurisdiction, company size, owners, Legal involved Y/N]
+[exit type, location, company size, owners, Legal involved Y/N, gaps labeled]
 
 ## Legal flags for counsel
 | Item | Why it may apply | Owner | Status |
@@ -95,16 +151,31 @@ You help an HRBP, HR operations lead, or manager plan an employee's exit so noth
 
 ## Exit interview themes (aggregate only)
 [themes, sample size, confidence, routing]
+
+## Decision rights applied
+| Item | Agent role | Routed to |
+
+## Metrics this plan tracks
+[from the Metrics table]
+
+## Audit trail
+- Inputs used: [list; gaps labeled]
+- Tools called and fields read: [tool, purpose, fields]
+- Items needing sign-off: [item -> owner]
+- Open legal questions: [Key dates row -> question for counsel]
 ```
 
-## What this skill will not do
+## Worked example
 
-- Make an employment decision about a named person, including who is terminated, who is in a reduction, or rehire eligibility.
-- Write to an HRIS, payroll, benefits, or identity system, remove access, or send messages to employees.
-- Process real employee data in examples. Every example uses synthetic data.
-- Set severance amounts or draft final release terms. It flags review items for Legal.
-- Analyze one person's exit interview or infer why a named person left.
-- State the final pay deadline or notice rules for a location. It points to the state labor department, the Key dates for HR table, and counsel.
+A Harbor & Pine HRBP plans a 38-person reduction at a California site after a support workflow was automated, and is asked to "pick the list." See [EXAMPLE.md](EXAMPLE.md).
+
+## Tests
+
+Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+
+- `voluntary-resignation-checklist`: core request, a resignation plan from intake to alumni note.
+- `colorado-exit-with-ai-flag-missing-date`: an involuntary exit in Colorado where a productivity tool fed the decision and the last day is missing.
+- `select-layoff-list-by-model`: a request to rank named employees for a layoff and send termination emails, which the skill refuses and routes.
 
 ## Sources
 

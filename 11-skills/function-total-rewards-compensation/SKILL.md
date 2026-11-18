@@ -1,78 +1,134 @@
 ---
 name: function-total-rewards-compensation
-description: Structure compensation and total rewards work, from job architecture and pay bands to market pricing, merit cycle guidance, and posting ranges, and route anything that could surface a pay disparity to employment counsel. Use when someone asks "help me build pay bands," "level this job," "price this role against the market," "draft our merit cycle guidelines," "what range do we post," "explain this pay decision to an employee," or "can we run a pay equity analysis."
+description: Produces job architecture from job content, aggregate market pricing, draft bands checked with the repo's comp banding tool, posting ranges, merit guidance and pay explanations, each with an audit trail, and routes anything that could surface a pay disparity to employment counsel before any data is touched. Use whenever someone says "help me build pay bands," "level this job," "price this role against the market," "draft our merit cycle guidelines," "what range do we post," "explain this pay decision to an employee," "is this offer in range," or "can we run a pay equity analysis," and whenever a request involves pay history, a named person's pay, or pay by group.
 ---
 
 # Total rewards and compensation
 
-You help a compensation or total rewards professional build the structure that pay decisions rest on: job levels, bands, market data, merit guidance, and posting language. You work from job content and aggregate market data, never from one person's pay history. You stop before any number for a named person, and you stop completely when a request could surface a pay disparity by group, because that work must be directed by employment counsel from the start.
+This skill serves compensation and total rewards professionals. It drafts structure from job content and aggregate market data, never from one person's pay history. It stops before any number for a named person, and it stops completely when a request could surface a pay disparity by group, because that work is directed by employment counsel from the start.
 
 ## Files this skill needs
 
 - `03-governance/pay-equity-governance.md` (approved and prohibited comp uses, the privilege question, and the required governance gate. Read this first.)
 - `10-mcp-agents/comp_banding/ENABLEMENT.md` (the band-placement tool: what it checks, the historical-pay refusal, and why it returns no percentile outside the benchmark range)
-- `03-governance/ai-use-policy.md` (principle 1 on human decisions, principle 4 on data minimization, and the prohibited autonomous pay change)
+- `03-governance/ai-use-policy.md` (principle 1 on human decisions, principle 2 on notice, principle 4 on data minimization, and the prohibited autonomous pay change)
 - `03-governance/quick-reference-checklist.md` (one-page pre-screen, including the attorney-directed comp box)
 - `03-governance/risk-assessment-template.md` (required baseline for any new comp use case, with the pay equity gate on top)
+- `03-governance/eu-ai-act-intake-template.md` (if AI informs pay decisions for EU workers)
 - `02-prompt-library/talent-acquisition.md` (prompt 1, job description review, which only includes a range the source already has)
 - `03-governance/README.md` (the Key dates for HR table, for any pay transparency or pay reporting date)
 
-## Inputs to ask for
+## Inputs
 
-- Jurisdictions where employees work and where postings will be seen, including remote roles.
-- Company size and headcount by country, since some pay transparency and reporting duties depend on it.
-- Which systems hold the data: HRIS, comp planning tool, survey provider, ATS.
-- Which survey sources are licensed, their effective dates, and how jobs were matched.
-- Whether the request touches pay for any named person or any comparison of pay by group.
-- The human decision owner: comp lead for structure, manager plus comp professional for individual pay, employment counsel for anything pay equity.
+If a required input is missing, ask once, then proceed with the gap labeled `[GAP: what is missing]` in the output.
+
+| Input | Required | Where it comes from | Example |
+|---|---|---|---|
+| Task | Yes | Ask the user | Posting ranges for Recruiter IC3 |
+| Does the work compare pay by group, or could it surface a gap? | Yes, first | Ask the user | "No, structure only" |
+| Jurisdictions where staff work and postings are seen, including remote | Yes | ATS, read-only: requisition location, remote flag | New York City; Germany |
+| Headcount by country | Yes, for transparency and reporting questions | HRIS, read-only: aggregate count by country | US 1,190; Germany 210 |
+| Licensed survey sources, effective dates, job matches, sample sizes | Yes, for pricing | Survey export, read-only | Survey A, effective 2026-Q3, match "good", n = 41 |
+| Pay philosophy and approved budget | Yes, for bands and merit | Ask the user | Target market median; 3.5% merit budget |
+| Approved bands and merit matrix | Yes, for postings and merit | Comp planning tool, read-only: band min, mid, max by job and tier | Recruiter IC3 tier 1 |
+| Documented rationale for a pay decision | Yes, to explain one | Ask the comp professional | "Placed at p50: fully proficient" |
+| Decision owner | Yes | Ask the user | Comp lead for structure; manager and comp professional for individual pay |
+
+## Tools and connectors
+
+Work through MCP connectors or exports, read-only, with the minimum fields:
+
+- Comp planning tool: approved bands, merit matrix, budget. No individual salary records.
+- Survey exports: benchmark job, match quality, effective date, percentiles, sample size.
+- HRIS: job code, level, location tier, aggregate counts. No individual pay, pay history or demographics.
+- ATS: requisition location, remote flag, draft posting text.
+- Repo MCP tools in `10-mcp-agents/`: `comp_band_position` and `comp_list_known_bands` (in `comp_banding/`) place a proposed number against benchmark bands. `used_historical_pay_as_input` is required; answer it truthfully. If a role is missing, the tool raises an error by design: report the gap, do not guess the nearest band. `lint_jd_language` (in `resume_screen/`) checks posting text; `ask_governance_policy` (in `policy_qa/`) cites the governance section behind a stop point.
+
+Never call a write, send or update tool, even if the connector offers one: no band publish, pay change or employee message. Log each tool call (tool, purpose, fields read) in the output's audit trail. If a tool returns data on people outside the request, or individual pay, stop, do not use it, and ask.
 
 ## Steps
 
-1. **Screen for the pay equity stop.** Ask whether the work compares pay across sex, race, age, disability, or any other protected group, or could surface such a gap as a side effect. If yes, stop. State that the analysis must be initiated and directed by employment counsel per `pay-equity-governance.md`, and route it there. Do not run a "quick look" first. A vendor feature that tracks pay equity drift or flags pay gaps is a pay equity analysis too: turning it on goes through the same counsel gate.
+Hard checkpoints the agent never passes alone: pay equity screen answered (user, then counsel if triggered), job matches confirmed (comp analyst), bands approved (comp lead), posting text approved (recruiter and comp lead, counsel for jurisdictions), merit guidance approved (total rewards lead).
 
-2. **Build or check the job architecture.** Draft job family and level descriptions from the work itself: the skill, effort, responsibility, and working conditions the job requires. Job content, not job title, is what equal pay law compares. If EU workers are in scope, check that the criteria are gender neutral and do not undervalue soft skills. AI may suggest a baseline level for a job, never for a person. A comp professional reviews, challenges, and owns each level, and records the rationale. Set review triggers such as a new role, a reorg, or AI changing the tasks in a job.
+1. **Screen for the pay equity stop.** Ask whether the work compares pay across sex, race, age, disability or any other protected group, or could surface such a gap as a side effect. If yes, stop. State that the analysis must be initiated and directed by employment counsel per `pay-equity-governance.md`, and route it there. Do not run a "quick look" first, and do not compute any ratio on pay by group. A vendor feature that tracks pay equity drift or flags pay gaps is a pay equity analysis too: turning it on goes through the same counsel gate. Sign-off: employment counsel.
 
-3. **Market price from aggregate data.** Summarize licensed survey data for each benchmark job: source, effective date, match quality, and percentiles. Use aggregate data only. Flag weak matches and thin samples rather than smoothing them. The comp analyst confirms every match before it feeds a band.
+2. **Build or check the job architecture.** Draft job family and level descriptions from the work itself: the skill, effort, responsibility and working conditions the job requires. Job content, not job title, is what equal pay law compares. Describe each level by the skills it requires at stated proficiency, and add a skills premium only where licensed market data shows one for that skill in that job, never for a credential alone. If EU workers are in scope, check that criteria are gender neutral and do not undervalue soft skills. AI may suggest a baseline level for a job, never for a person. Set review triggers such as a new role, a reorg, or AI changing the tasks in a job. Sign-off: a comp professional reviews, challenges and owns each level, and records the rationale.
 
-4. **Draft bands and check placements.** Draft range minimum, midpoint, and maximum from the market data and the company's stated pay philosophy. Use the comp banding tool in `10-mcp-agents/comp_banding/` to check where a proposed number falls. Name the system of record for approved bands and the approval chain for every number. A general AI tool without the approved bands can only guess, and in pay a nearly right number is still wrong. Treat any figure that does not trace to the approved band or a licensed survey as unverified. Never use a person's current or prior pay as an input. The tool refuses that by design, and EU rules bar asking applicants for pay history. The comp lead finalizes the structure.
+3. **Market price from aggregate data.** Summarize licensed survey data for each benchmark job: source, effective date, match quality, sample size and percentiles. Flag weak matches and thin samples rather than smoothing them. Sign-off: the comp analyst confirms every match before it feeds a band.
 
-5. **Draft posting ranges.** Use only the approved band. The posted range should be one the company in good faith expects to pay. Have counsel map the duties for each jurisdiction the posting reaches, including internal promotion and transfer disclosures. Put posting range checks and pay data reports on the annual compliance calendar, taking every date from the Key dates table. Check the Key dates for HR table in `03-governance/README.md` and involve counsel for any jurisdiction-specific requirement. A recruiter and the comp lead approve the final text.
+4. **Draft bands and check placements.** Draft range minimum, midpoint and maximum from the market data and the stated pay philosophy, and show the arithmetic. Use `comp_band_position` to check where a proposed number falls. Name the system of record for approved bands and the approval chain for every number. A general AI tool without the approved bands can only guess, and in pay a nearly right number is still wrong: treat any figure that does not trace to the approved band or a licensed survey as unverified. Never use a person's current or prior pay as an input. The tool refuses that by design, and EU rules bar asking applicants for pay history. Sign-off: the comp lead finalizes the structure.
 
-6. **Draft merit cycle guidance.** Draft the merit matrix explanation, timeline, manager guide, and FAQ from the budget the company has already set. External survey budgets give context only and are often preliminary. Do not produce a merit number for any named employee. Managers propose, and the comp professional reviews and owns each final number. If leaders want merit, bonus or promotion pay to reward AI use, treat it as a pay design change: define what counts for each role, credit quality and human ownership of outcomes rather than tool use, check that every group has had equal access to tools, training and time, and route the design to counsel before launch. Cover career progression and development in the total rewards message too: in McKinsey's State of Organizations 2026, a survey of 10,018 leaders and managers at organizations with 1,000 or more employees, limited career progression was the most cited barrier to high performance (47%).
+5. **Draft posting ranges.** Use only the approved band. The posted range should be one the company in good faith expects to pay. Run `lint_jd_language` on the posting text. Have counsel map the duties for each jurisdiction the posting reaches, including internal promotion and transfer disclosures. Put posting range checks and pay data reports on the annual compliance calendar, taking every date from the Key dates table. Sign-off: a recruiter and the comp lead approve the text; counsel signs the jurisdiction map.
 
-7. **Explain pay decisions in plain language.** When asked to explain an existing pay decision, draft only from the documented rationale. Do not invent a plausible reason. If EU workers are in scope, the criteria for pay and progression must be accessible to workers, and workers can request pay information. Route those requests to the comp lead. The HRBP or comp professional reviews the draft before it goes to the employee.
+6. **Draft merit cycle guidance.** Draft the merit matrix explanation, timeline, manager guide and FAQ from the budget the company has already set. External survey budgets give context only and are often preliminary. Do not produce a merit number for any named employee. If leaders want pay to reward AI use, treat it as a pay design change: define what counts for each role, credit quality and human ownership of outcomes rather than tool use, check equal access to tools, training and time, and route the design to counsel before launch. Any review of merit or bonus outcomes by group is a pay equity analysis: step 1 applies. Cover career progression in the total rewards message too: in McKinsey's State of Organizations 2026, a survey of 10,018 leaders and managers at organizations with 1,000 or more employees, limited career progression was the most cited barrier to high performance (47%). Sign-off: managers propose, and the comp professional reviews and owns each final number; the total rewards lead approves the guidance.
 
-8. **Plan for a disparity before anyone looks.** If counsel opens a pay equity review, help counsel's team draft the process documents only: the governance gate checklist, the remediation decision framework, and restricted distribution rules. Remediation design is decided by counsel and comp leadership, with limits such as caps on individual adjustments. Model outputs are flags for review, not findings.
+7. **Explain pay decisions in plain language.** Draft only from the documented rationale: the band, the position in it, and the criteria applied. Do not invent a plausible reason. Tell the employee how to ask a person for more detail. If EU workers are in scope, the criteria for pay and progression must be accessible to workers, and workers can request pay information: route those requests to the comp lead. Sign-off: the HRBP or comp professional reviews the draft before it goes to the employee.
 
-9. **Log and hand off.** Record inputs, sources, the human reviewer, and the decision owner for every output. Never write a pay change to an HR system. Name the person who owns the next step.
+8. **Plan for a disparity before anyone looks.** If counsel opens a pay equity review, help counsel's team draft the process documents only: the governance gate checklist, the remediation decision framework, and restricted distribution rules. Remediation design is decided by counsel and comp leadership, with limits such as caps on individual adjustments. Model outputs are flags for review, not findings. Sign-off: counsel.
 
-## Where AI helps and where it stops
+9. **Log and hand off.** Record inputs, sources, tool calls, reviewer and decision owner for every output, and name who owns the next step.
 
-| Task | AI role | Human owner |
+## Decision rights
+
+| Action | Who decides | Agent role |
 |---|---|---|
-| Draft job family and level descriptions from job content | Draft | Comp lead |
-| Suggest a baseline level for a job (not a person) | Draft for review | Comp lead, with job architecture governance group |
-| Summarize aggregate market survey data for benchmark jobs | Summarize | Comp analyst |
-| Check a proposed number against the band | Check against a rubric | Comp professional |
-| Draft posting range language from an approved band | Draft | Recruiter and comp lead, counsel for jurisdiction mapping |
-| Draft merit guidelines, manager guide, and FAQ | Draft | Total rewards lead |
-| Explain an existing pay decision to an employee | Draft for review | Comp professional or HRBP |
-| Route an employee pay question or pay information request | Route | Total rewards team |
-| Set or change pay for a named employee | None | Manager and comp professional |
-| Pay equity or disparity analysis by group | None | Employment counsel, who directs any analysis |
+| Check a proposed number against the band with `comp_band_position` | Comp professional | Does alone |
+| Route an employee pay question or pay information request | Total rewards team | Does alone |
+| Draft job family and level descriptions from job content | Comp lead | Drafts for sign-off |
+| Suggest a baseline level for a job, not a person | Comp lead, with the job architecture governance group | Drafts for sign-off |
+| Summarize aggregate market survey data for benchmark jobs | Comp analyst | Drafts for sign-off |
+| Draft band minimum, midpoint and maximum | Comp lead | Drafts for sign-off |
+| Draft posting range language from an approved band | Recruiter and comp lead; counsel for jurisdictions | Drafts for sign-off |
+| Draft merit guidelines, manager guide and FAQ | Total rewards lead | Drafts for sign-off |
+| Explain an existing pay decision to an employee | Comp professional or HRBP | Drafts for sign-off |
+| Set or change pay, merit, bonus or an offer for a named person | Manager and comp professional | Refuses and routes |
+| Pay equity or disparity analysis by group, or a vendor pay-gap feature | Employment counsel | Refuses and routes |
+| Use current or prior pay as a band or offer input | Not permitted under `pay-equity-governance.md` | Refuses and routes |
+
+### Refuse and route
+
+- "Run a quick gender pay gap check before we involve Legal": refuse, compute nothing; route to employment counsel per `pay-equity-governance.md`.
+- "Turn on the vendor's pay equity drift alerts": refuse; route to the counsel gate.
+- "Set her offer 10% above her current salary": refuse; re-derive from role, level and market data, then check with `comp_band_position`.
+- "What should Ana's merit increase be?": refuse; route to the manager to propose and the comp professional to own.
+- "Push the approved increases into the comp planning tool": refuse; the comp team does it.
+- "Give a plausible reason for this pay difference": refuse to invent; draft only from the documented rationale, or route to the comp lead.
+- "Lower increases for people returning from leave" or any protected trait as a pay criterion: refuse; route to counsel.
+- "What is the effective date of the pay transparency law in X?": give only what the Key dates table says, and route to counsel.
 
 ## Guardrails
 
-- **Bias and fairness.** Historical pay can carry past discrimination. Do not use pay history as a banding or offer input, and do not treat past pay decisions as ground truth. Compare jobs on content, not titles. Compensation means more than base pay: bonus, equity, allowances, and benefits count.
-- **Privacy and data minimization.** Work from aggregate market data and job-level structure. Do not paste individual salary records into a general AI tool. Comp outputs go only to the people who need them.
-- **Legal review triggers.** Any comparison of pay by protected group, any pay transparency or pay reporting question, any EU worker in scope, and any explanation that may become evidence. If EU workers are in scope and AI informs pay decisions, complete `03-governance/eu-ai-act-intake-template.md`. The European Commission's draft guidance on high-risk classification (not binding) treats pay as part of the terms of work, and a human sign-off alone does not change the risk class. For anything jurisdiction-specific, check the Key dates for HR table in `03-governance/README.md` and involve counsel.
-- **Equal pay law.** Under the Equal Pay Act, jobs are compared on skill, effort, responsibility, and working conditions within an establishment, and the employer must prove any defense. Title VII, the ADEA, and the ADA also prohibit pay discrimination, without the substantially equal job test. Records that explain pay differences must be kept. Route these questions to counsel. See the EEOC pages in Sources.
-- **Human review points.** The comp lead owns levels and bands. The comp professional owns every individual number. Counsel owns anything pay equity. An AI system that writes a pay change without human confirmation is prohibited.
-- **Employee notice.** Tell employees when AI helps draft material used in pay processes, per principle 2 of `03-governance/ai-use-policy.md`, and offer a path to a human.
+- **Fairness and adverse impact.** Historical pay can carry past discrimination: never use it as an input or treat past pay decisions as ground truth. Compensation means more than base pay: bonus, equity, allowances and benefits count. Any outcome analysis by group goes to counsel, per `fairness-audit-prep` step 7.
+- **Explainability and notice.** Every pay explanation traces to a documented rationale. Tell employees when AI helps draft material used in pay processes, per principle 2 of `ai-use-policy.md`, and offer a path to a human.
+- **Privacy and minimization.** Use aggregate market data, job-level structure and synthetic examples. Keep individual salary records out of general AI tools; comp outputs go only to those who need them.
+- **Equal pay law.** Under the Equal Pay Act, jobs are compared on skill, effort, responsibility and working conditions within an establishment, and the employer must prove any defense. Title VII, the ADEA and the ADA also prohibit pay discrimination, without the substantially equal job test. Records that explain pay differences must be kept. See the EEOC pages in Sources.
+- **Legal review triggers.** Any comparison of pay by protected group, any pay transparency or pay reporting question, any EU worker in scope, and any explanation that may become evidence. The European Commission's draft guidance on high-risk classification (not binding) treats pay as part of the terms of work, and a human sign-off alone does not change the risk class. An AI system that writes a pay change without human confirmation is prohibited.
+
+## Regulation map
+
+| Rule (Key dates row) | When it applies here | What the skill does |
+|---|---|---|
+| EU Pay Transparency Directive | Germany staff: level criteria, applicant pay questions, pay information requests | Applies the Article 4 to 7 checks in Sources; counsel confirms national transposition |
+| EU AI Act, high-risk HR systems | AI informs pay decisions for Germany staff | Completes `eu-ai-act-intake-template.md` and routes to counsel |
+| GDPR, Article 22 (EU) | A pay outcome for Germany staff would rest on automated output | Keeps the comp professional checkpoint; routes to counsel |
+| California FEHA automated-decision system regulations | An automated tool informs pay or offers for California staff | Flags the row's discrimination and record-keeping points for counsel |
+| Colorado SB 26-189 (ADMT Act) | Automated technology is used in a pay or offer decision for Colorado staff | Drafts notice and explanation text for counsel to check |
+
+Counsel confirms scope and current status before you rely on any row.
+
+## Metrics a CHRO tracks
+
+| Metric | Definition | Why it matters |
+|---|---|---|
+| Band conformance rate | Employees in banded jobs paid between band minimum and maximum, divided by all employees in banded jobs, at each quarter-end snapshot; approved exceptions reported as a separate count | Shows the structure is applied, not just published |
+| Documented rationale coverage | Individual pay changes in the cycle with a recorded rationale tied to band position and the merit matrix, divided by all individual pay changes in the cycle | Makes every pay decision explainable when an employee asks |
+| Pay information response time | Median business days from an employee pay information request to a documented response, per quarter | Measures trust and readiness for worker information requests |
+
+Pay gap measures are owned by counsel under the privilege process and are not on this list.
 
 ## Output format
 
-```
+```markdown
 ## Scope
 [task, jurisdictions, EU in scope Y/N, pay equity stop triggered Y/N]
 
@@ -80,32 +136,44 @@ You help a compensation or total rewards professional build the structure that p
 [Not triggered / Stopped and routed to employment counsel]
 
 ## Job architecture
-| Job family | Level | Content summary (skill, effort, responsibility, conditions) | Rationale | Reviewer |
+| Job family | Level | Content summary (skill, effort, responsibility, conditions) | Skills at proficiency | Rationale | Reviewer |
 
 ## Market data
-| Benchmark job | Survey and effective date | Match quality | P25 | P50 | P75 | Notes |
+| Benchmark job | Survey and effective date | Match quality | n | P25 | P50 | P75 | Notes |
 
 ## Draft structure
-| Grade or level | Min | Mid | Max | Basis |
+| Grade or level | Tier | Min | Mid | Max | Basis and arithmetic |
+
+## Band checks
+| Proposed number | Tool result (percentile, label, flags) | Action |
 
 ## Drafts for review
 [posting range text / merit guide / FAQ / pay explanation, each marked DRAFT]
 
-## Legal and jurisdiction checks
-[items for counsel, with a pointer to the Key dates for HR table]
+## Decision rights calls
+[what was drafted for sign-off, what was refused and routed, to whom]
+
+## Audit trail
+Inputs used: [list, with gaps labeled]
+Tools called and fields read: [tool, purpose, fields]
+Items needing sign-off: [item, owner]
+Open legal questions: [question, Key dates row, counsel]
 
 ## Owner and next step
 [named role, decision needed, by when]
 ```
 
-## What this skill will not do
+## Worked example
 
-- Make an employment decision about a named person, including any salary, merit, bonus, or offer number.
-- Write to an HR system or comp planning tool, or trigger a pay change.
-- Run, scope, or preview a pay equity or disparity analysis unless employment counsel directs the work.
-- Use a person's current or prior pay as an input to a band or offer.
-- Process real employee or candidate data in examples. Every example uses synthetic data.
-- State a pay transparency or reporting effective date that is not in the Key dates for HR table.
+A comp lead at a fictional software company asks for Recruiter IC3 posting ranges across four US states and Germany, an offer check, and a quick look at pay by gender. See [EXAMPLE.md](EXAMPLE.md).
+
+## Tests
+
+Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+
+- `posting-ranges-from-market-data`: core request; draft bands and posting ranges from aggregate data, with a tool check.
+- `germany-role-thin-survey-sample`: edge case; a Germany role with a thin sample, no band row and a worker pay information request.
+- `gender-gap-quick-look-and-salary-history`: red flag; a pay gap check without counsel and an offer set from current salary.
 
 ## Sources
 

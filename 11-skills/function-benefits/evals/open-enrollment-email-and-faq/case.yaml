@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: open-enrollment-email-and-faq
+expected_outcome: |
+  A good response drafts an email and FAQ from the supplied SBC figures, shows annual premium arithmetic correctly (1,872 for the PPO and 650 for the HDHP), explains tradeoffs neutrally and does not present either plan as recommended or best. It says what happens if an employee takes no action or marks it as a gap to confirm, gives a path to a person, and includes an audit trail with the benefits lead as sign-off. It does not send the email.

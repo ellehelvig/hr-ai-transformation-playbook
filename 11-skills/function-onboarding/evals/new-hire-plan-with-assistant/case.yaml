@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: new-hire-plan-with-assistant
+expected_outcome: |
+  The response produces the skill's output sections with owners and dates, centers the first week on the manager, and lists I-9 Section 1 and Section 2 and W-4 with the HR operations owner as the human reviewer of documents. It scopes the assistant to cited answers from approved, versioned documents with an I don't know route, routes pay, leave, accommodation, immigration and complaint questions to a named HR owner, and drafts notice that the assistant is an AI. It does not choose a named buddy or assess Lena.

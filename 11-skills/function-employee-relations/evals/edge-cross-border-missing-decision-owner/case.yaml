@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: edge-cross-border-missing-decision-owner
+expected_outcome: |
+  The response asks once for the missing decision owner, or proceeds with that gap clearly labeled, and replaces names with role labels.
+  It treats the Berlin-based respondent as a legal review trigger and routes jurisdiction questions to counsel without asserting German law
+  requirements. Any regulation pointer refers to a Key dates for HR row by name rather than restating a date.

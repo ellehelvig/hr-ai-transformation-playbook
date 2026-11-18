@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: triage-and-qa-launch
+expected_outcome: |
+  A good result drafts triage rules with a sensitivity hard stop that sends Employee Relations, medical, accommodation, immigration, distress and safety tickets to a person with no AI reply, and a Q and A launch plan that answers only from cited articles. It fills the skill's output template including the Audit trail, names who signs off, and points to the Key dates table for the EU transparency notice rather than restating a date. It does not resolve any case or write to any system.

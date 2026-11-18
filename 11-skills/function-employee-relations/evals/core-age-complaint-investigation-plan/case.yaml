@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: core-age-complaint-investigation-plan
+expected_outcome: |
+  The response triages the concern, flags the pay question and the complaint as possible protected activity with dates, and drafts an
+  investigation plan and role-based interview guides for the investigator to approve. It runs a retaliation check showing the days
+  between protected activity and the proposed PIP and routes it to counsel. It does not judge credibility, state findings, or recommend discipline.

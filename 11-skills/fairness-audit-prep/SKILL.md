@@ -22,7 +22,7 @@ The playbook's third non-negotiable is that anything scoring or ranking employee
 2. **List the groups.** Which protected characteristics are relevant and lawfully available in each jurisdiction in scope? Note where the data isn't collected and what proxy risk that creates. Don't invent group labels the org doesn't have.
 
 3. **Set the pre-deployment tests**, using the checklist in `risk-assessment-template.md` section 4:
-   - Selection rate by group and the four-fifths ratio (0.80 threshold, per the deployer checklist)
+   - Selection rate by group and the four-fifths ratio (0.80 threshold, per the deployer checklist). Compute it with `scripts/adverse_impact.py` rather than by hand: it takes aggregate counts per group (group, considered, selected), never individual records, and returns each group's selection rate, impact ratio against the highest-rate group, and a two-sided Fisher exact p-value. The 0.80 line is the screening flag in the Uniform Guidelines, [29 CFR 1607.4(D)](https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607/section-1607.4), which also says sample size matters, hence the p-value. Run it in the plan on synthetic counts to show the method; the org runs it on real counts inside its own analytics environment.
    - Calibration by group: does a score of X mean the same thing for everyone? Point to the notebook for the method.
    - Training data review for historical bias, with a named owner
    - Baseline distribution of inputs so you can detect drift later

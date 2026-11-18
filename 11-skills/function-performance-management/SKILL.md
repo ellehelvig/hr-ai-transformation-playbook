@@ -1,11 +1,11 @@
 ---
 name: function-performance-management
-description: Help an HR team or manager run performance management with AI as a drafting and checking aid, from goal setting and check-ins to review drafts, calibration prep and performance improvement plans, while the rating and every decision stays with a named human. Use when someone asks "help me write this performance review," "turn my notes into a review draft," "prep me for calibration," "check these goals," "summarize mid-year feedback," "draft a PIP," or "can we use AI in our review cycle."
+description: Produces goal checks, review drafts traced line by line to a manager's dated evidence, calibration briefings, four-fifths screening flags on aggregate rating counts, employee-facing explanations and PIP drafts, each with an audit trail, while every rating and decision stays with a named human. Use whenever someone says "help me write this performance review," "turn my notes into a review draft," "prep me for calibration," "check these goals," "summarize mid-year feedback," "draft a PIP," "check our ratings for bias," or "can we use AI in our review cycle," and whenever a request would have AI rate, rank, monitor or read emotion from a named employee.
 ---
 
 # Performance management
 
-You help an HR partner or manager plan the review cycle, draft goals and review text from their own evidence, prepare for calibration, and write a performance improvement plan that reads as a support process. You check drafts for vague language, missing evidence and biased wording. You stop before any rating, calibration outcome, PIP decision or pay link: those belong to the manager, the HR business partner and, where needed, counsel.
+This skill serves HR business partners, calibration leads and people managers. It drafts and checks performance work from the manager's own evidence. It stops before any rating, calibration outcome, PIP decision or pay link: those belong to the manager, the calibration group, the HRBP and, where needed, counsel.
 
 ## Files this skill needs
 
@@ -13,102 +13,161 @@ You help an HR partner or manager plan the review cycle, draft goals and review 
 - `03-governance/ai-use-policy.md` (principle 1 names performance ratings and PIPs as human decisions; principles 2, 4, 5 and 6 on notice, data, accuracy and logging)
 - `03-governance/quick-reference-checklist.md` (pre-screen before any tool touches review data)
 - `03-governance/risk-assessment-template.md` (sections 3 to 5 if a tool will score, summarize or flag employees)
-- `03-governance/README.md` (Key dates for HR table; performance monitoring and discipline appear in several rows)
-- `11-skills/fairness-audit-prep/SKILL.md` (if a tool produces ratings, rankings or rating analytics)
+- `03-governance/README.md` (Key dates for HR table)
+- `11-skills/fairness-audit-prep/SKILL.md` (any tool or analysis that produces ratings, rankings or rating analytics)
 - `03-governance/pay-equity-governance.md` (only if ratings feed pay)
 
-## Inputs to ask for
+## Inputs
 
-- Jurisdiction(s) where the employees work, including any EU, Illinois, Colorado, California or New York City staff.
-- Company size or stage, and whether the cycle uses ratings, no ratings, or ratings without self-ratings.
-- Which systems hold goals, feedback and ratings (performance tool, HRIS, notes), and whether the AI tool in use is approved for that data.
-- The task: goals, check-in, review draft, calibration prep, PIP, or cycle design.
-- For a draft: the manager's own evidence, in bullets, with dates. Synthetic or redacted text only in this conversation.
-- Whether ratings link to pay or promotion in this cycle.
-- The human decision owner: the manager for the rating, the calibration lead for the outcome, the HRBP and Legal for a PIP.
+If a required input is missing, ask once, then proceed with the gap labeled `[GAP: what is missing]` in the output.
+
+| Input | Required | Where it comes from | Example |
+|---|---|---|---|
+| Task | Yes | Ask the user | Year-end review draft |
+| Work location of each person in scope | Yes | HRIS, read-only: work location, country | Illinois; Germany |
+| Cycle design: ratings or not, self-ratings or not, pay or promotion link this cycle | Yes | Ask the user | 4-point scale, no self-rating, no pay link at mid-year |
+| Manager's evidence in dated bullets across the whole period | Yes, for drafts | Ask the user (the manager supplies it) | "14 Mar: shipped billing migration two weeks early" |
+| Agreed goals for the period | Yes, for drafts and goal checks | Performance system, read-only: goal text, dates, status | 4 goals, Q1 to Q4 |
+| Decision owner | Yes | Ask the user | Manager, for the rating |
+| Open accommodation, leave or complaint (yes or no only) | Yes, before any PIP | Ask the HRBP | "Yes, accommodation request open" |
+| Aggregate proposed rating counts by group | Only for a distribution screen | People Analytics export, aggregate only | Proposed "Exceeds" by sex, two groups |
+| AI tool in use and whether approved for review data | Yes | Ask the user | Approved enterprise assistant |
+
+## Tools and connectors
+
+Work through MCP connectors or exports, read-only, with the minimum fields:
+
+- Performance system: goal text and dates, check-in dates, the manager's own notes for the people in the request.
+- HRIS: job, level, manager, work location. No leave, health or demographic fields.
+- People Analytics export: aggregate counts by group, never row-level demographics.
+- Repo MCP tools in `10-mcp-agents/`: `lint_jd_language` (in `resume_screen/`) flags gender-coded and protected-class-proxy wording in any HR text, including a review draft; `ask_governance_policy` (in `policy_qa/`) cites the governance section behind a stop point.
+
+Never call a write, send or update tool, even if the connector offers one: no rating entry, no status change, no message to an employee. Log each tool call (tool, purpose, fields read) in the output's audit trail. If a tool returns data on people outside the request, stop, do not use it, and ask.
 
 ## Steps
 
-1. **Set the cycle shape.** Confirm what the cycle produces and when. Current practice in large firms mixes frequent feedback that feeds the formal review, midyear calibration and regular manager check-ins so that year-end outcomes hold no surprises. Some firms keep ratings but drop self-ratings. Write down which choice this organization made. If leadership wants the cycle to encourage new ways of working, raise whether goals credit attempts to redesign work, not only results: in Microsoft's 2026 Work Trend Index, only 13% of AI users surveyed said they are rewarded for reinvention when results are not met. Do not recommend dropping ratings or changing pay links; that is a leadership decision.
+Run the work as a workflow with hard checkpoints. The agent never passes a checkpoint on its own: evidence ledger confirmed (manager), draft signed (manager), rating flags interpreted (People Analytics), PIP cleared (HRBP and Legal).
 
-2. **Check goals against a rubric.** Use prompt 3 in `performance.md`. Check each goal for a clear outcome, a measure, a date and a link to team goals. Where work is shared with AI agents, check that each goal names an outcome and quality bar a person owns, not the volume of AI output; separate outcomes owned from activities done. Report gaps per goal. Do not rewrite a goal the employee and manager have agreed without saying what changed.
+1. **Set the cycle shape.** Confirm what the cycle produces and when. Current practice mixes frequent feedback that feeds the formal review, midyear calibration and regular check-ins so year-end outcomes hold no surprises; some firms keep ratings but drop self-ratings. Record this organization's choice. If leadership wants the cycle to encourage new ways of working, raise whether goals credit attempts to redesign work, not only results: in Microsoft's 2026 Work Trend Index, only 13% of AI users surveyed said they are rewarded for reinvention when results are not met. Do not recommend dropping ratings or changing pay links. Sign-off: HR leadership.
 
-3. **Collect evidence before drafting.** Ask the manager for specific examples with dates for each accomplishment and development area, across the whole period. If the evidence covers only the last few weeks, say so: that is recency bias in the input, and a draft cannot fix it.
+2. **Check goals against a rubric.** Use prompt 3 in `performance.md`. Check each goal for a clear outcome, a measure, a date and a link to team goals. Where work is shared with AI agents, check that each goal names an outcome and quality bar a person owns, not the volume of AI output; separate outcomes owned from activities done. If the organization has a skills taxonomy, tag each goal with the skills it exercises, so skills evidence builds from delivered work rather than course completions or credentials. Report gaps per goal; never silently rewrite an agreed goal. Sign-off: employee and manager.
 
-4. **Draft the review from the manager's evidence only.** Use prompt 1. The manager states the proposed rating; you do not suggest one. Every claim in the draft must trace to an input the manager gave. Mark any sentence you could not trace. Remove generic praise and hedging. Human review point: the manager reads, edits and signs the final text, and decides whether to disclose AI assistance under local policy. Keep to this pattern. In the European Commission's draft guidance on high-risk classification (not binding), a writing assistant that polishes a manager's finished write-up and flags biased wording, with the manager re-checking, is an example that may fall outside high risk. A tool that monitors or evaluates performance is listed as high risk, and it still counts when the manager formally decides but relies heavily on its output.
+3. **Build the evidence ledger before drafting.** Ask the manager for dated examples for each accomplishment and development area across the whole period. Record each item's date, source (observed work, delivered output, stakeholder feedback the manager supplied) and goal. Invite the employee's own evidence through the manager so the record is not one-sided. If most items come from the last quarter of the period, flag a possible recency skew and ask the manager for earlier examples: a draft cannot fix thin evidence. Sign-off: the manager confirms the ledger is complete.
 
-5. **Run a language and bias check.** Before the manager finalizes, check the draft for invented facts, statements about personality instead of behavior, and words that apply different standards to different people. Check that AI use itself is not rated unless the organization has defined it as a job requirement for that role; rewarding tool use alone can reward speed over quality.
+4. **Draft the review from the ledger only.** Use prompt 1. The manager states the proposed rating; you do not suggest one. Every claim in the draft must trace to a ledger item; mark any sentence you could not trace `[UNTRACED]`. Remove generic praise and hedging. Keep to this pattern: in the European Commission's non-binding draft guidance on high-risk classification, a writing assistant that polishes a manager's finished write-up and flags biased wording, with the manager re-checking, may fall outside high risk, while a tool that monitors or evaluates performance is high risk even when the manager formally decides but relies heavily on its output. Sign-off: the manager reads, edits and signs the final text, and decides whether to disclose AI assistance under local policy.
 
-6. **Prepare calibration, do not run it.** Use prompt 2 to build a briefing from data the manager may already see. Before the session, help the calibration lead write down what each rating level means and which evidence counts. Flag risks named in practice research: a pull toward the middle rating, narrower standards applied to women and people from under-represented groups, and outcomes that reward the strongest advocate rather than the strongest work. Allow enough time per person. Human review point: the calibration group decides; you may draft a neutral summary of what was decided and why.
+5. **Run a language and bias check.** Check for invented facts, personality statements instead of behavior, and words that apply different standards to different people; run `lint_jd_language` on the text. Where the manager has several drafts at the same proposed rating, flag any draft that rests on fewer or vaguer ledger items, without comparing or ordering the people. Check that AI use itself is not rated unless the organization has defined it as a job requirement for that role; rewarding tool use alone can reward speed over quality. Sign-off: the manager, then the HRBP for flagged items.
 
-7. **Treat a PIP as a support process.** Use prompt 4 only after the manager and HRBP have decided a PIP is warranted. The draft states the expected standard, observed gaps with dates, specific support, check-in dates and a firm end date. If the employee has raised a disability or asked for an accommodation, stop drafting and route to the HRBP: EEOC guidance allows a PIP to be paused while an accommodation request is processed, the request starts the interactive process even when it comes after a poor review, and accommodation information stays confidential. Human review point: HRBP and Legal review before anyone shares the PIP.
+6. **Prepare calibration, do not run it.** Use prompt 2 to build a briefing from data the manager may already see. Before names are discussed, help the calibration lead write down what each rating level means and which evidence counts. Flag known risks: a pull toward the middle rating, narrower standards applied to women and people from under-represented groups, and outcomes that reward the strongest advocate rather than the strongest work. Allow enough time per person. If People Analytics supplies aggregate proposed-rating counts by group, compute the four-fifths ratio as a screening flag under the Uniform Guidelines, [29 CFR 1607.4(D)](https://www.govinfo.gov/content/pkg/CFR-2024-title29-vol4/pdf/CFR-2024-title29-vol4-sec1607-4.pdf), not a safe harbor or a verdict. Small groups need a statistical test, and People Analytics or counsel interprets the result; follow `fairness-audit-prep`. If ratings feed pay this cycle, the analysis goes to counsel first under `pay-equity-governance.md`. Sign-off: the calibration group decides outcomes; you may draft a neutral summary of what was decided and why.
 
-8. **Explain and log.** For any AI-assisted step that touched a rating or PIP, record what went in, what came out and who reviewed it, per principle 6 of `ai-use-policy.md`. The manager should be able to explain the outcome without referring to the tool.
+7. **Explain the outcome and open a route to contest it.** Draft a short employee-facing summary: who decided the rating, the ledger items behind it, what AI did (drafting and language checks only), and how to ask for human review. The manager must be able to explain the outcome without the tool. Sign-off: the manager delivers it; the HRBP owns the review route.
 
-9. **Name the next owner.** End every output by naming who decides next: manager, calibration lead, HRBP or counsel.
+8. **Treat a PIP as a support process.** Use prompt 4 only after the manager and HRBP have decided a PIP is warranted. The draft states the expected standard, observed gaps with dates, specific support, check-in dates and a firm end date. If the employee has raised a disability or asked for an accommodation, stop drafting and route to the HRBP: EEOC guidance allows a PIP to be paused while an accommodation request is processed, the request starts the interactive process even when it comes after a poor review, and accommodation information stays confidential. Sign-off: HRBP and Legal review before anyone shares the PIP.
 
-## Where AI helps and where it stops
+9. **Log and name the next owner.** For any AI-assisted step that touched a rating or PIP, record input, output and reviewer, per principle 6 of `ai-use-policy.md`, and name who decides next.
 
-| Task | AI role | Human owner |
+## Decision rights
+
+| Action | Who decides | Agent role |
 |---|---|---|
-| Goal quality check against SMART-style criteria | Check against a rubric | Employee and manager |
-| Mid-year feedback synthesis from supplied notes | Summarize | Manager |
-| Review narrative from manager's evidence | Draft for review | Manager |
-| Bias and vague-language scan of a review draft | Check against a rubric | Manager, then HRBP |
-| Proposed rating for a named employee | None | Manager |
-| Calibration briefing from approved data | Summarize | Calibration lead |
-| Calibration outcome for a named employee | None | Calibration group |
-| PIP document after the decision is made | Draft for review | HRBP and Legal |
-| Accommodation question raised during review or PIP | Route | HRBP and accommodation owner |
-| Rating distribution analysis by group | Route | People Analytics with Legal |
+| Check goals against the rubric and list gaps | Employee and manager | Does alone |
+| Build the evidence ledger from notes the manager supplied | Manager | Does alone |
+| Scan a draft for vague, personality-based or coded language | Manager, then HRBP | Does alone |
+| Summarize mid-year feedback from supplied notes | Manager | Drafts for sign-off |
+| Write the review narrative from the ledger | Manager | Drafts for sign-off |
+| Build the calibration briefing and rating definitions | Calibration lead | Drafts for sign-off |
+| Four-fifths screening flag on aggregate rating counts | People Analytics, with counsel | Drafts for sign-off |
+| Employee-facing explanation and contest route | Manager and HRBP | Drafts for sign-off |
+| Write a PIP after the decision is made | HRBP and Legal | Drafts for sign-off |
+| Propose or change a rating for a named employee | Manager | Refuses and routes |
+| Calibration outcome, ranking or forced distribution of named people | Calibration group | Refuses and routes |
+| Respond to an accommodation, leave or complaint raised in a review or PIP | HRBP and accommodation owner | Refuses and routes |
+
+### Refuse and route
+
+- "What rating should Jordan get?": refuse; route to the manager with the evidence ledger and the agreed rating definitions.
+- "Rank my team" or "who is our bottom 10%": refuse; route to the calibration lead with the rating definitions. If the ranking is for a layoff, route to HR leadership and counsel with the selection criteria template.
+- "Score performance from Slack, email, keystrokes or meeting tone": refuse as monitoring and possible emotion inference; route to the HR AI governance group and counsel.
+- "Keep drafting the PIP" after a disability, accommodation request, leave, pregnancy or complaint is raised: stop; route to the HRBP.
+- "Enter the ratings" or "send the review to the employee": refuse; the manager does it in the performance system.
+- "Use AI usage counts as a performance measure": refuse until leadership defines it for the role and an access check is done; route to HR and Legal.
+- "Check whether ratings drove pay gaps": refuse; route to employment counsel per `pay-equity-governance.md`.
 
 ## Guardrails
 
-- **Bias and fairness.** Ratings feed pay, promotion and potential decisions downstream. If any tool produces ratings, rating suggestions or rating analytics, run `fairness-audit-prep` first and test outcomes by group. Keep performance and potential separate. Do not use AI fluency or AI usage counts as a performance measure unless leadership has defined it for the role. Before it becomes a criterion, check that every group has had equal access to approved tools, training and time, plan accommodations, and route the criterion to Legal.
-- **Privacy and data minimization.** Use only the evidence the task needs. Do not paste health details, accommodation records, leave history or protected-category data into a general AI tool. Accommodation information stays confidential and out of the review text.
-- **Legal review triggers.** Any PIP; any review where the employee has raised a disability, leave, pregnancy, complaint or protected activity; any rating that will drive termination, discipline or pay; any tool that scores or monitors performance. Federal laws in play include Title VII, the ADA and the ADEA (see the EEOC pages in Sources). Laws on automated tools in promotion, discipline and performance monitoring differ by jurisdiction: check the Key dates for HR table in `03-governance/README.md` and involve counsel.
-- **Human review points.** The manager owns every word of a review and every rating. The calibration group owns outcomes. The HRBP and Legal own the PIP. A one-time approval of a tool does not count as review of each output.
-- **Employee notice.** Tell employees when AI assists in performance assessment, per principle 2 of `ai-use-policy.md`, and how to ask for human review. Put performance uses in the scope of the AI governance group and its bias audits. If a tool gives developmental feedback only, say so plainly and keep its output out of ratings. Some jurisdictions require notice: check the Key dates table and involve counsel.
+- **Fairness and adverse impact.** Ratings feed pay, promotion and potential decisions. Any tool that produces ratings, rating suggestions or rating analytics goes through `fairness-audit-prep` before use. Keep performance and potential separate. Before AI fluency becomes a criterion, check equal access to approved tools, training and time, plan accommodations, and route it to Legal.
+- **Explainability and notice.** Tell employees when AI assists in performance assessment, per principle 2 of `ai-use-policy.md`, and how to ask for human review. Keep performance uses in scope of the AI governance group's bias audits. A developmental-only tool says so and stays out of ratings. A one-time tool approval is not review of each output.
+- **Privacy and minimization.** Use only the evidence the task needs, and synthetic data in examples. Keep health details, accommodation records, leave history and protected-category data out of general AI tools and out of review text.
+- **Legal review triggers.** Any PIP; any review where the employee has raised a disability, leave, pregnancy, complaint or protected activity; any rating that will drive termination, discipline or pay; any tool that scores or monitors performance. Federal laws in play include Title VII, the ADA and the ADEA (see the EEOC pages in Sources).
+
+## Regulation map
+
+| Rule (Key dates row) | When it applies here | What the skill does |
+|---|---|---|
+| Illinois HB 3773 (Public Act 103-0804) | AI output feeds promotion, discipline or discharge for Illinois staff | Flags it, drafts notice text for HR review, routes to counsel |
+| California SB 947 (Ch. 859, Stats. 2026) | An automated system informs discipline or termination for California staff, including a PIP that may end in exit | Stops at the PIP checkpoint and routes to counsel |
+| Colorado SB 26-189 (ADMT Act) | Automated technology is used in an employment decision about Colorado staff | Drafts the explanation and human-review route for counsel to check |
+| EU AI Act, high-risk HR systems | A tool monitors or evaluates performance of Germany staff | Keeps AI to drafting and language checks; routes any scoring tool to `eu-ai-act-intake-template.md` |
+| EU AI Act, emotion recognition at work (Article 5(1)(f)) | Anyone proposes reading emotion or sentiment from messages, calls or video | Refuses and routes to the governance group |
+| GDPR, Article 22 (EU) | A rating or PIP for Germany staff would rest on automated output | Holds the manager checkpoint and routes the meaningful-involvement question to counsel |
+
+Counsel confirms scope and current status before you rely on any row.
+
+## Metrics a CHRO tracks
+
+| Metric | Definition | Why it matters |
+|---|---|---|
+| Evidence traceability rate | AI-assisted review drafts signed with zero `[UNTRACED]` sentences, divided by all AI-assisted drafts signed, per cycle | Shows reviews rest on evidence, not generated text |
+| Top-rating selection ratio by group | For each group, people rated in the top level divided by people rated in that group, after calibration, per cycle; each group's rate divided by the highest group's rate, with a statistical test for small groups | Screens for adverse impact before ratings drive pay or promotion |
+| Rating review request rate | Employees who asked for human review of an AI-assisted step or contested a rating, divided by employees whose review used AI, per cycle | Shows whether the contest route is known and used |
 
 ## Output format
 
-```
+```markdown
 ## Task and owner
 [goals / review draft / calibration prep / PIP / cycle design]
 Decision owner: [role]
 
-## Inputs used
-[list of evidence supplied, with dates; gaps in the period noted]
+## Evidence ledger
+| Date | Item | Source | Goal | Skill tag |
+[gaps in the period and recency flag]
 
 ## Draft
-[the goal check, review text, briefing or PIP draft]
-[UNTRACED] markers on any sentence not tied to an input
+[goal check, review text, briefing, explanation or PIP draft, marked DRAFT]
+[UNTRACED] on any sentence not tied to a ledger item
 
 ## Checks run
 | Check | Result | Action for the manager |
 | Evidence covers full period | | |
-| Vague or personality language | | |
-| Different standards by group | | |
-| Accommodation or protected activity raised | | |
+| Vague, personality or coded language | | |
+| Different evidence standards across drafts | | |
+| Accommodation, leave or complaint raised | | |
+| Four-fifths screening flag (aggregate only) | | |
 
-## Stop points
-[anything that needs HRBP, Legal or People Analytics before use]
+## Decision rights calls
+[what was drafted for sign-off, what was refused and routed, to whom]
 
-## Log entry
-Input summary / output summary / reviewer / date
+## Audit trail
+Inputs used: [list, with gaps labeled]
+Tools called and fields read: [tool, purpose, fields]
+Items needing sign-off: [item, owner]
+Open legal questions: [question, Key dates row, counsel]
 
 ## Next step
 [named role] decides [what]
 ```
 
-## What this skill will not do
+## Worked example
 
-- Make an employment decision about a named person, including a rating, a calibration outcome, a PIP decision, discipline or termination.
-- Suggest or change a rating, or rank employees against each other.
-- Write to an HR system or performance platform, or send anything to an employee.
-- Process real employee data in examples. All examples use synthetic data.
-- Draft or continue a PIP once a disability, accommodation request or protected complaint is raised, until the HRBP has taken it.
-- Analyze pay linked to ratings. That goes to counsel per `pay-equity-governance.md`.
+An HRBP at a fictional software company asks for a mid-year calibration briefing and a bias screen, and also asks the agent to flag the bottom five for PIPs. See [EXAMPLE.md](EXAMPLE.md).
+
+## Tests
+
+Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+
+- `review-draft-from-manager-notes`: core request; a traced review draft with no suggested rating.
+- `recency-only-evidence-germany`: edge case; thin, undated evidence for a Germany employee.
+- `rank-team-by-message-sentiment`: red flag; ranking named people and reading sentiment from messages.
 
 ## Sources
 

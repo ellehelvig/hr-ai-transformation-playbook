@@ -1,82 +1,136 @@
 ---
 name: function-change-management
-description: Help an HR or change team plan the people side of an organizational change, including impact assessment, stakeholder and sponsor mapping, communication plans, resistance diagnosis, adoption measurement, and change fatigue checks, with AI rollouts as a common case. Use when someone asks "build a change plan for this rollout," "who is impacted and how much," "map our stakeholders," "what should the sponsor do," "draft the change comms," "why aren't people adopting this," "how do we measure adoption," or "are our teams hitting change fatigue."
+description: Plans the people side of an organizational change at group level, producing a yesterday and tomorrow description with human and AI decision zones, an impact grid by group, a sponsor and stakeholder map, draft communications and manager talking points, a resistance diagnosis, adoption measures with expand, pause, or stop triggers, and a change-load view, with AI rollouts as the common case. Use whenever someone asks for a change plan for a rollout or reorg, who is impacted and how much, a stakeholder map or sponsor roles, change comms or an FAQ, why people are not adopting a tool, how to measure adoption, whether teams have change fatigue, or which change model is proven, and before any message about a change to pay, terms, reporting lines, or location goes out.
 ---
 
 # Change management
 
-You help the people leading a change see who it affects and how much, set up sponsors and managers to lead it, plan what people hear and when, and measure whether the new way of working takes hold. You draft plans, maps, messages, and measures at group level. You stop before any judgment about a named person's attitude or performance, and you route anything that changes terms and conditions of employment to Legal.
+This skill serves the sponsor, change lead, and HR lead running a change. It produces a before and after description, an impact grid, a sponsor map, draft messages, a resistance watch, adoption measures, and a change-load view, all at group level. It stops before any judgment about a named person, never sends a message, and routes changes to terms of employment to counsel.
 
 ## Files this skill needs
 
 - `04-enablement/adoption-playbook.md` (roles table, staged plan, measures for the whole task, expand, pause, or stop criteria)
 - `04-enablement/workshop-facilitator-guide.md` (common resistance patterns and how to respond)
 - `04-enablement/hr-ai-literacy-curriculum.md` (Module 3 surfaces concerns about AI; the training side of an AI rollout)
-- `01-use-cases/work-redesign-people-partner.md` (how the work and the manager's role change when AI enters a workflow)
-- `06-roadmap/transformation-roadmap-template.md` (maturity scale and phase gates, for pacing change)
+- `01-use-cases/work-redesign-people-partner.md` (before and after table; how the work and the manager's role change when AI enters a workflow)
 - `02-prompt-library/people-analytics.md` (prompt 2, survey open-text synthesis, for pulse checks)
-- `03-governance/ai-use-policy.md` (principle 2, employees have a right to know)
+- `03-governance/ai-use-policy.md` (principle 2, employees have a right to know; the rule on monitoring communications or sentiment)
 - `03-governance/risk-assessment-template.md` (section 5, transparency and employee notice)
 - `03-governance/quick-reference-checklist.md` (pre-screen on notice and consent)
 - `03-governance/README.md` (the Key dates for HR table)
 
-## Inputs to ask for
+## Inputs
 
-- What is changing, in one sentence, and the date or phase it starts.
-- Jurisdictions and sites in scope, and whether any group is unionized or has a works council.
-- Company size, and which groups, roles, and locations the change touches.
-- Which systems and channels are involved: HRIS for group sizes, intranet, survey tool, learning system, and any new tool being rolled out.
-- Other changes landing on the same groups in the same period.
-- The human decision owners: the primary sponsor who authorizes the change, the change lead, and the HR lead for people impacts.
+| Input | Required | Where it comes from | Example |
+|---|---|---|---|
+| What is changing, and the start date or phase | Yes | Ask the user | AI case-drafting assistant, pilot from 2 March |
+| Primary sponsor, change lead, and HR lead | Yes | Ask the user | CHRO; HR transformation lead; HRBP lead |
+| Affected groups and their sizes | Yes | HRIS, read-only: org unit, job family, site, work arrangement (remote, part-time, frontline) counts | 30 service center agents, 180 managers |
+| Sites, jurisdictions, and any union or works council | Yes | HRIS, read-only: headcount by country, state, site; ask labor relations | US states, Germany (works council) |
+| Whether AI is involved, what it does, and what data it uses | Yes | Ask the user; vendor documentation | Drafts replies from case history |
+| Other changes hitting the same groups in the period | Yes | Ask the user | New case system in Q1 |
+| Channels and feedback routes | No | Ask the user | Team meetings, intranet, pulse survey |
+| Adoption and usage data | No | Tool usage export, read-only: active users and task counts by group, weekly | 21 of 30 agents active in week 4 |
+| Training completion | No | LMS, read-only: completion counts by group | 26 of 30 completed |
+| Pulse results | No | Survey platform, read-only: scores and themes for groups at or above threshold | Trust item 3.4 of 5 |
+
+If a required input is missing, ask once in one message. Then proceed, write `GAP:` and the missing input in the affected section, and list it in the audit trail.
+
+## Tools and connectors
+
+The agent reads approved read-only connectors or exports (HRIS, tool usage export, LMS, survey platform) and only the fields in the Inputs table, aggregated by group. No names, per-person usage logs, or respondent-level rows.
+
+- **Email, chat, and intranet connectors:** not used to send, post, or schedule anything. Drafts are returned to the change lead.
+- **Repo MCP tools** (`10-mcp-agents/`): `ask_governance_policy` cites the notice and monitoring rules in `03-governance/` and returns `no_match` rather than guessing. `lint_jd_language` checks messages, FAQs, and talking points for gendered wording and protected-class-proxy phrases such as "digital native".
+
+Rules for every tool call:
+
+- Never call a write, send, post, or update tool, even if the connector offers one.
+- Log each call in the audit trail: tool, purpose, fields read.
+- If a tool returns per-person usage, message content, or people outside the affected groups, stop, discard it, and ask the user.
+- Report survey and usage data at group level with small groups suppressed.
 
 ## Steps
 
-1. **Describe yesterday and tomorrow.** Write how the work is done today and how it will be done after the change, in plain terms. If the change involves AI, use the before and after table pattern in `01-use-cases/work-redesign-people-partner.md`. Follow one real request through today's process end to end, and ask the people closest to the work where it is harder than it should be. Redesign before you automate: combine handoffs, cut steps that do not change the outcome, and agree standard inputs and a definition of done. Then mark each step as human-led, human with AI support, or run by AI within set limits, and name where a person checks the output. The primary sponsor confirms the description.
+1. **Describe yesterday and tomorrow.** Write how the work is done today and how it will be done after the change, in plain terms. For AI, use the before and after table in `01-use-cases/work-redesign-people-partner.md`. Follow one real request end to end and ask the people closest to the work where it is harder than it should be. Redesign before you automate: combine handoffs, cut steps that do not change the outcome, and agree standard inputs and a definition of done. Then mark each step human-led, human with AI support, or run by AI within set limits, and name the checkpoint where a person reviews the output before it takes effect. Sign-off: the primary sponsor confirms the description.
 
-2. **Assess impact by group.** For each affected group, check each aspect the change might touch: processes, systems, tools, job roles, critical behaviors, mindsets, reporting structure, performance reviews, compensation, and location. Rate the degree of impact per group. Check whether the change moves work onto managers, such as coaching, approvals, or answering questions, and what time, tools, and guidance come with it. Any impact on compensation, reporting lines, or location goes to the HR lead and Legal before plans go further. Use groups, not names.
+2. **Assess impact by group.** For each affected group, check processes, systems, tools, job roles, critical behaviors, mindsets, reporting structure, performance reviews, compensation, and location. Rate the degree of impact per group. Check whether the change moves work onto managers (coaching, approvals, questions) and what time and guidance come with it. List the skills the new way of working needs per group. Any impact on compensation, reporting lines, or location goes to the HR lead and counsel before plans go further. Sign-off: the change lead.
 
-3. **Map stakeholders and set sponsor roles.** List the primary sponsor, other sponsors whose areas are affected, people managers, HR, IT, Privacy, employee representatives, and the affected groups. The primary sponsor authorizes the change and is accountable for its results. Prosci's research describes the sponsor's job as active and visible participation, building a coalition of other leaders, and communicating directly. Record the role each person must play, and name a gap where no one holds it. Before launch, check that senior leaders tell the same story about the change. In Microsoft's 2026 Work Trend Index survey of 20,000 knowledge workers who use AI, only 26% said their leadership was clearly and consistently aligned on AI. A change with no active sponsor goes on hold, as `04-enablement/adoption-playbook.md` says of any missing owner.
+3. **Map stakeholders and set sponsor roles.** List the primary sponsor, other sponsors whose areas are affected, people managers, HR, IT, Privacy, employee representatives, and the affected groups. The primary sponsor authorizes the change and is accountable for its results. Prosci's research describes the sponsor's job as active and visible participation, building a coalition of other leaders, and communicating directly. Name any role no one holds. Before launch, check that senior leaders tell the same story: in Microsoft's 2026 Work Trend Index survey of 20,000 knowledge workers who use AI, only 26% said their leadership was clearly and consistently aligned on AI. A change with no active sponsor goes on hold, as `04-enablement/adoption-playbook.md` says of any missing owner. Sign-off: the primary sponsor.
 
-4. **Use a change model as a lens, not a guarantee.** ADKAR (Awareness, Desire, Knowledge, Ability, Reinforcement) from Prosci helps find where an individual's progress is blocked. Kotter's eight steps give a leader-led sequence for organizational change. Treat both as structured checklists. A 2012 literature review of Kotter's model found support for most steps but no formal study covering the whole model, and Prosci's own comparison of models is written by the firm that sells ADKAR. Say this when a leader asks which model is "proven."
+4. **Use a change model as a lens, not a guarantee.** ADKAR (Awareness, Desire, Knowledge, Ability, Reinforcement) from Prosci helps find where an individual's progress is blocked. Kotter's eight steps give a leader-led sequence. Both are structured checklists. A 2012 literature review of Kotter's model found support for most steps but no formal study of the whole model, and Prosci's own comparison of models is written by the firm that sells ADKAR. Say this when a leader asks which model is "proven."
 
-5. **Bring workers in early.** Invite the people who do the work to help define the problem, shape the design, test training, and plan the transition. MIT researchers who studied AI adoption recommend worker input at each of those stages. Where employees are represented, the employer must bargain in good faith over changes to wages, hours, and other terms and conditions, so route those changes to Legal and labor relations before announcing them.
+5. **Bring workers in early.** Invite the people who do the work to help define the problem, shape the design, test training, and plan the transition. MIT researchers who studied AI adoption recommend worker input at each of those stages. Where employees are represented, the employer must bargain in good faith over changes to wages, hours, and other terms and conditions, so route those changes to counsel and labor relations before announcing them. Where there is a works council, plan its consultation into the timeline before decisions are final. Sign-off: the change lead, with labor relations where employees are represented.
 
-6. **Draft the communication plan.** For each group, set the message, sender, channel, timing, and the feedback route. Employees want to hear the business reason from a senior leader and the personal impact from their own manager, so brief and train middle managers before their teams. Describe AI changes at the level of tasks, not whole jobs, which makes them feel less threatening. If AI is part of the change, tell people what it does, what data it uses, who reviews its output, and how to ask for a human, per principle 2 of `03-governance/ai-use-policy.md` and section 5 of `03-governance/risk-assessment-template.md`. The change lead and the sponsor approve every message before it goes out.
+6. **Draft the communication plan.** For each group, set the message, sender, channel, timing, and feedback route. Employees want the business reason from a senior leader and the personal impact from their own manager, so brief managers before their teams. Describe AI changes at task level, not whole jobs. If AI is part of the change, every group's message says what the AI does, what data it uses, who reviews its output, what it will not be used for (for example, rating individual performance), and how to ask for a human or raise a concern, per principle 2 of `03-governance/ai-use-policy.md` and section 5 of `03-governance/risk-assessment-template.md`. Run each draft through `lint_jd_language`. Sign-off: the change lead and sponsor approve every message, and a person sends it.
 
-7. **Diagnose resistance as information.** When adoption stalls, look for the earliest unmet ADKAR element in the affected group, then use the patterns in `04-enablement/workshop-facilitator-guide.md`. Treat concerns about workload, job security, or poor outputs as evidence about the design, not as attitude problems. Record reasons for non-use without pressuring people to accept poor outputs, as the adoption playbook requires.
+7. **Build skills in the flow of work.** Pair any training with practice on real tasks, and count a skill as built when people show it on the job, not when a course is completed. Make training reach every group, including remote, part-time, and frontline workers and people who need accessible formats. Sign-off: the HR lead, with L&D.
 
-8. **Measure adoption across the whole task.** Start with a pilot in one team or unit, led by people who volunteer, and pace the rollout to what the organization can absorb. Set review points, for example at about 30, 60, and 90 days: first what people do and what blocks them, then what is working and where support is missing, then whether to embed, redesign, or retire the change. Expand only when outcomes, trust, and fair access hold or improve. Set measures, periods, and denominators before launch. Pair sustained use with output quality and reasons for non-use, and count review and rework time, as the measures table in `04-enablement/adoption-playbook.md` sets out. Training completion alone does not show adoption. Report survey and usage data at group level with small groups suppressed. The sponsor decides to expand, pause, or stop from this evidence.
+8. **Diagnose resistance as information.** When adoption stalls, find the earliest unmet ADKAR element in the affected group, then use the patterns in `04-enablement/workshop-facilitator-guide.md`. Treat concerns about workload, job security, or poor outputs as evidence about the design. Record reasons for non-use without pressuring people to accept poor outputs, as the adoption playbook requires. Sign-off: the change lead.
 
-9. **Check change load and fatigue.** List every change hitting each group in the same period. Gartner's 2025 research found that 45% of employees said they achieved the change goals their organization set, and 39% of surveyed leaders said change is a major source of stress for their teams. Where one group carries several high-impact changes, propose sequencing or pausing one, and build everyday practice into normal work rather than adding more top-down guidance. The sponsor and HR lead decide. Name the owner of each next step.
+9. **Measure adoption across the whole task, with checkpoints.** Start with a volunteer-led pilot in one unit and pace the rollout to what people can absorb. Set review points, for example at about 30, 60, and 90 days: first what people do and what blocks them, then what is working and where support is missing, then whether to embed, redesign, or retire the change. Set measures, periods, and denominators before launch. Pair sustained use with output quality, reasons for non-use, and review and rework time, per the measures table in `04-enablement/adoption-playbook.md`. Training completion alone does not show adoption. Expand only when outcomes, trust, and fair access hold or improve. Usage data never feeds an individual's performance review. Sign-off: the sponsor decides to expand, pause, or stop from this evidence.
 
-## Where AI helps and where it stops
+10. **Check change load and fatigue.** List every change hitting each group in the same period. Gartner's 2025 research found that 45% of employees said they achieved the change goals their organization set, and 39% of surveyed leaders said change is a major source of stress for their teams. Where one group carries several high-impact changes, propose sequencing or pausing one, and build practice into normal work rather than adding top-down guidance. Sign-off: the sponsor and HR lead decide. Name the owner of each next step.
 
-| Task | AI role | Human owner |
+## Decision rights
+
+| Action | Who decides | Agent role |
 |---|---|---|
-| Draft the yesterday and tomorrow description | Draft | Primary sponsor |
-| Build the impact grid by group from project documents | Draft for review | Change lead |
-| Draft the stakeholder map and sponsor role list | Draft | Change lead |
-| Map the workflow and propose human, shared, and AI-run steps | Draft for review | Change lead with the people who do the work |
-| Draft messages, FAQs, and manager talking points | Draft | Change lead and sponsor |
-| Summarize pulse survey and feedback themes at group level | Summarize | Change lead |
-| Check the plan against the impact grid and notice requirements | Check against a rubric | HR lead |
-| Combine all changes hitting each group into a load view | Compare | HR lead |
-| Route changes to pay, terms, or reporting lines to counsel | Route | Employment counsel and labor relations |
-| Label a named employee as resistant or rate their readiness | None | Not permitted |
-| Decide to expand, pause, or stop the change | None | Primary sponsor |
+| Draft the yesterday and tomorrow description and propose human-led, shared, and AI-run steps | Primary sponsor, with the people who do the work | Drafts for sign-off |
+| Build the impact grid by group | Change lead | Drafts for sign-off |
+| Draft the stakeholder map and sponsor role list | Change lead | Drafts for sign-off |
+| Draft messages, FAQs, and manager talking points | Change lead and sponsor | Drafts for sign-off |
+| Summarize pulse and feedback themes at group level | Change lead | Drafts for sign-off |
+| Check the plan against the impact grid and notice requirements, and lint drafts | HR lead reviews findings | Does alone |
+| Combine all changes hitting each group into a load view | HR lead reviews it | Does alone |
+| Route changes to pay, terms, reporting lines, or location to counsel | Employment counsel and labor relations | Does alone |
+| Send, post, or schedule any message | Change lead, after sponsor approval | Refuses and routes |
+| Label a named employee as resistant or rate their readiness | Not permitted | Refuses and routes |
+| Use adoption or usage data in an individual's review | Not permitted | Refuses and routes |
+| Decide to expand, pause, or stop the change | Primary sponsor | Refuses and routes |
+
+### Refuse and route
+
+- "List the agents who haven't used the tool so managers can talk to them about their attitude": refuse; offer group-level usage and reasons for non-use; route to the change lead.
+- "Run sentiment analysis on Slack or Teams to find the resisters": refuse; route to Legal, Privacy, and HR Leadership, since `03-governance/ai-use-policy.md` bars monitoring communications or sentiment without disclosure and consent unless they approve.
+- "Send this to all staff now" or "post it to the intranet": refuse to send; return the draft to the change lead and sponsor.
+- "Announce the new reporting lines or pay structure before Legal sees it": refuse; route to counsel and labor relations, and to the works council timeline where one exists.
+- "Make tool usage a performance goal": refuse; route to the HR lead and performance management owner.
+- "Tell staff ADKAR is proven to get 90% adoption": refuse the claim; offer the honest description from step 4.
+- Real employee data pasted into the chat: do not process it; ask for a synthetic or group-level version.
 
 ## Guardrails
 
-- **Bias and fairness.** Check that impacts, training access, and support reach every affected group, including remote, part-time, and frontline workers, and people who need accessible formats. Do not use adoption or usage data to rate a named person.
-- **Privacy and data minimization.** Work with group-level impact and adoption data. Suppress small groups in any survey or usage report. Do not monitor individual sentiment or communications to track resistance. `03-governance/ai-use-policy.md` prohibits AI monitoring of communications or sentiment without disclosure and consent unless Legal, Privacy, and HR Leadership approve it.
-- **Legal review triggers.** Any change to pay, hours, terms and conditions, reporting lines, location, or job content for represented employees, any reduction in roles, and any new AI that monitors or evaluates workers. For anything jurisdiction-specific, including works council consultation and EU rules on informing workers before high-risk AI is used at work, check the Key dates for HR table in `03-governance/README.md` and involve counsel.
-- **Human review points.** The sponsor confirms scope and approves messages. The change lead owns the plan. The HR lead reviews people impacts. Legal reviews before any change to terms is announced.
-- **Employee notice.** Tell people before the change affects them, explain what AI does where it is involved, and give a route to a person.
+- **Fairness and access.** Check that training and support reach every affected group. If the change introduces AI that selects, scores, or ranks people, route it to `11-skills/fairness-audit-prep/SKILL.md`, where the four-fifths ratio under [29 CFR 1607.4(D)](https://www.govinfo.gov/content/pkg/CFR-2024-title29-vol4/pdf/CFR-2024-title29-vol4-sec1607-4.pdf) is a screening flag, not a verdict. Never use adoption data to rate a named person.
+- **Explainability and notice.** Tell people before the change affects them what AI does, what it will not be used for, and how to reach a person.
+- **Privacy and minimization.** Use group-level data with small groups suppressed. Never monitor individual sentiment or communications.
+- **Legal review triggers.** Any change to pay, hours, terms and conditions, reporting lines, location, or job content for represented employees, any reduction in roles, and any new AI that monitors or evaluates workers. Check the rows in the Regulation map and involve counsel.
 - **Honest claims.** Do not promise outcomes a change model cannot guarantee, and do not convert freed time into savings without a real financial change.
+
+## Regulation map
+
+| Rule (Key dates row) | When it applies here | What the skill does |
+|---|---|---|
+| EU AI Act, high-risk HR systems | Rollout of AI for task allocation, performance monitoring, or similar uses affecting staff in Germany | Flags worker information duties to counsel; plans works council timing |
+| EU AI Act, transparency | Staff will talk to an AI assistant, or messages include AI-generated content | Drafts the line telling people they are dealing with AI, for counsel to confirm |
+| EU AI Act, emotion recognition at work (Article 5(1)(f)) | A request to read staff emotions to track resistance | Refuses and routes to Legal |
+| California AB 1883 (Ch. 853, Stats. 2026) | Emotion inference or neural data about California staff | Refuses and routes to Legal |
+| Illinois HB 3773 (Public Act 103-0804) | The rolled-out AI is used in hiring, promotion, discipline, or discharge affecting Illinois staff | Adds the notice to the communication plan for counsel review |
+| EU AI Act, AI literacy (Article 4) | Staff in Germany will operate or use the new AI system | Routes the training plan to L&D and counsel to check the current text |
+
+Counsel confirms scope and current status before you rely on any row.
+
+## Metrics a CHRO tracks
+
+| Metric | Definition | Why it matters |
+|---|---|---|
+| Sustained use rate at day 90 | People in the target group who completed the defined task the new way in at least 3 of the 4 weeks before day 90, divided by people in the target group whose role includes that task | Shows the change took hold, not just launched |
+| First-pass quality rate | Tasks completed the new way in the month that passed the agreed quality check without rework, divided by all tasks completed the new way in the month | Use without quality is not adoption |
+| Support access ratio | Lowest group's rate of completing role-based training or a support session within 30 days of go-live, divided by the highest group's rate, across remote, part-time, frontline, and other groups | Catches groups left behind before they fall behind |
 
 ## Output format
 
-```
+```markdown
 ## The change
 Yesterday:
 Tomorrow:
@@ -85,13 +139,14 @@ Primary sponsor:
 Decision zones: [step, human-led / human with AI / AI-run, checkpoint]
 
 ## Impact by group
-| Group | Aspects affected | Degree (low, medium, high) | Legal or HR flag |
+| Group | Aspects affected | Degree (low, medium, high) | Skills needed | Legal or HR flag |
 
 ## Stakeholders and roles
 | Stakeholder | Role in the change | What they must do | Gap Y/N |
 
-## Communication plan (DRAFT)
+## Communication plan (DRAFT, not sent)
 | Group | Message | Sender | Channel | Timing | Feedback route |
+AI notice lines: what it does, data used, who reviews, what it is not used for, how to reach a person
 
 ## Resistance watch
 | Group | Earliest unmet ADKAR element | Evidence | Response | Owner |
@@ -102,18 +157,30 @@ Decision zones: [step, human-led / human with AI / AI-run, checkpoint]
 ## Change load
 | Group | Concurrent changes | Combined impact | Proposal |
 
+## Decision rights calls
+| Request | Agent role | Routed to |
+
 ## Routing
 | Item | Owner | Next step |
+
+## Audit trail
+- Inputs used (and GAP items):
+- Tools called | purpose | fields read:
+- Items needing sign-off | who:
+- Open legal questions for counsel:
 ```
 
-## What this skill will not do
+## Worked example
 
-- Make an employment decision about a named person, or label a named employee as resistant.
-- Write to an HRIS, learning system, intranet, or any other HR system, or send communications.
-- Process real employee data in examples. If someone pastes it, say so and ask for a synthetic or group-level version.
-- Monitor individual employees' communications or sentiment to track adoption.
-- Claim that any change model is proven to work, or promise an adoption result.
-- Decide whether a bargaining or consultation duty applies. It flags the trigger and routes to counsel.
+Harbor & Pine's HR transformation lead plans the rollout of an AI case-drafting assistant to its HR service center in the US and Germany, including a request to flag agents who skip the tool. See [EXAMPLE.md](EXAMPLE.md).
+
+## Tests
+
+Test cases are in `evals/` in the format `claude plugin eval` reads. They are written, not yet run against a model.
+
+- `ai-assistant-rollout-core`: a full change plan for an AI assistant rollout to one function.
+- `cross-border-no-sponsor-edge`: a US and Germany rollout with no named sponsor and a messy usage export.
+- `sentiment-resisters-refusal`: a request to scan chat for resisters and email them directly.
 
 ## Sources
 

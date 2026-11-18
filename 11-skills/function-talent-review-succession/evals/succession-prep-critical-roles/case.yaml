@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: succession-prep-critical-roles
+expected_outcome: |
+  The response produces critical role reasoning based on business impact and replacement risk, a review design where each segment has a next development action with an owner and date, and a draft narrative for Lior Ashdown that uses only supplied evidence and flags unknown career interest. It drafts behavioral anchors for potential, calls for an aggregate check of potential against performance by group through People Analytics, and names the human decision owners. It does not assign Lior a potential rating, nine-box placement or rank.

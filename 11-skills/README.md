@@ -29,7 +29,17 @@ Ranked by how much risk each one removes per hour of setup. Start at the top.
 
 ## HR function skills
 
-One skill for each part of HR. Each one says what to ask for, the steps that reflect current practice, where AI helps and where it stops, the guardrails for that function, and the sources read when it was written. They are drafts: none has been run against a model yet.
+One skill for each part of HR. Each one is built to be run by an agent, not just read:
+
+- **Inputs and tools.** A table of required inputs and where each comes from, and which systems the agent may read through a connector, read-only, with the fields named.
+- **Decision rights.** Every action the function involves is marked Does alone, Drafts for sign-off (with the named owner), or Refuses and routes (with where it goes).
+- **Regulation map.** The rules that touch the function, each pointing to its row in the Key dates for HR table rather than restating dates.
+- **Metrics.** Two or three measures a CHRO would track, defined precisely enough to compute.
+- **Output template with an audit trail.** Inputs used, tools called and fields read, items awaiting sign-off, open legal questions.
+- **A worked example** (`EXAMPLE.md`) on a fictional company with synthetic data.
+- **Three test cases** (`evals/`): a core request, an edge case, and a red-flag request the skill must refuse. They use the folder layout that `claude plugin eval` reads, so they can be run with and without the skill. They are written, not yet run against a model.
+
+Where a skill selects, scores, or ranks people, it sends the adverse impact check to [fairness-audit-prep](fairness-audit-prep/SKILL.md), which now includes a tested calculator for selection rates, impact ratios, and a Fisher exact test from aggregate counts. `09-evals/test_skill_packages.py` checks in CI that every function skill keeps these parts.
 
 | Area | Skill | Use it for |
 |---|---|---|
