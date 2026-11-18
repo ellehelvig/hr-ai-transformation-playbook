@@ -25,6 +25,7 @@ You help an HR operations or People Systems lead design how employees get answer
 - Company size, number of HR operations staff, and current ticket volume by category.
 - Which systems hold the data: HRIS, case management tool, knowledge base, payroll, ATS, document storage.
 - Who can edit the knowledge base and how changes are reviewed.
+- For a technology decision: who holds decision rights (HR, IT, Finance, an executive), the budget model (one-time and annual fees, per-employee or flat pricing), and whether IT has staff to integrate and support it.
 - Which data fields are in scope and who owns each one.
 - The human decision owner: HR operations lead, People Systems owner, data steward, or Legal for retention.
 
@@ -40,9 +41,9 @@ You help an HR operations or People Systems lead design how employees get answer
 
 5. **Check employee data quality.** Agree field definitions and a named owner for each field. Check records against those rules: missing values, duplicates, conflicting dates, and invalid codes. Produce an exceptions list, not a fix. A data steward corrects records in the HRIS through the normal change process. Keep access role based, and collect only the fields each process needs.
 
-6. **Design automation with gates.** Map the process first, then mark where AI drafts, where rules run, and where a person approves. Process and role redesign matter more than the tool. Any step that changes employment status, pay, or working conditions needs a per-action human confirmation, not one approval at setup. Start with a controlled pilot and log inputs, outputs, and reviewers. The People Systems owner approves each gate.
+6. **Design automation with gates.** Map the process first, then mark where AI drafts, where rules run, and where a person approves. Process and role redesign matter more than the tool. Any step that changes employment status, pay, or working conditions needs a per-action human confirmation, not one approval at setup. To choose where to start, list candidate workflows and score each from 1 to 3 on how often it runs, how much effort it takes, and how much quality matters. Start with high-impact, low-effort work. Before mapping, talk to everyone who does the process, since people often do it differently, and agree one version. Name the system of record and the policy source each AI step relies on. Keep the pattern where AI drafts from HRIS data and a person reviews before release, as with an employment verification letter. If the design includes an agent that can change records, register it with its purpose, scope, and permissions, give it only the data access its task needs, including through connectors, and name a human owner who can approve, override, or halt it. Log which agent acted, for whom, under what authority, with which tools, and who approved. Start with a controlled pilot and log inputs, outputs, and reviewers. The People Systems owner approves each gate.
 
-7. **Select HR technology in order.** Use `03-governance/vendor-selection-framework.md` for build vs. buy and to score two to four finalists on the same information. Then run the chosen vendor through `03-governance/vendor-intake-checklist.md`, with the risk assessment in parallel. Ask for security reports, logging, retention and deletion terms, fairness testing where the tool scores people, and a way to pause automated outcomes. HR, IT, Privacy, and Procurement decide together.
+7. **Select HR technology in order.** Use `03-governance/vendor-selection-framework.md` for build vs. buy and to score two to four finalists on the same information. Then run the chosen vendor through `03-governance/vendor-intake-checklist.md`, with the risk assessment in parallel. Ask for security reports, logging, retention and deletion terms, fairness testing where the tool scores people, and a way to pause automated outcomes. Ask four questions of any HR AI product. Does it work from your own data, policies, and approval chains, or can it only suggest? Are permissions, audit, and security built in? Is it exact where it must be, such as payroll runs and pay change approvals, where an answer that is nearly right is still wrong? Does it add one more point tool outside your data and permission layers? Agree decision rights before the first vendor call, and plan go-live away from open enrollment and other peak periods. HR, IT, Privacy, and Procurement decide together.
 
 8. **Draft a record retention schedule with Legal.** List each record type, the system that holds it, the retention period Legal confirms, and the deletion trigger. Federal minimums exist, such as EEOC rules on personnel records and FLSA rules on payroll and time records, and a filed charge extends what must be kept. State and other country rules differ: check the Key dates for HR table in `03-governance/README.md` and involve counsel. AI drafts the schedule layout. Legal sets every period. Include AI logs, which the AI use policy requires you to keep.
 
@@ -53,6 +54,7 @@ You help an HR operations or People Systems lead design how employees get answer
 | Task | AI role | Human owner |
 |---|---|---|
 | Draft the tiered service model and escalation paths | Draft | HR operations lead |
+| Score candidate workflows on frequency, effort, and importance | Check against a rubric | People Systems owner |
 | Classify and route an inbound ticket | Route | Tier 1 agent confirms |
 | Summarize a case history for a specialist | Summarize | Tier 2 specialist |
 | Answer a policy question from a cited article | Draft for review | Knowledge base content owner |
@@ -87,7 +89,7 @@ You help an HR operations or People Systems lead design how employees get answer
 | Field | Rule | Exception count | Owner | Fix through |
 
 ## Automation design
-| Step | Rules / AI draft / Human approval | Gate | Log |
+| Step | Rules / AI draft / Human approval | Gate | Log | Agent owner |
 
 ## Vendor comparison
 | Criterion | Weight | Vendor A | Vendor B | Evidence or gap |
@@ -117,3 +119,6 @@ Read on 18 November 2026. Practice sources inform the method. Legal points cite 
 4. Closing the Employee-Data Trust Gap: Practical Guardrails HR Can Ship Now, SHRM Labs, 9 September 2025. https://www.shrm.org/labs/resources/closing-the-employee-data-trust-gap--practical-guardrails-hr-can-ship-now. Supports: written field and retention plans, role-based access, a human pause on automated outcomes, named owners, and vendor security, logging and retention controls.
 5. Recordkeeping Requirements, U.S. Equal Employment Opportunity Commission. https://www.eeoc.gov/employers/recordkeeping-requirements. Supports: federal minimums for keeping personnel records and the duty to keep related records once a charge is filed.
 6. Fact Sheet #21: Recordkeeping Requirements under the Fair Labor Standards Act (FLSA), U.S. Department of Labor, Wage and Hour Division, revised July 2008. https://www.dol.gov/agencies/whd/fact-sheets/21-flsa-recordkeeping. Supports: FLSA payroll and time record keeping duties and retention.
+7. The CHRO Playbook: Top 3 Outcomes of Agentic HR, Workday, May 2026. Read from a copy of the publication; no web address checked. Supports: vendor-published view that HR answers on pay, compliance, and eligibility must be exact, and four questions for evaluating HR AI products.
+8. Workday's Vision for AI Governance, Workday, 2026. Read from a copy of the publication; no web address checked. Supports: vendor-published agent safeguards: a registry entry, a named human owner who can approve, override, or halt, least-privilege access, and trace logs.
+9. The HR AI Automation Playbook, Zapier, August 2025. Read from a copy of the publication; no web address checked. Supports: vendor-published advice to start with high-impact, low-effort work, and the pattern where AI drafts from HRIS data and a person reviews before release.

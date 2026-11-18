@@ -6,7 +6,8 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 Added
 
-- **HR function skills, 18 November 2026.** 17 draft agent skills in `11-skills/function-*`, one per HR function, from talent acquisition to offboarding, plus an HR AI governance router that points to the six existing governance skills. Each skill lists its inputs, steps, where AI stops, guardrails, and the sources read on 18 November 2026. Legal points cite primary sources and defer dates to the Key dates for HR table. No skill has been run against a model.
+- **HR function skills, 18 November 2026.** 17 draft agent skills in `11-skills/function-*`, one per HR function, from talent acquisition to offboarding, plus an HR AI governance router that points to the six existing governance skills. Each skill lists its inputs, steps, where AI stops, guardrails, and the sources read on 18 November 2026. Legal points cite primary sources and defer dates to the Key dates for HR table. Practice guidance also draws on public publications such as SHRM's AI in the Workplace Playbook, Microsoft's 2026 Work Trend Index, McKinsey's State of Organizations 2026, and the European Commission's draft high-risk classification guidelines, each labeled by type. No skill has been run against a model.
+- **Key dates for HR, 18 November 2026.** Added rows for EU AI Act Article 4 (AI literacy, in application since 2 February 2025), Executive Order 14173 (signed 21 January 2025), and the OFCCP final rule rescinding the Executive Order 11246 regulations (effective 26 October 2026), each checked against the official page.
 
 Changed
 
