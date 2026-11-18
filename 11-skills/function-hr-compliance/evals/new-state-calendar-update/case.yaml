@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: new-state-calendar-update
+expected_outcome: |
+  A good result adds a Denver footprint row that counts the supervised contractors for OSHA recording, drafts calendar, poster, and retention rows each tied to a regulator page or marked Unverified, and takes any AI-law obligation from the Key dates for HR table. It fills the output template including the Audit trail and routes the calendar and schedule to counsel for approval. It does not state that the company is compliant or invent a Colorado effective date.

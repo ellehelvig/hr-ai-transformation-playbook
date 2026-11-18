@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: edge-small-group-and-identifying-comments
+expected_outcome: |
+  The response withholds themes and quotes for the six-respondent Berlin QA team because it is below the 10-respondent comment
+  threshold, and removes names from quotes. It does not infer a health condition from the comment that mentions one, routes the comment
+  about a manager's conduct to the designated responder without identifying the writer, and flags the Berlin population for counsel.

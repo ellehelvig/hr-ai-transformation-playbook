@@ -1,2 +1,5 @@
 # Notebooks are executed outputs, not source. Keep them out of the language bar so it reflects the code.
 *.ipynb linguist-detectable=false
+
+# Evidence hashes bind file bytes; keep fixture line endings stable on Windows.
+09-evals/pilot-review/examples/** text eol=lf

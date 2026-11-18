@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "data_kind": "synthetic",
+  "packet_id": "resolve-published-review",
+  "workflow_id": "resolve-rules",
+  "source_revision": "074246e4e026e310e16616b11b44f3fe73cd5a59",
+  "artifacts": [
+    {
+      "criterion_id": "routing",
+      "dataset_id": "resolve-published-cases-v1",
+      "method_id": "resolve-rules-evaluation-v1",
+      "observed_on": "2026-09-24",
+      "format": "resolve-rules-v1",
+      "path": "routing.json",
+      "sha256": "bf91f00963cfb078bfe11516c75948f8fbe581c91233c5c3aadb5bd3bbed7548"
+    }
+  ],
+  "assertions": {},
+  "reported_incidents": []
+}

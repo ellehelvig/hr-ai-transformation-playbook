@@ -1,0 +1,106 @@
+# HR agent roster: one entry per AI system or tool that does People work.
+# See agent-roster.md for what each field means and the rules for keeping it.
+# Entries below describe this repository's own MCP tool packages.
+# Owners are example roles. All data is synthetic. Nothing here is live.
+
+- name: Comp banding
+  owner: Compensation team lead (example role)
+  purpose: Shows where a proposed base pay sits against benchmark bands.
+  pattern: Rules only
+  model: none
+  reads:
+    - Proposed pay, role, level, and location passed in by the caller
+    - Benchmark bands in 10-mcp-agents/comp_banding/data/comp_bands.json (synthetic)
+  can_do:
+    - comp_band_position
+    - comp_list_known_bands
+  never_does:
+    - Sets or approves pay
+    - Bands from historical pay. It refuses when the caller says the proposed pay came from pay history
+  hands_off_when:
+    - Every result. human_review_required is always true
+  human_checkpoint: A compensation analyst reviews every result before pay is set
+  evidence: pytest suite in 10-mcp-agents/comp_banding, run in CI
+  logging: Not yet in place. Proposed in 10-mcp-agents/ADOPTION-MONITORING.md
+  how_to_stop: Not yet in place
+  status: proposed
+  next_review: Before any pilot
+  known_gaps:
+    - No logging
+    - No documented way to switch it off
+
+- name: Resume screen
+  owner: Talent acquisition lead (example role)
+  purpose: Maps the evidence in a resume against each requirement in a job description.
+  pattern: Rules only
+  model: none
+  reads:
+    - Resume text and job description text passed in by the caller
+    - Word lists in 10-mcp-agents/resume_screen/data (synthetic)
+  can_do:
+    - screen_resume_against_jd
+    - lint_jd_language
+  never_does:
+    - Scores, ranks, or compares candidates
+    - Decides who advances
+  hands_off_when:
+    - Every result. human_review_required is always true
+  human_checkpoint: A recruiter makes and records the decision, citing evidence lines
+  evidence: pytest suite in 10-mcp-agents/resume_screen, run in CI
+  logging: Not yet in place. Proposed in 10-mcp-agents/ADOPTION-MONITORING.md
+  how_to_stop: Not yet in place
+  status: proposed
+  next_review: Before any pilot
+  known_gaps:
+    - No logging
+    - No documented way to switch it off
+    - A caller could turn its per-requirement counts into a score. The tool says so in its KNOWN_LIMITATIONS
+
+- name: Recruiter intake
+  owner: Talent acquisition lead (example role)
+  purpose: Turns a hiring manager's intake notes into skill groups, a search string, and follow-up questions.
+  pattern: Rules only
+  model: none
+  reads:
+    - Intake text passed in by the caller
+    - Skill synonyms in 10-mcp-agents/recruiter_intake/data/skill_synonyms.json (synthetic)
+  can_do:
+    - calibrate_recruiter_intake
+  never_does:
+    - Contacts candidates
+    - Runs a search
+  hands_off_when:
+    - Every result. human_review_required is always true
+  human_checkpoint: A recruiter edits the search string and questions before use
+  evidence: pytest suite in 10-mcp-agents/recruiter_intake, run in CI
+  logging: Not yet in place. Proposed in 10-mcp-agents/ADOPTION-MONITORING.md
+  how_to_stop: Not yet in place
+  status: proposed
+  next_review: Before any pilot
+  known_gaps:
+    - No logging
+    - No documented way to switch it off
+
+- name: Governance policy Q and A
+  owner: HR governance lead (example role)
+  purpose: Finds and cites the sections of this playbook's governance documents that answer a question.
+  pattern: Pattern 1, retrieval with verification, by lexical search
+  model: none
+  reads:
+    - 03-governance/*.md, read at call time
+  can_do:
+    - ask_governance_policy
+  never_does:
+    - Writes an answer of its own
+    - Gives legal advice. Every response carries a disclaimer
+  hands_off_when:
+    - No section matches. It returns no match instead of guessing
+  human_checkpoint: The person asking reads the cited section
+  evidence: pytest suite in 10-mcp-agents/policy_qa, run in CI
+  logging: Not yet in place. Proposed in 10-mcp-agents/ADOPTION-MONITORING.md
+  how_to_stop: Not yet in place
+  status: proposed
+  next_review: Before any pilot
+  known_gaps:
+    - No logging
+    - No documented way to switch it off
