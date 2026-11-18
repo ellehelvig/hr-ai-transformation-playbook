@@ -1,11 +1,9 @@
 # HR AI Transformation Playbook
 
-A reference toolkit for HR leaders choosing where AI belongs in people work.
-Use it to select a use case, redesign tasks, plan governance and enablement, and evaluate a synthetic prototype.
+A practical path for HR leaders from an AI idea to a governed pilot decision.
+It covers choosing a use case, redesigning the work, governance, enablement, and evaluation, with runnable examples on invented data.
 
-[Evidence and limits](docs/evidence-index.md) · [Read online](https://ellehelvig.github.io/hr-ai-transformation-playbook/) · [Tests](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml) · [Resolve demo](https://ellehelvig.github.io/peopleops-resolution-agent/)
-
-**Reference materials and synthetic demonstrations.** No completed employee pilot or measured business outcome is claimed. A review flag in a tool response is not an enforced approval system.
+[Read online](https://ellehelvig.github.io/hr-ai-transformation-playbook/) · [Worked decision example](docs/pilot-decision-case-study.md) · [Evidence and limits](docs/evidence-index.md) · [Tests](https://github.com/ellehelvig/hr-ai-transformation-playbook/actions/workflows/ci.yml) · [Resolve demo](https://ellehelvig.github.io/peopleops-resolution-agent/)
 
 ## Start with one decision
 
@@ -71,6 +69,8 @@ This is the proposed operating model. The diagram does not represent an automate
 [Use cases](01-use-cases/README.md) · [Draft prompts](02-prompt-library/README.md) · [Governance](03-governance/README.md) · [Enablement](04-enablement/README.md) · [Notebooks](05-notebooks/README.md) · [Roadmap](06-roadmap/README.md) · [Workflow patterns](07-agentic-patterns/README.md) · [ROI measurement](08-roi-measurement/README.md) · [Evals](09-evals/README.md) · [MCP tools](10-mcp-agents/README.md) · [Agent skills](11-skills/README.md)
 
 ## Evidence and responsible use
+
+These are reference materials and synthetic demonstrations. No completed employee pilot or measured business outcome is claimed, and a review flag in a tool response is not an enforced approval system.
 
 The [evidence index](docs/evidence-index.md) distinguishes executed code from reference responses, proposed controls, and unvalidated model behavior. No prompt result or model-judge reliability is claimed without a recorded run. [Resolve](https://github.com/ellehelvig/peopleops-resolution-agent) is a separate workflow prototype with published failures and a production hold.
 
