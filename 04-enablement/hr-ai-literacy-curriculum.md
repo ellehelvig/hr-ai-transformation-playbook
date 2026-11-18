@@ -7,6 +7,11 @@ A 4-module learning program for HR professionals at all experience levels. Desig
 **Audience:** All People Team members
 **Prerequisite:** None
 
+**Lab prerequisite:** The facilitator confirms an organization-approved tool,
+provider handling, and a synthetic-only data boundary before any exercise.
+Modules 1-3 and the required governance approvals precede any real-work pilot.
+This curriculum does not authorize employee-data processing.
+
 ---
 
 ## Program overview
@@ -51,7 +56,7 @@ Rules            →  Assist / Augment              →  Agent
 Use rules when rules reliably give the right answer. Most HR uses of AI belong in the middle. An agent, where a model takes several actions through tools with limited review between them, has to earn that autonomy through evidence and brings new governance requirements.
 
 *Prompt quality drives output quality:*
-The single highest-leverage skill for HR professionals using AI is prompt construction. Vague prompts produce generic output. Specific, well-structured prompts with good context produce usable output.
+Clear prompts help define a task and its boundaries. Output quality also depends on the model, source material, workflow controls, and verification. A well-written prompt does not establish factual accuracy or safe HR judgment.
 
 **Pre-reading (assign before session):**
 - [Your organization's AI use policy](../03-governance/ai-use-policy.md)
@@ -73,23 +78,23 @@ The single highest-leverage skill for HR professionals using AI is prompt constr
 | 0:00–0:15 | Share-back from Module 1 homework, what did you try, what happened? |
 | 0:15–0:45 | Prompt engineering for HR: the four elements of a good prompt |
 | 0:45–1:10 | Live demo: Onboarding plan, performance review draft, policy Q&A |
-| 1:10–1:50 | Hands-on lab: Each participant works through 2 prompts from the library using their own real work |
+| 1:10–1:50 | Hands-on lab: Each participant works through 2 prompts using synthetic HR scenarios in organization-approved tools |
 | 1:50–2:00 | Debrief: What surprised you? What didn't work? |
 
 **The four elements of an effective HR prompt:**
 
-1. **Role**: Tell the AI who it is. "You are an experienced HRBP..." produces better output than just asking a question.
+1. **Role**: Define the task perspective, such as drafting support for an HRBP. A role instruction does not give the model professional authority.
 
 2. **Context**: Provide the specific details the AI needs. Role, tenure, team size, situation. Don't make the AI guess.
 
 3. **Task**: State clearly what you want it to produce. One output per prompt. "Draft a..." is clearer than "Help me with..."
 
-4. **Constraints**: Define length, tone, format, and what to avoid. "300 words, no bullet points, avoid generic phrases" significantly improves output quality.
+4. **Constraints**: Define length, tone, format, exclusions, and the verification needed. Check whether the output follows them.
 
 **Lab instructions:**
 
 Participants choose 2 prompts from the library that are relevant to their current work:
-1. Run the prompt with a real (or realistic) example from their work
+1. Run the prompt with a fictional HR scenario in an organization-approved tool. Do not upload real employee, candidate, compensation, or confidential employer information.
 2. Evaluate the output: What's useful? What's wrong or missing? What would you change before using it?
 3. Iterate: Modify the prompt once based on what you learned and run it again
 4. Note: What changed between run 1 and run 2?
@@ -121,7 +126,7 @@ Introduce and reinforce this heuristic:
 | 1:00–1:20 | Walk-through: The risk assessment template |
 | 1:20–1:30 | Q&A + open discussion |
 
-> **Note on regulatory currency:** Regulatory references in this module are current as of September 2026. The HR AI regulatory landscape is evolving rapidly, verify current law before relying on specific references in any compliance discussion or training material.
+> **Note on regulatory currency:** Use the [Key dates for HR](../03-governance/README.md#key-dates-for-hr) and its linked primary sources as the dated reference. The slides summarize risk questions; they are not a complete legal reference. Have Legal verify jurisdiction, scope, obligations, and effective dates before delivery or adoption.
 
 **Key legal risk areas to cover:**
 
@@ -259,7 +264,10 @@ First step to move forward:
 
 ## Assessment and certification
 
-Participants who complete all four modules and the hands-on components receive a **HR AI Practitioner** acknowledgment from the People Team.
+An organization may choose to give participants who complete all four modules
+and the hands-on components an **HR AI Practitioner** acknowledgment. This is a
+proposed internal recognition, not an accredited certification or evidence of
+professional competence. No delivery or learning outcome is claimed here.
 
 Optional extension: Participants who complete a full use case spec and present it to the HR Technology team are recognized as **HR AI Champions**, an informal internal designation that supports peer enablement.
 
@@ -267,7 +275,9 @@ Optional extension: Participants who complete a full use case spec and present i
 
 ## Facilitator notes
 
-- Module 3 generates the most discussion and sometimes the most resistance. Budget flex time.
-- The hands-on lab in Module 2 is the highest-value session, don't let it get cut for time.
-- Adapt the case studies and scenarios in Module 3 to your organization's actual context. Generic examples land less well than ones that feel real.
+These are facilitation suggestions, not measured delivery findings. Use synthetic examples; removing names alone does not establish anonymity. Do not upload real employee, candidate, compensation, or employer-confidential information for a training exercise.
+
+- Budget flex time in Module 3 for questions and disagreement about risk.
+- Protect time for the Module 2 lab, and check whether participants can identify errors and verify outputs afterward.
+- Adapt synthetic scenarios to familiar workflows, without identifiable employee cases or confidential documents.
 - Keep an AI skeptic on the facilitation team if possible. The best discussions happen when the room has range.

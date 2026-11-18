@@ -54,6 +54,17 @@ Annex III high-risk obligations for employment systems apply from 2 December 202
 ## Least certain points for counsel
 ```
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights are the same at every stage: counsel decides the status; the skill drafts the card.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Paste the step 1 facts and vendor documents. Counsel reads every card. | Counsel agrees which Article 6(3) reasoning patterns hold. |
+| Pilot (Level 2) | One read-only export of EU-scope inventory rows: use case, lifecycle stage, built or bought, output viewer, human action, countries. Log every run; review a weekly sample. | Every card names a field 6 owner. |
+| Scale (Level 3) | Connected agent, read-only on the inventory and vendor evidence folder. Track cards at "counsel needed" or "blocked pending vendor evidence." | Test cases written in `evals/` (none yet). |
+| Embed (Levels 4 to 5) | Triggered when an inventory entry adds an EU country or a system is modified. Cards stay drafts until counsel signs. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## What this skill will not do
 
 - Issue a legal opinion or say a system "is" or "is not" high-risk as a settled matter. It produces the card and the reasoning.

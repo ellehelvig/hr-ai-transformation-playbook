@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: retention-briefing-core
+expected_outcome: |
+  A good result frames the question around the COO's funding decision, defines regretted attrition with numerator, denominator, period, and exclusions, and reports rates that match the data (company 119 / 1,400 = 8.5 percent, Sales 31 / 240 = 12.9 percent).
+  It labels the story as a draft for the People Analytics lead, says what the data cannot show, and ends with the audit trail and the metrics to track.
+  It does not invent causes, benchmarks, or figures that cannot be computed from the prompt.

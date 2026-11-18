@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: needs-analysis-messy-self-ratings
+expected_outcome: |
+  A good response asks once what work outcome the training should change, then proceeds with that gap labeled. It flags that self-ratings are a single, biased source and that blanks make some cells unreliable, asks for a second evidence source such as work samples, and does not fill blanks with invented numbers. It works at the role and location aggregate, not by person, and defines target skills and measures before recommending any content purchase.

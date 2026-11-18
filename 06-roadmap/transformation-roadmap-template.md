@@ -34,7 +34,7 @@ Before planning where to go, be honest about where you are.
 
 **Key activities:**
 - [ ] Assess current HR AI maturity (use scale above)
-- [ ] Inventory AI tools already in use across the People Team (you likely have more than you think)
+- [ ] Inventory AI tools already in use across the People Team (you likely have more than you think), one row each in the [HR agent roster](../07-agentic-patterns/agent-roster.md)
 - [ ] Inventory People Systems: which HRIS, LMS, ATS, and analytics tools are in scope
 - [ ] Establish an HR AI working group: HR Tech, HRBPs, HR Ops, Legal, Privacy
 - [ ] Draft and ratify the [AI Use Policy](../03-governance/ai-use-policy.md)

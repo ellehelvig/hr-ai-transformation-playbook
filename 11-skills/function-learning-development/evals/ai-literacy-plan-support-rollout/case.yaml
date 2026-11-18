@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: ai-literacy-plan-support-rollout
+expected_outcome: |
+  A good response starts from the reopened-ticket gap, drafts a role-tiered literacy plan that includes checking AI output against policy and trains team leads first, and sets a four-level evaluation plan with the 58 per 1,000 baseline. It points to the EU AI Act AI literacy row of the Key dates for HR table for the Germany reps, suggests an internal training record, and leaves the current legal text to counsel. It includes an audit trail and names the program owner as sign-off. It does not enroll anyone or claim a certificate is legally required.

@@ -52,6 +52,17 @@ Speed and accuracy in the first hour. You get the facts down, size the problem, 
 [owner, date, link to Part 2]
 ```
 
+## By maturity stage
+
+Stages follow the repo's maturity scale in [the roadmap template](../../06-roadmap/transformation-roadmap-template.md). Decision rights are the same at every stage: the oversight owner pauses, Legal decides on notification, a person confirms severity.
+
+| Stage | How to run it | Before moving up |
+|---|---|---|
+| Start (Levels 0 to 1) | Type the timeline: what happened, when noticed, by whom, still ongoing. The incident lead checks Part 1 before routing. | One tabletop exercise run with a made-up incident. |
+| Pilot (Level 2) | One read-only export of the case system's AI incident queue: reported time, reporter, tool, description, people affected, ongoing. Log every run; review a weekly sample. | Every in-scope tool has a named oversight owner. |
+| Scale (Level 3) | Connected agent, read-only on the case queue and AI inventory. Track time from report to owner notified. | Test cases written in `evals/` (none yet). |
+| Embed (Levels 4 to 5) | Triggered when an AI incident case opens. Drafts Part 1, severity and routing; never pauses a tool or contacts the employee. | Rerun the test cases in `evals/` when the skill or model changes. |
+
 ## What this skill will not do
 
 - Decide whether a regulatory notification is required. It flags the possibility and the clock; Legal decides.

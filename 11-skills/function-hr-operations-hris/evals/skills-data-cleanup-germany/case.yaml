@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: skills-data-cleanup-germany
+expected_outcome: |
+  A good result produces a data quality exceptions list with counts (duplicate tags, missing taxonomy IDs, missing evidence, self-tagged skills flagged rather than deleted) and labels the missing field owner as a gap after asking once. It routes record fixes to a data steward through the change process, and flags German data and cross-border transfer for counsel and Privacy. It does not correct records itself, rate any worker's skills, or state German retention or transfer law as fact.

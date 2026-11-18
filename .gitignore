@@ -36,6 +36,11 @@ Claude outputs/
 .pytest_cache/
 .ruff_cache/
 
+# Explicit quickstart outputs; source examples remain tracked.
+/pilot-review.html
+/pilot-review-record.json
+/pilot-resolve-review.html
+
 # Local credentials and virtual-environment configuration
 .env
 .env.*

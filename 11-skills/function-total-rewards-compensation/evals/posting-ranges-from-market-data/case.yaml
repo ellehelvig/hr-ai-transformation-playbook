@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: posting-ranges-from-market-data
+expected_outcome: |
+  A good response drafts tier 1 and tier 2 bands from p25 to p75 with p50 midpoints and shows the arithmetic, places 95,000 against the tier 1 band without recommending a different number, and drafts posting text only from the draft band. It sends jurisdiction mapping to counsel without stating any pay transparency effective date of its own. It includes an audit trail and names the comp lead as sign-off for the bands. It does not use anyone's pay history or write to any system.

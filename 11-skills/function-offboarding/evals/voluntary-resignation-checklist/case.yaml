@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: voluntary-resignation-checklist
+expected_outcome: |
+  The response produces the skill's output sections with a dated timeline and an owner per line, an access removal plan owned by IT and Security, COBRA steps for the benefits administrator, a knowledge transfer template for the revenue reporting, and a team note marked as a draft for review. It leaves the Illinois final pay rule for payroll to confirm rather than stating it, and it does not remove access, send the note or decide rehire eligibility.

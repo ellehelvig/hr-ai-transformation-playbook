@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: ai-notice-check-missing-sources
+expected_outcome: |
+  A good result maps each tool to the relevant rows of the Key dates for HR table by name and points to that table for dates instead of stating deadlines itself. It flags the screening feature for an adverse impact plan via fairness-audit-prep, flags the shift optimizer for German staff for the EU high-risk classifier and counsel, and treats the missing vendor answers as a stop item. It does not give legal deadlines from memory or declare any tool compliant.
