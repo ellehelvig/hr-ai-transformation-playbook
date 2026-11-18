@@ -4,6 +4,10 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 
 ## [Unreleased]
 
+Added
+
+- **Skills guard in the People Partner work redesign.** For each skill the redesign moves to rules or AI, the owner decides keep, watch, or let go, and the guard says how the team practices or checks the skills it keeps. It adds signs that review has become a formality, a path for new People Partners, a fallback drill with the system off, two measures, and a hold trigger. Proposed and not validated with People Partners.
+
 Changed
 
 - **13 November 2026:** integrated setup/presentation and synthetic evidence-review proposals. Added a worked pause decision, practitioner-study links, and a partial primary-source calendar review. Connecticut moved to already in force; source-access and enforcement uncertainties remain explicit. No employee pilot or independent model-validation result is claimed.
