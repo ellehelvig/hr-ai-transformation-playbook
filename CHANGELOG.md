@@ -7,6 +7,7 @@ Notable changes to the playbook. Regulatory content is checked against primary s
 Added
 
 - **HR agent roster.** A page and a YAML template for keeping one row per AI system that does People work: owner, scope, data, handoffs, evidence, logging, how to stop it, and review date. It maps each field to a step in the employee lifecycle. The example fills in this repository's four MCP tool packages and records that none of them logs calls or has a documented off switch yet.
+- **Skills guard in the People Partner work redesign.** For each skill the redesign moves to rules or AI, the owner decides keep, watch, or let go, and the guard says how the team practices or checks the skills it keeps. It adds signs that review has become a formality, a path for new People Partners, a fallback drill with the system off, two measures, and a hold trigger. Proposed and not validated with People Partners.
 
 Changed
 
