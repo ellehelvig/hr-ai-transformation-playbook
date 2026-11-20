@@ -230,7 +230,7 @@ starlette==1.7.0
     # via
     #   mcp
     #   sse-starlette
-threadpoolctl==3.7.0
+threadpoolctl==3.8.0
     # via scikit-learn
 tornado==6.5.10
     # via
