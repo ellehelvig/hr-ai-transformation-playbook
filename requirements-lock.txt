@@ -267,5 +267,5 @@ urllib3==2.8.0
     # via requests
 uvicorn==0.54.0 ; sys_platform != 'emscripten'
     # via mcp
-wcwidth==0.9.2
+wcwidth==0.9.5
     # via prompt-toolkit
